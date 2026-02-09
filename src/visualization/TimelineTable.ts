@@ -1,4 +1,4 @@
-import type { Contraction } from '../types';
+import type { Contraction, LaborEvent } from '../types';
 import { getDurationSeconds, getIntervalMinutes, getRestBetween } from '../data/calculations';
 import { formatDurationShort, formatInterval, formatTime, getIntensityLabel, getLocationLabel } from '../utils/formatters';
 import { ContractionEditor } from '../widget/ContractionEditor';
@@ -45,14 +45,14 @@ export class TimelineTable {
 		this.tableBody = table.createEl('tbody');
 	}
 
-	update(contractions: Contraction[]): void {
+	update(contractions: Contraction[], events?: LaborEvent[]): void {
 		this.contractions = contractions;
 		this.closeEditor();
 		this.tableBody.empty();
 
 		const completed = contractions.filter(c => c.end !== null);
 
-		if (completed.length === 0) {
+		if (completed.length === 0 && (!events || events.length === 0)) {
 			const row = this.tableBody.createEl('tr');
 			const cell = row.createEl('td', { attr: { colspan: '7' } });
 			cell.textContent = 'No contractions recorded yet';
@@ -60,8 +60,26 @@ export class TimelineTable {
 			return;
 		}
 
+		// Build unified timeline of contractions + events, reverse chronological
+		const eventItems = (events || []).map(e => ({
+			timestamp: new Date(e.timestamp).getTime(),
+			event: e,
+		}));
+
+		// Insert event rows at the right chronological positions
+		let eventIdx = 0;
+		// Sort events by timestamp descending for interleaving
+		const sortedEvents = [...eventItems].sort((a, b) => b.timestamp - a.timestamp);
+
 		// Reverse chronological
 		for (let i = completed.length - 1; i >= 0; i--) {
+			const cTime = new Date(completed[i].start).getTime();
+
+			// Insert any events that happened after this contraction
+			while (eventIdx < sortedEvents.length && sortedEvents[eventIdx].timestamp >= cTime) {
+				this.renderEventRow(sortedEvents[eventIdx].event);
+				eventIdx++;
+			}
 			const c = completed[i];
 			const row = this.tableBody.createEl('tr', { cls: 'ct-table-row--clickable' });
 
@@ -115,6 +133,20 @@ export class TimelineTable {
 				row.addEventListener('click', () => this.openEditor(c, row));
 			}
 		}
+
+		// Insert any remaining events that are before all contractions
+		while (eventIdx < sortedEvents.length) {
+			this.renderEventRow(sortedEvents[eventIdx].event);
+			eventIdx++;
+		}
+	}
+
+	private renderEventRow(event: LaborEvent): void {
+		const row = this.tableBody.createEl('tr', { cls: 'ct-table-row--event' });
+		const cell = row.createEl('td', { attr: { colspan: '7' }, cls: 'ct-table-event-cell' });
+		const icon = event.type === 'water-break' ? '\uD83D\uDCA7' : '\u2605';
+		const label = event.type === 'water-break' ? 'Water broke' : event.type;
+		cell.textContent = `${icon} ${label} at ${formatTime(event.timestamp)}`;
 	}
 
 	/** Close any open editor, removing all associated DOM elements. */

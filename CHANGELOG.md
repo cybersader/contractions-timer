@@ -2,6 +2,12 @@
 
 All notable changes to the Obsidian Contractions Timer plugin will be documented in this file.
 
+## [0.1.17] - 2026-02-09
+
+### Added
+- **Water break full UI reactivity**: Tapping "Water broke" now updates all components — hero shows urgent blue messaging ("Water broke — call your provider"), Braxton Hicks assessment gains a 7th "Water broke" criterion (weight 40, pushes score toward real labor), wave chart draws a blue dashed marker at the event time, and timeline table shows an interleaved event row with water drop icon.
+- **Undo reversal**: Undoing a water break cleanly reverts all of the above — hero text, BH score, chart marker, and timeline row all disappear.
+
 ## [0.1.16] - 2026-02-09
 
 ### Added

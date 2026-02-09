@@ -403,7 +403,7 @@ export class TimerWidget extends MarkdownRenderChild {
 
 			case 'wave-chart':
 				this.waveChart = new WaveChart(body, this.settings.threshold, this.settings.waveChartHeight, this.settings.chartGapThresholdMin, this.settings.showChartOverlay);
-				this.waveChart.update(this.data.contractions);
+				this.waveChart.update(this.data.contractions, this.data.events);
 				break;
 
 			case 'timeline':
@@ -412,7 +412,7 @@ export class TimerWidget extends MarkdownRenderChild {
 					(updated) => this.handleContractionEdit(updated),
 					(id) => this.handleContractionDelete(id)
 				);
-				this.timelineTable.update(this.data.contractions);
+				this.timelineTable.update(this.data.contractions, this.data.events);
 				break;
 
 			case 'labor-guide':
@@ -485,7 +485,7 @@ export class TimerWidget extends MarkdownRenderChild {
 			}
 			// Update wave chart live animation
 			if (this.waveChart) {
-				this.waveChart.update(this.data.contractions);
+				this.waveChart.update(this.data.contractions, this.data.events);
 				this.waveChart.scrollToEnd();
 			}
 		} else if (this.phase === 'resting' && !this.paused) {
@@ -693,7 +693,7 @@ export class TimerWidget extends MarkdownRenderChild {
 		if (last) {
 			last.intensity = level;
 			this.updateBHAssessment();
-			if (this.waveChart) this.waveChart.update(this.data.contractions);
+			if (this.waveChart) this.waveChart.update(this.data.contractions, this.data.events);
 			await this.save();
 		}
 	}
@@ -703,8 +703,8 @@ export class TimerWidget extends MarkdownRenderChild {
 		if (this.progressionInsight) {
 			this.progressionInsight.update(this.data.contractions);
 		}
-		if (this.waveChart) this.waveChart.update(this.data.contractions);
-		if (this.timelineTable) this.timelineTable.update(this.data.contractions);
+		if (this.waveChart) this.waveChart.update(this.data.contractions, this.data.events);
+		if (this.timelineTable) this.timelineTable.update(this.data.contractions, this.data.events);
 		this.sessionControls.setVisible(this.data.contractions.length > 0);
 
 		this.updateHero();
@@ -786,6 +786,12 @@ export class TimerWidget extends MarkdownRenderChild {
 		} else {
 			this.hero.update(this.phase, this.data.contractions, stats);
 		}
+
+		// Notify hero of water-break state
+		const hasWaterBreak = this.data.events.some(e => e.type === 'water-break');
+		if (this.hero instanceof HeroAction || this.hero instanceof HeroStage) {
+			this.hero.setWaterBroke(hasWaterBreak);
+		}
 	}
 
 	private updateClinicalReference(): void {
@@ -817,7 +823,13 @@ export class TimerWidget extends MarkdownRenderChild {
 		}
 
 		this.updateHospitalAdvisor();
+		this.updateHero();
+		this.updateBHAssessment();
 		this.updateContextualTips();
+
+		// Update chart and timeline with new events
+		if (this.waveChart) this.waveChart.update(this.data.contractions, this.data.events);
+		if (this.timelineTable) this.timelineTable.update(this.data.contractions, this.data.events);
 
 		await this.save();
 	}
@@ -839,6 +851,10 @@ export class TimerWidget extends MarkdownRenderChild {
 		this.updateHospitalAdvisor();
 		this.updateContextualTips();
 
+		// Update chart marker position and timeline event row time
+		if (this.waveChart) this.waveChart.update(this.data.contractions, this.data.events);
+		if (this.timelineTable) this.timelineTable.update(this.data.contractions, this.data.events);
+
 		await this.save();
 	}
 
@@ -850,8 +866,13 @@ export class TimerWidget extends MarkdownRenderChild {
 		}
 
 		this.updateHospitalAdvisor();
+		this.updateHero();
 		this.updateBHAssessment();
 		this.updateContextualTips();
+
+		// Update chart and timeline without the removed event
+		if (this.waveChart) this.waveChart.update(this.data.contractions, this.data.events);
+		if (this.timelineTable) this.timelineTable.update(this.data.contractions, this.data.events);
 
 		await this.save();
 	}
@@ -886,7 +907,7 @@ export class TimerWidget extends MarkdownRenderChild {
 			|| this.getLastCompletedContraction();
 		if (!target) return;
 		target.phases = phases;
-		if (this.waveChart) this.waveChart.update(this.data.contractions);
+		if (this.waveChart) this.waveChart.update(this.data.contractions, this.data.events);
 		await this.save();
 	}
 

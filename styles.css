@@ -2222,6 +2222,35 @@
 	font-style: italic;
 }
 
+/* --- Water Broke Hero Override --- */
+.ct-hero-action--water-broke {
+	background: rgba(59, 130, 246, 0.08);
+	border-color: rgba(59, 130, 246, 0.25);
+}
+.ct-hero-action--water-broke .ct-hero-action-text {
+	color: rgba(59, 130, 246, 1);
+}
+
+/* Stage hero water indicator */
+.ct-hero-water-indicator {
+	font-size: 0.72rem;
+	color: rgba(59, 130, 246, 0.9);
+	margin-top: 2px;
+	font-weight: 600;
+}
+
+/* Timeline event rows */
+.ct-table-row--event td {
+	background: rgba(59, 130, 246, 0.05);
+}
+.ct-table-event-cell {
+	text-align: center;
+	font-size: 0.78rem;
+	color: rgba(59, 130, 246, 0.9);
+	font-weight: 500;
+	padding: 8px 6px !important;
+}
+
 /* --- Chart Overlay Legend --- */
 .ct-chart-legend {
 	font-size: 0.6rem;

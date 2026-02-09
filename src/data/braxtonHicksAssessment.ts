@@ -196,6 +196,19 @@ export function assessBraxtonHicks(
 				: `${Math.round(spanMinutes)} min tracked, max gap ${Math.round(maxGap)} min`,
 	});
 
+	// --- 7. Water broke (weight: 40, conditional) ---
+	// Rupture of membranes is a definitive sign of labor
+	const hasWaterBreak = events.some(e => e.type === 'water-break');
+	if (hasWaterBreak) {
+		criteria.push({
+			name: 'Water broke',
+			description: 'Rupture of membranes (water breaking)',
+			result: 'real-labor',
+			weight: 40,
+			detail: 'Water breaking is a definitive sign of labor',
+		});
+	}
+
 	// --- Calculate weighted score ---
 	let totalWeight = 0;
 	let weightedScore = 0;

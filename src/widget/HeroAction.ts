@@ -36,6 +36,7 @@ export class HeroAction {
 	private detailText: HTMLElement;
 	private hospitalLine: HTMLElement;
 	private onHospitalClick: (() => void) | null = null;
+	private waterBroke = false;
 
 	constructor(parent: HTMLElement) {
 		this.el = parent.createDiv({ cls: 'ct-hero ct-hero-action' });
@@ -88,6 +89,17 @@ export class HeroAction {
 			this.detailText.textContent = '';
 		}
 
+		// Water break override — show urgent messaging when not contracting
+		if (this.waterBroke) {
+			this.el.addClass('ct-hero-action--water-broke');
+			if (!stats.laborStage || stats.laborStage === 'pre-labor' || stats.laborStage === 'early') {
+				this.actionText.textContent = 'Water broke \u2014 call your provider';
+			} else if (stats.laborStage === 'active') {
+				this.actionText.textContent = 'Water broke + active labor \u2014 head to hospital';
+			}
+			// transition: existing text is already urgent enough
+		}
+
 		// Hospital time range line
 		if (rangeEstimate && (rangeEstimate.earliestMinutes > 0 || rangeEstimate.latestMinutes > 0)) {
 			const earliest = this.formatTimeRange(rangeEstimate.earliestMinutes);
@@ -110,6 +122,10 @@ export class HeroAction {
 		if (minutes < 60) return `${Math.round(minutes)} min`;
 		const hours = minutes / 60;
 		return Number.isInteger(hours) ? `${hours}h` : `${hours.toFixed(1)}h`;
+	}
+
+	setWaterBroke(active: boolean): void {
+		this.waterBroke = active;
 	}
 
 	setPaused(paused: boolean): void {

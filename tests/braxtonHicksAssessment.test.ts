@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test';
-import type { Contraction } from '../src/types';
+import type { Contraction, LaborEvent } from '../src/types';
 import { DEFAULT_BH_THRESHOLDS } from '../src/types';
 import { assessBraxtonHicks } from '../src/data/braxtonHicksAssessment';
 
@@ -132,6 +132,52 @@ describe('assessBraxtonHicks', () => {
 		// Should still detect "Lasting longer" as real-labor from timed (40, 50, 55, 65)
 		const durationCriterion = result.criteria.find(c => c.name === 'Lasting longer');
 		expect(durationCriterion?.result).toBe('real-labor');
+	});
+
+	it('adds water-broke criterion when water-break event exists', () => {
+		const contractions = [
+			makeContraction(0, 40, 2, 'front'),
+			makeContraction(300, 35, 2, 'front'),
+			makeContraction(600, 30, 2, 'front'),
+			makeContraction(900, 25, 1, 'front'),
+		];
+		const events: LaborEvent[] = [{
+			id: 'wb1', type: 'water-break',
+			timestamp: new Date().toISOString(), notes: '',
+		}];
+		const result = assessBraxtonHicks(contractions, events);
+		const waterCriterion = result.criteria.find(c => c.name === 'Water broke');
+		expect(waterCriterion).toBeDefined();
+		expect(waterCriterion!.result).toBe('real-labor');
+		expect(waterCriterion!.weight).toBe(40);
+	});
+
+	it('boosts score significantly when water broke', () => {
+		// BH-like pattern + water break should push score up
+		const contractions = [
+			makeContraction(0, 25, 2, 'front'),
+			makeContraction(900, 20, 2, 'front'),
+			makeContraction(1200, 28, 2, 'front'),
+			makeContraction(2400, 22, 1, 'front'),
+		];
+		const withoutWater = assessBraxtonHicks(contractions, []);
+		const withWater = assessBraxtonHicks(contractions, [{
+			id: 'wb1', type: 'water-break',
+			timestamp: new Date().toISOString(), notes: '',
+		}]);
+		expect(withWater.score).toBeGreaterThan(withoutWater.score);
+	});
+
+	it('reverts to 6 criteria when water-break event absent', () => {
+		const contractions = [
+			makeContraction(0, 40, 2, 'back'),
+			makeContraction(300, 45, 3, 'wrapping'),
+			makeContraction(600, 50, 4, 'back'),
+			makeContraction(900, 55, 5, 'wrapping'),
+		];
+		const result = assessBraxtonHicks(contractions, []);
+		expect(result.criteria).toHaveLength(6);
+		expect(result.criteria.find(c => c.name === 'Water broke')).toBeUndefined();
 	});
 
 	it('respects custom regularity thresholds', () => {

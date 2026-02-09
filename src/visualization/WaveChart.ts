@@ -1,4 +1,4 @@
-import type { Contraction, ThresholdConfig } from '../types';
+import type { Contraction, LaborEvent, ThresholdConfig } from '../types';
 import { getDurationSeconds, isContractionActive, getElapsedSeconds } from '../data/calculations';
 import { formatTimeShort, formatElapsedApprox } from '../utils/formatters';
 
@@ -30,6 +30,7 @@ export class WaveChart {
 	private canvasCtx: CanvasRenderingContext2D;
 	private threshold: ThresholdConfig;
 	private contractions: Contraction[] = [];
+	private events: LaborEvent[] = [];
 	private chartHeight: number;
 	private gapThresholdMin: number;
 	private showOverlay: boolean;
@@ -71,8 +72,9 @@ export class WaveChart {
 		}
 	}
 
-	update(contractions: Contraction[]): void {
+	update(contractions: Contraction[], events?: LaborEvent[]): void {
 		this.contractions = contractions;
+		if (events !== undefined) this.events = events;
 		this.render();
 	}
 
@@ -292,6 +294,16 @@ export class WaveChart {
 
 		// Draw per-contraction time labels when grid lines are sparse
 		this.drawContractionLabels(ctx, segments, totalDurationMs, contentWidth, baseline, height);
+
+		// Draw event markers (water break, etc.)
+		for (const event of this.events) {
+			if (event.type !== 'water-break') continue;
+			const eventMs = new Date(event.timestamp).getTime();
+			const ex = this.getEventXPosition(eventMs, segments, totalDurationMs, contentWidth);
+			if (ex !== null) {
+				this.drawWaterBreakMarker(ctx, ex, baseline, height);
+			}
+		}
 
 		// Show toolbar when there are contractions to interact with
 		if (totalContractions >= 1) {
@@ -559,6 +571,66 @@ export class WaveChart {
 	/** Scroll the chart container all the way to the right. */
 	scrollToEnd(): void {
 		this.canvasContainer.scrollLeft = this.canvasContainer.scrollWidth;
+	}
+
+	/** Map an event timestamp to an X coordinate on the chart. */
+	private getEventXPosition(
+		eventMs: number,
+		segments: Segment[],
+		totalDurationMs: number,
+		contentWidth: number
+	): number | null {
+		let xOffset = this.PADDING;
+		for (let si = 0; si < segments.length; si++) {
+			const seg = segments[si];
+			const segWidth = (seg.durationMs / totalDurationMs) * contentWidth;
+
+			if (eventMs >= seg.startMs && eventMs <= seg.endMs) {
+				return xOffset + ((eventMs - seg.startMs) / seg.durationMs) * segWidth;
+			}
+			// Event falls in the gap before next segment
+			if (si < segments.length - 1) {
+				const nextSeg = segments[si + 1];
+				if (eventMs > seg.endMs && eventMs < nextSeg.startMs) {
+					// Place at the end of this segment
+					return xOffset + segWidth;
+				}
+			}
+			xOffset += segWidth;
+			if (si < segments.length - 1) xOffset += BREAK_WIDTH;
+		}
+		// Event is after all segments — place at the right edge
+		if (segments.length > 0) {
+			const lastSeg = segments[segments.length - 1];
+			if (eventMs >= lastSeg.endMs) return xOffset;
+		}
+		return null;
+	}
+
+	/** Draw a vertical dashed blue line with water drop label. */
+	private drawWaterBreakMarker(
+		ctx: CanvasRenderingContext2D,
+		x: number,
+		baseline: number,
+		_height: number
+	): void {
+		const top = this.PADDING;
+		ctx.save();
+		ctx.strokeStyle = 'rgba(59, 130, 246, 0.7)';
+		ctx.lineWidth = 1.5;
+		ctx.setLineDash([5, 4]);
+		ctx.beginPath();
+		ctx.moveTo(x, top + 14);
+		ctx.lineTo(x, baseline);
+		ctx.stroke();
+		ctx.setLineDash([]);
+
+		// Water drop label at top
+		ctx.font = '12px var(--font-text)';
+		ctx.fillStyle = 'rgba(59, 130, 246, 0.9)';
+		ctx.textAlign = 'center';
+		ctx.fillText('\uD83D\uDCA7', x, top + 10);
+		ctx.restore();
 	}
 
 	private getIntensityColor(level: number, alpha: number): string {

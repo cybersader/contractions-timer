@@ -18,6 +18,7 @@ export class HeroStage {
 	private badgeEl: HTMLElement;
 	private timeEl: HTMLElement;
 	private rangeEl: HTMLElement;
+	private waterIndicator: HTMLElement;
 	private stageThresholds: Record<string, StageThresholdConfig>;
 	private parity: Parity;
 
@@ -29,6 +30,8 @@ export class HeroStage {
 		this.badgeEl.textContent = 'Ready to start';
 		this.timeEl = this.el.createDiv({ cls: 'ct-hero-time' });
 		this.rangeEl = this.el.createDiv({ cls: 'ct-hero-range' });
+		this.waterIndicator = this.el.createDiv({ cls: 'ct-hero-water-indicator ct-hidden' });
+		this.waterIndicator.textContent = '\uD83D\uDCA7 Water broke';
 	}
 
 	update(phase: TimerPhase, contractions: Contraction[], stats: SessionStats): void {
@@ -67,6 +70,14 @@ export class HeroStage {
 			this.rangeEl.textContent = rangeStr ? `Typically ${rangeStr}` : '';
 		} else {
 			this.rangeEl.textContent = '';
+		}
+	}
+
+	setWaterBroke(active: boolean): void {
+		if (active) {
+			this.waterIndicator.removeClass('ct-hidden');
+		} else {
+			this.waterIndicator.addClass('ct-hidden');
 		}
 	}
 
