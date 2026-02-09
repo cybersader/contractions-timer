@@ -514,6 +514,7 @@ export class TimerWidget extends MarkdownRenderChild {
 
 		if (this.paused) {
 			this.paused = false;
+			this.data.paused = false;
 			this.sessionControls.setPaused(false);
 			this.timerDisplay.setPaused(false);
 		}
@@ -573,6 +574,7 @@ export class TimerWidget extends MarkdownRenderChild {
 		// Reset pause state and re-enable pause button
 		if (this.paused) {
 			this.paused = false;
+			this.data.paused = false;
 			this.timerDisplay.setPaused(false);
 		}
 		this.sessionControls.setPauseEnabled(true);

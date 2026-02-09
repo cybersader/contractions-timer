@@ -2,6 +2,11 @@
 
 All notable changes to the Obsidian Contractions Timer plugin will be documented in this file.
 
+## [0.1.12] - 2026-02-09
+
+### Fixed
+- Intensity/location pickers now appear after stopping a contraction. Bug: `stopContraction()` cleared the local pause flag but not the persisted `data.paused`, so on re-render the widget re-entered paused state and dismissed the pickers before the user could interact with them. Same fix applied to `startContraction()`.
+
 ## [0.1.11] - 2026-02-09
 
 ### Fixed
