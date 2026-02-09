@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-contractions-timer",
-	"version": "0.1.15",
+	"version": "0.1.16",
 	"description": "Mobile-friendly contraction timer for Obsidian with wave charts, intensity tracking, and markdown-native data storage.",
 	"main": "main.js",
 	"scripts": {

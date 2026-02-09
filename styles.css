@@ -1906,6 +1906,27 @@
 	border-color: var(--color-red);
 }
 
+/* Water break actions row (edit + undo) */
+.ct-water-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ct-event-btn--edit {
+	width: auto;
+	padding: 4px 12px;
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	border-color: var(--background-modifier-border);
+	background: var(--background-secondary);
+}
+
+.ct-event-btn--edit:hover {
+	border-color: var(--interactive-accent);
+	color: var(--interactive-accent);
+}
+
 /* --- "Had one" Untimed Picker --- */
 .ct-had-one-btn {
 	flex: 0 0 auto;

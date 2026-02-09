@@ -246,6 +246,7 @@ export class TimerWidget extends MarkdownRenderChild {
 				(type) => this.recordEventByType(type)
 			);
 			this.eventButtons.setUndoCallback((type) => this.undoEvent(type));
+			this.eventButtons.setEditTimeCallback((type, minutesAgo) => this.editWaterBreakTime(type, minutesAgo));
 			this.eventButtons.updateFromEvents(this.data.events);
 
 			// Water break info (shown if water already broke)
@@ -811,6 +812,26 @@ export class TimerWidget extends MarkdownRenderChild {
 			this.wireWaterBreakPhoneSave();
 		}
 
+		if (this.waterBreakInfo) {
+			this.waterBreakInfo.update(this.data.events, this.data.contractions);
+		}
+
+		this.updateHospitalAdvisor();
+		this.updateContextualTips();
+
+		await this.save();
+	}
+
+	private async editWaterBreakTime(type: LaborEventType, minutesAgo: number): Promise<void> {
+		const event = this.data.events.find(e => e.type === type);
+		if (!event) return;
+
+		event.timestamp = new Date(Date.now() - minutesAgo * 60000).toISOString();
+
+		// Update confirmation display with new time
+		if (this.eventButtons) this.eventButtons.showConfirmation(event);
+
+		// Update water break info panel
 		if (this.waterBreakInfo) {
 			this.waterBreakInfo.update(this.data.events, this.data.contractions);
 		}

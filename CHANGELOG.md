@@ -2,6 +2,11 @@
 
 All notable changes to the Obsidian Contractions Timer plugin will be documented in this file.
 
+## [0.1.16] - 2026-02-09
+
+### Added
+- **Water break time editing**: After recording a water break, an "Edit time" button now appears alongside "Undo water broke". Tapping it opens the same time-ago picker (Just now, ~5 min, ~15 min, ~30 min, Earlier...) to adjust when the water actually broke.
+
 ## [0.1.15] - 2026-02-09
 
 ### Added
