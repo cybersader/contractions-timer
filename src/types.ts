@@ -17,6 +17,7 @@ export interface Contraction {
 	notes: string;
 	phases?: ContractionPhases; // live 3-phase rating (opt-in)
 	untimed?: boolean; // true when logged retroactively without timing
+	ratingDismissed?: boolean; // true when user skipped post-contraction rating
 }
 
 export type ContractionLocation = 'front' | 'back' | 'wrapping';
@@ -172,6 +173,7 @@ export interface ContractionTimerSettings {
 	showTimeline: boolean;
 	showSummaryCards: boolean;
 	showProgressionInsight: boolean;
+	showPostRating: boolean;
 	showIntensityPicker: boolean;
 	showLocationPicker: boolean;
 	timeFormat: '12h' | '24h';
@@ -266,6 +268,7 @@ export const DEFAULT_SETTINGS: ContractionTimerSettings = {
 	showTimeline: true,
 	showSummaryCards: true,
 	showProgressionInsight: true,
+	showPostRating: true,
 	showIntensityPicker: true,
 	showLocationPicker: true,
 	timeFormat: '12h',

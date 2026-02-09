@@ -251,38 +251,40 @@ export class TimerWidget extends MarkdownRenderChild {
 			}
 		}
 
-		// 4. Post-contraction pickers
-		const pickerArea = root.createDiv({ cls: 'ct-picker-area ct-hidden' });
-		const rateHeader = pickerArea.createDiv({ cls: 'ct-rate-header' });
-		rateHeader.createSpan({ cls: 'ct-rate-prompt-text', text: 'Rate this contraction' });
-		const skipBtn = rateHeader.createEl('button', { cls: 'ct-rate-skip', text: 'Skip' });
-		skipBtn.addEventListener('click', () => this.dismissPickers());
+		// 4. Post-contraction pickers (guarded by showPostRating master toggle)
+		if (this.settings.showPostRating) {
+			const pickerArea = root.createDiv({ cls: 'ct-picker-area ct-hidden' });
+			const rateHeader = pickerArea.createDiv({ cls: 'ct-rate-header' });
+			rateHeader.createSpan({ cls: 'ct-rate-prompt-text', text: 'Rate this contraction' });
+			const skipBtn = rateHeader.createEl('button', { cls: 'ct-rate-skip', text: 'Skip' });
+			skipBtn.addEventListener('click', () => this.skipRating());
 
-		if (this.settings.showIntensityPicker) {
-			this.intensityPicker = new IntensityPicker(
-				pickerArea,
-				(level) => this.setIntensity(level),
-				this.settings.intensityScale,
-				this.settings.hapticFeedback
-			);
-		}
+			if (this.settings.showIntensityPicker) {
+				this.intensityPicker = new IntensityPicker(
+					pickerArea,
+					(level) => this.setIntensity(level),
+					this.settings.intensityScale,
+					this.settings.hapticFeedback
+				);
+			}
 
-		if (this.settings.showLocationPicker) {
-			this.locationPicker = new LocationPicker(
-				pickerArea,
-				(loc) => this.setLocation(loc),
-				this.settings.hapticFeedback
-			);
-		}
+			if (this.settings.showLocationPicker) {
+				this.locationPicker = new LocationPicker(
+					pickerArea,
+					(loc) => this.setLocation(loc),
+					this.settings.hapticFeedback
+				);
+			}
 
-		// Show pickers if resting and last contraction still needs rating
-		// (keep visible until BOTH intensity and location are set)
-		if (this.phase === 'resting') {
-			const last = this.getLastCompletedContraction();
-			if (last && !last.untimed && (last.intensity === null || last.location === null)) {
-				pickerArea.removeClass('ct-hidden');
-				if (this.intensityPicker) this.intensityPicker.show(last.intensity);
-				if (this.locationPicker) this.locationPicker.show(last.location);
+			// Show pickers if resting and last contraction still needs rating
+			// (visible until both are set OR user clicks Skip)
+			if (this.phase === 'resting') {
+				const last = this.getLastCompletedContraction();
+				if (last && !last.ratingDismissed && (last.intensity === null || last.location === null)) {
+					pickerArea.removeClass('ct-hidden');
+					if (this.intensityPicker) this.intensityPicker.show(last.intensity);
+					if (this.locationPicker) this.locationPicker.show(last.location);
+				}
 			}
 		}
 
@@ -583,10 +585,12 @@ export class TimerWidget extends MarkdownRenderChild {
 		this.bigButton.setPhase('resting');
 		this.bigButton.setNextNumber(this.data.contractions.length + 1);
 
-		const pickerArea = this.containerEl.querySelector('.ct-picker-area');
-		if (pickerArea) pickerArea.removeClass('ct-hidden');
-		if (this.intensityPicker) this.intensityPicker.show();
-		if (this.locationPicker) this.locationPicker.show();
+		if (this.settings.showPostRating) {
+			const pickerArea = this.containerEl.querySelector('.ct-picker-area');
+			if (pickerArea) pickerArea.removeClass('ct-hidden');
+			if (this.intensityPicker) this.intensityPicker.show();
+			if (this.locationPicker) this.locationPicker.show();
+		}
 
 		this.updateVisualizations();
 		await this.save();
@@ -597,6 +601,14 @@ export class TimerWidget extends MarkdownRenderChild {
 		if (pickerArea) pickerArea.addClass('ct-hidden');
 		if (this.intensityPicker) this.intensityPicker.hide();
 		if (this.locationPicker) this.locationPicker.hide();
+	}
+
+	/** User clicked Skip — mark as dismissed so pickers don't reappear on re-render. */
+	private async skipRating(): Promise<void> {
+		const last = this.getLastCompletedContraction();
+		if (last) last.ratingDismissed = true;
+		this.dismissPickers();
+		await this.save();
 	}
 
 	private async logUntimedContraction(minutesAgo: number): Promise<void> {

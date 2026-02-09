@@ -299,6 +299,16 @@ export class ContractionTimerSettingsTab extends PluginSettingTab {
 				}));
 
 		new Setting(containerEl)
+			.setName('Show post-contraction rating')
+			.setDesc('Show intensity and location pickers after stopping a contraction or logging a missed one.')
+			.addToggle(toggle => toggle
+				.setValue(this.plugin.settings.showPostRating)
+				.onChange(async (value) => {
+					this.plugin.settings.showPostRating = value;
+					await this.plugin.saveSettings();
+				}));
+
+		new Setting(containerEl)
 			.setName('Show intensity picker')
 			.setDesc('Show intensity rating buttons after each contraction.')
 			.addToggle(toggle => toggle

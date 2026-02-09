@@ -2,6 +2,16 @@
 
 All notable changes to the Obsidian Contractions Timer plugin will be documented in this file.
 
+## [0.1.13] - 2026-02-09
+
+### Added
+- **"Show post-contraction rating" setting**: Master toggle (on by default) to disable intensity/location pickers entirely after stopping a contraction.
+- Rating pickers now appear for untimed ("Had one") contractions too, not just timed ones.
+- **Skip persists**: Clicking "Skip" on the rating card now marks that contraction as dismissed so pickers don't reappear on re-render. Previously, pickers would pop back up on every re-render until both intensity and location were set.
+
+### Fixed
+- Partial ratings (setting only intensity or only location) no longer cause pickers to nag forever. User can set one, click Skip, and move on. Analytics already handle partial data gracefully (need 3+ rated to compute trends).
+
 ## [0.1.12] - 2026-02-09
 
 ### Fixed
