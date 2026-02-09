@@ -782,6 +782,15 @@
 		font-size: 1.2rem;
 		color: var(--text-muted);
 	}
+	/* Chart buttons need larger tap targets on touch devices */
+	.ct-chart-btn {
+		padding: 6px 14px;
+		font-size: 0.75rem;
+	}
+	/* Settings links always visible on touch (no hover to reveal) */
+	.ct-settings-link {
+		opacity: 0.4;
+	}
 }
 
 .ct-dragging {

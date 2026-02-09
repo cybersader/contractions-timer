@@ -94,7 +94,7 @@ export class WaveChart {
 			this.sizeCanvas(containerWidth, height, dpr);
 			const ctx = this.canvasCtx;
 			ctx.clearRect(0, 0, containerWidth, height);
-			ctx.fillStyle = getComputedStyle(this.canvas).getPropertyValue('--text-muted').trim() || '#888';
+			ctx.fillStyle = getComputedStyle(this.el).getPropertyValue('--text-muted').trim() || '#888';
 			ctx.font = '14px var(--font-text)';
 			ctx.textAlign = 'center';
 			ctx.fillText('Contractions will appear here', containerWidth / 2, height / 2);
@@ -130,7 +130,7 @@ export class WaveChart {
 		const maxHeight = height - this.PADDING * 2;
 
 		// Draw baseline
-		ctx.strokeStyle = getComputedStyle(this.canvas).getPropertyValue('--background-modifier-border').trim() || '#333';
+		ctx.strokeStyle = getComputedStyle(this.el).getPropertyValue('--background-modifier-border').trim() || '#333';
 		ctx.lineWidth = 1;
 		ctx.beginPath();
 		ctx.moveTo(this.PADDING, baseline);
@@ -259,6 +259,9 @@ export class WaveChart {
 			}
 		}
 
+		// Draw per-contraction time labels when grid lines are sparse
+		this.drawContractionLabels(ctx, segments, totalDurationMs, contentWidth, baseline, height);
+
 		// Show toolbar when there are contractions to interact with
 		if (totalContractions >= 1) {
 			this.toolbar.removeClass('ct-hidden');
@@ -341,7 +344,7 @@ export class WaveChart {
 		const zigSize = 4;
 
 		ctx.save();
-		ctx.strokeStyle = getComputedStyle(this.canvas).getPropertyValue('--text-faint').trim() || '#555';
+		ctx.strokeStyle = getComputedStyle(this.el).getPropertyValue('--text-faint').trim() || '#555';
 		ctx.lineWidth = 1.5;
 		ctx.setLineDash([3, 3]);
 
@@ -370,7 +373,7 @@ export class WaveChart {
 		const gapMin = gapMs / 60000;
 		const label = formatElapsedApprox(gapMin);
 		ctx.font = '9px var(--font-text)';
-		ctx.fillStyle = getComputedStyle(this.canvas).getPropertyValue('--text-faint').trim() || '#555';
+		ctx.fillStyle = getComputedStyle(this.el).getPropertyValue('--text-faint').trim() || '#555';
 		ctx.textAlign = 'center';
 		ctx.fillText(label, midX, height - 3);
 	}
@@ -442,10 +445,10 @@ export class WaveChart {
 		const firstGridTime = Math.ceil(firstStartMs / gridMs) * gridMs;
 		const endTime = firstStartMs + timeRangeMs;
 
-		ctx.strokeStyle = getComputedStyle(this.canvas).getPropertyValue('--background-modifier-border').trim() || '#222';
+		ctx.strokeStyle = getComputedStyle(this.el).getPropertyValue('--background-modifier-border').trim() || '#222';
 		ctx.lineWidth = 0.5;
 		ctx.font = '10px var(--font-text)';
-		ctx.fillStyle = getComputedStyle(this.canvas).getPropertyValue('--text-muted').trim() || '#666';
+		ctx.fillStyle = getComputedStyle(this.el).getPropertyValue('--text-muted').trim() || '#666';
 		ctx.textAlign = 'center';
 
 		for (let t = firstGridTime; t <= endTime; t += gridMs) {
@@ -464,6 +467,51 @@ export class WaveChart {
 
 			const date = new Date(t);
 			ctx.fillText(formatTimeShort(date), x, height - 4);
+		}
+	}
+
+	/**
+	 * Draw a timestamp label under each contraction when the time grid
+	 * is too sparse to provide context (e.g. only 1-2 contractions over
+	 * a short time span where no 5-min grid line falls).
+	 */
+	private drawContractionLabels(
+		ctx: CanvasRenderingContext2D,
+		segments: Segment[],
+		totalDurationMs: number,
+		contentWidth: number,
+		baseline: number,
+		height: number
+	): void {
+		ctx.font = '9px var(--font-text)';
+		ctx.fillStyle = getComputedStyle(this.el).getPropertyValue('--text-muted').trim() || '#888';
+		ctx.textAlign = 'center';
+
+		let xOffset = this.PADDING;
+		let lastLabelX = -Infinity; // avoid overlapping labels
+
+		for (let si = 0; si < segments.length; si++) {
+			const seg = segments[si];
+			const segWidth = (seg.durationMs / totalDurationMs) * contentWidth;
+
+			for (const contraction of seg.contractions) {
+				const startMs = new Date(contraction.start).getTime();
+				const x = seg.durationMs > 0
+					? xOffset + ((startMs - seg.startMs) / seg.durationMs) * segWidth
+					: xOffset + segWidth / 2;
+
+				// Skip if too close to previous label (< 40px apart)
+				if (x - lastLabelX < 40) continue;
+
+				const label = formatTimeShort(new Date(startMs));
+				ctx.fillText(label, x, height - 4);
+				lastLabelX = x;
+			}
+
+			xOffset += segWidth;
+			if (si < segments.length - 1) {
+				xOffset += BREAK_WIDTH;
+			}
 		}
 	}
 
