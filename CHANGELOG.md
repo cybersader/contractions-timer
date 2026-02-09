@@ -2,6 +2,11 @@
 
 All notable changes to the Obsidian Contractions Timer plugin will be documented in this file.
 
+## [0.1.11] - 2026-02-09
+
+### Fixed
+- Pause overlay fully opaque on all themes/platforms (removed all semi-transparent rgba fallbacks and backdrop-filter that failed on mobile WebView).
+
 ## [0.1.10] - 2026-02-09
 
 ### Fixed
