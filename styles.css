@@ -447,7 +447,39 @@
 .ct-picker-area {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 10px;
+	padding: 10px 12px;
+	border-radius: 8px;
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+}
+
+.ct-rate-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.ct-rate-prompt-text {
+	font-size: 0.82rem;
+	color: var(--text-muted);
+	font-style: italic;
+}
+
+.ct-rate-skip {
+	padding: 3px 10px;
+	font-size: 0.72rem;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	background: transparent;
+	color: var(--text-faint);
+	cursor: pointer;
+	transition: all 0.1s ease;
+}
+
+.ct-rate-skip:hover {
+	border-color: var(--text-muted);
+	color: var(--text-muted);
 }
 
 .ct-picker-label {
@@ -455,13 +487,6 @@
 	color: var(--text-muted);
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-}
-
-.ct-rate-prompt {
-	font-size: 0.85rem;
-	color: var(--text-muted);
-	text-align: center;
-	font-style: italic;
 }
 
 /* --- Button Row (Stop + Peak inline) --- */
@@ -1802,12 +1827,12 @@
 /* --- "Had one" Untimed Picker --- */
 .ct-had-one-btn {
 	flex: 0 0 auto;
+	align-self: stretch;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding: 8px 14px;
-	min-height: 60px;
 	border: 2px solid var(--background-modifier-border);
 	border-radius: 12px;
 	background: var(--background-primary);
@@ -1901,6 +1926,113 @@
 
 .ct-time-pill:active {
 	transform: scale(0.96);
+}
+
+.ct-time-pill--custom {
+	grid-column: 1 / -1;
+	background: transparent;
+	border-style: dashed;
+	color: var(--text-muted);
+	font-size: 0.78rem;
+	padding: 8px;
+}
+
+.ct-time-pill--custom:hover {
+	color: var(--interactive-accent);
+	border-color: var(--interactive-accent);
+}
+
+/* Custom time stepper */
+.ct-custom-stepper {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	align-items: center;
+}
+
+.ct-stepper-controls {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.ct-stepper-group {
+	display: flex;
+	align-items: center;
+	gap: 2px;
+}
+
+.ct-stepper-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border: 2px solid var(--background-modifier-border);
+	border-radius: 10px;
+	background: var(--background-primary);
+	color: var(--text-normal);
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.1s ease;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+	user-select: none;
+}
+
+.ct-stepper-btn:hover {
+	border-color: var(--interactive-accent);
+	color: var(--interactive-accent);
+}
+
+.ct-stepper-btn:active {
+	transform: scale(0.92);
+}
+
+.ct-stepper-value {
+	min-width: 36px;
+	text-align: center;
+	font-size: 1.1rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	color: var(--text-normal);
+}
+
+.ct-stepper-sep {
+	font-size: 1.1rem;
+	font-weight: 700;
+	color: var(--text-faint);
+	padding: 0 2px;
+}
+
+.ct-stepper-preview {
+	font-size: 0.78rem;
+	color: var(--text-muted);
+	font-style: italic;
+}
+
+.ct-stepper-log-btn {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	border-radius: 10px;
+	background: linear-gradient(135deg, #4ade80, #22c55e);
+	color: #fff;
+	font-size: 0.9rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 0.1s ease;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.ct-stepper-log-btn:hover {
+	background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.ct-stepper-log-btn:active {
+	transform: scale(0.97);
 }
 
 /* Untimed confirmation area */

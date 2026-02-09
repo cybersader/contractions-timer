@@ -2,6 +2,15 @@
 
 All notable changes to the Obsidian Contractions Timer plugin will be documented in this file.
 
+## [0.1.7] - 2026-02-09
+
+### Added
+- **"Earlier..." custom time stepper**: "Had one" picker now includes an "Earlier..." option that opens an hour/minute stepper (up to 48h ago) for contractions missed long ago.
+- **Skip button on rating pickers**: Post-contraction intensity/location pickers now have a "Skip" button and are visually grouped in a bordered card, making it clear they're optional and dismissible.
+
+### Fixed
+- Untimed contractions no longer trigger the regular intensity/location pickers (the untimed confirmation has its own inline intensity picker).
+
 ## [0.1.6] - 2026-02-09
 
 ### Added

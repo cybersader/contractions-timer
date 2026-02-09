@@ -8,14 +8,22 @@ import { haptic } from '../utils/dom';
  * States:
  * - idle: Compact "Had one" button visible
  * - picking: Time-ago pills replace the BigButton
+ * - custom: Hour/minute stepper replaces the pills
  * - confirmed: Confirmation + intensity picker appears above button row
  */
 export class UntimedPicker {
 	private hadOneBtn: HTMLButtonElement;
 	private pillsRow: HTMLElement;
+	private pillsGrid: HTMLElement;
+	private customRow: HTMLElement;
 	private confirmEl: HTMLElement;
-	private state: 'idle' | 'picking' | 'confirmed' = 'idle';
+	private state: 'idle' | 'picking' | 'custom' | 'confirmed' = 'idle';
 	private hapticEnabled: boolean;
+
+	// Custom stepper state
+	private customHours = 1;
+	private customMinutes = 0;
+	private customDisplay: HTMLElement | null = null;
 
 	private onLog: (minutesAgo: number) => void;
 	private onUndo: () => void;
@@ -58,7 +66,8 @@ export class UntimedPicker {
 		});
 		cancelBtn.addEventListener('click', () => this.cancel());
 
-		const pillsGrid = this.pillsRow.createDiv({ cls: 'ct-time-pills-grid' });
+		// Quick-pick pills grid
+		this.pillsGrid = this.pillsRow.createDiv({ cls: 'ct-time-pills-grid' });
 		const times = [
 			{ label: 'Just now', minutes: 0 },
 			{ label: '~5 min ago', minutes: 5 },
@@ -66,7 +75,7 @@ export class UntimedPicker {
 			{ label: '~30 min ago', minutes: 30 },
 		];
 		for (const t of times) {
-			const pill = pillsGrid.createEl('button', {
+			const pill = this.pillsGrid.createEl('button', {
 				cls: 'ct-time-pill',
 				text: t.label,
 			});
@@ -75,22 +84,137 @@ export class UntimedPicker {
 				this.pickTime(t.minutes);
 			});
 		}
+		// "Custom..." pill spans full width
+		const customPill = this.pillsGrid.createEl('button', {
+			cls: 'ct-time-pill ct-time-pill--custom',
+			text: 'Earlier...',
+		});
+		customPill.addEventListener('click', () => {
+			if (hapticEnabled) haptic(30);
+			this.enterCustom();
+		});
+
+		// Custom time stepper (hidden initially, shown in place of pills grid)
+		this.customRow = this.pillsRow.createDiv({ cls: 'ct-custom-stepper ct-hidden' });
+		this.buildCustomStepper();
 
 		// Confirmation area (hidden initially, shown above button row)
 		this.confirmEl = confirmParent.createDiv({ cls: 'ct-untimed-confirm ct-hidden' });
+	}
+
+	private buildCustomStepper(): void {
+		const stepperRow = this.customRow.createDiv({ cls: 'ct-stepper-controls' });
+
+		// Hours control
+		const hourGroup = stepperRow.createDiv({ cls: 'ct-stepper-group' });
+		const hourMinus = hourGroup.createEl('button', { cls: 'ct-stepper-btn', text: '\u2212' });
+		const hourDisplay = hourGroup.createDiv({ cls: 'ct-stepper-value' });
+		const hourPlus = hourGroup.createEl('button', { cls: 'ct-stepper-btn', text: '+' });
+
+		// Separator
+		stepperRow.createDiv({ cls: 'ct-stepper-sep', text: ':' });
+
+		// Minutes control
+		const minGroup = stepperRow.createDiv({ cls: 'ct-stepper-group' });
+		const minMinus = minGroup.createEl('button', { cls: 'ct-stepper-btn', text: '\u2212' });
+		const minDisplay = minGroup.createDiv({ cls: 'ct-stepper-value' });
+		const minPlus = minGroup.createEl('button', { cls: 'ct-stepper-btn', text: '+' });
+
+		hourMinus.addEventListener('click', () => {
+			if (this.customHours > 0) {
+				this.customHours--;
+				if (this.hapticEnabled) haptic(20);
+				this.updateCustomDisplay();
+			}
+		});
+		hourPlus.addEventListener('click', () => {
+			if (this.customHours < 48) {
+				this.customHours++;
+				if (this.hapticEnabled) haptic(20);
+				this.updateCustomDisplay();
+			}
+		});
+		minMinus.addEventListener('click', () => {
+			if (this.customMinutes > 0) {
+				this.customMinutes -= 15;
+			} else if (this.customHours > 0) {
+				this.customHours--;
+				this.customMinutes = 45;
+			}
+			if (this.hapticEnabled) haptic(20);
+			this.updateCustomDisplay();
+		});
+		minPlus.addEventListener('click', () => {
+			if (this.customMinutes < 45) {
+				this.customMinutes += 15;
+			} else {
+				this.customMinutes = 0;
+				if (this.customHours < 48) this.customHours++;
+			}
+			if (this.hapticEnabled) haptic(20);
+			this.updateCustomDisplay();
+		});
+
+		this.customDisplay = this.customRow.createDiv({ cls: 'ct-stepper-preview' });
+
+		// Log button
+		const logBtn = this.customRow.createEl('button', {
+			cls: 'ct-stepper-log-btn',
+			text: 'Log it',
+		});
+		logBtn.addEventListener('click', () => {
+			if (this.hapticEnabled) haptic(30);
+			const totalMinutes = this.customHours * 60 + this.customMinutes;
+			this.pickTime(totalMinutes);
+		});
+
+		// Store references for updates
+		(this as any)._hourDisplay = hourDisplay;
+		(this as any)._minDisplay = minDisplay;
+		this.updateCustomDisplay();
+	}
+
+	private updateCustomDisplay(): void {
+		const hd = (this as any)._hourDisplay as HTMLElement;
+		const md = (this as any)._minDisplay as HTMLElement;
+		if (hd) hd.textContent = `${this.customHours}h`;
+		if (md) md.textContent = `${this.customMinutes}m`;
+		if (this.customDisplay) {
+			const total = this.customHours * 60 + this.customMinutes;
+			if (total === 0) {
+				this.customDisplay.textContent = 'Set a time above';
+			} else {
+				const when = new Date(Date.now() - total * 60000);
+				this.customDisplay.textContent = `Around ${formatTimeShort(when)}`;
+			}
+		}
 	}
 
 	private enterPicking(): void {
 		if (this.hapticEnabled) haptic(50);
 		this.state = 'picking';
 		this.hadOneBtn.addClass('ct-hidden');
+		this.pillsGrid.removeClass('ct-hidden');
+		this.customRow.addClass('ct-hidden');
 		this.pillsRow.removeClass('ct-hidden');
 		this.onStateChange('picking');
+	}
+
+	private enterCustom(): void {
+		this.state = 'custom';
+		this.customHours = 1;
+		this.customMinutes = 0;
+		this.updateCustomDisplay();
+		this.pillsGrid.addClass('ct-hidden');
+		this.customRow.removeClass('ct-hidden');
+		this.onStateChange('picking'); // BigButton stays hidden
 	}
 
 	private cancel(): void {
 		this.state = 'idle';
 		this.pillsRow.addClass('ct-hidden');
+		this.customRow.addClass('ct-hidden');
+		this.pillsGrid.removeClass('ct-hidden');
 		this.hadOneBtn.removeClass('ct-hidden');
 		this.onStateChange('idle');
 	}
@@ -98,6 +222,8 @@ export class UntimedPicker {
 	private pickTime(minutesAgo: number): void {
 		this.state = 'confirmed';
 		this.pillsRow.addClass('ct-hidden');
+		this.customRow.addClass('ct-hidden');
+		this.pillsGrid.removeClass('ct-hidden');
 		this.hadOneBtn.removeClass('ct-hidden');
 		this.onLog(minutesAgo);
 		this.onStateChange('confirmed');
@@ -156,6 +282,8 @@ export class UntimedPicker {
 		this.confirmEl.addClass('ct-hidden');
 		this.confirmEl.empty();
 		this.pillsRow.addClass('ct-hidden');
+		this.customRow.addClass('ct-hidden');
+		this.pillsGrid.removeClass('ct-hidden');
 		this.hadOneBtn.removeClass('ct-hidden');
 	}
 
@@ -165,7 +293,7 @@ export class UntimedPicker {
 			this.hadOneBtn.removeClass('ct-hidden');
 		} else {
 			this.hadOneBtn.addClass('ct-hidden');
-			if (this.state === 'picking') {
+			if (this.state === 'picking' || this.state === 'custom') {
 				this.cancel();
 			}
 		}

@@ -248,9 +248,11 @@ export class TimerWidget extends MarkdownRenderChild {
 		}
 
 		// 4. Post-contraction pickers
-		const pickerArea = root.createDiv({ cls: 'ct-picker-area' });
-		const ratePrompt = pickerArea.createDiv({ cls: 'ct-rate-prompt ct-hidden' });
-		ratePrompt.textContent = 'Rate this contraction (optional)';
+		const pickerArea = root.createDiv({ cls: 'ct-picker-area ct-hidden' });
+		const rateHeader = pickerArea.createDiv({ cls: 'ct-rate-header' });
+		rateHeader.createSpan({ cls: 'ct-rate-prompt-text', text: 'Rate this contraction' });
+		const skipBtn = rateHeader.createEl('button', { cls: 'ct-rate-skip', text: 'Skip' });
+		skipBtn.addEventListener('click', () => this.dismissPickers());
 
 		if (this.settings.showIntensityPicker) {
 			this.intensityPicker = new IntensityPicker(
@@ -273,8 +275,8 @@ export class TimerWidget extends MarkdownRenderChild {
 		// (keep visible until BOTH intensity and location are set)
 		if (this.phase === 'resting') {
 			const last = this.getLastCompletedContraction();
-			if (last && (last.intensity === null || last.location === null)) {
-				ratePrompt.removeClass('ct-hidden');
+			if (last && !last.untimed && (last.intensity === null || last.location === null)) {
+				pickerArea.removeClass('ct-hidden');
 				if (this.intensityPicker) this.intensityPicker.show(last.intensity);
 				if (this.locationPicker) this.locationPicker.show(last.location);
 			}
@@ -575,8 +577,8 @@ export class TimerWidget extends MarkdownRenderChild {
 		this.bigButton.setPhase('resting');
 		this.bigButton.setNextNumber(this.data.contractions.length + 1);
 
-		const ratePrompt = this.containerEl.querySelector('.ct-rate-prompt');
-		if (ratePrompt) ratePrompt.removeClass('ct-hidden');
+		const pickerArea = this.containerEl.querySelector('.ct-picker-area');
+		if (pickerArea) pickerArea.removeClass('ct-hidden');
 		if (this.intensityPicker) this.intensityPicker.show();
 		if (this.locationPicker) this.locationPicker.show();
 
@@ -585,8 +587,8 @@ export class TimerWidget extends MarkdownRenderChild {
 	}
 
 	private dismissPickers(): void {
-		const ratePrompt = this.containerEl.querySelector('.ct-rate-prompt');
-		if (ratePrompt) ratePrompt.addClass('ct-hidden');
+		const pickerArea = this.containerEl.querySelector('.ct-picker-area');
+		if (pickerArea) pickerArea.addClass('ct-hidden');
 		if (this.intensityPicker) this.intensityPicker.hide();
 		if (this.locationPicker) this.locationPicker.hide();
 	}
