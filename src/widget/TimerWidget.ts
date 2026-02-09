@@ -90,6 +90,12 @@ export class TimerWidget extends MarkdownRenderChild {
 	private waterBreakInfo: WaterBreakInfo | null = null;
 	private liveRating: LiveRatingOverlay | null = null;
 
+	// Pending picker state (buffered until Save)
+	private pendingIntensity: number | null = null;
+	private pendingLocation: ContractionLocation | null = null;
+	private skipBtn: HTMLButtonElement | null = null;
+	private saveCancelWrap: HTMLElement | null = null;
+
 	// Layout
 	private sectionsContainer!: HTMLElement;
 	private sectionCollapsibles: Map<SectionId, CollapsibleSection> = new Map();
@@ -256,13 +262,22 @@ export class TimerWidget extends MarkdownRenderChild {
 			const pickerArea = root.createDiv({ cls: 'ct-picker-area ct-hidden' });
 			const rateHeader = pickerArea.createDiv({ cls: 'ct-rate-header' });
 			rateHeader.createSpan({ cls: 'ct-rate-prompt-text', text: 'Rate this contraction' });
-			const skipBtn = rateHeader.createEl('button', { cls: 'ct-rate-skip', text: 'Skip' });
-			skipBtn.addEventListener('click', () => this.skipRating());
+
+			// Skip button (shown when nothing selected)
+			this.skipBtn = rateHeader.createEl('button', { cls: 'ct-rate-skip', text: 'Skip' });
+			this.skipBtn.addEventListener('click', () => this.skipRating());
+
+			// Save / Cancel buttons (shown when something selected)
+			this.saveCancelWrap = rateHeader.createDiv({ cls: 'ct-rate-actions ct-hidden' });
+			const saveBtn = this.saveCancelWrap.createEl('button', { cls: 'ct-rate-save', text: 'Save' });
+			const cancelBtn = this.saveCancelWrap.createEl('button', { cls: 'ct-rate-cancel', text: 'Cancel' });
+			saveBtn.addEventListener('click', () => this.saveRating());
+			cancelBtn.addEventListener('click', () => this.cancelRating());
 
 			if (this.settings.showIntensityPicker) {
 				this.intensityPicker = new IntensityPicker(
 					pickerArea,
-					(level) => this.setIntensity(level),
+					(level) => this.bufferIntensity(level),
 					this.settings.intensityScale,
 					this.settings.hapticFeedback
 				);
@@ -271,7 +286,7 @@ export class TimerWidget extends MarkdownRenderChild {
 			if (this.settings.showLocationPicker) {
 				this.locationPicker = new LocationPicker(
 					pickerArea,
-					(loc) => this.setLocation(loc),
+					(loc) => this.bufferLocation(loc),
 					this.settings.hapticFeedback
 				);
 			}
@@ -284,6 +299,12 @@ export class TimerWidget extends MarkdownRenderChild {
 					pickerArea.removeClass('ct-hidden');
 					if (this.intensityPicker) this.intensityPicker.show(last.intensity);
 					if (this.locationPicker) this.locationPicker.show(last.location);
+					// If already partially rated, show as pending
+					if (last.intensity !== null || last.location !== null) {
+						this.pendingIntensity = last.intensity;
+						this.pendingLocation = last.location;
+						this.showSaveCancelButtons();
+					}
 				}
 			}
 		}
@@ -848,21 +869,60 @@ export class TimerWidget extends MarkdownRenderChild {
 		await this.save();
 	}
 
-	private async setIntensity(level: number): Promise<void> {
-		const last = this.getLastCompletedContraction();
-		if (!last) return;
-		last.intensity = level;
-		this.updateBHAssessment();
-		await this.save();
+	/** Buffer intensity selection (no save yet — wait for Save/Cancel). */
+	private bufferIntensity(level: number): void {
+		this.pendingIntensity = level;
+		this.showSaveCancelButtons();
 	}
 
-	private async setLocation(location: ContractionLocation): Promise<void> {
+	/** Buffer location selection (no save yet — wait for Save/Cancel). */
+	private bufferLocation(location: ContractionLocation): void {
+		this.pendingLocation = location;
+		this.showSaveCancelButtons();
+	}
+
+	private showSaveCancelButtons(): void {
+		if (this.skipBtn) this.skipBtn.addClass('ct-hidden');
+		if (this.saveCancelWrap) this.saveCancelWrap.removeClass('ct-hidden');
+	}
+
+	private hideSaveCancelButtons(): void {
+		if (this.skipBtn) this.skipBtn.removeClass('ct-hidden');
+		if (this.saveCancelWrap) this.saveCancelWrap.addClass('ct-hidden');
+	}
+
+	/** Save buffered intensity/location to the last contraction. */
+	private async saveRating(): Promise<void> {
 		const last = this.getLastCompletedContraction();
 		if (!last) return;
-		last.location = location;
+		if (this.pendingIntensity !== null) last.intensity = this.pendingIntensity;
+		if (this.pendingLocation !== null) last.location = this.pendingLocation;
+		last.ratingDismissed = true;
+		this.pendingIntensity = null;
+		this.pendingLocation = null;
+		this.dismissPickers();
 		this.updateBHAssessment();
 		this.updateContextualTips();
 		await this.save();
+	}
+
+	/** Cancel buffered selections and revert picker state. */
+	private cancelRating(): void {
+		this.pendingIntensity = null;
+		this.pendingLocation = null;
+		if (this.intensityPicker) this.intensityPicker.clearSelection();
+		if (this.locationPicker) this.locationPicker.clearSelection();
+		this.hideSaveCancelButtons();
+		// Re-show any pre-existing selections from data
+		const last = this.getLastCompletedContraction();
+		if (last) {
+			if (this.intensityPicker && last.intensity !== null) {
+				this.intensityPicker.show(last.intensity);
+			}
+			if (this.locationPicker && last.location !== null) {
+				this.locationPicker.show(last.location);
+			}
+		}
 	}
 
 	private async deleteLast(): Promise<void> {

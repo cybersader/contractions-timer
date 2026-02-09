@@ -2,6 +2,11 @@
 
 All notable changes to the Obsidian Contractions Timer plugin will be documented in this file.
 
+## [0.1.15] - 2026-02-09
+
+### Added
+- **Save/Cancel on rating pickers**: Selecting an intensity or location no longer saves immediately. Instead, "Skip" transforms into green "Save" and red "Cancel" buttons. Save writes the selection; Cancel reverts it. Prevents accidental mis-ratings.
+
 ## [0.1.14] - 2026-02-09
 
 ### Fixed

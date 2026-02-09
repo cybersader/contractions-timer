@@ -51,4 +51,9 @@ export class LocationPicker {
 	hide(): void {
 		this.el.addClass('ct-hidden');
 	}
+
+	clearSelection(): void {
+		const buttons = this.el.querySelectorAll('.ct-location-btn');
+		buttons.forEach(btn => btn.removeClass('ct-location-btn--selected'));
+	}
 }

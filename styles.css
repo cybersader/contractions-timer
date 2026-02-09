@@ -474,6 +474,42 @@
 	color: var(--text-muted);
 }
 
+.ct-rate-actions {
+	display: flex;
+	gap: 6px;
+}
+
+.ct-rate-save,
+.ct-rate-cancel {
+	padding: 3px 10px;
+	font-size: 0.72rem;
+	border: 1px solid;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: all 0.1s ease;
+}
+
+.ct-rate-save {
+	border-color: #22c55e;
+	background: rgba(34, 197, 94, 0.15);
+	color: #22c55e;
+}
+
+.ct-rate-save:hover {
+	background: rgba(34, 197, 94, 0.3);
+}
+
+.ct-rate-cancel {
+	border-color: #ef4444;
+	background: rgba(239, 68, 68, 0.1);
+	color: #ef4444;
+}
+
+.ct-rate-cancel:hover {
+	background: rgba(239, 68, 68, 0.25);
+}
+
 .ct-picker-label {
 	font-size: 0.85rem;
 	color: var(--text-muted);

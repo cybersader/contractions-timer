@@ -65,4 +65,14 @@ export class IntensityPicker {
 		this.el.addClass('ct-hidden');
 		this.selectedLevel = null;
 	}
+
+	clearSelection(): void {
+		this.selectedLevel = null;
+		const buttons = this.el.querySelectorAll('.ct-intensity-btn');
+		buttons.forEach(btn => btn.removeClass('ct-intensity-btn--selected'));
+	}
+
+	getSelectedLevel(): number | null {
+		return this.selectedLevel;
+	}
 }
