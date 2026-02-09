@@ -1,0 +1,37 @@
+{
+	"name": "obsidian-contractions-timer",
+	"version": "0.1.0",
+	"description": "Mobile-friendly contraction timer for Obsidian with wave charts, intensity tracking, and markdown-native data storage.",
+	"main": "main.js",
+	"scripts": {
+		"dev": "bun run esbuild.config.mjs",
+		"build": "bun x tsc -noEmit -skipLibCheck && bun run esbuild.config.mjs production",
+		"test": "bun test",
+		"test:watch": "bun test --watch",
+		"lint": "eslint src",
+		"version": "bun run version-bump.mjs && git add manifest.json versions.json"
+	},
+	"keywords": [
+		"obsidian",
+		"obsidian-plugin",
+		"contraction-timer",
+		"pregnancy",
+		"labor",
+		"birth"
+	],
+	"author": "cybersader",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/bun": "latest",
+		"@types/node": "^20.10.0",
+		"@typescript-eslint/parser": "^8.48.1",
+		"@typescript-eslint/utils": "^8.48.1",
+		"builtin-modules": "^3.3.0",
+		"esbuild": "^0.19.8",
+		"eslint": "^9.39.1",
+		"eslint-plugin-obsidianmd": "^0.1.9",
+		"obsidian": "latest",
+		"typescript": "^5.3.2",
+		"typescript-eslint": "^8.48.1"
+	}
+}

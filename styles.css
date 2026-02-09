@@ -1,0 +1,1695 @@
+/* =============================================================
+   Obsidian Contractions Timer - Mobile-First Styles
+   ============================================================= */
+
+/* --- Widget Container --- */
+.ct-widget {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px;
+	border-radius: 12px;
+	background: var(--background-secondary);
+	border: 1px solid var(--background-modifier-border);
+}
+
+/* --- Hidden utility --- */
+.ct-hidden {
+	display: none !important;
+}
+
+/* --- Timer Display --- */
+.ct-timer-display {
+	text-align: center;
+	padding: 8px 0;
+	position: relative;
+	cursor: default;
+}
+
+.ct-timer-display--resting {
+	cursor: pointer;
+}
+
+.ct-timer-label {
+	font-size: 0.9rem;
+	color: var(--text-muted);
+	margin-bottom: 4px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.ct-timer-time-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.ct-timer-time {
+	font-size: clamp(2rem, 8vw, 4rem);
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	line-height: 1.1;
+	color: var(--text-normal);
+}
+
+.ct-timer-subtitle {
+	font-size: 0.8rem;
+	color: var(--text-muted);
+	margin-top: 4px;
+	min-height: 1.2em;
+}
+
+.ct-timer-display--contracting .ct-timer-label {
+	color: var(--color-red);
+	animation: ct-pulse 1.5s ease-in-out infinite;
+}
+
+.ct-timer-display--contracting .ct-timer-time {
+	color: var(--color-red);
+}
+
+.ct-timer-display--resting .ct-timer-label {
+	color: var(--color-blue);
+}
+
+.ct-timer-display--resting .ct-timer-time {
+	color: var(--text-muted);
+	font-size: clamp(1.5rem, 6vw, 2.5rem);
+}
+
+.ct-timer-display--paused .ct-timer-label {
+	color: var(--text-faint);
+}
+
+.ct-timer-display--paused .ct-timer-time {
+	color: var(--text-faint);
+	font-size: clamp(1.5rem, 6vw, 2.5rem);
+}
+
+/* --- Pause Overlay --- */
+.ct-pause-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	background: var(--background-secondary-alt, rgba(0, 0, 0, 0.15));
+	backdrop-filter: blur(2px);
+	border-radius: 8px;
+	cursor: pointer;
+	z-index: 2;
+	opacity: 0.85;
+	transition: opacity 0.15s ease;
+}
+
+.ct-pause-overlay:hover {
+	opacity: 1;
+}
+
+.ct-pause-overlay--active {
+	background: var(--background-secondary-alt, rgba(0, 0, 0, 0.25));
+	opacity: 1;
+}
+
+.ct-pause-icon {
+	font-size: 1.2rem;
+	color: var(--text-normal);
+}
+
+.ct-pause-text {
+	font-size: 0.65rem;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+/* --- Hero Components --- */
+.ct-hero {
+	text-align: center;
+	padding: 8px 0;
+}
+
+.ct-hero--paused {
+	opacity: 0.5;
+}
+
+/* Stage badge hero */
+.ct-hero-badge {
+	font-size: 1.3rem;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	line-height: 1.2;
+}
+
+.ct-hero-time {
+	font-size: 0.82rem;
+	color: var(--text-muted);
+	margin-top: 2px;
+}
+
+.ct-hero-range {
+	font-size: 0.72rem;
+	color: var(--text-faint);
+	margin-top: 2px;
+}
+
+/* Action card hero */
+.ct-hero-action {
+	padding: 12px 16px;
+	border-radius: 10px;
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+}
+
+.ct-hero-action-text {
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: var(--text-normal);
+}
+
+.ct-hero-action-detail {
+	font-size: 0.78rem;
+	color: var(--text-muted);
+	margin-top: 4px;
+}
+
+.ct-hero-action--early {
+	background: rgba(74, 222, 128, 0.08);
+	border-color: rgba(74, 222, 128, 0.25);
+}
+.ct-hero-action--early .ct-hero-action-text { color: var(--color-green); }
+
+.ct-hero-action--active {
+	background: rgba(251, 191, 36, 0.08);
+	border-color: rgba(251, 191, 36, 0.25);
+}
+.ct-hero-action--active .ct-hero-action-text { color: var(--color-orange); }
+
+.ct-hero-action--transition {
+	background: rgba(239, 68, 68, 0.12);
+	border-color: rgba(239, 68, 68, 0.3);
+	animation: ct-pulse 2s ease-in-out infinite;
+}
+.ct-hero-action--transition .ct-hero-action-text { color: var(--color-red); }
+
+.ct-hero-action--contracting {
+	background: rgba(239, 68, 68, 0.06);
+	border-color: rgba(239, 68, 68, 0.2);
+}
+.ct-hero-action--contracting .ct-hero-action-text { color: var(--color-red); }
+
+.ct-hero-action-hospital {
+	font-size: 0.75rem;
+	color: var(--text-accent);
+	margin-top: 6px;
+	cursor: pointer;
+	opacity: 0.85;
+	transition: opacity 0.15s ease;
+}
+.ct-hero-action-hospital:hover {
+	opacity: 1;
+	text-decoration: underline;
+}
+
+/* Compact timer hero */
+.ct-hero-compact-line {
+	font-size: 0.95rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	color: var(--text-muted);
+}
+
+.ct-hero-compact--contracting .ct-hero-compact-line {
+	color: var(--color-red);
+}
+
+.ct-hero-compact--resting .ct-hero-compact-line {
+	color: var(--text-muted);
+}
+
+/* --- Big Button --- */
+.ct-big-button {
+	display: block;
+	width: 100%;
+	min-height: 100px;
+	border: none;
+	border-radius: 16px;
+	font-size: 1.5rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 0.1s ease, opacity 0.2s ease;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+	user-select: none;
+}
+
+.ct-big-button:active {
+	transform: scale(0.97);
+}
+
+.ct-big-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.ct-big-button--idle,
+.ct-big-button--resting {
+	background: linear-gradient(135deg, #4ade80, #22c55e);
+	color: #fff;
+}
+
+.ct-big-button--idle:hover,
+.ct-big-button--resting:hover {
+	background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.ct-big-button--contracting {
+	background: linear-gradient(135deg, #f87171, #ef4444);
+	color: #fff;
+	animation: ct-button-pulse 2s ease-in-out infinite;
+}
+
+.ct-big-button--contracting:hover {
+	background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* --- Event Buttons --- */
+.ct-event-buttons {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ct-event-btn {
+	flex: 1;
+	min-height: 44px;
+	border: 2px solid var(--background-modifier-border);
+	border-radius: 10px;
+	background: var(--background-primary);
+	color: var(--text-normal);
+	font-size: 0.85rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	touch-action: manipulation;
+}
+
+.ct-event-btn:hover {
+	border-color: var(--color-blue);
+	color: var(--color-blue);
+}
+
+.ct-event-btn--confirmed {
+	border-color: var(--color-blue);
+	background: rgba(59, 130, 246, 0.1);
+	color: var(--color-blue);
+	cursor: default;
+}
+
+.ct-event-btn--undo {
+	flex: 0 0 auto;
+	margin-left: auto;
+	font-size: 0.7em;
+	padding: 2px 8px;
+	min-height: unset;
+	line-height: 1.4;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: var(--text-faint);
+	cursor: pointer;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	opacity: 0.6;
+	transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.ct-event-btn--undo:hover {
+	opacity: 1;
+	color: var(--text-muted);
+}
+
+/* --- Water Break Info --- */
+.ct-water-break-info {
+	padding: 10px 12px;
+	border-radius: 8px;
+	background: rgba(59, 130, 246, 0.08);
+	border: 1px solid rgba(59, 130, 246, 0.2);
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.ct-water-elapsed {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--color-blue);
+}
+
+.ct-water-action {
+	margin: 6px 0 4px;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-normal);
+}
+
+.ct-water-phone-link {
+	color: var(--color-blue);
+	text-decoration: underline;
+	font-weight: 600;
+}
+
+.ct-water-phone-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.ct-water-phone-label {
+	font-weight: 600;
+}
+
+.ct-water-phone-add {
+	font-size: 0.75em;
+	padding: 2px 8px;
+	border: 1px dashed var(--text-faint);
+	border-radius: 4px;
+	background: transparent;
+	color: var(--text-muted);
+	cursor: pointer;
+}
+
+.ct-water-phone-add:hover {
+	border-color: var(--color-blue);
+	color: var(--color-blue);
+}
+
+.ct-water-phone-input {
+	flex: 1;
+	min-width: 120px;
+	padding: 4px 8px;
+	font-size: 0.85rem;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	background: var(--background-primary);
+	color: var(--text-normal);
+}
+
+.ct-water-phone-input:focus {
+	border-color: var(--color-blue);
+	outline: none;
+}
+
+.ct-water-phone-save {
+	padding: 4px 10px;
+	font-size: 0.8rem;
+	border: none;
+	border-radius: 4px;
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+	cursor: pointer;
+}
+
+.ct-water-action-detail {
+	font-size: 0.78rem;
+	color: var(--text-muted);
+	font-weight: 400;
+	margin-top: 2px;
+}
+
+.ct-water-safety-note {
+	font-size: 0.78rem;
+	color: var(--color-red);
+	margin: 6px 0 4px;
+	padding: 4px 8px;
+	border-radius: 4px;
+	background: rgba(239, 68, 68, 0.08);
+}
+
+.ct-water-stats {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	margin-top: 6px;
+}
+
+.ct-water-stat {
+	font-size: 0.78rem;
+	color: var(--text-muted);
+	padding-left: 8px;
+	border-left: 2px solid rgba(59, 130, 246, 0.3);
+}
+
+/* --- Picker Area --- */
+.ct-picker-area {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.ct-picker-label {
+	font-size: 0.85rem;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.ct-rate-prompt {
+	font-size: 0.85rem;
+	color: var(--text-muted);
+	text-align: center;
+	font-style: italic;
+}
+
+/* --- Button Row (Stop + Peak inline) --- */
+.ct-button-row {
+	display: flex;
+	gap: 10px;
+	align-items: stretch;
+}
+
+.ct-button-row .ct-big-button {
+	flex: 1;
+	min-width: 0;
+}
+
+/* --- Live Rating (inline peak button) --- */
+.ct-live-rating-wrap {
+	display: flex;
+	align-items: stretch;
+	flex: 0 0 auto;
+	animation: ct-peak-btn-appear 0.3s ease;
+}
+
+.ct-live-rating-peak-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	padding: 0 20px;
+	border-radius: 16px;
+	border: none;
+	background: linear-gradient(135deg, #60a5fa, #3b82f6);
+	color: #fff;
+	font-size: 0.9rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 0.1s ease, opacity 0.2s ease;
+	white-space: nowrap;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+	user-select: none;
+}
+
+.ct-live-rating-peak-btn:hover {
+	background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.ct-live-rating-peak-btn:active {
+	transform: scale(0.96);
+}
+
+.ct-live-rating-peak-btn--done {
+	background: linear-gradient(135deg, #a78bfa, #7c3aed);
+	opacity: 0.8;
+	cursor: default;
+}
+
+@keyframes ct-peak-btn-appear {
+	0% { opacity: 0; transform: translateX(10px); }
+	100% { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Intensity Picker --- */
+.ct-intensity-picker,
+.ct-location-picker {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.ct-intensity-buttons,
+.ct-location-buttons {
+	display: flex;
+	gap: 6px;
+}
+
+.ct-intensity-btn,
+.ct-location-btn {
+	flex: 1;
+	min-height: 48px;
+	min-width: 48px;
+	border: 2px solid var(--background-modifier-border);
+	border-radius: 10px;
+	background: var(--background-primary);
+	color: var(--text-normal);
+	font-size: 0.8rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.ct-intensity-btn:hover,
+.ct-location-btn:hover {
+	border-color: var(--interactive-accent);
+}
+
+/* Intensity button colors */
+.ct-intensity-btn--1 { border-color: rgba(100, 180, 220, 0.5); }
+.ct-intensity-btn--2 { border-color: rgba(120, 200, 150, 0.5); }
+.ct-intensity-btn--3 { border-color: rgba(220, 200, 80, 0.5); }
+.ct-intensity-btn--4 { border-color: rgba(230, 140, 60, 0.5); }
+.ct-intensity-btn--5 { border-color: rgba(220, 80, 80, 0.5); }
+
+.ct-intensity-btn--selected,
+.ct-location-btn--selected {
+	border-color: var(--interactive-accent);
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+}
+
+.ct-intensity-btn--1.ct-intensity-btn--selected { background: rgb(100, 180, 220); border-color: rgb(100, 180, 220); color: #fff; }
+.ct-intensity-btn--2.ct-intensity-btn--selected { background: rgb(120, 200, 150); border-color: rgb(120, 200, 150); color: #fff; }
+.ct-intensity-btn--3.ct-intensity-btn--selected { background: rgb(220, 200, 80); border-color: rgb(220, 200, 80); color: #333; }
+.ct-intensity-btn--4.ct-intensity-btn--selected { background: rgb(230, 140, 60); border-color: rgb(230, 140, 60); color: #fff; }
+.ct-intensity-btn--5.ct-intensity-btn--selected { background: rgb(220, 80, 80); border-color: rgb(220, 80, 80); color: #fff; }
+
+/* --- Contextual Tips --- */
+.ct-contextual-tips {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.ct-tip {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	padding: 8px 10px;
+	border-radius: 8px;
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+	font-size: 0.82rem;
+	color: var(--text-normal);
+	line-height: 1.4;
+}
+
+.ct-tip--safety {
+	border-color: rgba(239, 68, 68, 0.3);
+	background: rgba(239, 68, 68, 0.06);
+}
+
+.ct-tip--action {
+	border-color: rgba(59, 130, 246, 0.3);
+	background: rgba(59, 130, 246, 0.06);
+}
+
+.ct-tip--timing {
+	border-color: rgba(251, 191, 36, 0.3);
+	background: rgba(251, 191, 36, 0.06);
+}
+
+.ct-tip-icon {
+	flex-shrink: 0;
+	font-size: 1rem;
+	line-height: 1.4;
+}
+
+.ct-tip-text {
+	flex: 1;
+}
+
+.ct-tip-dismiss {
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	border: none;
+	background: none;
+	color: var(--text-faint);
+	cursor: pointer;
+	font-size: 0.9rem;
+	padding: 0;
+	line-height: 1;
+}
+
+.ct-tip-dismiss:hover {
+	color: var(--text-muted);
+}
+
+/* --- Collapsible Section --- */
+.ct-collapsible {
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.ct-collapsible-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 44px;
+	padding: 8px 12px;
+	background: var(--background-primary);
+	cursor: pointer;
+	user-select: none;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.ct-collapsible-header:hover {
+	background: var(--background-primary-alt, var(--background-primary));
+}
+
+.ct-collapsible-chevron {
+	flex-shrink: 0;
+	font-size: 0.7rem;
+	color: var(--text-muted);
+	transition: transform 0.2s ease;
+}
+
+.ct-collapsible--open .ct-collapsible-chevron {
+	transform: rotate(90deg);
+}
+
+.ct-collapsible-title {
+	flex: 1;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--text-normal);
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.ct-collapsible-badge {
+	font-size: 0.7rem;
+	font-weight: 600;
+	padding: 2px 8px;
+	border-radius: 10px;
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+}
+
+.ct-collapsible-body {
+	padding: 10px 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+/* --- Move Controls --- */
+.ct-move-controls {
+	display: flex;
+	gap: 2px;
+	margin-left: auto;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.ct-collapsible-header:hover .ct-move-controls {
+	opacity: 1;
+}
+
+/* Always show on touch devices (no hover) */
+@media (hover: none) {
+	.ct-move-controls {
+		opacity: 0.5;
+	}
+}
+
+.ct-move-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	padding: 0;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: var(--text-faint);
+	font-size: 0.55rem;
+	cursor: pointer;
+	line-height: 1;
+}
+
+.ct-move-btn:hover {
+	background: var(--background-modifier-hover);
+	color: var(--text-muted);
+}
+
+.ct-move-btn:disabled {
+	opacity: 0.2;
+	cursor: default;
+}
+
+.ct-move-btn:disabled:hover {
+	background: transparent;
+	color: var(--text-faint);
+}
+
+/* --- Drag Handle --- */
+.ct-drag-handle {
+	cursor: grab;
+	color: var(--text-faint);
+	font-size: 1rem;
+	padding: 0 4px;
+	user-select: none;
+	touch-action: none;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.ct-collapsible-header:hover .ct-drag-handle {
+	opacity: 1;
+}
+
+/* Always show on touch devices (no hover) */
+@media (hover: none) {
+	.ct-drag-handle {
+		opacity: 0.5;
+	}
+}
+
+.ct-dragging {
+	background: var(--background-primary-alt, var(--background-primary));
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	z-index: 10;
+	position: relative;
+}
+
+.ct-dragging .ct-drag-handle {
+	cursor: grabbing;
+	opacity: 1;
+}
+
+/* --- Hospital Advisor --- */
+.ct-hospital-advisor {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 10px;
+	border-radius: 8px;
+}
+
+.ct-advisor--not-yet {
+	background: var(--background-primary);
+}
+
+.ct-advisor--start-preparing {
+	background: rgba(251, 191, 36, 0.1);
+	border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.ct-advisor--time-to-go {
+	background: rgba(249, 115, 22, 0.1);
+	border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.ct-advisor--go-now {
+	background: rgba(239, 68, 68, 0.15);
+	border: 1px solid rgba(239, 68, 68, 0.4);
+	animation: ct-pulse 2s ease-in-out infinite;
+}
+
+.ct-advisor-headline {
+	font-size: 1rem;
+	font-weight: 700;
+	color: var(--text-normal);
+}
+
+.ct-advisor--go-now .ct-advisor-headline {
+	color: var(--color-red);
+}
+
+.ct-advisor--time-to-go .ct-advisor-headline {
+	color: var(--color-orange);
+}
+
+.ct-advisor-detail {
+	font-size: 0.82rem;
+	color: var(--text-muted);
+	line-height: 1.4;
+}
+
+.ct-advisor-factors {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.ct-advisor-factor {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	padding-left: 8px;
+	border-left: 2px solid var(--background-modifier-border);
+}
+
+/* --- Advisor Range Mode --- */
+.ct-advisor-range {
+	background: var(--background-primary);
+}
+
+.ct-advisor-range--high {
+	border-left: 3px solid var(--color-green);
+}
+
+.ct-advisor-range--medium {
+	border-left: 3px solid var(--color-orange);
+}
+
+.ct-advisor-range--low {
+	border-left: 3px solid var(--text-muted);
+}
+
+.ct-advisor-recommendation {
+	font-size: 0.95rem;
+	font-weight: 700;
+	color: var(--text-normal);
+	margin-bottom: 4px;
+}
+
+.ct-advisor-pattern {
+	font-size: 0.82rem;
+	color: var(--text-muted);
+	line-height: 1.4;
+}
+
+.ct-advisor-trend {
+	font-size: 0.82rem;
+	color: var(--text-muted);
+	font-style: italic;
+	line-height: 1.4;
+}
+
+/* --- Advisor Minimal Mode --- */
+.ct-advisor-minimal {
+	padding: 6px 10px;
+}
+
+.ct-advisor-minimal-text {
+	font-size: 0.85rem;
+	color: var(--text-muted);
+}
+
+/* --- Stage Duration Bar --- */
+.ct-stage-duration {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.ct-stage-duration-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.ct-stage-label {
+	font-size: 0.82rem;
+	font-weight: 700;
+}
+
+.ct-stage-label--pre-labor { color: var(--text-muted); }
+.ct-stage-label--early { color: var(--color-green); }
+.ct-stage-label--active { color: var(--color-orange); }
+.ct-stage-label--transition { color: var(--color-red); }
+
+.ct-stage-time {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.ct-stage-bar-track {
+	height: 6px;
+	border-radius: 3px;
+	background: var(--background-modifier-border);
+	overflow: hidden;
+}
+
+.ct-stage-bar-fill {
+	height: 100%;
+	border-radius: 3px;
+	transition: width 0.3s ease;
+}
+
+.ct-stage-bar-fill--pre-labor { background: var(--text-faint); }
+.ct-stage-bar-fill--early { background: var(--color-green); }
+.ct-stage-bar-fill--active { background: var(--color-orange); }
+.ct-stage-bar-fill--transition { background: var(--color-red); }
+
+.ct-stage-tip {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	font-style: italic;
+}
+
+/* --- Braxton Hicks Panel --- */
+.ct-bh-panel {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.ct-bh-badge-row {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.ct-settings-link {
+	font-size: 0.65rem;
+	color: var(--text-faint);
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity 0.15s;
+	margin-left: 6px;
+}
+.ct-bh-verdict:hover .ct-settings-link { opacity: 0.6; }
+.ct-settings-link:hover { opacity: 1; color: var(--interactive-accent); }
+@media (pointer: coarse) { .ct-settings-link { opacity: 0.3; } }
+
+.ct-bh-verdict {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.ct-bh-badge {
+	padding: 3px 10px;
+	border-radius: 10px;
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+.ct-bh-badge--likely-braxton-hicks {
+	background: rgba(100, 180, 220, 0.15);
+	color: rgb(80, 160, 200);
+}
+
+.ct-bh-badge--uncertain {
+	background: rgba(251, 191, 36, 0.15);
+	color: var(--color-orange);
+}
+
+.ct-bh-badge--likely-real-labor {
+	background: rgba(239, 68, 68, 0.15);
+	color: var(--color-red);
+}
+
+.ct-bh-score {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.ct-bh-criteria {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.ct-bh-criterion {
+	display: flex;
+	align-items: flex-start;
+	gap: 6px;
+	font-size: 0.78rem;
+}
+
+.ct-bh-icon {
+	flex-shrink: 0;
+	width: 16px;
+	text-align: center;
+	font-weight: 700;
+}
+
+.ct-bh-icon--real-labor { color: var(--color-red); }
+.ct-bh-icon--braxton-hicks { color: var(--color-blue); }
+.ct-bh-icon--inconclusive { color: var(--text-faint); }
+
+.ct-bh-criterion-text {
+	flex: 1;
+}
+
+.ct-bh-criterion-name {
+	font-weight: 600;
+	color: var(--text-normal);
+}
+
+.ct-bh-criterion-detail {
+	color: var(--text-muted);
+	font-size: 0.72rem;
+}
+
+.ct-bh-verdict-desc {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	margin-top: 2px;
+}
+
+.ct-bh-note {
+	font-size: 0.7rem;
+	color: var(--text-faint);
+	font-style: italic;
+}
+
+/* --- Clinical Reference --- */
+.ct-clinical-reference {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.ct-ref-heading {
+	font-size: 0.8rem;
+	font-weight: 700;
+	color: var(--text-normal);
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	margin-top: 4px;
+}
+
+.ct-ref-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.75rem;
+}
+
+.ct-ref-table th {
+	text-align: left;
+	padding: 4px 6px;
+	border-bottom: 1px solid var(--background-modifier-border);
+	color: var(--text-muted);
+	font-weight: 600;
+	font-size: 0.7rem;
+}
+
+.ct-ref-table td {
+	padding: 4px 6px;
+	border-bottom: 1px solid var(--background-modifier-border);
+	color: var(--text-normal);
+}
+
+/* Stage row background tinting */
+.ct-ref-row--pre-labor { background: transparent; }
+.ct-ref-row--early { background: rgba(74, 222, 128, 0.06); }
+.ct-ref-row--active { background: rgba(251, 191, 36, 0.06); }
+.ct-ref-row--transition { background: rgba(239, 68, 68, 0.06); }
+
+.ct-ref-row--current {
+	outline: 2px solid var(--interactive-accent);
+	outline-offset: -2px;
+}
+
+.ct-ref-row--current td {
+	font-weight: 600;
+}
+
+.ct-ref-cervix-note {
+	font-size: 0.7rem;
+	color: var(--text-faint);
+	font-style: italic;
+	margin-top: 6px;
+}
+
+.ct-ref-bh-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+.ct-ref-bh-col-title {
+	font-size: 0.78rem;
+	font-weight: 600;
+	color: var(--text-normal);
+	margin-bottom: 4px;
+}
+
+.ct-ref-bh-item,
+.ct-ref-real-item {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	padding: 2px 0;
+}
+
+.ct-ref-bh-item {
+	color: var(--color-blue);
+}
+
+.ct-ref-real-item {
+	color: var(--color-red);
+}
+
+.ct-ref-call-item {
+	font-size: 0.78rem;
+	color: var(--text-normal);
+	padding: 2px 0;
+}
+
+.ct-ref-disclaimer {
+	font-size: 0.7rem;
+	color: var(--text-faint);
+	font-style: italic;
+	margin-top: 4px;
+}
+
+/* --- Contraction Editor (inline) --- */
+.ct-editor {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 8px;
+}
+
+.ct-editor-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.ct-editor-time {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-normal);
+	font-variant-numeric: tabular-nums;
+}
+
+.ct-editor-time-row {
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.ct-editor-time-input {
+	font-size: 0.85rem;
+	font-variant-numeric: tabular-nums;
+	background: var(--background-secondary);
+	color: var(--text-normal);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	padding: 4px 6px;
+	max-width: 120px;
+}
+
+.ct-editor-duration-input {
+	font-size: 0.85rem;
+	font-variant-numeric: tabular-nums;
+	background: var(--background-secondary);
+	color: var(--text-normal);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	padding: 4px 6px;
+	max-width: 70px;
+	text-align: center;
+}
+
+.ct-editor-duration-input--invalid {
+	border-color: var(--color-red);
+}
+
+.ct-editor-label {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	min-width: 60px;
+}
+
+.ct-editor-buttons {
+	display: flex;
+	gap: 4px;
+}
+
+.ct-editor-btn {
+	min-width: 36px;
+	min-height: 36px;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 6px;
+	background: var(--background-primary);
+	color: var(--text-normal);
+	font-size: 0.78rem;
+	cursor: pointer;
+	transition: all 0.1s ease;
+}
+
+.ct-editor-btn:hover {
+	border-color: var(--interactive-accent);
+}
+
+.ct-editor-btn--selected {
+	background: var(--interactive-accent);
+	border-color: var(--interactive-accent);
+	color: var(--text-on-accent);
+}
+
+.ct-editor-actions {
+	display: flex;
+	gap: 6px;
+	margin-top: 4px;
+}
+
+.ct-editor-save,
+.ct-editor-cancel,
+.ct-editor-delete {
+	padding: 4px 12px;
+	border-radius: 6px;
+	border: 1px solid var(--background-modifier-border);
+	background: var(--background-primary);
+	color: var(--text-muted);
+	font-size: 0.78rem;
+	cursor: pointer;
+	transition: all 0.1s ease;
+}
+
+.ct-editor-save {
+	background: var(--interactive-accent);
+	border-color: var(--interactive-accent);
+	color: var(--text-on-accent);
+}
+
+.ct-editor-save:hover {
+	opacity: 0.9;
+}
+
+.ct-editor-cancel:hover {
+	border-color: var(--text-muted);
+	color: var(--text-normal);
+}
+
+.ct-editor-delete {
+	margin-left: auto;
+}
+
+.ct-editor-delete:hover {
+	border-color: var(--color-red);
+	color: var(--color-red);
+}
+
+/* Timeline table editable rows */
+.ct-table-row--clickable {
+	cursor: pointer;
+	transition: background 0.1s ease;
+}
+
+.ct-table-row--clickable:hover {
+	background: var(--background-primary-alt, rgba(0, 0, 0, 0.03));
+}
+
+.ct-table-row--editing {
+	background: rgba(var(--interactive-accent-rgb, 99, 102, 241), 0.08);
+}
+
+.ct-timeline-editor-tr td {
+	padding: 0;
+	border-bottom: none;
+}
+
+/* --- Summary Section --- */
+.ct-summary {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.ct-summary-cards {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 8px;
+}
+
+.ct-card {
+	padding: 12px;
+	border-radius: 10px;
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+	text-align: center;
+}
+
+.ct-card-value {
+	font-size: 1.3rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	color: var(--text-normal);
+}
+
+.ct-card-label {
+	font-size: 0.7rem;
+	color: var(--text-muted);
+	margin-top: 4px;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+/* --- Alert Banner --- */
+.ct-alert-banner {
+	padding: 12px;
+	border-radius: 10px;
+	background: var(--color-red);
+	color: #fff;
+	font-size: 1.2rem;
+	font-weight: 700;
+	text-align: center;
+	animation: ct-pulse 1.5s ease-in-out infinite;
+}
+
+/* --- 5-1-1 Progress --- */
+.ct-511-progress {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 10px;
+	border-radius: 8px;
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+}
+
+.ct-511-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.82rem;
+}
+
+.ct-511-indicator {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.ct-511-met {
+	background: var(--color-green);
+}
+
+.ct-511-unmet {
+	background: var(--text-faint);
+}
+
+.ct-511-label {
+	font-weight: 600;
+	color: var(--text-normal);
+	min-width: 70px;
+}
+
+.ct-511-value {
+	color: var(--text-normal);
+	font-variant-numeric: tabular-nums;
+}
+
+.ct-511-target {
+	color: var(--text-muted);
+	font-size: 0.75rem;
+}
+
+/* --- Labor Stage Indicator --- */
+.ct-stage {
+	padding: 8px 12px;
+	border-radius: 8px;
+	font-size: 0.85rem;
+	text-align: center;
+}
+
+.ct-stage-value {
+	font-weight: 700;
+}
+
+.ct-stage--pre-labor {
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+}
+.ct-stage--pre-labor .ct-stage-value { color: var(--text-muted); }
+
+.ct-stage--early {
+	background: rgba(74, 222, 128, 0.1);
+	border: 1px solid rgba(74, 222, 128, 0.3);
+}
+.ct-stage--early .ct-stage-value { color: var(--color-green); }
+
+.ct-stage--active {
+	background: rgba(251, 191, 36, 0.1);
+	border: 1px solid rgba(251, 191, 36, 0.3);
+}
+.ct-stage--active .ct-stage-value { color: var(--color-orange); }
+
+.ct-stage--transition {
+	background: rgba(239, 68, 68, 0.1);
+	border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.ct-stage--transition .ct-stage-value { color: var(--color-red); }
+
+/* --- Progression Insight --- */
+.ct-insight {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 10px;
+	border-radius: 8px;
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+}
+
+.ct-insight-row {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 0.82rem;
+}
+
+.ct-insight-label {
+	color: var(--text-muted);
+	min-width: 70px;
+}
+
+.ct-insight-value {
+	font-variant-numeric: tabular-nums;
+}
+
+.ct-insight-value--decreasing {
+	color: var(--color-green);
+}
+
+.ct-insight-value--increasing {
+	color: var(--color-red);
+}
+
+.ct-insight-value--stable {
+	color: var(--text-muted);
+}
+
+.ct-insight-estimate {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-normal);
+	margin-top: 4px;
+}
+
+.ct-insight-disclaimer {
+	font-size: 0.7rem;
+	color: var(--text-faint);
+	font-style: italic;
+}
+
+/* --- Wave Chart --- */
+.ct-wave-chart {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.ct-section-label {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.ct-chart-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.ct-chart-toolbar {
+	display: flex;
+	gap: 4px;
+}
+
+.ct-chart-btn {
+	padding: 2px 8px;
+	font-size: 0.65rem;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	background: var(--background-primary);
+	color: var(--text-muted);
+	cursor: pointer;
+	transition: all 0.1s ease;
+}
+
+.ct-chart-btn:hover {
+	border-color: var(--interactive-accent);
+	color: var(--text-normal);
+}
+
+.ct-canvas-container {
+	overflow-x: auto;
+	overflow-y: hidden;
+	border-radius: 8px;
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+}
+
+.ct-canvas {
+	display: block;
+}
+
+/* --- Timeline Table --- */
+.ct-timeline {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.ct-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.82rem;
+}
+
+.ct-table th {
+	text-align: left;
+	padding: 6px 6px;
+	border-bottom: 2px solid var(--background-modifier-border);
+	font-weight: 600;
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	color: var(--text-muted);
+	position: sticky;
+	top: 0;
+	background: var(--background-secondary);
+}
+
+.ct-table td {
+	padding: 6px 6px;
+	border-bottom: 1px solid var(--background-modifier-border);
+	color: var(--text-normal);
+}
+
+.ct-table-empty {
+	text-align: center;
+	color: var(--text-muted);
+	padding: 16px !important;
+}
+
+.ct-table-num {
+	width: 28px;
+	color: var(--text-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.ct-table-time {
+	font-variant-numeric: tabular-nums;
+}
+
+.ct-table-duration,
+.ct-table-rest,
+.ct-table-interval {
+	font-variant-numeric: tabular-nums;
+}
+
+/* Intensity dots */
+.ct-dot {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	margin-right: 4px;
+}
+
+.ct-dot--1 { background: rgb(100, 180, 220); }
+.ct-dot--2 { background: rgb(120, 200, 150); }
+.ct-dot--3 { background: rgb(220, 200, 80); }
+.ct-dot--4 { background: rgb(230, 140, 60); }
+.ct-dot--5 { background: rgb(220, 80, 80); }
+
+/* --- Session Controls --- */
+.ct-session-controls {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+
+.ct-control-btn {
+	padding: 6px 12px;
+	border-radius: 6px;
+	border: 1px solid var(--background-modifier-border);
+	background: var(--background-primary);
+	color: var(--text-muted);
+	font-size: 0.8rem;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.ct-control-btn:hover {
+	color: var(--text-normal);
+	border-color: var(--interactive-accent);
+}
+
+.ct-control-btn--active {
+	border-color: var(--interactive-accent);
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+}
+
+.ct-control-btn--active:hover {
+	opacity: 0.9;
+}
+
+.ct-control-btn--clear:hover {
+	color: var(--color-red);
+	border-color: var(--color-red);
+}
+
+/* --- Animations --- */
+@keyframes ct-pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.6; }
+}
+
+@keyframes ct-button-pulse {
+	0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+	50% { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
+}
+
+/* --- Dark mode adjustments --- */
+.theme-dark .ct-big-button--idle,
+.theme-dark .ct-big-button--resting {
+	background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.theme-dark .ct-big-button--contracting {
+	background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.theme-dark .ct-pause-overlay {
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.theme-dark .ct-pause-overlay--active {
+	background: rgba(0, 0, 0, 0.4);
+}
+
+/* --- Chart Overlay Legend --- */
+.ct-chart-legend {
+	font-size: 0.6rem;
+	color: rgba(74, 222, 128, 0.7);
+	font-style: italic;
+	padding: 0 4px;
+}
