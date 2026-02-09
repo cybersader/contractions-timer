@@ -48,9 +48,8 @@ export class WaveChart {
 
 		this.el = parent.createDiv({ cls: 'ct-wave-chart' });
 
-		// Header row with label + chart controls
+		// Header row with chart controls (label is in the collapsible section header)
 		const headerRow = this.el.createDiv({ cls: 'ct-chart-header' });
-		headerRow.createDiv({ cls: 'ct-section-label', text: 'Wave chart' });
 		this.toolbar = headerRow.createDiv({ cls: 'ct-chart-toolbar ct-hidden' });
 
 		const fitBtn = this.toolbar.createEl('button', { cls: 'ct-chart-btn', text: 'Fit' });
@@ -260,8 +259,8 @@ export class WaveChart {
 			}
 		}
 
-		// Show toolbar when chart is scrollable OR when in fit-to-view mode
-		if (canvasWidth > containerWidth || this.fitToView) {
+		// Show toolbar when there are contractions to interact with
+		if (totalContractions >= 1) {
 			this.toolbar.removeClass('ct-hidden');
 		} else {
 			this.toolbar.addClass('ct-hidden');

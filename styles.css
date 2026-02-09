@@ -679,11 +679,15 @@
 
 .ct-collapsible-title {
 	flex: 1;
+	min-width: 0;
 	font-size: 0.8rem;
 	font-weight: 600;
 	color: var(--text-normal);
 	text-transform: uppercase;
 	letter-spacing: 0.03em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .ct-collapsible-badge {
@@ -713,13 +717,6 @@
 
 .ct-collapsible-header:hover .ct-move-controls {
 	opacity: 1;
-}
-
-/* Always show on touch devices (no hover) */
-@media (hover: none) {
-	.ct-move-controls {
-		opacity: 0.5;
-	}
 }
 
 .ct-move-btn {
@@ -769,10 +766,21 @@
 	opacity: 1;
 }
 
-/* Always show on touch devices (no hover) */
+/* Always show controls on touch devices (no hover) */
 @media (hover: none) {
+	.ct-move-controls {
+		opacity: 0.8;
+	}
+	.ct-move-btn {
+		width: 32px;
+		height: 32px;
+		font-size: 0.7rem;
+		color: var(--text-muted);
+	}
 	.ct-drag-handle {
-		opacity: 0.5;
+		opacity: 0.8;
+		font-size: 1.2rem;
+		color: var(--text-muted);
 	}
 }
 
@@ -1655,6 +1663,41 @@
 .ct-control-btn--clear:hover {
 	color: var(--color-red);
 	border-color: var(--color-red);
+}
+
+/* --- Table Scroll Wrapper (mobile horizontal scroll) --- */
+.ct-table-scroll {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.ct-table-scroll .ct-table {
+	min-width: 500px;
+}
+
+.ct-table-scroll .ct-ref-table {
+	min-width: 440px;
+}
+
+/* --- Narrow Screen Safety Nets --- */
+@media (max-width: 360px) {
+	.ct-summary-cards {
+		grid-template-columns: 1fr 1fr;
+	}
+	.ct-editor-label {
+		min-width: 40px;
+	}
+	.ct-widget {
+		padding: 12px;
+		gap: 12px;
+	}
+}
+
+@media (max-width: 280px) {
+	.ct-intensity-buttons,
+	.ct-location-buttons {
+		flex-wrap: wrap;
+	}
 }
 
 /* --- Animations --- */

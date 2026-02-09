@@ -33,7 +33,8 @@ export class TimelineTable {
 	}
 
 	private buildTable(): void {
-		const table = this.el.createEl('table', { cls: 'ct-table' });
+		const scrollWrapper = this.el.createDiv({ cls: 'ct-table-scroll' });
+		const table = scrollWrapper.createEl('table', { cls: 'ct-table' });
 		const thead = table.createEl('thead');
 		const headerRow = thead.createEl('tr');
 

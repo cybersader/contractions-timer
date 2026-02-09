@@ -49,7 +49,8 @@ export class ClinicalReference {
 	): void {
 		this.stageTable.empty();
 
-		const table = this.stageTable.createEl('table', { cls: 'ct-ref-table' });
+		const scrollWrapper = this.stageTable.createDiv({ cls: 'ct-table-scroll' });
+		const table = scrollWrapper.createEl('table', { cls: 'ct-ref-table' });
 		const thead = table.createEl('thead');
 		const headerRow = thead.createEl('tr');
 		['Stage', 'Timing', 'Cervix (opening)', 'Typical length', 'Where'].forEach(h => {
