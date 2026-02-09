@@ -1746,14 +1746,15 @@
 
 	/* Compact "Had one" button on narrow screens */
 	.ct-had-one-btn {
-		padding: 6px 10px;
+		padding: 6px 8px;
 		min-height: 72px;
+		max-width: 66px;
 	}
 	.ct-had-one-main {
-		font-size: 0.75rem;
+		font-size: 0.72rem;
 	}
 	.ct-had-one-sub {
-		font-size: 0.58rem;
+		display: none;
 	}
 
 	/* Smaller big button text */
@@ -1829,11 +1830,11 @@
 }
 
 .theme-dark .ct-pause-overlay {
-	background: rgba(0, 0, 0, 0.3);
+	background: var(--background-secondary, #1e1e1e);
 }
 
 .theme-dark .ct-pause-overlay--active {
-	background: rgba(0, 0, 0, 0.4);
+	background: var(--background-secondary-alt, #252525);
 }
 
 /* --- Event Buttons --- */
@@ -1886,8 +1887,9 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 8px 14px;
+	padding: 8px 12px;
 	min-height: 100px;
+	max-width: 80px;
 	border: 2px solid var(--background-modifier-border);
 	border-radius: 12px;
 	background: var(--background-primary);

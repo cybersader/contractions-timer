@@ -1,7 +1,7 @@
 {
 	"id": "obsidian-contractions-timer",
 	"name": "Contractions Timer",
-	"version": "0.1.9",
+	"version": "0.1.10",
 	"minAppVersion": "0.15.0",
 	"description": "Mobile-friendly contraction timer with wave charts, intensity tracking, and markdown-native data storage.",
 	"author": "cybersader",

@@ -2,6 +2,13 @@
 
 All notable changes to the Obsidian Contractions Timer plugin will be documented in this file.
 
+## [0.1.10] - 2026-02-09
+
+### Fixed
+- "Had one" button constrained to max-width so Start button isn't crammed on mobile.
+- "Log missed" subtitle hidden on narrow screens (<360px) for a more compact layout.
+- Dark mode pause overlay now fully opaque (was 30% transparent, timer text bled through).
+
 ## [0.1.9] - 2026-02-09
 
 ### Fixed
