@@ -1,0 +1,63 @@
+name: Deploy Web App
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - '.github/workflows/deploy-web.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        working-directory: web
+        run: bun install
+
+      - name: Generate PWA icons
+        working-directory: web
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq librsvg2-bin >/dev/null 2>&1 || true
+          if command -v rsvg-convert &>/dev/null; then
+            rsvg-convert -w 192 -h 192 public/icon.svg -o public/icon-192.png
+            rsvg-convert -w 512 -h 512 public/icon.svg -o public/icon-512.png
+            cp public/icon-192.png public/apple-touch-icon.png
+          fi
+
+      - name: Build
+        working-directory: web
+        run: bun run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

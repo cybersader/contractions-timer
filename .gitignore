@@ -35,6 +35,11 @@ npm-debug.log*
 # Obsidian plugin data (generated at runtime)
 data.json
 
+# Web app build output
+web/dist/
+web/node_modules/
+web/.astro/
+
 # Claude Code infrastructure (not for public repo)
 .claude/
 knowledge-base/

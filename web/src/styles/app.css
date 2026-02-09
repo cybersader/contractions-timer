@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--color-intensity-1: #64b4dc;
+	--color-intensity-2: #78c896;
+	--color-intensity-3: #dcc850;
+	--color-intensity-4: #e68c3c;
+	--color-intensity-5: #dc5050;
+}
+
+html, body {
+	@apply bg-surface text-gray-100 h-full overflow-hidden;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	-webkit-tap-highlight-color: transparent;
+	touch-action: pan-y;
+	user-select: none;
+}
+
+/* Swiper fills the viewport minus bottom nav */
+.app-swiper {
+	height: calc(100dvh - 64px);
+}
+
+.app-swiper .swiper-slide {
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* Bottom nav */
+.bottom-nav {
+	@apply fixed bottom-0 left-0 right-0 h-16 bg-surface-secondary border-t border-gray-700/30;
+	@apply flex items-center justify-around;
+	padding-bottom: env(safe-area-inset-bottom, 0px);
+	z-index: 50;
+}
+
+.nav-tab {
+	@apply flex flex-col items-center justify-center gap-0.5 px-3 py-1.5;
+	@apply text-gray-500 text-xs transition-colors duration-200;
+}
+
+.nav-tab.active {
+	@apply text-accent;
+}
+
+.nav-tab svg {
+	@apply w-5 h-5;
+}
+
+/* Page containers */
+.page {
+	@apply p-4 pb-8;
+}
+
+.page-title {
+	@apply text-lg font-semibold text-gray-100 mb-4;
+}

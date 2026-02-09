@@ -1,0 +1,8 @@
+---
+import AppLayout from '../layouts/AppLayout.astro';
+import App from '../components/App.svelte';
+import '../styles/app.css';
+---
+<AppLayout title="Contraction Timer">
+	<App client:only="svelte" />
+</AppLayout>
