@@ -106,9 +106,9 @@
 	let answerQrDataUrl = $state('');
 	let copyFeedback = $state('');
 	let scanning = $state(false);
+	let scanError = $state('');
 	let scanVideoEl: HTMLVideoElement | undefined = $state();
 	let scanCanvasEl: HTMLCanvasElement | undefined = $state();
-	let hasCamera = $state(typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia);
 
 	const status = $derived($peerState.status);
 	const roomCode = $derived($peerState.roomCode);
@@ -335,23 +335,27 @@
 	let scanAnimFrame: number | null = null;
 
 	async function startQRScan(target: 'answer' | 'offer' | 'room') {
-		if (!hasCamera) return;
+		scanError = '';
 		try {
-			const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+			const stream = await navigator.mediaDevices.getUserMedia({
+				video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } }
+			});
 			scanStream = stream;
 			scanning = true;
 
-			// Wait for video element to bind
-			await new Promise(r => setTimeout(r, 100));
+			// Wait for Svelte to render the video/canvas elements
+			await new Promise(r => setTimeout(r, 200));
 			if (scanVideoEl) {
 				scanVideoEl.srcObject = stream;
 				await scanVideoEl.play();
+			} else {
+				throw new Error('Video element not available');
 			}
 
 			const canvas = scanCanvasEl;
-			if (!canvas) return;
+			if (!canvas) throw new Error('Canvas element not available');
 			const ctx = canvas.getContext('2d', { willReadFrequently: true });
-			if (!ctx) return;
+			if (!ctx) throw new Error('Cannot get canvas context');
 
 			function scanFrame() {
 				if (!scanning || !scanVideoEl || scanVideoEl.readyState < 2) {
@@ -365,7 +369,7 @@
 					canvas.height = h;
 					ctx!.drawImage(scanVideoEl!, 0, 0, w, h);
 					const imageData = ctx!.getImageData(0, 0, w, h);
-					const result = jsQR(imageData.data, w, h, { inversionAttempts: 'dontInvert' });
+					const result = jsQR(imageData.data, w, h, { inversionAttempts: 'attemptBoth' });
 					if (result?.data) {
 						const raw = result.data;
 						stopQRScan();
@@ -411,8 +415,15 @@
 			}
 			scanAnimFrame = requestAnimationFrame(scanFrame);
 		} catch (e) {
-			console.error('[SharingPanel] Camera access failed:', e);
+			const msg = e instanceof Error ? e.message : String(e);
+			console.error('[SharingPanel] Camera access failed:', msg);
+			scanError = msg.includes('Permission') || msg.includes('NotAllowed')
+				? 'Camera permission denied. Check your browser settings.'
+				: msg.includes('NotFound') || msg.includes('DevicesNotFound')
+				? 'No camera found on this device.'
+				: `Camera error: ${msg}`;
 			scanning = false;
+			if (scanStream) { scanStream.getTracks().forEach(t => t.stop()); scanStream = null; }
 		}
 	}
 
@@ -508,7 +519,7 @@
 				<button class="btn-primary step2-connect" onclick={handlePrivateComplete} disabled={!privateAnswerInput.trim()}>
 					Connect
 				</button>
-				{#if hasCamera && !scanning}
+				{#if !scanning}
 					<button class="btn-secondary scan-btn" onclick={() => startQRScan('answer')} aria-label="Scan QR code">
 						<Camera size={18} />
 					</button>
@@ -851,7 +862,7 @@
 				<!-- Expandable join form -->
 				{#if quickAction === 'join'}
 					<div class="expand-section">
-						{#if hasCamera && !scanning}
+						{#if !scanning}
 							<button class="btn-scan-qr" onclick={() => startQRScan('room')}>
 								<Camera size={18} />
 								Scan QR code
@@ -982,7 +993,7 @@
 					<!-- Expandable accept form -->
 					{#if privateAction === 'accept'}
 						<div class="expand-section">
-							{#if hasCamera && !scanning}
+							{#if !scanning}
 								<button class="btn-scan-qr" onclick={() => startQRScan('offer')}>
 									<Camera size={18} />
 									Scan invite QR
@@ -1115,6 +1126,10 @@
 				{status === 'hosting' ? 'Stop sharing' : 'Disconnect'}
 			</button>
 		</div>
+	{/if}
+
+	{#if scanError}
+		<div class="error-banner">{scanError}</div>
 	{/if}
 
 	{#if error || localError}

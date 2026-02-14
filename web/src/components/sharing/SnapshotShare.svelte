@@ -238,28 +238,36 @@
 
 	// --- QR Scanner (receive, jsQR-based for cross-browser support) ---
 	let scanning = $state(false);
+	let scanError = $state('');
 	let scanVideoEl: HTMLVideoElement | undefined = $state();
 	let scanCanvasEl: HTMLCanvasElement | undefined = $state();
-	let hasCamera = $state(typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia);
 	let scanStream: MediaStream | null = null;
 	let scanAnimFrame: number | null = null;
 
 	async function startQRScan() {
-		if (!hasCamera) return;
+		scanError = '';
 		try {
-			const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+			// Use { ideal: 'environment' } for Android compatibility (strict 'environment' can fail)
+			const stream = await navigator.mediaDevices.getUserMedia({
+				video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } }
+			});
 			scanStream = stream;
 			scanning = true;
-			await new Promise(r => setTimeout(r, 100));
+
+			// Wait for Svelte to render the video/canvas elements (they're inside {#if scanning})
+			await new Promise(r => setTimeout(r, 200));
+
 			if (scanVideoEl) {
 				scanVideoEl.srcObject = stream;
 				await scanVideoEl.play();
+			} else {
+				throw new Error('Video element not available');
 			}
-			// Scan loop using jsQR + canvas
+
 			const canvas = scanCanvasEl;
-			if (!canvas) return;
+			if (!canvas) throw new Error('Canvas element not available');
 			const ctx = canvas.getContext('2d', { willReadFrequently: true });
-			if (!ctx) return;
+			if (!ctx) throw new Error('Cannot get canvas context');
 
 			function scanFrame() {
 				if (!scanning || !scanVideoEl || scanVideoEl.readyState < 2) {
@@ -273,7 +281,7 @@
 					canvas.height = h;
 					ctx!.drawImage(scanVideoEl!, 0, 0, w, h);
 					const imageData = ctx!.getImageData(0, 0, w, h);
-					const result = jsQR(imageData.data, w, h, { inversionAttempts: 'dontInvert' });
+					const result = jsQR(imageData.data, w, h, { inversionAttempts: 'attemptBoth' });
 					if (result?.data) {
 						stopQRScan();
 						importInput = result.data;
@@ -285,8 +293,15 @@
 			}
 			scanAnimFrame = requestAnimationFrame(scanFrame);
 		} catch (e) {
-			console.error('[SnapshotShare] Camera access failed:', e);
+			const msg = e instanceof Error ? e.message : String(e);
+			console.error('[SnapshotShare] Camera access failed:', msg);
+			scanError = msg.includes('Permission') || msg.includes('NotAllowed')
+				? 'Camera permission denied. Check your browser settings.'
+				: msg.includes('NotFound') || msg.includes('DevicesNotFound')
+				? 'No camera found on this device.'
+				: `Camera error: ${msg}`;
 			scanning = false;
+			if (scanStream) { scanStream.getTracks().forEach(t => t.stop()); scanStream = null; }
 		}
 	}
 
@@ -509,11 +524,15 @@
 		{/if}
 
 		{#if importState === 'idle' || importState === 'error'}
-			{#if hasCamera && !scanning}
+			{#if !scanning}
 				<button class="btn-scan-qr" onclick={startQRScan}>
 					<Camera size={18} />
 					Scan QR code
 				</button>
+			{/if}
+
+			{#if scanError}
+				<div class="scan-error">{scanError}</div>
 			{/if}
 
 			{#if scanning}
@@ -527,7 +546,7 @@
 			<div class="receive-methods">
 				<div class="receive-method">
 					<Camera size={14} />
-					<span>{hasCamera ? 'Scan a QR code with your camera' : 'Camera not available in this browser'}</span>
+					<span>Scan a QR code with your camera</span>
 				</div>
 				<div class="receive-method">
 					<Link size={14} />
@@ -1004,6 +1023,14 @@
 
 	.scan-canvas {
 		display: none;
+	}
+
+	.scan-error {
+		padding: var(--space-2) var(--space-3);
+		background: var(--danger-muted);
+		color: var(--danger);
+		border-radius: var(--radius-md);
+		font-size: var(--text-sm);
 	}
 
 	/* --- Import form --- */
