@@ -113,6 +113,58 @@ export function buildBackend(signalingUrl: string): SignalingBackend {
 	return cfBackend(signalingUrl);
 }
 
+/** Build a backend with auto-fallback to ntfy.sh if the primary backend fails. */
+export function buildBackendWithFallback(signalingUrl: string): SignalingBackend {
+	const primary = buildBackend(signalingUrl);
+	// If the primary is already ntfy.sh, no fallback needed
+	if (primary.name === 'ntfy') return primary;
+
+	const fallback = ntfyBackend();
+	let usingFallback = false;
+
+	const withFallback = <T>(primaryFn: () => Promise<T>, fallbackFn: () => Promise<T>): Promise<T> => {
+		if (usingFallback) return fallbackFn();
+		return primaryFn().catch((err) => {
+			debug(`Primary signaling (${primary.name}) failed: ${err.message}. Falling back to ntfy.sh`);
+			usingFallback = true;
+			return fallbackFn();
+		});
+	};
+
+	return {
+		name: `${primary.name}+fallback`,
+		postOffer: (key, blob) => withFallback(() => primary.postOffer(key, blob), () => fallback.postOffer(key, blob)),
+		getOffer: (key) => withFallback(() => primary.getOffer(key), () => fallback.getOffer(key)),
+		postAnswer: (key, blob) => withFallback(() => primary.postAnswer(key, blob), () => fallback.postAnswer(key, blob)),
+		getAnswer: (key) => withFallback(() => primary.getAnswer(key), () => fallback.getAnswer(key)),
+	};
+}
+
+/**
+ * Test whether a signaling backend is reachable.
+ * Posts and then retrieves a test value. Returns latency in ms or throws.
+ */
+export async function testSignalingBackend(signalingUrl: string): Promise<{ reachable: boolean; latencyMs: number }> {
+	const backend = buildBackend(signalingUrl);
+	const testKey = 'a'.repeat(64); // 64 hex chars
+	const testValue = `test-${Date.now()}`;
+	const start = performance.now();
+
+	try {
+		await backend.postOffer(testKey, testValue);
+		const retrieved = await backend.getOffer(testKey);
+		const latencyMs = Math.round(performance.now() - start);
+
+		if (retrieved === testValue) {
+			return { reachable: true, latencyMs };
+		}
+		// ntfy.sh wraps in JSON so exact match may fail — still counts as reachable
+		return { reachable: true, latencyMs };
+	} catch {
+		return { reachable: false, latencyMs: Math.round(performance.now() - start) };
+	}
+}
+
 // --- ICE Config for HTTP Signaling ---
 
 /**

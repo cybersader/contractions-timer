@@ -70,9 +70,10 @@
 		display: block;
 		padding: var(--space-5) var(--space-6);
 		border-radius: var(--radius-xl);
-		border: 2px solid var(--accent-muted);
-		background: var(--accent-muted);
-		color: var(--accent);
+		border: 2px solid var(--big-button-border, var(--accent-muted));
+		background: var(--big-button-bg, var(--accent-muted));
+		color: var(--big-button-color, var(--accent));
+		box-shadow: var(--big-button-glow, none);
 		font-size: var(--text-2xl);
 		font-weight: 700;
 		cursor: pointer;
@@ -85,20 +86,21 @@
 	}
 
 	.big-button.contracting {
-		background: var(--danger-muted);
-		border-color: var(--danger-muted);
-		color: var(--danger);
+		background: var(--big-button-active-bg, var(--danger-muted));
+		border-color: var(--big-button-active-border, var(--danger-muted));
+		color: var(--big-button-active-color, var(--danger));
+		box-shadow: var(--big-button-active-glow, 0 0 0 0 var(--danger-muted));
 		animation: pulse-red 1.5s ease-in-out infinite;
 	}
 
 	.big-button.resting {
-		background: var(--success-muted);
-		border-color: var(--success-muted);
-		color: var(--success);
+		background: var(--big-button-rest-bg, var(--success-muted));
+		border-color: var(--big-button-rest-border, var(--success-muted));
+		color: var(--big-button-rest-color, var(--success));
 	}
 
 	@keyframes pulse-red {
-		0%, 100% { box-shadow: 0 0 0 0 var(--danger-muted); }
+		0%, 100% { box-shadow: var(--big-button-active-glow, 0 0 0 0 var(--danger-muted)); }
 		50% { box-shadow: 0 0 0 12px transparent; }
 	}
 

@@ -51,7 +51,7 @@ export interface SignalingPreset {
 
 export const SIGNALING_PRESETS: SignalingPreset[] = [
 	{ label: 'ntfy.sh (no setup)', url: 'https://ntfy.sh', type: 'http', description: 'Public relay. SDP encrypted client-side. No account needed.' },
-	{ label: 'Cloudflare relay', url: 'https://ct-signaling.cybersader.workers.dev', type: 'http', description: 'Self-hosted relay. Encrypted, origin-locked, no accounts.' },
+	{ label: 'My Cloudflare Worker', url: '', type: 'http', description: 'Your own relay on Cloudflare Workers. Most reliable option.' },
 	{ label: 'Self-hosted (WebSocket)', url: 'ws://localhost:4444', type: 'websocket', description: 'y-webrtc signaling server. Deploy via Docker or run locally.' },
 	{ label: 'Custom', url: '', type: 'websocket', description: 'Enter your own signaling server URL.' },
 ];

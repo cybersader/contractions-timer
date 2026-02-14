@@ -30,12 +30,13 @@ import {
 	joinHttpRoom,
 	leaveHttpRoom,
 	pushHttpLocalChanges,
-	buildBackend,
+	buildBackendWithFallback,
 } from './http-signaling';
 import { createPrivateOffer, acceptPrivateOffer, type PrivateConnection } from './private-connect';
 import { createYDoc, applySessionDelta, observeYDoc, yDocToSession } from './ydoc';
 import { DataChannelProvider } from './ydoc-provider';
 import type { SessionData } from '../labor-logic/types';
+import { EMPTY_DIAGNOSTICS, type ConnectionDiagnostics } from './diagnostics';
 
 // Always log — P2P events are infrequent and critical for debugging
 function debug(...args: unknown[]) { console.debug('[sync-bridge]', ...args); }
@@ -88,7 +89,7 @@ export async function startSharing(config: {
 		// --- HTTP signaling (CF Worker, ntfy.sh) ---
 		try {
 			debug('Creating HTTP-signaled room...', 'password:', config.password ? 'yes' : 'no');
-			const backend = buildBackend(getStoredSignalingUrl());
+			const backend = buildBackendWithFallback(getStoredSignalingUrl());
 			const result = await createHttpRoom(
 				currentSession,
 				{ ownerName: config.ownerName, mode: config.mode, password: config.password },
@@ -182,7 +183,7 @@ export async function joinSharing(config: {
 		// --- HTTP signaling (CF Worker, ntfy.sh) ---
 		try {
 			debug('Joining HTTP room:', config.roomCode, 'password:', config.password ? 'yes' : 'no');
-			const backend = buildBackend(getStoredSignalingUrl());
+			const backend = buildBackendWithFallback(getStoredSignalingUrl());
 			const result = await joinHttpRoom(
 				config.roomCode,
 				config.guestName,
@@ -303,11 +304,22 @@ export async function startPrivateHost(ownerName: string): Promise<string> {
 
 	try {
 		debug('Creating private offer...');
-		const { offerCode, waitForAnswer, cancel } = await createPrivateOffer();
+		const { offerCode, iceResult, waitForAnswer, cancel } = await createPrivateOffer();
 		privateCancelFn = cancel;
 
 		// Store the pending offer so completePrivateHost can use it
 		pendingHostOffer = { waitForAnswer, cancel };
+
+		// Build diagnostics from ICE gathering
+		const diag: ConnectionDiagnostics = {
+			...EMPTY_DIAGNOSTICS,
+			ice: iceResult,
+		};
+
+		// Warn if TURN was configured but no relay candidates
+		if (iceResult.relayCandidates === 0) {
+			diag.failureReason = 'No TURN relay candidates — cross-network connections may fail';
+		}
 
 		// Stay in 'connecting' — UI uses privateOfferCode to show code exchange.
 		// Status moves to 'hosting' only after completePrivateHost succeeds.
@@ -320,6 +332,7 @@ export async function startPrivateHost(ownerName: string): Promise<string> {
 			mode: 'collaborative',
 			error: null,
 			peers: [{ id: 0, name: ownerName, isOwner: true }],
+			diagnostics: diag,
 		}));
 
 		debug('Private offer created, code length:', offerCode.length);
@@ -386,8 +399,16 @@ export async function joinPrivateOffer(offerCode: string, guestName: string): Pr
 
 	// Phase 1: Generate answer code (fast — just SDP exchange + ICE gathering)
 	debug('Accepting private offer...');
-	const { answerCode, waitForConnection, cancel } = await acceptPrivateOffer(offerCode);
+	const { answerCode, iceResult, waitForConnection, cancel } = await acceptPrivateOffer(offerCode);
 	privateCancelFn = cancel;
+
+	const diag: ConnectionDiagnostics = {
+		...EMPTY_DIAGNOSTICS,
+		ice: iceResult,
+	};
+	if (iceResult.relayCandidates === 0) {
+		diag.failureReason = 'No TURN relay candidates — cross-network connections may fail';
+	}
 
 	peerState.update(s => ({
 		...s,
@@ -397,6 +418,7 @@ export async function joinPrivateOffer(offerCode: string, guestName: string): Pr
 		isOwner: false,
 		mode: 'collaborative',
 		error: null,
+		diagnostics: diag,
 	}));
 
 	debug('Answer code generated:', answerCode.length, 'chars. Waiting for host in background...');
@@ -502,6 +524,7 @@ export function stopSharing(): void {
 		privateOfferCode: null,
 		privateAnswerCode: null,
 		connectPhase: null,
+		diagnostics: null,
 	});
 }
 

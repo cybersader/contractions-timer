@@ -25,6 +25,9 @@
 	let pendingSettingsSection: string | null = $state(null);
 	let pendingSharingRequest = $state(false);
 	let pendingOfferCode: string | null = $state(null);
+	let pendingRoomCode: string | null = $state(null);
+	let pendingPassword: string | null = $state(null);
+	let pendingSnapshotCode: string | null = $state(null);
 	let isDesktop = $state(false);
 
 	// Onboarding: show on first visit (no localStorage flag)
@@ -118,6 +121,22 @@
 		menuOpen = true;
 	}
 
+	// Check for #snapshot= hash parameter on load
+	$effect(() => {
+		if (typeof window === 'undefined') return;
+		if (!window.location.hash) return;
+		const hashParams = new URLSearchParams(window.location.hash.slice(1));
+		const snapshotCode = hashParams.get('snapshot');
+		if (snapshotCode) {
+			pendingSnapshotCode = snapshotCode;
+			// Clean URL (remove hash)
+			window.history.replaceState({}, '', window.location.pathname + window.location.search);
+			// Open sharing panel to show import
+			pendingSharingRequest = true;
+			menuOpen = true;
+		}
+	});
+
 	// Check for ?room=, ?offer=, or ?answer= query parameter on load
 	let pendingAnswerCode: string | null = $state(null);
 	let answerRelayMode = $state(false);
@@ -129,13 +148,24 @@
 		const answerCode = params.get('answer');
 
 		if (roomCode || offerCode || answerCode) {
-			// Clean URL
+			// Extract password from hash fragment (#key=...) before cleaning
+			let urlPassword: string | null = null;
+			if (window.location.hash) {
+				const hashParams = new URLSearchParams(window.location.hash.slice(1));
+				urlPassword = hashParams.get('key');
+			}
+
+			// Clean URL (remove query params and hash)
 			const url = new URL(window.location.href);
 			url.searchParams.delete('room');
 			url.searchParams.delete('offer');
 			url.searchParams.delete('answer');
-			window.history.replaceState({}, '', url.pathname + url.hash);
+			window.history.replaceState({}, '', url.pathname);
 
+			if (roomCode) {
+				pendingRoomCode = roomCode;
+				if (urlPassword) pendingPassword = urlPassword;
+			}
 			if (answerCode) {
 				// Answer relay: try to send to host tab via BroadcastChannel
 				if (typeof BroadcastChannel !== 'undefined') {
@@ -191,8 +221,11 @@
 	sharingRequested={pendingSharingRequest}
 	initialOfferCode={pendingOfferCode}
 	initialAnswerCode={pendingAnswerCode}
+	initialRoomCode={pendingRoomCode}
+	initialPassword={pendingPassword}
+	initialSnapshotCode={pendingSnapshotCode}
 	{answerRelayMode}
-	onClose={() => { menuOpen = false; pendingSettingsSection = null; pendingSharingRequest = false; pendingOfferCode = null; pendingAnswerCode = null; answerRelayMode = false; }}
+	onClose={() => { menuOpen = false; pendingSettingsSection = null; pendingSharingRequest = false; pendingOfferCode = null; pendingAnswerCode = null; pendingRoomCode = null; pendingPassword = null; pendingSnapshotCode = null; answerRelayMode = false; }}
 	onRestartOnboarding={() => {
 		try { localStorage.removeItem('ct-onboarding-done'); } catch {}
 		showOnboarding = true;

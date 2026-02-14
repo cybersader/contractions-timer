@@ -6,7 +6,7 @@
 	import { THEMES, PALETTES, PALETTE_PREVIEWS, getStoredTheme, setTheme, type ThemePalette, type ThemeMode, type ThemeId } from '../../lib/themes';
 	import SettingsPage from '../settings/SettingsPage.svelte';
 	import SessionManager from '../shared/SessionManager.svelte';
-	import { Settings, Palette, Archive, Download, Upload, Info, Trash2, Sun, Moon, ChevronLeft, X, Clock, FlaskConical, RotateCcw, Share2 } from 'lucide-svelte';
+	import { Settings, Palette, Archive, Download, Upload, Info, Trash2, Sun, Moon, Blend, ChevronLeft, X, Clock, FlaskConical, RotateCcw, Share2 } from 'lucide-svelte';
 	import { SEED_SCENARIOS } from '../../lib/seedData';
 	import { isP2PActive, peerCount } from '../../lib/stores/p2p';
 	import SharingPanel from '../sharing/SharingPanel.svelte';
@@ -21,10 +21,16 @@
 		initialOfferCode?: string | null;
 		/** Pre-filled answer code from ?answer= URL parameter (QR back-and-forth) */
 		initialAnswerCode?: string | null;
+		/** Pre-filled room code from ?room= URL parameter (Quick mode) */
+		initialRoomCode?: string | null;
+		/** Pre-filled password from #key= URL hash (Quick mode) */
+		initialPassword?: string | null;
 		/** True when this tab was opened just to relay an answer code */
 		answerRelayMode?: boolean;
+		/** Pre-filled snapshot code from #snapshot= URL hash */
+		initialSnapshotCode?: string | null;
 	}
-	let { open, onClose, onRestartOnboarding, settingsSection = null, sharingRequested = false, initialOfferCode = null, initialAnswerCode = null, answerRelayMode = false } = $props<Props>();
+	let { open, onClose, onRestartOnboarding, settingsSection = null, sharingRequested = false, initialOfferCode = null, initialAnswerCode = null, initialRoomCode = null, initialPassword = null, answerRelayMode = false, initialSnapshotCode = null } = $props<Props>();
 
 	let activeTab: 'menu' | 'settings' | 'about' | 'theme' | 'sessions' | 'devtools' | 'sharing' = $state('menu');
 
@@ -223,7 +229,7 @@
 				</div>
 
 			{:else if activeTab === 'sharing'}
-				<SharingPanel {initialOfferCode} {initialAnswerCode} />
+				<SharingPanel {initialOfferCode} {initialAnswerCode} {initialRoomCode} {initialPassword} {initialSnapshotCode} />
 
 			{:else if activeTab === 'sessions'}
 				<SessionManager />
@@ -240,15 +246,23 @@
 							class:mode-active={currentMode === 'light'}
 							onclick={() => applyTheme(`${currentPalette}-light`)}
 						>
-							<Sun size={18} />
+							<Sun size={16} />
 							Light
+						</button>
+						<button
+							class="mode-btn"
+							class:mode-active={currentMode === 'mid'}
+							onclick={() => applyTheme(`${currentPalette}-mid`)}
+						>
+							<Blend size={16} />
+							Pastel
 						</button>
 						<button
 							class="mode-btn"
 							class:mode-active={currentMode === 'dark'}
 							onclick={() => applyTheme(`${currentPalette}-dark`)}
 						>
-							<Moon size={18} />
+							<Moon size={16} />
 							Dark
 						</button>
 					</div>
@@ -264,7 +278,7 @@
 								onclick={() => applyTheme(`${palette}-${currentMode}`)}
 							>
 								<div class="palette-swatches">
-									<div class="swatch" style="background: {currentMode === 'dark' ? preview.bg : preview.bgLight}"></div>
+									<div class="swatch" style="background: {currentMode === 'dark' ? preview.bg : currentMode === 'mid' ? preview.bgMid : preview.bgLight}"></div>
 									<div class="swatch" style="background: {preview.primary}"></div>
 									<div class="swatch" style="background: {preview.accent}"></div>
 								</div>

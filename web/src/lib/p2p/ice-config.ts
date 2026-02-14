@@ -31,6 +31,7 @@ export interface TurnPreset {
 
 export const TURN_PRESETS: TurnPreset[] = [
 	{ label: 'Open Relay (default)', description: 'Free TURN relay, no account needed. Relays encrypted data only.' },
+	{ label: 'Cloudflare TURN', description: 'Your own Cloudflare Calls TURN relay. Reliable, fast, pay-as-you-go.' },
 	{ label: 'None', description: 'STUN only — may fail on restrictive networks or different carriers.' },
 	{ label: 'Custom', description: 'Enter your own TURN server URL and credentials.' },
 ];
@@ -179,7 +180,7 @@ export async function buildIceServers(): Promise<RTCIceServer[]> {
 			credential: 'free',
 		});
 		debug('Open Relay TURN servers added (4 entries)');
-	} else if (turnLabel === 'Custom') {
+	} else if (turnLabel === 'Cloudflare TURN' || turnLabel === 'Custom') {
 		const custom = getStoredCustomTurnConfig();
 		if (custom.url) {
 			servers.push({

@@ -150,10 +150,12 @@
 		</button>
 	</div>
 	<p class="location-hint">
-		{#if !enRoute}
-			{$settings.hospitalAdvisor.travelTimeMinutes} min travel time included in estimates
-		{:else}
+		{#if enRoute}
 			Travel time removed — estimates show time from now
+		{:else if $settings.hospitalAdvisor.travelTimeUncertain}
+			Travel time unknown — using ~30 min conservative estimate
+		{:else}
+			{$settings.hospitalAdvisor.travelTimeMinutes} min travel time included in estimates
 		{/if}
 	</p>
 

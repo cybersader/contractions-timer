@@ -5,6 +5,7 @@
 
 import { writable, derived } from 'svelte/store';
 import type { PeerInfo } from '../p2p/quick-connect';
+import type { ConnectionDiagnostics } from '../p2p/diagnostics';
 
 export interface P2PState {
 	status: 'disconnected' | 'connecting' | 'hosting' | 'joined';
@@ -21,6 +22,8 @@ export interface P2PState {
 	privateAnswerCode: string | null;
 	/** Fine-grained connection phase for UI progress display */
 	connectPhase: string | null;
+	/** Connection diagnostics for troubleshooting */
+	diagnostics: ConnectionDiagnostics | null;
 }
 
 const INITIAL_STATE: P2PState = {
@@ -34,6 +37,7 @@ const INITIAL_STATE: P2PState = {
 	privateOfferCode: null,
 	privateAnswerCode: null,
 	connectPhase: null,
+	diagnostics: null,
 };
 
 export const peerState = writable<P2PState>({ ...INITIAL_STATE });

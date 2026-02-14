@@ -18,6 +18,7 @@
 
 import { compressOffer, decompressOffer, compressAnswer, decompressAnswer } from './sdp-compress';
 import { buildRtcConfig } from './ice-config';
+import type { IceGatheringResult } from './diagnostics';
 
 // Always log private-connect events — these are rare user-initiated actions, not spam
 function debug(...args: unknown[]) { console.debug('[private-connect]', ...args); }
@@ -34,44 +35,52 @@ export interface PrivateConnection {
 const ICE_GATHER_TIMEOUT = 45000;
 
 /** Wait for ICE gathering to complete (or timeout).
- * Logs each candidate type as it arrives for diagnostics. */
-function waitForIceGathering(pc: RTCPeerConnection): Promise<void> {
+ * Returns diagnostics about what candidate types were gathered. */
+function waitForIceGathering(pc: RTCPeerConnection): Promise<IceGatheringResult> {
+	const startTime = performance.now();
 	return new Promise((resolve) => {
+		let resolved = false;
+		let hostCandidates = 0;
+		let srflxCandidates = 0;
+		let relayCandidates = 0;
+		let candidateCount = 0;
+
+		const finish = () => {
+			if (resolved) return;
+			resolved = true;
+			const result: IceGatheringResult = {
+				candidateCount,
+				hostCandidates,
+				srflxCandidates,
+				relayCandidates,
+				gatherTimeMs: Math.round(performance.now() - startTime),
+			};
+			debug(`ICE gathering done — ${candidateCount} candidates (host: ${hostCandidates}, srflx: ${srflxCandidates}, relay: ${relayCandidates}) in ${result.gatherTimeMs}ms`);
+			resolve(result);
+		};
+
 		if (pc.iceGatheringState === 'complete') {
-			resolve();
+			finish();
 			return;
 		}
 
-		let resolved = false;
-		let hasSrflx = false;
-		let hasRelay = false;
-		let candidateCount = 0;
+		const maxTimeout = setTimeout(finish, ICE_GATHER_TIMEOUT);
 
-		const maxTimeout = setTimeout(() => {
-			if (!resolved) {
-				resolved = true;
-				debug(`ICE gathering timed out after ${ICE_GATHER_TIMEOUT / 1000}s — ${candidateCount} candidates (srflx: ${hasSrflx}, relay: ${hasRelay})`);
-				resolve();
-			}
-		}, ICE_GATHER_TIMEOUT);
-
-		// Log each candidate as it arrives
 		pc.addEventListener('icecandidate', (event) => {
 			if (event.candidate) {
 				candidateCount++;
 				const c = event.candidate;
 				debug(`ICE candidate #${candidateCount}: ${c.type} ${c.protocol} ${c.address ?? '?'}:${c.port}`);
-				if (c.type === 'srflx') hasSrflx = true;
-				if (c.type === 'relay') hasRelay = true;
+				if (c.type === 'host') hostCandidates++;
+				if (c.type === 'srflx') srflxCandidates++;
+				if (c.type === 'relay') relayCandidates++;
 			}
 		});
 
 		pc.addEventListener('icegatheringstatechange', () => {
 			if (pc.iceGatheringState === 'complete' && !resolved) {
-				resolved = true;
 				clearTimeout(maxTimeout);
-				debug(`ICE gathering complete — ${candidateCount} candidates (srflx: ${hasSrflx}, relay: ${hasRelay})`);
-				resolve();
+				finish();
 			}
 		});
 	});
@@ -108,6 +117,7 @@ function waitForChannelOpen(channel: RTCDataChannel): Promise<void> {
  */
 export async function createPrivateOffer(iceConfigOverride?: RTCConfiguration): Promise<{
 	offerCode: string;
+	iceResult: IceGatheringResult;
 	waitForAnswer: (answerCode: string) => Promise<PrivateConnection>;
 	cancel: () => void;
 }> {
@@ -136,7 +146,7 @@ export async function createPrivateOffer(iceConfigOverride?: RTCConfiguration): 
 	debug('Local description set, signalingState:', pc.signalingState);
 
 	// Wait for ICE candidates to be gathered
-	await waitForIceGathering(pc);
+	const iceResult = await waitForIceGathering(pc);
 	debug('Post-ICE signalingState:', pc.signalingState);
 
 	const localSDP = pc.localDescription?.sdp;
@@ -145,6 +155,14 @@ export async function createPrivateOffer(iceConfigOverride?: RTCConfiguration): 
 	debug('Local SDP generated, length:', localSDP.length);
 	const offerCode = compressOffer(localSDP);
 	debug('Offer code length:', offerCode.length);
+
+	// Warn if no relay candidates and TURN was expected
+	if (iceResult.relayCandidates === 0 && iceConfig.iceServers && iceConfig.iceServers.some(s => {
+		const urls = Array.isArray(s.urls) ? s.urls : [s.urls];
+		return urls.some(u => u.startsWith('turn:'));
+	})) {
+		debug('WARNING: TURN servers configured but no relay candidates gathered — cross-network connections may fail');
+	}
 
 	const waitForAnswer = async (answerCode: string): Promise<PrivateConnection> => {
 		if (cancelled) throw new Error('Connection was cancelled');
@@ -186,7 +204,7 @@ export async function createPrivateOffer(iceConfigOverride?: RTCConfiguration): 
 		pc.close();
 	};
 
-	return { offerCode, waitForAnswer, cancel };
+	return { offerCode, iceResult, waitForAnswer, cancel };
 }
 
 /**
@@ -196,6 +214,7 @@ export async function createPrivateOffer(iceConfigOverride?: RTCConfiguration): 
  */
 export async function acceptPrivateOffer(offerCode: string, iceConfigOverride?: RTCConfiguration): Promise<{
 	answerCode: string;
+	iceResult: IceGatheringResult;
 	waitForConnection: () => Promise<PrivateConnection>;
 	cancel: () => void;
 }> {
@@ -255,7 +274,7 @@ export async function acceptPrivateOffer(offerCode: string, iceConfigOverride?: 
 	await pc.setLocalDescription(answer);
 
 	// Wait for ICE candidates
-	await waitForIceGathering(pc);
+	const iceResult = await waitForIceGathering(pc);
 
 	const localSDP = pc.localDescription?.sdp;
 	if (!localSDP) {
@@ -293,5 +312,5 @@ export async function acceptPrivateOffer(offerCode: string, iceConfigOverride?: 
 		pc.close();
 	};
 
-	return { answerCode, waitForConnection, cancel };
+	return { answerCode, iceResult, waitForConnection, cancel };
 }

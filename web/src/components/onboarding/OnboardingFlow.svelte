@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { settings } from '../../lib/stores/settings';
-	import { HeartPulse, Baby, Car, ChevronRight, Check } from 'lucide-svelte';
+	import { HeartPulse, Baby, Car, ChevronRight, Check, Phone } from 'lucide-svelte';
 
 	interface Props {
 		onComplete: () => void;
@@ -12,6 +12,18 @@
 	// Quick setup values (pre-filled from defaults)
 	let parity = $state<'first-baby' | 'subsequent'>('first-baby');
 	let travelTime = $state(30);
+	let travelUncertain = $state(false);
+	let providerPhone = $state('');
+
+	function selectTravelTime(mins: number) {
+		travelTime = mins;
+		travelUncertain = false;
+	}
+
+	function selectUncertain() {
+		travelUncertain = true;
+		travelTime = 0;
+	}
 
 	function skip() {
 		markDone();
@@ -22,7 +34,12 @@
 		settings.update(s => ({
 			...s,
 			parity,
-			hospitalAdvisor: { ...s.hospitalAdvisor, travelTimeMinutes: travelTime },
+			hospitalAdvisor: {
+				...s.hospitalAdvisor,
+				travelTimeMinutes: travelUncertain ? 0 : travelTime,
+				travelTimeUncertain: travelUncertain,
+				providerPhone: providerPhone.trim() || s.hospitalAdvisor.providerPhone,
+			},
 		}));
 		markDone();
 		onComplete();
@@ -94,13 +111,37 @@
 						{#each [10, 15, 20, 30, 45, 60] as mins}
 							<button
 								class="option-btn"
-								class:option-active={travelTime === mins}
-								onclick={() => travelTime = mins}
+								class:option-active={!travelUncertain && travelTime === mins}
+								onclick={() => selectTravelTime(mins)}
 							>
 								{mins} min
 							</button>
 						{/each}
+						<button
+							class="option-btn"
+							class:option-active={travelUncertain}
+							onclick={selectUncertain}
+						>
+							Not sure
+						</button>
 					</div>
+					{#if travelUncertain}
+						<p class="setup-hint">No problem — we'll use a conservative estimate and give you a range.</p>
+					{/if}
+				</div>
+
+				<div class="setup-group">
+					<label class="setup-label">
+						<Phone size={18} />
+						Provider or hospital phone (optional)
+					</label>
+					<input
+						type="tel"
+						class="setup-input"
+						placeholder="(555) 123-4567"
+						bind:value={providerPhone}
+					/>
+					<p class="setup-hint">Quick-dial from the app when it's time to call.</p>
 				</div>
 
 				<button class="onboarding-btn onboarding-btn-primary" onclick={() => step = 2}>
@@ -128,8 +169,14 @@
 					</div>
 					<div class="summary-item">
 						<Car size={16} />
-						<span>{travelTime} min to hospital</span>
+						<span>{travelUncertain ? 'Travel time: not sure' : `${travelTime} min to hospital`}</span>
 					</div>
+					{#if providerPhone.trim()}
+						<div class="summary-item">
+							<Phone size={16} />
+							<span>{providerPhone.trim()}</span>
+						</div>
+					{/if}
 				</div>
 
 				<button class="onboarding-btn onboarding-btn-primary" onclick={finish}>
@@ -246,6 +293,34 @@
 
 	.setup-options-wrap {
 		flex-wrap: wrap;
+	}
+
+	.setup-input {
+		width: 100%;
+		padding: var(--space-2) var(--space-3);
+		border-radius: var(--radius-md);
+		border: 1px solid var(--border);
+		background: var(--bg-card);
+		color: var(--text-primary);
+		font-size: var(--text-base);
+		font-family: inherit;
+		outline: none;
+		transition: border-color var(--transition-fast);
+	}
+
+	.setup-input:focus {
+		border-color: var(--accent);
+	}
+
+	.setup-input::placeholder {
+		color: var(--text-faint);
+	}
+
+	.setup-hint {
+		font-size: var(--text-xs);
+		color: var(--text-muted);
+		margin-top: var(--space-1);
+		line-height: 1.4;
 	}
 
 	.option-btn {

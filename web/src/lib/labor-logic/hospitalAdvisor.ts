@@ -41,6 +41,8 @@ export function getRangeEstimate(
 	const hasWaterBreak = events.some(e => e.type === 'water-break');
 	const factors: string[] = [];
 	const mult = RATE_MULTIPLIERS[progressionRate];
+	// Use conservative 30 min default when travel time is uncertain
+	const effectiveTravel = config.travelTimeUncertain ? 30 : config.travelTimeMinutes;
 
 	let confidence: RangeEstimate['confidence'] = 'low';
 	if (completed.length >= 10) confidence = 'high';
@@ -69,7 +71,9 @@ export function getRangeEstimate(
 	}
 
 	if (hasWaterBreak) factors.push('Water has broken');
-	if (config.travelTimeMinutes > 0) {
+	if (config.travelTimeUncertain) {
+		factors.push('Travel time unknown — using conservative 30 min estimate');
+	} else if (config.travelTimeMinutes > 0) {
 		factors.push(`${config.travelTimeMinutes} min travel time accounted for`);
 	}
 	factors.push(`Assumed progression: ${progressionRate}`);
@@ -103,11 +107,10 @@ export function getRangeEstimate(
 	}
 
 	if (stats.rule511Met) {
-		const travel = config.travelTimeMinutes;
 		return {
-			earliestMinutes: 0, likelyMinutes: travel, latestMinutes: travel + 30,
+			earliestMinutes: 0, likelyMinutes: effectiveTravel, latestMinutes: effectiveTravel + 30,
 			confidence,
-			recommendation: travel > 0 ? `Plan to arrive within ${travel} min` : 'Plan to be at hospital soon',
+			recommendation: effectiveTravel > 0 ? `Plan to arrive within ${effectiveTravel} min` : 'Plan to be at hospital soon',
 			patternSummary, trendSummary,
 			factors: [...factors, '5-1-1 pattern is met'],
 		};
@@ -118,28 +121,26 @@ export function getRangeEstimate(
 		const earliest = Math.round(base * mult.fast);
 		const likely = Math.round(base * mult.avg);
 		const latest = Math.round(base * mult.slow);
-		const travel = config.travelTimeMinutes;
 
-		const recommendation = travel > 0
+		const recommendation = effectiveTravel > 0
 			? `Plan to be at hospital within ~${formatRange(earliest, latest)}`
 			: `Estimated ~${formatRange(earliest, latest)} until hospital-worthy pattern`;
 
 		return {
-			earliestMinutes: Math.max(0, earliest - travel),
-			likelyMinutes: Math.max(0, likely - travel),
-			latestMinutes: Math.max(0, latest - travel),
+			earliestMinutes: Math.max(0, earliest - effectiveTravel),
+			likelyMinutes: Math.max(0, likely - effectiveTravel),
+			latestMinutes: Math.max(0, latest - effectiveTravel),
 			confidence, recommendation, patternSummary, trendSummary, factors,
 		};
 	}
 
 	if (stats.laborStage === 'active') {
-		const travel = config.travelTimeMinutes;
 		return {
 			earliestMinutes: Math.round(30 * mult.fast),
 			likelyMinutes: Math.round(60 * mult.avg),
 			latestMinutes: Math.round(120 * mult.slow),
 			confidence: 'low',
-			recommendation: travel > 0
+			recommendation: effectiveTravel > 0
 				? `Active labor \u2014 plan to leave within ~${formatRange(30, 120)}`
 				: 'Active labor \u2014 have your hospital bag ready',
 			patternSummary, trendSummary, factors,
@@ -186,7 +187,8 @@ export function getDepartureAdvice(
 ): DepartureAdvice {
 	const completed = contractions.filter(c => c.end !== null);
 	const hasWaterBreak = events.some(e => e.type === 'water-break');
-	const { travelTimeMinutes, riskAppetite } = config;
+	const effectiveTravelMinutes = config.travelTimeUncertain ? 30 : config.travelTimeMinutes;
+	const { riskAppetite } = config;
 	const stage = stats.laborStage;
 	const factors: string[] = [];
 
@@ -208,7 +210,11 @@ export function getDepartureAdvice(
 			factors.push(`Water broke ${hoursAgo.toFixed(1)} hours ago`);
 		}
 	}
-	factors.push(`Travel time: ${travelTimeMinutes} min`);
+	if (config.travelTimeUncertain) {
+		factors.push('Travel time: unknown (using ~30 min estimate)');
+	} else {
+		factors.push(`Travel time: ${effectiveTravelMinutes} min`);
+	}
 
 	if (stage === 'transition') {
 		return {
@@ -222,8 +228,8 @@ export function getDepartureAdvice(
 		return {
 			urgency: 'time-to-go', headline: 'Time to go',
 			detail: 'Your water has broken and contractions are active. Call your provider, then head in.',
-			bufferMinutes: travelTimeMinutes,
-			estimatedDepartureTime: new Date(Date.now() + travelTimeMinutes * 60000), factors,
+			bufferMinutes: effectiveTravelMinutes,
+			estimatedDepartureTime: new Date(Date.now() + effectiveTravelMinutes * 60000), factors,
 		};
 	}
 
@@ -253,7 +259,7 @@ export function getDepartureAdvice(
 	}
 
 	if (estimatedTimeTo511 !== null && estimatedTimeTo511 < 60) {
-		const buffer = estimatedTimeTo511 - travelTimeMinutes;
+		const buffer = estimatedTimeTo511 - effectiveTravelMinutes;
 
 		if (riskAppetite === 'conservative') {
 			return {

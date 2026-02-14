@@ -40,8 +40,8 @@ export default {
 
 		const url = new URL(request.url);
 
-		// Route: /room/{64-char-hex-key}/{offer|answer}
-		const match = url.pathname.match(/^\/room\/([a-f0-9]{64})\/(offer|answer)$/);
+		// Route: /room/{64-char-hex-key}/{offer|answer|snapshot}
+		const match = url.pathname.match(/^\/room\/([a-f0-9]{64})\/(offer|answer|snapshot)$/);
 		if (!match) {
 			return corsResponse(request, 404, 'Not found');
 		}

@@ -151,6 +151,7 @@ export type Parity = 'first-baby' | 'subsequent';
 /** Hospital departure advisor configuration */
 export interface HospitalAdvisorConfig {
 	travelTimeMinutes: number;
+	travelTimeUncertain: boolean;
 	riskAppetite: 'conservative' | 'moderate' | 'relaxed';
 	providerPhone: string;
 }
@@ -281,6 +282,7 @@ export const DEFAULT_SETTINGS: ContractionTimerSettings = {
 	stageThresholds: { ...DEFAULT_STAGE_THRESHOLDS },
 	hospitalAdvisor: {
 		travelTimeMinutes: 30,
+		travelTimeUncertain: false,
 		riskAppetite: 'moderate',
 		providerPhone: '',
 	},
