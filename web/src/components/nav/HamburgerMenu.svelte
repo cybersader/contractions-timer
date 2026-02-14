@@ -8,6 +8,7 @@
 	import SessionManager from '../shared/SessionManager.svelte';
 	import { Settings, Palette, Archive, Download, Upload, Info, Trash2, Sun, Moon, Blend, ChevronLeft, X, Clock, FlaskConical, RotateCcw, Share2 } from 'lucide-svelte';
 	import { SEED_SCENARIOS } from '../../lib/seedData';
+	import { debugEnabled, dlogCount, dlogDump, dlogClear } from '../../lib/debug-log';
 	import { isP2PActive, peerCount } from '../../lib/stores/p2p';
 	import SharingPanel from '../sharing/SharingPanel.svelte';
 
@@ -50,6 +51,7 @@
 	let seedLoaded = $state('');
 	let importError = $state('');
 	let showClearConfirm = $state(false);
+	let logCopyFeedback = $state('');
 	let pendingSeedId: string | null = $state(null);
 	let pendingSeedFn: (() => any) | null = $state(null);
 	let currentTheme: ThemeId = $state(getStoredTheme());
@@ -368,6 +370,45 @@
 					{#if seedLoaded}
 						<div class="devtools-toast">Loaded!</div>
 					{/if}
+
+					<div class="devtools-section">
+						<div class="devtools-label">Debug logging</div>
+						<p class="devtools-hint">Capture diagnostic data while testing features. Copy the log and paste it to share.</p>
+						<label class="devtools-toggle-row">
+							<span class="devtools-toggle-label">Enable logging</span>
+							<input type="checkbox" class="devtools-toggle" checked={$debugEnabled} onchange={(e) => debugEnabled.set(e.currentTarget.checked)} />
+						</label>
+						{#if $debugEnabled}
+							<div class="devtools-log-actions">
+								<button
+									class="devtools-seed-btn"
+									onclick={async () => {
+										const dump = dlogDump();
+										try {
+											await navigator.clipboard.writeText(dump);
+											logCopyFeedback = 'Copied!';
+										} catch {
+											logCopyFeedback = 'Copy failed';
+										}
+										setTimeout(() => logCopyFeedback = '', 2000);
+									}}
+								>
+									<span class="devtools-seed-label">Copy log ({dlogCount()} entries)</span>
+									<span class="devtools-seed-desc">Copies full diagnostic log to clipboard</span>
+								</button>
+								<button
+									class="devtools-seed-btn"
+									onclick={() => { dlogClear(); logCopyFeedback = 'Cleared!'; setTimeout(() => logCopyFeedback = '', 2000); }}
+								>
+									<span class="devtools-seed-label">Clear log</span>
+									<span class="devtools-seed-desc">Remove all logged entries</span>
+								</button>
+							</div>
+							{#if logCopyFeedback}
+								<div class="devtools-toast">{logCopyFeedback}</div>
+							{/if}
+						{/if}
+					</div>
 				</div>
 
 			{:else}
@@ -873,6 +914,38 @@
 
 	.btn-cancel-seed:active {
 		color: var(--text-muted);
+	}
+
+	.devtools-toggle-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: var(--space-3);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		background: var(--bg-card);
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+		margin-bottom: var(--space-2);
+	}
+
+	.devtools-toggle-label {
+		font-size: var(--text-base);
+		font-weight: 600;
+		color: var(--text-primary);
+	}
+
+	.devtools-toggle {
+		width: 44px;
+		height: 24px;
+		accent-color: var(--accent);
+		cursor: pointer;
+	}
+
+	.devtools-log-actions {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
 	}
 
 	.devtools-toast {

@@ -14,6 +14,7 @@
 	import type { SessionData } from '../../lib/labor-logic/types';
 	import { Copy, Link, Hash, QrCode, Download, Loader2, Camera, Info, ClipboardPaste, Archive, Share2, ChevronRight } from 'lucide-svelte';
 	import jsQR from 'jsqr';
+	import { dlog } from '../../lib/debug-log';
 
 	interface Props {
 		/** Called when user imports a snapshot, with the decompressed session data */
@@ -267,13 +268,17 @@
 		barcodeDetectorChecked = true;
 		try {
 			const BD = (globalThis as any).BarcodeDetector;
+			dlog('qr-scan', 'BarcodeDetector exists?', !!BD);
 			if (BD) {
 				const formats: string[] = await BD.getSupportedFormats();
+				dlog('qr-scan', 'Supported formats', formats);
 				if (formats.includes('qr_code')) {
 					nativeBarcodeDetector = new BD({ formats: ['qr_code'] });
+					dlog('qr-scan', 'Using native BarcodeDetector');
 				}
 			}
-		} catch {
+		} catch (e) {
+			dlog('qr-scan', 'BarcodeDetector init failed', String(e));
 			nativeBarcodeDetector = null;
 		}
 	}
@@ -300,6 +305,7 @@
 			}
 			scanStream = stream;
 			scanning = true;
+			dlog('qr-scan', 'Got camera stream', { tracks: stream.getVideoTracks().map(t => ({ label: t.label, settings: t.getSettings() })) });
 
 			// Wait for Svelte to render the video/canvas elements
 			await new Promise(r => setTimeout(r, 300));
@@ -314,6 +320,7 @@
 			// Wait for video to actually have data (more reliable than readyState polling on Safari)
 			await new Promise<void>((resolve, reject) => {
 				const video = scanVideoEl!;
+				dlog('qr-scan', 'Video readyState before wait', video.readyState);
 				if (video.readyState >= 2) { resolve(); return; }
 				const onLoaded = () => { video.removeEventListener('loadeddata', onLoaded); resolve(); };
 				video.addEventListener('loadeddata', onLoaded);
@@ -322,28 +329,34 @@
 			});
 
 			await scanVideoEl.play();
+			dlog('qr-scan', 'Video playing', { readyState: scanVideoEl.readyState, videoWidth: scanVideoEl.videoWidth, videoHeight: scanVideoEl.videoHeight });
 
 			const canvas = scanCanvasEl;
 			if (!canvas) throw new Error('Canvas element not available');
 			const ctx = canvas.getContext('2d', { willReadFrequently: true });
 			if (!ctx) throw new Error('Cannot get canvas context');
 
+			let frameCount = 0;
 			async function scanFrame() {
 				if (!scanning || !scanVideoEl) return;
+				frameCount++;
+				const logThisFrame = frameCount <= 3 || frameCount % 10 === 0;
 
 				try {
 					// Prefer native BarcodeDetector (Safari iOS 17.2+, Chrome 83+)
-					// Uses the same engine as the Camera app — no canvas needed
 					if (nativeBarcodeDetector) {
+						if (logThisFrame) dlog('qr-scan', `Native detect frame #${frameCount}`, { vw: scanVideoEl.videoWidth, vh: scanVideoEl.videoHeight, readyState: scanVideoEl.readyState });
 						const barcodes = await nativeBarcodeDetector.detect(scanVideoEl);
+						if (logThisFrame) dlog('qr-scan', `Native result`, { count: barcodes.length, first: barcodes[0]?.rawValue?.slice(0, 80) });
 						if (barcodes.length > 0 && barcodes[0].rawValue) {
+							dlog('qr-scan', 'QR FOUND (native)', barcodes[0].rawValue.slice(0, 200));
 							stopQRScan();
 							importInput = barcodes[0].rawValue;
 							handleImport();
 							return;
 						}
 					} else {
-						// Fallback: jsQR via canvas (Firefox, older Safari)
+						// Fallback: jsQR via canvas
 						const vw = scanVideoEl.videoWidth;
 						const vh = scanVideoEl.videoHeight;
 
@@ -354,44 +367,55 @@
 							canvas!.width = sw;
 							canvas!.height = sh;
 
-							// Use createImageBitmap for better Safari compat
+							let usedBitmap = false;
 							try {
 								const bitmap = await createImageBitmap(scanVideoEl!);
 								ctx!.drawImage(bitmap, 0, 0, sw, sh);
 								bitmap.close();
+								usedBitmap = true;
 							} catch {
 								ctx!.drawImage(scanVideoEl!, 0, 0, sw, sh);
 							}
 
 							const imageData = ctx!.getImageData(0, 0, sw, sh);
 
-							// Skip blank frames
 							let hasData = false;
+							let samplePixels = '';
 							for (let i = 0; i < Math.min(imageData.data.length, 1000); i += 4) {
 								if (imageData.data[i] || imageData.data[i+1] || imageData.data[i+2]) {
 									hasData = true;
 									break;
 								}
 							}
+							if (logThisFrame) {
+								// Sample a few pixels from the center for diagnostics
+								const cx = Math.floor(sw / 2), cy = Math.floor(sh / 2);
+								const idx = (cy * sw + cx) * 4;
+								samplePixels = `[${imageData.data[idx]},${imageData.data[idx+1]},${imageData.data[idx+2]},${imageData.data[idx+3]}]`;
+								dlog('qr-scan', `jsQR frame #${frameCount}`, { sw, sh, usedBitmap, hasData, centerPixel: samplePixels });
+							}
 
 							if (hasData) {
 								const result = jsQR(imageData.data, sw, sh, { inversionAttempts: 'attemptBoth' });
 								if (result?.data) {
+									dlog('qr-scan', 'QR FOUND (jsQR)', result.data.slice(0, 200));
 									stopQRScan();
 									importInput = result.data;
 									handleImport();
 									return;
 								}
 							}
+						} else if (logThisFrame) {
+							dlog('qr-scan', `No video dimensions frame #${frameCount}`, { vw, vh });
 						}
 					}
-				} catch {
-					// Frame processing error — continue scanning
+				} catch (e) {
+					if (logThisFrame) dlog('qr-scan', `Frame error #${frameCount}`, String(e));
 				}
 
 				scanTimer = setTimeout(scanFrame, 200);
 			}
-			// Initial delay to let video pipeline warm up
+			dlog('qr-scan', 'Starting scan loop', { native: !!nativeBarcodeDetector });
 			scanTimer = setTimeout(scanFrame, 500);
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
