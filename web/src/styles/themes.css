@@ -960,10 +960,10 @@ html[data-theme="warm-mid"] {
 	--bg-elevated: #2a1c10;
 	--bg-card: rgba(252, 246, 228, 0.94);
 	--bg-card-hover: rgba(254, 250, 235, 0.97);
-	--text-primary: #2c1503;
-	--text-secondary: #5c3a1a;
-	--text-muted: rgba(44, 21, 3, 0.65);
-	--text-faint: rgba(44, 21, 3, 0.42);
+	--text-primary: #f5e6c8;
+	--text-secondary: #dcc8a0;
+	--text-muted: rgba(245, 230, 200, 0.65);
+	--text-faint: rgba(245, 230, 200, 0.42);
 	--accent: #c4880e;
 	--accent-dim: #a06e08;
 	--accent-muted: rgba(196, 136, 14, 0.18);
@@ -1087,10 +1087,10 @@ html[data-theme="forest-mid"] {
 	--bg-elevated: #2a2010;
 	--bg-card: rgba(245, 235, 210, 0.92);
 	--bg-card-hover: rgba(248, 240, 218, 0.96);
-	--text-primary: #1c1207;
-	--text-secondary: #3b2a10;
-	--text-muted: rgba(28, 18, 7, 0.65);
-	--text-faint: rgba(28, 18, 7, 0.42);
+	--text-primary: #f0e6cc;
+	--text-secondary: #d8c8a0;
+	--text-muted: rgba(240, 230, 204, 0.65);
+	--text-faint: rgba(240, 230, 204, 0.42);
 	--accent: #b8860b;
 	--accent-dim: #8b6914;
 	--accent-muted: rgba(184, 134, 11, 0.18);
@@ -1931,6 +1931,15 @@ html[data-theme="warm-mid"] {
 }
 
 /* --- Illuminated Manuscript Cards --- */
+html[data-theme="warm-mid"] .card,
+html[data-theme="warm-mid"] .card-elevated {
+	--text-primary: #2c1503;
+	--text-secondary: #5c3a1a;
+	--text-muted: rgba(44, 21, 3, 0.65);
+	--text-faint: rgba(44, 21, 3, 0.42);
+	color: #2c1503;
+}
+
 html[data-theme="warm-mid"] .card {
 	backdrop-filter: blur(8px) saturate(1.1);
 	-webkit-backdrop-filter: blur(8px) saturate(1.1);
@@ -2288,6 +2297,16 @@ html[data-theme="forest-mid"] {
 	--shadow-sm: 0 2px 8px rgba(184, 134, 11, 0.12), 0 1px 3px rgba(0, 0, 0, 0.15);
 	--shadow-md: 0 4px 16px rgba(184, 134, 11, 0.16), 0 2px 6px rgba(0, 0, 0, 0.18);
 	--shadow-lg: 0 8px 28px rgba(184, 134, 11, 0.20), 0 4px 10px rgba(0, 0, 0, 0.22);
+}
+
+/* --- Dark text override for light parchment cards --- */
+html[data-theme="forest-mid"] .card,
+html[data-theme="forest-mid"] .card-elevated {
+	--text-primary: #1c1207;
+	--text-secondary: #3b2a10;
+	--text-muted: rgba(28, 18, 7, 0.65);
+	--text-faint: rgba(28, 18, 7, 0.42);
+	color: #1c1207;
 }
 
 html[data-theme="forest-mid"] .card {
