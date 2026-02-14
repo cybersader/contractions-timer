@@ -1082,64 +1082,67 @@ html[data-theme="ocean-mid"] {
    Dark earthy hobbit-hole interior, aged parchment cards, golden candlelight */
 html[data-theme="forest-mid"] {
 	--theme-font: 'Playfair Display', serif;
-	--bg-primary: #1a1408;
-	--bg-secondary: #12100a;
-	--bg-elevated: #2a2010;
-	--bg-card: rgba(245, 235, 210, 0.92);
-	--bg-card-hover: rgba(248, 240, 218, 0.96);
-	--text-primary: #f0e6cc;
-	--text-secondary: #d8c8a0;
-	--text-muted: rgba(240, 230, 204, 0.65);
-	--text-faint: rgba(240, 230, 204, 0.42);
-	--accent: #b8860b;
-	--accent-dim: #8b6914;
-	--accent-muted: rgba(184, 134, 11, 0.18);
+	/* Deep forest green — not brown like Cathedral */
+	--bg-primary: #0e1a0e;
+	--bg-secondary: #0a120a;
+	--bg-elevated: #1a2c1a;
+	--bg-card: rgba(245, 240, 225, 0.93);
+	--bg-card-hover: rgba(248, 244, 232, 0.96);
+	/* Light sage-cream on dark forest bg */
+	--text-primary: #e8f0e0;
+	--text-secondary: #c8d8b8;
+	--text-muted: rgba(232, 240, 224, 0.62);
+	--text-faint: rgba(232, 240, 224, 0.40);
+	/* Mossy green accent — NOT gold like Cathedral */
+	--accent: #5d9e3e;
+	--accent-dim: #3d7a2e;
+	--accent-muted: rgba(93, 158, 62, 0.18);
 	--success: #6b8e23;
 	--success-muted: rgba(107, 142, 35, 0.18);
-	--warning: #d4a017;
-	--warning-muted: rgba(212, 160, 23, 0.18);
-	--danger: #b22222;
-	--danger-muted: rgba(178, 34, 34, 0.18);
+	--warning: #c4a030;
+	--warning-muted: rgba(196, 160, 48, 0.18);
+	--danger: #b83232;
+	--danger-muted: rgba(184, 50, 50, 0.18);
 	--water: #4682b4;
 	--water-muted: rgba(70, 130, 180, 0.18);
-	--border: rgba(184, 134, 11, 0.22);
-	--border-muted: rgba(184, 134, 11, 0.10);
-	--nav-border: rgba(245, 235, 210, 0.18);
-	--nav-inactive: rgba(245, 235, 210, 0.55);
-	--toggle-bg: rgba(184, 134, 11, 0.22);
-	--toggle-knob: #d4a017;
-	--input-bg: rgba(42, 32, 16, 0.80);
-	--input-border: rgba(184, 134, 11, 0.28);
-	--wave-line: rgba(184, 134, 11, 0.28);
-	--wave-grid: rgba(184, 134, 11, 0.12);
-	--wave-grid-text: rgba(245, 235, 210, 0.55);
-	--wave-text: rgba(245, 235, 210, 0.55);
+	--border: rgba(93, 158, 62, 0.22);
+	--border-muted: rgba(93, 158, 62, 0.10);
+	--nav-border: rgba(200, 230, 200, 0.18);
+	--nav-inactive: rgba(200, 230, 200, 0.55);
+	--toggle-bg: rgba(93, 158, 62, 0.22);
+	--toggle-knob: #6b9e3e;
+	--input-bg: rgba(14, 26, 14, 0.80);
+	--input-border: rgba(93, 158, 62, 0.28);
+	--wave-line: rgba(93, 158, 62, 0.28);
+	--wave-grid: rgba(93, 158, 62, 0.12);
+	--wave-grid-text: rgba(200, 230, 200, 0.55);
+	--wave-text: rgba(200, 230, 200, 0.55);
 	--wave-threshold-ok: rgba(107, 142, 35, 0.30);
-	--wave-threshold-warn: rgba(212, 160, 23, 0.28);
-	/* Creative: Hobbit hole by candlelight — warm amber glows on dark earth */
+	--wave-threshold-warn: rgba(196, 160, 48, 0.28);
+	/* Creative: Deep forest with dappled sunlight through leaves */
 	--gradient-bg:
-		radial-gradient(ellipse at 30% 25%, rgba(184, 134, 11, 0.12), transparent 45%),
-		radial-gradient(ellipse at 75% 60%, rgba(212, 160, 23, 0.08), transparent 50%),
-		radial-gradient(circle at 50% 85%, rgba(139, 105, 20, 0.10), transparent 48%),
-		radial-gradient(ellipse at 85% 15%, rgba(255, 200, 60, 0.06), transparent 40%),
-		radial-gradient(ellipse at 10% 70%, rgba(184, 134, 11, 0.08), transparent 50%),
-		linear-gradient(140deg, #12100a, #1a1408);
-	--glow-color: rgba(184, 134, 11, 0.26);
-	--glow-color-strong: rgba(184, 134, 11, 0.45);
-	--header-bg: linear-gradient(140deg, rgba(26, 20, 8, 0.96), rgba(42, 32, 16, 0.92));
-	--nav-bg: linear-gradient(0deg, #120e06, #1a1408);
-	/* Big button: parchment with gold border */
-	--big-button-bg: rgba(245, 235, 210, 0.94);
-	--big-button-border: rgba(184, 134, 11, 0.45);
-	--big-button-color: #8b6914;
-	--big-button-glow: 0 0 24px rgba(184, 134, 11, 0.30), inset 0 2px 0 rgba(255, 255, 255, 0.45);
-	--big-button-active-bg: rgba(254, 240, 235, 0.92);
-	--big-button-active-border: rgba(178, 34, 34, 0.45);
-	--big-button-active-color: #b22222;
-	--big-button-active-glow: 0 0 24px rgba(178, 34, 34, 0.35);
-	--big-button-rest-bg: rgba(240, 235, 210, 0.90);
-	--big-button-rest-border: rgba(107, 142, 35, 0.40);
-	--big-button-rest-color: #6b8e23;
+		radial-gradient(ellipse at 25% 20%, rgba(93, 158, 62, 0.12), transparent 45%),
+		radial-gradient(ellipse at 70% 50%, rgba(74, 130, 45, 0.10), transparent 50%),
+		radial-gradient(circle at 50% 85%, rgba(50, 100, 30, 0.08), transparent 48%),
+		radial-gradient(ellipse at 85% 15%, rgba(120, 180, 80, 0.06), transparent 40%),
+		radial-gradient(ellipse at 10% 65%, rgba(60, 110, 40, 0.08), transparent 50%),
+		linear-gradient(160deg, #0a120a, #0e1a0e 50%, #0c160c);
+	--glow-color: rgba(93, 158, 62, 0.24);
+	--glow-color-strong: rgba(93, 158, 62, 0.42);
+	--header-bg: linear-gradient(160deg, rgba(14, 26, 14, 0.96), rgba(26, 44, 26, 0.92));
+	--nav-bg: linear-gradient(0deg, #080e08, #0e1a0e);
+	/* Big button: warm parchment with green vine border */
+	--big-button-bg: rgba(245, 240, 225, 0.94);
+	--big-button-border: rgba(93, 158, 62, 0.50);
+	--big-button-color: #2d5a2d;
+	--big-button-glow: 0 0 24px rgba(93, 158, 62, 0.30), inset 0 2px 0 rgba(255, 255, 255, 0.40);
+	--big-button-active-bg: rgba(252, 238, 230, 0.92);
+	--big-button-active-border: rgba(184, 50, 50, 0.50);
+	--big-button-active-color: #b83232;
+	--big-button-active-glow: 0 0 24px rgba(184, 50, 50, 0.35);
+	--big-button-rest-bg: rgba(240, 242, 230, 0.90);
+	--big-button-rest-border: rgba(107, 142, 35, 0.45);
+	--big-button-rest-color: #4a7a2a;
 }
 
 /* --- SUNSET MID: "Retrowave" ---
@@ -1930,7 +1933,26 @@ html[data-theme="warm-mid"] {
 	--shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.55), 0 0 32px rgba(196, 136, 14, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.40);
 }
 
-/* --- Illuminated Manuscript Cards --- */
+/* --- Dark text inside light-bg containers (parchment cards & panels) ---
+   Global --text-primary is LIGHT (cream) for dark cathedral bg.
+   Override to DARK brown inside any element with a --bg-card background. */
+html[data-theme="warm-mid"] [class*="card"],
+html[data-theme="warm-mid"] [class*="chart"],
+html[data-theme="warm-mid"] [class*="hero"],
+html[data-theme="warm-mid"] [class*="untimed"],
+html[data-theme="warm-mid"] [class*="controls"],
+html[data-theme="warm-mid"] [class*="event-button"],
+html[data-theme="warm-mid"] [class*="collapsible"],
+html[data-theme="warm-mid"] [class*="contextual-tip"],
+html[data-theme="warm-mid"] [class*="braxton"],
+html[data-theme="warm-mid"] [class*="stage-duration"],
+html[data-theme="warm-mid"] [class*="toast"],
+html[data-theme="warm-mid"] [class*="quick-stat"],
+html[data-theme="warm-mid"] [class*="about-privacy"],
+html[data-theme="warm-mid"] [class*="mode-btn"],
+html[data-theme="warm-mid"] [class*="picker"],
+html[data-theme="warm-mid"] [class*="editor-pill"],
+html[data-theme="warm-mid"] [class*="editor-btn"],
 html[data-theme="warm-mid"] .card,
 html[data-theme="warm-mid"] .card-elevated {
 	--text-primary: #2c1503;
@@ -2291,104 +2313,129 @@ html[data-theme="forest-mid"] body {
 }
 
 html[data-theme="forest-mid"] {
-	--radius-md: 12px;
-	--radius-lg: 14px;
-	--radius-xl: 18px;
-	--shadow-sm: 0 2px 8px rgba(184, 134, 11, 0.12), 0 1px 3px rgba(0, 0, 0, 0.15);
-	--shadow-md: 0 4px 16px rgba(184, 134, 11, 0.16), 0 2px 6px rgba(0, 0, 0, 0.18);
-	--shadow-lg: 0 8px 28px rgba(184, 134, 11, 0.20), 0 4px 10px rgba(0, 0, 0, 0.22);
+	/* Extra-cozy rounded corners — like a hobbit door */
+	--radius-md: 14px;
+	--radius-lg: 18px;
+	--radius-xl: 22px;
+	--shadow-sm: 0 2px 8px rgba(50, 100, 30, 0.12), 0 1px 3px rgba(0, 0, 0, 0.15);
+	--shadow-md: 0 4px 16px rgba(50, 100, 30, 0.16), 0 2px 6px rgba(0, 0, 0, 0.18);
+	--shadow-lg: 0 8px 28px rgba(50, 100, 30, 0.20), 0 4px 10px rgba(0, 0, 0, 0.22);
 }
 
-/* --- Dark text override for light parchment cards --- */
+/* --- Dark text inside light-bg containers (parchment cards & panels) ---
+   Global --text-primary is LIGHT (cream) for dark forest bg.
+   Override to DARK green-brown inside any element with a --bg-card background. */
+html[data-theme="forest-mid"] [class*="card"],
+html[data-theme="forest-mid"] [class*="chart"],
+html[data-theme="forest-mid"] [class*="hero"],
+html[data-theme="forest-mid"] [class*="untimed"],
+html[data-theme="forest-mid"] [class*="controls"],
+html[data-theme="forest-mid"] [class*="event-button"],
+html[data-theme="forest-mid"] [class*="collapsible"],
+html[data-theme="forest-mid"] [class*="contextual-tip"],
+html[data-theme="forest-mid"] [class*="braxton"],
+html[data-theme="forest-mid"] [class*="stage-duration"],
+html[data-theme="forest-mid"] [class*="toast"],
+html[data-theme="forest-mid"] [class*="quick-stat"],
+html[data-theme="forest-mid"] [class*="about-privacy"],
+html[data-theme="forest-mid"] [class*="mode-btn"],
+html[data-theme="forest-mid"] [class*="picker"],
+html[data-theme="forest-mid"] [class*="editor-pill"],
+html[data-theme="forest-mid"] [class*="editor-btn"],
 html[data-theme="forest-mid"] .card,
 html[data-theme="forest-mid"] .card-elevated {
-	--text-primary: #1c1207;
-	--text-secondary: #3b2a10;
-	--text-muted: rgba(28, 18, 7, 0.65);
-	--text-faint: rgba(28, 18, 7, 0.42);
-	color: #1c1207;
+	--text-primary: #14261a;
+	--text-secondary: #264d2e;
+	--text-muted: rgba(20, 38, 26, 0.65);
+	--text-faint: rgba(20, 38, 26, 0.42);
+	color: #14261a;
 }
 
 html[data-theme="forest-mid"] .card {
 	backdrop-filter: blur(8px) saturate(1.1);
 	-webkit-backdrop-filter: blur(8px) saturate(1.1);
-	border: 1px solid rgba(184, 134, 11, 0.18);
-	border-radius: 12px;
-	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.20), 0 1px 0 rgba(255, 255, 255, 0.35) inset;
+	border: 1.5px solid rgba(93, 158, 62, 0.22);
+	border-left: 3px solid rgba(93, 158, 62, 0.30);
+	border-radius: 14px;
+	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.22), 0 1px 0 rgba(255, 255, 255, 0.35) inset;
 	position: relative;
 }
 
-/* Ornate gold top border — aged scroll edge */
+/* Organic vine top border — leafy green gradient */
 html[data-theme="forest-mid"] .card::before {
 	content: '';
 	position: absolute;
-	top: 0; left: 10%; right: 10%;
-	height: 3px;
-	background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.45), rgba(212, 160, 23, 0.55), rgba(184, 134, 11, 0.45), transparent);
+	top: 0; left: 8%; right: 8%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, rgba(93, 158, 62, 0.40), rgba(120, 180, 80, 0.50), rgba(93, 158, 62, 0.40), transparent);
 	border-radius: 0 0 2px 2px;
 }
 
-/* Faded bottom scroll edge */
+/* Faded moss bottom edge */
 html[data-theme="forest-mid"] .card::after {
 	content: '';
 	position: absolute;
-	bottom: 0; left: 15%; right: 15%;
+	bottom: 0; left: 12%; right: 12%;
 	height: 1px;
-	background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.20), rgba(139, 105, 20, 0.15), transparent);
+	background: linear-gradient(90deg, transparent, rgba(93, 158, 62, 0.15), rgba(74, 130, 45, 0.12), transparent);
 }
 
 html[data-theme="forest-mid"] .card-elevated {
 	backdrop-filter: blur(10px) saturate(1.1);
 	-webkit-backdrop-filter: blur(10px) saturate(1.1);
-	box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.40) inset;
+	box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28), 0 1px 0 rgba(255, 255, 255, 0.40) inset;
 }
 
 html[data-theme="forest-mid"] .nav-tab.active {
 	border-bottom: 2.5px solid currentColor;
-	text-shadow: 0 0 10px rgba(184, 134, 11, 0.40);
+	text-shadow: 0 0 10px rgba(93, 158, 62, 0.40);
 }
 
 html[data-theme="forest-mid"] .bottom-nav {
-	box-shadow: 0 -3px 14px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 -3px 14px rgba(0, 0, 0, 0.30);
+	border-top: 1px solid rgba(93, 158, 62, 0.15);
 }
 
 html[data-theme="forest-mid"] .btn-primary {
-	border-radius: 12px;
-	box-shadow: 0 3px 12px rgba(184, 134, 11, 0.22);
+	border-radius: 14px;
+	box-shadow: 0 3px 12px rgba(50, 100, 30, 0.22);
 }
 
-/* Warm candlelight glow spots — slow, gentle flicker */
+/* Dappled sunlight through forest canopy — green-gold patches */
 html[data-theme="forest-mid"] body::before {
 	content: '';
 	position: fixed;
 	inset: 0;
 	background:
-		radial-gradient(circle 80px at 20% 20%, rgba(255, 200, 60, 0.10), transparent),
-		radial-gradient(circle 100px at 78% 35%, rgba(184, 134, 11, 0.08), transparent),
-		radial-gradient(circle 60px at 40% 80%, rgba(212, 160, 23, 0.07), transparent),
-		radial-gradient(circle 70px at 65% 10%, rgba(255, 180, 40, 0.06), transparent);
+		radial-gradient(ellipse 120px 80px at 20% 18%, rgba(120, 180, 80, 0.12), transparent),
+		radial-gradient(ellipse 100px 100px at 75% 30%, rgba(93, 158, 62, 0.10), transparent),
+		radial-gradient(circle 70px at 40% 75%, rgba(74, 130, 45, 0.08), transparent),
+		radial-gradient(ellipse 80px 60px at 60% 10%, rgba(150, 200, 100, 0.07), transparent),
+		radial-gradient(circle 50px at 85% 70%, rgba(93, 158, 62, 0.06), transparent);
 	pointer-events: none;
 	z-index: 0;
 	animation: candlelight-drift 30s ease-in-out infinite;
 	background-size: 200% 200%;
 }
 
-/* Faint elvish ring motifs — thin gold circles */
+/* Floating leaf shapes — subtle organic motion */
 html[data-theme="forest-mid"] body::after {
 	content: '';
 	position: fixed;
 	inset: 0;
 	background:
-		radial-gradient(circle 30px at 15% 25%, transparent 55%, rgba(184, 134, 11, 0.06) 57%, transparent 59%),
-		radial-gradient(circle 22px at 82% 40%, transparent 55%, rgba(184, 134, 11, 0.05) 57%, transparent 59%),
-		radial-gradient(circle 26px at 50% 85%, transparent 55%, rgba(212, 160, 23, 0.05) 57%, transparent 59%),
-		radial-gradient(circle 18px at 35% 60%, transparent 55%, rgba(184, 134, 11, 0.04) 57%, transparent 59%);
+		radial-gradient(ellipse 8px 5px at 18% 22%, rgba(93, 158, 62, 0.12), transparent 10px),
+		radial-gradient(ellipse 6px 4px at 78% 35%, rgba(120, 180, 80, 0.10), transparent 8px),
+		radial-gradient(ellipse 7px 4px at 45% 80%, rgba(74, 130, 45, 0.09), transparent 9px),
+		radial-gradient(ellipse 5px 3px at 62% 15%, rgba(93, 158, 62, 0.08), transparent 7px),
+		radial-gradient(ellipse 9px 5px at 30% 55%, rgba(50, 100, 30, 0.07), transparent 11px),
+		radial-gradient(ellipse 6px 3px at 88% 65%, rgba(120, 180, 80, 0.08), transparent 8px);
 	pointer-events: none;
 	z-index: 0;
 	animation: ring-drift 35s ease-in-out infinite;
 }
 
-/* Gold diamond/star section markers */
+/* Green leaf diamond section markers */
 html[data-theme="forest-mid"] .section-title {
 	position: relative;
 	padding-left: 16px;
@@ -2401,34 +2448,44 @@ html[data-theme="forest-mid"] .section-title::before {
 	transform: translateY(-50%) rotate(45deg);
 	width: 7px;
 	height: 7px;
-	background: rgba(184, 134, 11, 0.50);
-	border: 1px solid rgba(212, 160, 23, 0.30);
-	border-radius: 1px;
+	background: rgba(93, 158, 62, 0.50);
+	border: 1px solid rgba(120, 180, 80, 0.30);
+	border-radius: 2px;
 }
 
-/* Golden warm page title glow */
+/* Mossy green page title glow */
 html[data-theme="forest-mid"] .page-title {
-	text-shadow: 0 0 18px rgba(184, 134, 11, 0.20), 0 0 4px rgba(212, 160, 23, 0.10);
+	text-shadow: 0 0 18px rgba(93, 158, 62, 0.22), 0 0 4px rgba(120, 180, 80, 0.12);
 }
 
-/* Gold ornamental divider under page title */
+/* Green vine divider under page title */
 html[data-theme="forest-mid"] .page-title::after {
 	content: '';
 	display: block;
 	width: 70px;
 	height: 2px;
 	margin-top: 8px;
-	background: linear-gradient(90deg, rgba(184, 134, 11, 0.55), rgba(212, 160, 23, 0.45), rgba(139, 105, 20, 0.20), transparent);
+	background: linear-gradient(90deg, rgba(93, 158, 62, 0.55), rgba(120, 180, 80, 0.40), rgba(50, 100, 30, 0.18), transparent);
 	border-radius: 2px;
 }
 
 html[data-theme="forest-mid"] .card:hover {
-	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.22), 0 6px 20px rgba(184, 134, 11, 0.10), 0 1px 0 rgba(255, 255, 255, 0.40) inset;
-	transition: box-shadow 250ms ease;
+	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.25), 0 6px 20px rgba(93, 158, 62, 0.10), 0 1px 0 rgba(255, 255, 255, 0.40) inset;
+	border-color: rgba(93, 158, 62, 0.30);
+	transition: box-shadow 250ms ease, border-color 250ms ease;
+}
+
+html[data-theme="forest-mid"] .header-bar {
+	border-bottom: 1px solid rgba(93, 158, 62, 0.18);
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.30);
+}
+
+html[data-theme="forest-mid"] .big-button {
+	border-width: 2px;
 }
 
 html[data-theme="forest-mid"] .btn-primary:active {
-	box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.15), 0 0 14px rgba(184, 134, 11, 0.18);
+	box-shadow: 0 0 0 4px rgba(93, 158, 62, 0.15), 0 0 14px rgba(93, 158, 62, 0.20);
 	transition: box-shadow 150ms;
 }
 

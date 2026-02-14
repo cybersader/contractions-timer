@@ -117,7 +117,7 @@
 		color: var(--accent);
 		margin: 0 0 var(--space-3) 0;
 		padding-bottom: var(--space-2);
-		border-bottom: 1px solid rgba(196, 136, 14, 0.20);
+		border-bottom: 1px solid var(--accent-muted);
 	}
 
 	.saints-section {
@@ -127,7 +127,7 @@
 	.saint-entry {
 		margin-bottom: var(--space-3);
 		padding-left: var(--space-3);
-		border-left: 2px solid rgba(196, 136, 14, 0.25);
+		border-left: 2px solid var(--border);
 	}
 
 	.saint-name {
@@ -167,7 +167,7 @@
 
 	.prayer-tab {
 		padding: var(--space-1) var(--space-2);
-		border: 1px solid rgba(196, 136, 14, 0.25);
+		border: 1px solid var(--border);
 		border-radius: 4px;
 		background: transparent;
 		color: var(--text-secondary);
@@ -180,7 +180,7 @@
 	}
 
 	.prayer-tab.active {
-		background: rgba(196, 136, 14, 0.15);
+		background: var(--accent-muted);
 		border-color: var(--accent);
 		color: var(--accent);
 		font-weight: 600;
@@ -188,8 +188,8 @@
 
 	.prayer-content {
 		padding: var(--space-3);
-		background: rgba(196, 136, 14, 0.05);
-		border: 1px solid rgba(196, 136, 14, 0.12);
+		background: var(--border-muted);
+		border: 1px solid var(--border-muted);
 		border-radius: 6px;
 	}
 
@@ -224,7 +224,7 @@
 		font-style: italic;
 		margin: 0;
 		padding-top: var(--space-2);
-		border-top: 1px solid rgba(196, 136, 14, 0.12);
+		border-top: 1px solid var(--border-muted);
 	}
 
 	.devotional-hidden {
