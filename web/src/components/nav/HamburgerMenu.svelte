@@ -2,7 +2,7 @@
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { EMPTY_SESSION, DEFAULT_SETTINGS } from '../../lib/labor-logic/types';
-	import { clearAllData, exportData, importData } from '../../lib/storage';
+	import { clearAllData, exportData, importData, archiveSession } from '../../lib/storage';
 	import { THEMES, PALETTES, PALETTE_PREVIEWS, getStoredTheme, setTheme, type ThemePalette, type ThemeMode, type ThemeId } from '../../lib/themes';
 	import SettingsPage from '../settings/SettingsPage.svelte';
 	import SessionManager from '../shared/SessionManager.svelte';
@@ -50,6 +50,8 @@
 	let seedLoaded = $state('');
 	let importError = $state('');
 	let showClearConfirm = $state(false);
+	let pendingSeedId: string | null = $state(null);
+	let pendingSeedFn: (() => any) | null = $state(null);
 	let currentTheme: ThemeId = $state(getStoredTheme());
 
 	function applyTheme(id: ThemeId) {
@@ -105,6 +107,30 @@
 		handleClose();
 		// Restart onboarding so the user goes through setup again
 		onRestartOnboarding?.();
+	}
+
+	const hasContractions = $derived($session.contractions.length > 0);
+
+	function handleSeedClick(id: string, fn: () => any) {
+		if (hasContractions) {
+			pendingSeedId = id;
+			pendingSeedFn = fn;
+		} else {
+			loadSeed(id, fn);
+		}
+	}
+
+	function loadSeed(id: string, fn: () => any, archiveFirst = false) {
+		if (archiveFirst && hasContractions) {
+			const count = $session.contractions.length;
+			const label = `Before seed "${id}" (${count} contraction${count === 1 ? '' : 's'})`;
+			archiveSession($session, label);
+		}
+		session.set(fn());
+		seedLoaded = id;
+		setTimeout(() => seedLoaded = '', 2000);
+		pendingSeedId = null;
+		pendingSeedFn = null;
 	}
 </script>
 
@@ -300,11 +326,7 @@
 								<button
 									class="devtools-seed-btn"
 									class:devtools-seed-active={seedLoaded === scenario.id}
-									onclick={() => {
-										session.set(scenario.fn());
-										seedLoaded = scenario.id;
-										setTimeout(() => seedLoaded = '', 2000);
-									}}
+									onclick={() => handleSeedClick(scenario.id, scenario.fn)}
 								>
 									<span class="devtools-seed-label">{scenario.label}</span>
 									<span class="devtools-seed-desc">{scenario.description}</span>
@@ -312,6 +334,23 @@
 							{/each}
 						</div>
 					</div>
+
+					{#if pendingSeedId && pendingSeedFn}
+						<div class="devtools-archive-prompt">
+							<p class="devtools-archive-text">You have {$session.contractions.length} contraction{$session.contractions.length === 1 ? '' : 's'} in your current session.</p>
+							<button class="btn-archive" onclick={() => loadSeed(pendingSeedId!, pendingSeedFn!, true)}>
+								<Archive size={16} />
+								Archive current & load
+							</button>
+							<button class="btn-replace" onclick={() => loadSeed(pendingSeedId!, pendingSeedFn!, false)}>
+								Replace current session
+							</button>
+							<button class="btn-cancel-seed" onclick={() => { pendingSeedId = null; pendingSeedFn = null; }}>
+								Cancel
+							</button>
+						</div>
+					{/if}
+
 					<div class="devtools-section">
 						<div class="devtools-label">Quick actions</div>
 						<button
@@ -763,6 +802,76 @@
 
 	.devtools-seed-desc {
 		font-size: var(--text-sm);
+		color: var(--text-muted);
+	}
+
+	.devtools-archive-prompt {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		padding: var(--space-3);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		background: var(--bg-card);
+		margin-bottom: var(--space-3);
+		animation: fadeIn 200ms ease-out;
+	}
+
+	.devtools-archive-text {
+		font-size: var(--text-sm);
+		color: var(--text-muted);
+		margin: 0;
+		line-height: 1.4;
+	}
+
+	.btn-archive {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-2);
+		padding: var(--space-2) var(--space-3);
+		border: none;
+		border-radius: var(--radius-md);
+		background: var(--accent);
+		color: white;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.btn-archive:active {
+		filter: brightness(0.9);
+	}
+
+	.btn-replace {
+		padding: var(--space-2) var(--space-3);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		background: var(--bg-card);
+		color: var(--text-secondary);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.btn-replace:active {
+		background: var(--bg-card-hover);
+	}
+
+	.btn-cancel-seed {
+		padding: var(--space-1);
+		border: none;
+		background: none;
+		color: var(--text-faint);
+		font-size: var(--text-xs);
+		cursor: pointer;
+		text-align: center;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.btn-cancel-seed:active {
 		color: var(--text-muted);
 	}
 

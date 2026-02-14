@@ -551,10 +551,16 @@
 			{/if}
 
 			{#if scanning}
-				<div class="scan-preview">
-					<video bind:this={scanVideoEl} class="scan-video" playsinline muted></video>
+				<div class="scan-fullscreen">
+					<video bind:this={scanVideoEl} class="scan-video-full" playsinline muted></video>
 					<canvas bind:this={scanCanvasEl} class="scan-canvas"></canvas>
-					<button class="btn-text" onclick={stopQRScan}>Stop scanning</button>
+					<div class="scan-overlay">
+						<div class="scan-frame"></div>
+						<p class="scan-hint">Point camera at QR code</p>
+					</div>
+					<button class="scan-close-btn" onclick={stopQRScan} aria-label="Close scanner">
+						&times;
+					</button>
 				</div>
 			{/if}
 
@@ -1018,26 +1024,75 @@
 		color: var(--text-secondary);
 	}
 
-	.scan-preview {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: var(--space-2);
-		padding: var(--space-2);
+	.scan-fullscreen {
+		position: fixed;
+		inset: 0;
+		z-index: 200;
 		background: black;
-		border-radius: var(--radius-lg);
-		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	.scan-video {
+	.scan-video-full {
 		width: 100%;
-		max-height: 200px;
-		border-radius: var(--radius-md);
+		height: 100%;
 		object-fit: cover;
 	}
 
 	.scan-canvas {
 		display: none;
+	}
+
+	.scan-overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-4);
+		pointer-events: none;
+	}
+
+	.scan-frame {
+		width: 220px;
+		height: 220px;
+		border: 3px solid rgba(255, 255, 255, 0.7);
+		border-radius: var(--radius-lg);
+		box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.4);
+	}
+
+	.scan-hint {
+		color: rgba(255, 255, 255, 0.9);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+		margin: 0;
+	}
+
+	.scan-close-btn {
+		position: absolute;
+		top: calc(env(safe-area-inset-top, 0px) + var(--space-3));
+		right: var(--space-3);
+		width: 44px;
+		height: 44px;
+		border: none;
+		border-radius: 50%;
+		background: rgba(0, 0, 0, 0.5);
+		color: white;
+		font-size: 28px;
+		line-height: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+		z-index: 1;
+	}
+
+	.scan-close-btn:active {
+		background: rgba(0, 0, 0, 0.7);
 	}
 
 	.scan-error {
