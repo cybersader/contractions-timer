@@ -245,12 +245,14 @@
 	let scanVideoEl: HTMLVideoElement | undefined = $state();
 	let scanCanvasEl: HTMLCanvasElement | undefined = $state();
 	let scanStream: MediaStream | null = null;
-	let scanAnimFrame: number | null = null;
+	let scanTimer: ReturnType<typeof setTimeout> | null = null;
+
+	/** Max canvas dimension for jsQR — keeps processing fast and avoids Safari blank-frame issues */
+	const SCAN_MAX_DIM = 640;
 
 	async function startQRScan() {
 		scanError = '';
 		try {
-			// Check for secure context + mediaDevices
 			if (!navigator.mediaDevices?.getUserMedia) {
 				throw new Error(
 					window.isSecureContext === false
@@ -259,28 +261,38 @@
 				);
 			}
 
-			// Try detailed constraints first, fall back to simple { video: true }
 			let stream: MediaStream;
 			try {
 				stream = await navigator.mediaDevices.getUserMedia({
 					video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } }
 				});
 			} catch {
-				// Fallback: simplest possible constraint
 				stream = await navigator.mediaDevices.getUserMedia({ video: true });
 			}
 			scanStream = stream;
 			scanning = true;
 
-			// Wait for Svelte to render the video/canvas elements (they're inside {#if scanning})
+			// Wait for Svelte to render the video/canvas elements
 			await new Promise(r => setTimeout(r, 300));
 
-			if (scanVideoEl) {
-				scanVideoEl.srcObject = stream;
-				await scanVideoEl.play();
-			} else {
-				throw new Error('Video element not available after 300ms');
-			}
+			if (!scanVideoEl) throw new Error('Video element not available');
+
+			scanVideoEl.srcObject = stream;
+			scanVideoEl.setAttribute('autoplay', '');
+			scanVideoEl.setAttribute('playsinline', '');
+			scanVideoEl.setAttribute('muted', '');
+
+			// Wait for video to actually have data (more reliable than readyState polling on Safari)
+			await new Promise<void>((resolve, reject) => {
+				const video = scanVideoEl!;
+				if (video.readyState >= 2) { resolve(); return; }
+				const onLoaded = () => { video.removeEventListener('loadeddata', onLoaded); resolve(); };
+				video.addEventListener('loadeddata', onLoaded);
+				// Timeout fallback
+				setTimeout(() => { video.removeEventListener('loadeddata', onLoaded); resolve(); }, 3000);
+			});
+
+			await scanVideoEl.play();
 
 			const canvas = scanCanvasEl;
 			if (!canvas) throw new Error('Canvas element not available');
@@ -288,28 +300,47 @@
 			if (!ctx) throw new Error('Cannot get canvas context');
 
 			function scanFrame() {
-				if (!scanning || !scanVideoEl || scanVideoEl.readyState < 2) {
-					scanAnimFrame = requestAnimationFrame(scanFrame);
-					return;
-				}
-				const w = scanVideoEl.videoWidth;
-				const h = scanVideoEl.videoHeight;
-				if (w && h && canvas) {
-					canvas.width = w;
-					canvas.height = h;
-					ctx!.drawImage(scanVideoEl!, 0, 0, w, h);
-					const imageData = ctx!.getImageData(0, 0, w, h);
-					const result = jsQR(imageData.data, w, h, { inversionAttempts: 'attemptBoth' });
-					if (result?.data) {
-						stopQRScan();
-						importInput = result.data;
-						handleImport();
-						return;
+				if (!scanning || !scanVideoEl) return;
+
+				const vw = scanVideoEl.videoWidth;
+				const vh = scanVideoEl.videoHeight;
+
+				if (vw && vh) {
+					// Downscale for faster jsQR processing (especially helps on Safari iOS)
+					const scale = Math.min(1, SCAN_MAX_DIM / Math.max(vw, vh));
+					const sw = Math.round(vw * scale);
+					const sh = Math.round(vh * scale);
+					canvas!.width = sw;
+					canvas!.height = sh;
+					ctx!.drawImage(scanVideoEl!, 0, 0, sw, sh);
+
+					const imageData = ctx!.getImageData(0, 0, sw, sh);
+
+					// Skip blank frames (Safari sometimes returns all-zero data initially)
+					let hasData = false;
+					for (let i = 0; i < Math.min(imageData.data.length, 1000); i += 4) {
+						if (imageData.data[i] || imageData.data[i+1] || imageData.data[i+2]) {
+							hasData = true;
+							break;
+						}
+					}
+
+					if (hasData) {
+						const result = jsQR(imageData.data, sw, sh, { inversionAttempts: 'attemptBoth' });
+						if (result?.data) {
+							stopQRScan();
+							importInput = result.data;
+							handleImport();
+							return;
+						}
 					}
 				}
-				scanAnimFrame = requestAnimationFrame(scanFrame);
+
+				// Use setTimeout instead of rAF — Safari throttles rAF in some contexts
+				scanTimer = setTimeout(scanFrame, 150);
 			}
-			scanAnimFrame = requestAnimationFrame(scanFrame);
+			// Small initial delay to let Safari's video pipeline warm up
+			scanTimer = setTimeout(scanFrame, 500);
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
 			console.error('[SnapshotShare] Camera access failed:', msg);
@@ -325,7 +356,7 @@
 
 	function stopQRScan() {
 		scanning = false;
-		if (scanAnimFrame !== null) { cancelAnimationFrame(scanAnimFrame); scanAnimFrame = null; }
+		if (scanTimer !== null) { clearTimeout(scanTimer); scanTimer = null; }
 		if (scanStream) { scanStream.getTracks().forEach(t => t.stop()); scanStream = null; }
 		if (scanVideoEl) { scanVideoEl.srcObject = null; }
 	}
