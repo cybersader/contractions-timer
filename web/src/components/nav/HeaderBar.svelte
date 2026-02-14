@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Clock, Menu, Share2 } from 'lucide-svelte';
 	import { isP2PActive, peerState } from '../../lib/stores/p2p';
+	import { APP_VERSION } from '../../lib/version';
 
 	interface Props {
 		onMenuToggle: () => void;
@@ -17,6 +18,7 @@
 	<button class="header-brand" onclick={onHomeClick} aria-label="Go to Timer">
 		<Clock size={20} strokeWidth={1.5} color="var(--accent)" aria-hidden="true" />
 		<span class="header-title">contractions.app</span>
+		<span class="header-version">v{APP_VERSION}</span>
 	</button>
 	<div class="header-actions">
 		<button class="header-icon-btn" onclick={onShareClick} aria-label="Share session">
@@ -73,6 +75,17 @@
 		font-weight: 600;
 		color: var(--text-primary);
 		letter-spacing: -0.01em;
+	}
+
+	.header-version {
+		font-size: 10px;
+		font-weight: 500;
+		color: var(--text-faint);
+		opacity: 0.5;
+		letter-spacing: 0.02em;
+		margin-left: 2px;
+		align-self: flex-end;
+		margin-bottom: 1px;
 	}
 
 	.header-actions {
