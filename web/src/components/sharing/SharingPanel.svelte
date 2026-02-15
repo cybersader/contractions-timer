@@ -336,8 +336,8 @@
 	let scanStream: MediaStream | null = null;
 	let scanTimer: ReturnType<typeof setTimeout> | null = null;
 
-	/** Max canvas dimension for jsQR — keeps processing fast and avoids Safari blank-frame issues */
-	const SCAN_MAX_DIM = 640;
+	/** Max canvas dimension for jsQR — higher = better detection at cost of CPU */
+	const SCAN_MAX_DIM = 1024;
 
 	/** Native BarcodeDetector (Safari iOS 17.2+, Chrome 83+) — bypasses canvas issues on mobile */
 	let nativeBarcodeDetector: { detect(source: any): Promise<Array<{ rawValue: string }>> } | null = null;
@@ -483,15 +483,9 @@
 							canvas!.width = sw;
 							canvas!.height = sh;
 
-							let usedBitmap = false;
-							try {
-								const bitmap = await createImageBitmap(scanVideoEl!);
-								ctx!.drawImage(bitmap, 0, 0, sw, sh);
-								bitmap.close();
-								usedBitmap = true;
-							} catch {
-								ctx!.drawImage(scanVideoEl!, 0, 0, sw, sh);
-							}
+							// Draw video element directly to canvas — createImageBitmap can return
+							// orientation-rotated frames on iOS Safari, breaking QR detection
+							ctx!.drawImage(scanVideoEl!, 0, 0, sw, sh);
 
 							const imageData = ctx!.getImageData(0, 0, sw, sh);
 
@@ -507,7 +501,7 @@
 								const cx = Math.floor(sw / 2), cy = Math.floor(sh / 2);
 								const idx = (cy * sw + cx) * 4;
 								const centerPixel = `[${imageData.data[idx]},${imageData.data[idx+1]},${imageData.data[idx+2]},${imageData.data[idx+3]}]`;
-								dlog('qr-scan', `jsQR frame #${frameCount}`, { sw, sh, usedBitmap, hasData, centerPixel });
+								dlog('qr-scan', `jsQR frame #${frameCount}`, { sw, sh, hasData, centerPixel });
 							}
 
 							if (hasData) {
