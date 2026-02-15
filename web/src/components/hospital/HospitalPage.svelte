@@ -262,15 +262,15 @@
 				<div class="rule-items">
 					<div class="rule-item" class:met={stats.rule511Progress.intervalOk}>
 						<span class="rule-check">{stats.rule511Progress.intervalOk ? '✓' : '○'}</span>
-						<span>{$settings.threshold.intervalMinutes} min apart (avg {stats.rule511Progress.intervalValue.toFixed(1)} min)</span>
+						<span>≤ {$settings.threshold.intervalMinutes} min apart (avg {stats.rule511Progress.intervalValue.toFixed(1)} min)</span>
 					</div>
 					<div class="rule-item" class:met={stats.rule511Progress.durationOk}>
 						<span class="rule-check">{stats.rule511Progress.durationOk ? '✓' : '○'}</span>
-						<span>{Math.round($settings.threshold.durationSeconds / 60)} min long (avg {Math.round(stats.rule511Progress.durationValue)}s)</span>
+						<span>≥ {Math.round($settings.threshold.durationSeconds / 60)} min long (avg {Math.round(stats.rule511Progress.durationValue)}s)</span>
 					</div>
 					<div class="rule-item" class:met={stats.rule511Progress.sustainedOk}>
 						<span class="rule-check">{stats.rule511Progress.sustainedOk ? '✓' : '○'}</span>
-						<span>{$settings.threshold.sustainedMinutes} min sustained ({Math.round(stats.rule511Progress.sustainedValue)} min)</span>
+						<span>≥ {$settings.threshold.sustainedMinutes} min sustained ({Math.round(stats.rule511Progress.sustainedValue)} min)</span>
 					</div>
 				</div>
 				<button class="rule-how-toggle" onclick={() => showRuleExplainer = !showRuleExplainer}>
