@@ -211,6 +211,8 @@ export interface ContractionTimerSettings {
 	showChartOverlay: boolean;
 	// Pattern assessment thresholds
 	bhThresholds: BHThresholdConfig;
+	// Prayers & devotional tab (always shown on Cathedral/Shire themes)
+	showPrayers: boolean;
 }
 
 /** Evidence-based defaults: Zhang et al. 2010, ACOG 2024 */
@@ -306,6 +308,7 @@ export const DEFAULT_SETTINGS: ContractionTimerSettings = {
 	chartGapThresholdMin: 30,
 	showChartOverlay: false,
 	bhThresholds: { ...DEFAULT_BH_THRESHOLDS },
+	showPrayers: false,
 };
 
 /** Empty session data */

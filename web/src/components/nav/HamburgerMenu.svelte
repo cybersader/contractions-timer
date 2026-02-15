@@ -36,8 +36,8 @@
 
 	let activeTab: 'menu' | 'settings' | 'about' | 'theme' | 'sessions' | 'devtools' | 'sharing' | 'devotional' = $state('menu');
 
-	// Easter egg: show "Prayers & Saints" only for Cathedral (warm-mid) and Shire (forest-mid)
-	let showDevotional = $derived(currentTheme === 'warm-mid' || currentTheme === 'forest-mid');
+	// Show "Prayers" on Cathedral/Shire by default, or on any theme if explicitly enabled in settings
+	let showDevotional = $derived(currentTheme === 'warm-mid' || currentTheme === 'forest-mid' || $settings.showPrayers);
 
 	// Auto-switch to settings tab when a settings section is requested
 	$effect(() => {
@@ -246,7 +246,7 @@
 					{#if showDevotional}
 						<button class="menu-item menu-item--devotional" onclick={() => activeTab = 'devotional'}>
 							<span class="devotional-menu-icon">&#128591;</span>
-							<span>Prayers & saints</span>
+							<span>Prayers</span>
 						</button>
 					{/if}
 					<button class="menu-item" onclick={() => activeTab = 'devtools'}>

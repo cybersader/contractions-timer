@@ -1088,11 +1088,11 @@ html[data-theme="forest-mid"] {
 	--bg-elevated: #1a2c1a;
 	--bg-card: rgba(245, 240, 225, 0.93);
 	--bg-card-hover: rgba(248, 244, 232, 0.96);
-	/* Light sage-cream on dark forest bg */
-	--text-primary: #e8f0e0;
-	--text-secondary: #c8d8b8;
-	--text-muted: rgba(232, 240, 224, 0.62);
-	--text-faint: rgba(232, 240, 224, 0.40);
+	/* Light sage-cream on dark forest bg — bright enough for readability */
+	--text-primary: #f0f5ea;
+	--text-secondary: #d4e4c4;
+	--text-muted: rgba(240, 245, 234, 0.68);
+	--text-faint: rgba(240, 245, 234, 0.45);
 	/* Mossy green accent — NOT gold like Cathedral */
 	--accent: #5d9e3e;
 	--accent-dim: #3d7a2e;
@@ -1207,65 +1207,66 @@ html[data-theme="sunset-mid"] {
 	--big-button-rest-color: #4ade80;
 }
 
-/* --- LAVENDER MID: "Crystal" ---
-   Lavender bg, high-opacity white glass cards, deep purple text, prismatic refraction */
+/* --- LAVENDER MID: "Frost" ---
+   Clean white/ice blue, frosted glass, minimal color, pristine winter aesthetic */
 html[data-theme="lavender-mid"] {
 	--theme-font: 'DM Sans', sans-serif;
-	--bg-primary: #b08cd4;
-	--bg-secondary: #9070b8;
-	--bg-elevated: #c0a0e0;
-	--bg-card: rgba(255, 255, 255, 0.88);
-	--bg-card-hover: rgba(255, 255, 255, 0.94);
-	--text-primary: #3b0764;
-	--text-secondary: #581c87;
-	--text-muted: rgba(59, 7, 100, 0.65);
-	--text-faint: rgba(59, 7, 100, 0.42);
-	--accent: #9333ea;
-	--accent-dim: #7e22ce;
-	--accent-muted: rgba(147, 51, 234, 0.18);
+	/* Frost: clean white/ice blue palette */
+	--bg-primary: #e8edf4;
+	--bg-secondary: #dce3ee;
+	--bg-elevated: #f0f4f8;
+	--bg-card: rgba(255, 255, 255, 0.96);
+	--bg-card-hover: rgba(255, 255, 255, 1.0);
+	--text-primary: #1a1f2e;
+	--text-secondary: #3d4663;
+	--text-muted: rgba(26, 31, 46, 0.58);
+	--text-faint: rgba(26, 31, 46, 0.35);
+	--accent: #5b8def;
+	--accent-dim: #4070d6;
+	--accent-muted: rgba(91, 141, 239, 0.14);
 	--success: #16a34a;
-	--success-muted: rgba(22, 163, 74, 0.15);
+	--success-muted: rgba(22, 163, 74, 0.12);
 	--warning: #d97706;
-	--warning-muted: rgba(217, 119, 6, 0.15);
+	--warning-muted: rgba(217, 119, 6, 0.12);
 	--danger: #dc2626;
-	--danger-muted: rgba(220, 38, 38, 0.15);
+	--danger-muted: rgba(220, 38, 38, 0.12);
 	--water: #2563eb;
-	--water-muted: rgba(37, 99, 235, 0.15);
-	--border: rgba(147, 51, 234, 0.22);
-	--border-muted: rgba(147, 51, 234, 0.10);
-	--nav-border: rgba(255, 255, 255, 0.22);
-	--nav-inactive: rgba(255, 255, 255, 0.55);
-	--toggle-bg: rgba(255, 255, 255, 0.30);
+	--water-muted: rgba(37, 99, 235, 0.12);
+	--border: rgba(91, 141, 239, 0.18);
+	--border-muted: rgba(91, 141, 239, 0.08);
+	--nav-border: rgba(91, 141, 239, 0.15);
+	--nav-inactive: rgba(26, 31, 46, 0.40);
+	--toggle-bg: rgba(91, 141, 239, 0.15);
 	--toggle-knob: white;
-	--input-bg: rgba(255, 255, 255, 0.50);
-	--input-border: rgba(147, 51, 234, 0.25);
-	--wave-line: rgba(147, 51, 234, 0.22);
-	--wave-grid: rgba(147, 51, 234, 0.10);
-	--wave-grid-text: rgba(59, 7, 100, 0.50);
-	--wave-text: rgba(59, 7, 100, 0.50);
-	--wave-threshold-ok: rgba(22, 163, 74, 0.28);
-	--wave-threshold-warn: rgba(217, 119, 6, 0.25);
-	/* Creative: Crystal — lavender with prismatic refraction blobs */
+	--input-bg: rgba(255, 255, 255, 0.80);
+	--input-border: rgba(91, 141, 239, 0.20);
+	--wave-line: rgba(91, 141, 239, 0.20);
+	--wave-grid: rgba(91, 141, 239, 0.08);
+	--wave-grid-text: rgba(26, 31, 46, 0.45);
+	--wave-text: rgba(26, 31, 46, 0.45);
+	--wave-threshold-ok: rgba(22, 163, 74, 0.25);
+	--wave-threshold-warn: rgba(217, 119, 6, 0.22);
+	/* Frost: subtle ice-blue gradient with refraction highlights */
 	--gradient-bg:
-		radial-gradient(ellipse at 30% 50%, rgba(192, 132, 252, 0.40), transparent 55%),
-		radial-gradient(ellipse at 70% 25%, rgba(168, 85, 247, 0.35), transparent 48%),
-		radial-gradient(ellipse at 45% 80%, rgba(232, 121, 249, 0.28), transparent 52%),
-		linear-gradient(125deg, #9674c0, #b894dc);
-	--glow-color: rgba(147, 51, 234, 0.30);
-	--glow-color-strong: rgba(147, 51, 234, 0.50);
-	--header-bg: linear-gradient(125deg, rgba(144, 112, 184, 0.94), rgba(192, 132, 252, 0.85));
-	--nav-bg: linear-gradient(0deg, #7c5ea8, #9070b8);
-	/* Big button: crystal prism */
-	--big-button-bg: rgba(255, 255, 255, 0.90);
-	--big-button-border: rgba(147, 51, 234, 0.45);
-	--big-button-color: #9333ea;
-	--big-button-glow: 0 0 30px rgba(168, 85, 247, 0.35), inset 0 2px 0 rgba(255, 255, 255, 1);
-	--big-button-active-bg: rgba(255, 240, 240, 0.88);
-	--big-button-active-border: rgba(220, 38, 38, 0.45);
+		radial-gradient(ellipse at 20% 30%, rgba(186, 210, 255, 0.35), transparent 55%),
+		radial-gradient(ellipse at 80% 60%, rgba(147, 197, 253, 0.25), transparent 50%),
+		radial-gradient(ellipse at 50% 90%, rgba(199, 210, 254, 0.20), transparent 50%),
+		linear-gradient(160deg, #e2e8f4, #f0f4fb, #e8edf6);
+	--glow-color: rgba(91, 141, 239, 0.15);
+	--glow-color-strong: rgba(91, 141, 239, 0.30);
+	--header-bg: linear-gradient(160deg, rgba(240, 244, 252, 0.97), rgba(226, 232, 244, 0.94));
+	--nav-bg: linear-gradient(0deg, #dce3f0, #e4eaf4);
+	/* Big button: clean white with ice-blue glow */
+	--big-button-bg: rgba(255, 255, 255, 0.98);
+	--big-button-border: rgba(91, 141, 239, 0.30);
+	--big-button-color: #4070d6;
+	--big-button-glow: 0 4px 24px rgba(91, 141, 239, 0.18), inset 0 2px 0 rgba(255, 255, 255, 1);
+	--big-button-active-bg: rgba(255, 245, 245, 0.98);
+	--big-button-active-border: rgba(220, 38, 38, 0.35);
 	--big-button-active-color: #dc2626;
-	--big-button-active-glow: 0 0 30px rgba(220, 38, 38, 0.35);
-	--big-button-rest-bg: rgba(240, 255, 240, 0.88);
-	--big-button-rest-border: rgba(22, 163, 74, 0.40);
+	--big-button-active-glow: 0 4px 24px rgba(220, 38, 38, 0.20);
+	--big-button-rest-bg: rgba(245, 255, 245, 0.98);
+	--big-button-rest-border: rgba(22, 163, 74, 0.30);
 	--big-button-rest-color: #16a34a;
 }
 
@@ -1953,6 +1954,19 @@ html[data-theme="warm-mid"] [class*="mode-btn"],
 html[data-theme="warm-mid"] [class*="picker"],
 html[data-theme="warm-mid"] [class*="editor-pill"],
 html[data-theme="warm-mid"] [class*="editor-btn"],
+html[data-theme="warm-mid"] [class*="history"],
+html[data-theme="warm-mid"] [class*="item-"],
+html[data-theme="warm-mid"] [class*="event-row"],
+html[data-theme="warm-mid"] [class*="empty-state"],
+html[data-theme="warm-mid"] [class*="factor"],
+html[data-theme="warm-mid"] [class*="recent"],
+html[data-theme="warm-mid"] [class*="session-"],
+html[data-theme="warm-mid"] [class*="snapshot"],
+html[data-theme="warm-mid"] [class*="share"],
+html[data-theme="warm-mid"] [class*="location-"],
+html[data-theme="warm-mid"] [class*="intensity"],
+html[data-theme="warm-mid"] [class*="pause"],
+html[data-theme="warm-mid"] [class*="onboarding"],
 html[data-theme="warm-mid"] .card,
 html[data-theme="warm-mid"] .card-elevated {
 	--text-primary: #2c1503;
@@ -2166,6 +2180,16 @@ html[data-theme="warm-mid"] .header-bar {
 /* --- Big button extra gold glow on idle --- */
 html[data-theme="warm-mid"] .big-button {
 	border-width: 2px;
+	max-width: min(320px, calc(100vw - 48px));
+}
+
+/* --- Prevent Cinzel font + letter-spacing from overflowing buttons --- */
+html[data-theme="warm-mid"] button,
+html[data-theme="warm-mid"] [class*="btn"] {
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 /* ============================================
@@ -2342,6 +2366,19 @@ html[data-theme="forest-mid"] [class*="mode-btn"],
 html[data-theme="forest-mid"] [class*="picker"],
 html[data-theme="forest-mid"] [class*="editor-pill"],
 html[data-theme="forest-mid"] [class*="editor-btn"],
+html[data-theme="forest-mid"] [class*="history"],
+html[data-theme="forest-mid"] [class*="item-"],
+html[data-theme="forest-mid"] [class*="event-row"],
+html[data-theme="forest-mid"] [class*="empty-state"],
+html[data-theme="forest-mid"] [class*="factor"],
+html[data-theme="forest-mid"] [class*="recent"],
+html[data-theme="forest-mid"] [class*="session-"],
+html[data-theme="forest-mid"] [class*="snapshot"],
+html[data-theme="forest-mid"] [class*="share"],
+html[data-theme="forest-mid"] [class*="location-"],
+html[data-theme="forest-mid"] [class*="intensity"],
+html[data-theme="forest-mid"] [class*="pause"],
+html[data-theme="forest-mid"] [class*="onboarding"],
 html[data-theme="forest-mid"] .card,
 html[data-theme="forest-mid"] .card-elevated {
 	--text-primary: #14261a;
@@ -2482,6 +2519,16 @@ html[data-theme="forest-mid"] .header-bar {
 
 html[data-theme="forest-mid"] .big-button {
 	border-width: 2px;
+	max-width: min(320px, calc(100vw - 48px));
+}
+
+/* Prevent Playfair Display font from overflowing buttons */
+html[data-theme="forest-mid"] button,
+html[data-theme="forest-mid"] [class*="btn"] {
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 html[data-theme="forest-mid"] .btn-primary:active {
@@ -2658,117 +2705,107 @@ html[data-theme="sunset-mid"] .btn-primary:hover {
 }
 
 /* ============================================
-   7. CRYSTAL (lavender-mid) — "Prismatic Frosted Glass"
-   Lavender bg, white glass cards, rainbow shimmer, angular shapes
+   7. FROST (lavender-mid) — "Clean Ice Crystal"
+   Pristine white/ice blue, frosted glass cards, minimal color, winter aesthetic
    ============================================ */
 
 html[data-theme="lavender-mid"] body {
 	background: var(--gradient-bg, var(--bg-primary));
 	background-attachment: fixed;
-	background-size: 200% 200%;
-	animation: aurora-drift 35s ease infinite;
 }
 
 html[data-theme="lavender-mid"] {
-	--radius-md: 4px;
-	--radius-lg: 6px;
-	--radius-xl: 8px;
-	--shadow-sm: 0 2px 6px rgba(147, 51, 234, 0.15), 2px 0 8px rgba(192, 132, 252, 0.08);
-	--shadow-md: 0 4px 12px rgba(147, 51, 234, 0.20), 3px 0 14px rgba(192, 132, 252, 0.10);
-	--shadow-lg: 0 6px 20px rgba(147, 51, 234, 0.25), 4px 0 20px rgba(192, 132, 252, 0.12);
+	--radius-md: 12px;
+	--radius-lg: 16px;
+	--radius-xl: 20px;
+	--shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(91, 141, 239, 0.06);
+	--shadow-md: 0 2px 8px rgba(0, 0, 0, 0.05), 0 4px 16px rgba(91, 141, 239, 0.08);
+	--shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(91, 141, 239, 0.10);
 }
 
 html[data-theme="lavender-mid"] .card {
-	backdrop-filter: blur(12px) saturate(1.3);
-	-webkit-backdrop-filter: blur(12px) saturate(1.3);
-	border: 1px solid rgba(255, 255, 255, 0.30);
-	border-top: 2px solid rgba(192, 132, 252, 0.50);
-	border-radius: 4px;
-	box-shadow: 0 4px 14px rgba(147, 51, 234, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+	backdrop-filter: blur(16px) saturate(1.1);
+	-webkit-backdrop-filter: blur(16px) saturate(1.1);
+	border: 1px solid rgba(255, 255, 255, 0.80);
+	border-radius: 12px;
+	box-shadow: 0 2px 12px rgba(91, 141, 239, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.90);
 	position: relative;
 	overflow: hidden;
 }
 
-/* Rainbow prismatic shimmer */
+/* Subtle frost shimmer — barely visible blue sweep */
 html[data-theme="lavender-mid"] .card::before {
 	content: '';
 	position: absolute;
 	top: 0; left: 0;
-	width: 30%;
-	height: 2px;
-	background: linear-gradient(90deg, transparent, rgba(192, 132, 252, 0.5), rgba(129, 140, 248, 0.4), rgba(236, 72, 153, 0.3), rgba(251, 191, 36, 0.2), transparent);
-	animation: shimmer-sweep 5s ease-in-out infinite;
+	width: 40%;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.50), rgba(91, 141, 239, 0.30), transparent);
+	animation: shimmer-sweep 6s ease-in-out infinite;
 	pointer-events: none;
 }
 
-/* Geometric corner bracket */
+/* Remove the old geometric corner bracket */
 html[data-theme="lavender-mid"] .card::after {
-	content: '';
-	position: absolute;
-	bottom: 6px; right: 6px;
-	width: 12px; height: 12px;
-	border-right: 2px solid rgba(192, 132, 252, 0.25);
-	border-bottom: 2px solid rgba(192, 132, 252, 0.25);
+	content: none;
 }
 
 html[data-theme="lavender-mid"] .card-elevated {
-	backdrop-filter: blur(14px) saturate(1.3);
-	-webkit-backdrop-filter: blur(14px) saturate(1.3);
-	box-shadow: 0 6px 20px rgba(147, 51, 234, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.50);
+	backdrop-filter: blur(18px) saturate(1.1);
+	-webkit-backdrop-filter: blur(18px) saturate(1.1);
+	box-shadow: 0 4px 20px rgba(91, 141, 239, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 html[data-theme="lavender-mid"] .nav-tab.active {
-	letter-spacing: 0.02em;
-	text-shadow: 0 0 8px rgba(147, 51, 234, 0.35);
+	font-weight: 600;
+	color: var(--accent);
 }
 
 html[data-theme="lavender-mid"] .bottom-nav {
-	box-shadow: 0 -2px 10px rgba(147, 51, 234, 0.14);
+	box-shadow: 0 -1px 8px rgba(91, 141, 239, 0.08);
+	border-top: 1px solid rgba(91, 141, 239, 0.10);
 }
 
 html[data-theme="lavender-mid"] .btn-primary {
-	border-radius: 4px;
-	box-shadow: 0 3px 10px rgba(147, 51, 234, 0.22);
+	border-radius: 12px;
+	box-shadow: 0 2px 8px rgba(91, 141, 239, 0.18);
 }
 
 html[data-theme="lavender-mid"] .page-title,
 html[data-theme="lavender-mid"] .section-title {
-	letter-spacing: 0.04em;
+	letter-spacing: 0.02em;
+	font-weight: 700;
 }
 
-/* Prismatic light shard */
+/* Gentle frost refraction light — very subtle */
 html[data-theme="lavender-mid"] body::before {
 	content: '';
 	position: fixed;
-	top: 10%; right: -20%;
-	width: 50%; height: 200px;
-	background: linear-gradient(135deg, rgba(192, 132, 252, 0.08), rgba(168, 85, 247, 0.12), transparent);
-	transform: rotate(-15deg);
-	animation: prism-rotate 40s ease-in-out infinite alternate;
-	transform-origin: center;
+	top: 0; left: 0; right: 0;
+	height: 40%;
+	background: radial-gradient(ellipse at 40% 20%, rgba(186, 210, 255, 0.20), transparent 60%);
 	pointer-events: none;
 	z-index: 0;
 }
 
-/* Prismatic overlay */
 html[data-theme="lavender-mid"] body::after {
 	content: '';
 	position: fixed;
 	inset: 0;
 	background:
-		linear-gradient(135deg, rgba(192, 132, 252, 0.04) 0%, transparent 30%),
-		linear-gradient(225deg, rgba(129, 140, 248, 0.04) 0%, transparent 30%),
-		linear-gradient(315deg, rgba(236, 72, 153, 0.03) 0%, transparent 30%);
+		radial-gradient(ellipse at 70% 80%, rgba(147, 197, 253, 0.10), transparent 50%);
 	pointer-events: none;
 	z-index: 0;
 }
 
-/* Prismatic gradient on page title text */
+/* Clean underline on page titles */
 html[data-theme="lavender-mid"] .page-title {
-	background: linear-gradient(135deg, var(--text-primary), var(--accent), rgba(192, 132, 252, 0.8));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
+	/* Remove the old gradient text fill */
+	background: none;
+	-webkit-background-clip: unset;
+	-webkit-text-fill-color: unset;
+	background-clip: unset;
+	color: var(--text-primary);
 	position: relative;
 	padding-bottom: 10px;
 }
@@ -2777,30 +2814,32 @@ html[data-theme="lavender-mid"] .page-title::after {
 	content: '';
 	position: absolute;
 	bottom: 0; left: 0;
-	width: 50px;
+	width: 40px;
 	height: 2px;
 	background: var(--accent);
-	clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+	border-radius: 1px;
 }
 
+/* Clean dot before section titles instead of rotated square */
 html[data-theme="lavender-mid"] .section-title {
 	position: relative;
-	padding-left: 16px;
+	padding-left: 14px;
 }
 
 html[data-theme="lavender-mid"] .section-title::before {
 	content: '';
 	position: absolute;
 	left: 0; top: 50%;
-	transform: translateY(-50%) rotate(45deg);
-	width: 7px;
-	height: 7px;
-	border: 1.5px solid rgba(147, 51, 234, 0.45);
-	background: transparent;
+	transform: translateY(-50%);
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--accent);
+	border: none;
 }
 
 html[data-theme="lavender-mid"] .btn-primary:hover {
-	box-shadow: 0 3px 10px rgba(147, 51, 234, 0.22), 0 0 0 1px rgba(192, 132, 252, 0.30);
+	box-shadow: 0 4px 16px rgba(91, 141, 239, 0.25);
 	transition: box-shadow 200ms ease;
 }
 
@@ -3258,7 +3297,7 @@ html[data-theme="blush-mid"] .btn-primary:active {
    ============================================ */
 
 /* Fallback: no backdrop-filter support → more opaque backgrounds */
-/* Light-card themes (Aurora, Cathedral, Shire, Crystal, Dreamscape) */
+/* Light-card themes (Aurora, Cathedral, Shire, Frost, Dreamscape) */
 @supports not (backdrop-filter: blur(1px)) {
 	html[data-theme="soft-mid"],
 	html[data-theme="warm-mid"],
