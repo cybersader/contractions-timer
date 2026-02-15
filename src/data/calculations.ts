@@ -455,7 +455,15 @@ export function estimateTimeTo511(
 	const avgInt = intervals.reduce((a, b) => a + b, 0) / intervals.length;
 	const maxSteps = Math.max(stepsToInterval, stepsToDuration);
 
-	const estimatedMinutes = maxSteps * avgInt;
+	const trendMinutes = maxSteps * avgInt;
+
+	// Also account for sustained time: the pattern must persist for sustainedMinutes
+	const firstStart = new Date(completed[0].start).getTime();
+	const lastStart = new Date(completed[completed.length - 1].start).getTime();
+	const currentSpan = (lastStart - firstStart) / 60000;
+	const remainingSustained = Math.max(0, threshold.sustainedMinutes - currentSpan);
+
+	const estimatedMinutes = Math.max(trendMinutes, remainingSustained);
 
 	// Cap at 4 hours - beyond that the estimate is unreliable
 	if (estimatedMinutes > 240) return null;

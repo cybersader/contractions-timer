@@ -64,13 +64,13 @@ export function earlyLaborSession(): SessionData {
 	};
 }
 
-/** Active labor: 12 contractions, regular intervals (4-6 min), moderate duration, rising intensity */
+/** Active labor: 12 contractions, regular intervals (3.5-5.5 min), moderate duration, rising intensity */
 export function activeLaborSession(): SessionData {
 	let t = 65; // minutes ago
 	const specs: ContractionSpec[] = [];
 	for (let i = 0; i < 12; i++) {
 		const progress = i / 11; // 0 to 1
-		const dur = rand(40, 60) + progress * 15;
+		const dur = rand(50, 65) + progress * 10;
 		const intensity = progress < 0.3 ? pick([2, 2, 3]) : progress < 0.7 ? pick([3, 3, 4]) : pick([3, 4, 4]);
 		specs.push({
 			minutesAgo: t,
@@ -78,7 +78,7 @@ export function activeLaborSession(): SessionData {
 			intensity,
 			location: progress < 0.4 ? pick(['front', 'front', 'back']) : pick(['back', 'wrapping', 'wrapping']),
 		});
-		t -= rand(4, 6.5);
+		t -= rand(3.5, 5.5);
 	}
 	return {
 		...EMPTY_SESSION,

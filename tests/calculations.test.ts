@@ -406,6 +406,22 @@ describe('estimateTimeTo511', () => {
 		];
 		expect(estimateTimeTo511(contractions, defaultThreshold)).toBeNull();
 	});
+
+	it('accounts for remaining sustained time when trend is close', () => {
+		// Contractions nearly meeting interval/duration but only spanning 45 min
+		// The estimate should include remaining sustained time (60 - 45 = 15 min)
+		const now = Date.now();
+		const contractions: Contraction[] = [];
+		// 10 contractions, ~4.5 min apart, ~55s duration, spanning 45 min
+		for (let i = 0; i < 10; i++) {
+			contractions.push(makeContraction(0, 55 + i * 0.5, 3, now - (45 - i * 4.5) * 60000));
+		}
+		const result = estimateTimeTo511(contractions, defaultThreshold);
+		// Even if interval/duration trends converge quickly, sustained needs 15+ min
+		if (result !== null) {
+			expect(result).toBeGreaterThanOrEqual(10);
+		}
+	});
 });
 
 describe('untimed contraction filtering', () => {

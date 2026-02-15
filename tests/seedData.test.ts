@@ -41,12 +41,12 @@ describe('seed data validation', () => {
 		const completed = session.contractions.filter(c => c.end !== null);
 		const result = check511Rule(completed, defaultThreshold);
 
-		// Interval should be around 4-6 min
+		// Interval should be around 3.5-5.5 min
 		expect(result.progress.intervalValue).toBeGreaterThan(2);
-		expect(result.progress.intervalValue).toBeLessThan(8);
+		expect(result.progress.intervalValue).toBeLessThan(7);
 
-		// Duration should be around 40-75s
-		expect(result.progress.durationValue).toBeGreaterThan(30);
+		// Duration should be around 50-75s
+		expect(result.progress.durationValue).toBeGreaterThan(40);
 		expect(result.progress.durationValue).toBeLessThan(80);
 
 		// Sustained value should be positive and reflect actual span
