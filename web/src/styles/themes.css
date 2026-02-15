@@ -961,8 +961,8 @@ html[data-theme="warm-mid"] {
 	--bg-primary: #1a1008;
 	--bg-secondary: #140c04;
 	--bg-elevated: #2a1c10;
-	--bg-card: rgba(252, 246, 228, 0.94);
-	--bg-card-hover: rgba(254, 250, 235, 0.97);
+	--bg-card: rgba(30, 20, 10, 0.78);
+	--bg-card-hover: rgba(42, 28, 14, 0.88);
 	--text-primary: #f5e6c8;
 	--text-secondary: #dcc8a0;
 	--text-muted: rgba(245, 230, 200, 0.65);
@@ -1003,18 +1003,18 @@ html[data-theme="warm-mid"] {
 	--glow-color-strong: rgba(196, 136, 14, 0.40);
 	--header-bg: linear-gradient(180deg, rgba(26, 16, 8, 0.97), rgba(42, 28, 16, 0.94));
 	--nav-bg: linear-gradient(0deg, #100a04, #1a1008);
-	/* Big button: illuminated parchment with ornate gold border */
-	--big-button-bg: rgba(252, 246, 228, 0.96);
+	/* Big button: dark frosted with ornate gold border */
+	--big-button-bg: rgba(30, 20, 10, 0.78);
 	--big-button-border: rgba(196, 136, 14, 0.55);
-	--big-button-color: #8b5e14;
-	--big-button-glow: 0 0 32px rgba(196, 136, 14, 0.40), inset 0 2px 4px rgba(255, 255, 255, 0.55);
-	--big-button-active-bg: rgba(252, 236, 220, 0.94);
+	--big-button-color: #e8a820;
+	--big-button-glow: 0 0 32px rgba(196, 136, 14, 0.40), inset 0 1px 0 rgba(245, 230, 200, 0.15);
+	--big-button-active-bg: rgba(60, 20, 15, 0.82);
 	--big-button-active-border: rgba(184, 50, 48, 0.50);
-	--big-button-active-color: #b83230;
+	--big-button-active-color: #f06060;
 	--big-button-active-glow: 0 0 28px rgba(184, 50, 48, 0.35);
-	--big-button-rest-bg: rgba(236, 248, 228, 0.94);
+	--big-button-rest-bg: rgba(25, 30, 15, 0.80);
 	--big-button-rest-border: rgba(61, 139, 55, 0.40);
-	--big-button-rest-color: #3d8b37;
+	--big-button-rest-color: #4ade80;
 }
 
 /* --- OCEAN MID: "Abyss" ---
@@ -1089,8 +1089,8 @@ html[data-theme="forest-mid"] {
 	--bg-primary: #0e1a0e;
 	--bg-secondary: #0a120a;
 	--bg-elevated: #1a2c1a;
-	--bg-card: rgba(245, 240, 225, 0.93);
-	--bg-card-hover: rgba(248, 244, 232, 0.96);
+	--bg-card: rgba(14, 26, 14, 0.78);
+	--bg-card-hover: rgba(26, 44, 26, 0.88);
 	/* Light sage-cream on dark forest bg — bright enough for readability */
 	--text-primary: #f0f5ea;
 	--text-secondary: #d4e4c4;
@@ -1135,18 +1135,18 @@ html[data-theme="forest-mid"] {
 	--glow-color-strong: rgba(93, 158, 62, 0.42);
 	--header-bg: linear-gradient(160deg, rgba(14, 26, 14, 0.96), rgba(26, 44, 26, 0.92));
 	--nav-bg: linear-gradient(0deg, #080e08, #0e1a0e);
-	/* Big button: warm parchment with green vine border */
-	--big-button-bg: rgba(245, 240, 225, 0.94);
+	/* Big button: dark frosted with green vine border */
+	--big-button-bg: rgba(14, 26, 14, 0.78);
 	--big-button-border: rgba(93, 158, 62, 0.50);
-	--big-button-color: #2d5a2d;
-	--big-button-glow: 0 0 24px rgba(93, 158, 62, 0.30), inset 0 2px 0 rgba(255, 255, 255, 0.40);
-	--big-button-active-bg: rgba(252, 238, 230, 0.92);
-	--big-button-active-border: rgba(184, 50, 50, 0.50);
-	--big-button-active-color: #b83232;
-	--big-button-active-glow: 0 0 24px rgba(184, 50, 50, 0.35);
-	--big-button-rest-bg: rgba(240, 242, 230, 0.90);
+	--big-button-color: #7cb850;
+	--big-button-glow: 0 0 24px rgba(93, 158, 62, 0.30), inset 0 1px 0 rgba(200, 230, 200, 0.15);
+	--big-button-active-bg: rgba(60, 20, 20, 0.82);
+	--big-button-active-border: rgba(240, 96, 96, 0.50);
+	--big-button-active-color: #f06060;
+	--big-button-active-glow: 0 0 24px rgba(240, 96, 96, 0.35);
+	--big-button-rest-bg: rgba(14, 30, 14, 0.80);
 	--big-button-rest-border: rgba(107, 142, 35, 0.45);
-	--big-button-rest-color: #4a7a2a;
+	--big-button-rest-color: #7cb850;
 	/* Gold accent — Tolkien's One Ring palette, warm hearth glow */
 	--accent-gold: #c4961e;
 	--accent-gold-muted: rgba(196, 150, 30, 0.18);
@@ -1805,7 +1805,6 @@ html[data-theme="soft-mid"] .collapsible,
 html[data-theme="soft-mid"] .location-pill,
 html[data-theme="soft-mid"] .time-picker,
 html[data-theme="soft-mid"] .time-range-card,
-html[data-theme="soft-mid"] .empty-state,
 html[data-theme="soft-mid"] .empty-state-icon,
 html[data-theme="soft-mid"] .action-card,
 html[data-theme="soft-mid"] .live-card,
@@ -2078,70 +2077,14 @@ html[data-theme="warm-mid"] {
 	--shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.55), 0 0 32px rgba(196, 136, 14, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.40);
 }
 
-/* --- Dark text inside light-bg containers (parchment cards & panels) ---
-   Global --text-primary is LIGHT (cream) for dark cathedral bg.
-   Override to DARK brown ONLY on elements that have background: var(--bg-card).
-   IMPORTANT: Do NOT use broad [class*="xxx"] selectors — they catch dark-bg elements too! */
+/* --- Cathedral dark frosted cards: light warm text on dark bg ---
+   With --bg-card now dark frosted, card text must be LIGHT (matching root).
+   This block reinforces root vars on card elements for clarity and easy revert. */
 html[data-theme="warm-mid"] .card,
-html[data-theme="warm-mid"] .card-elevated,
-html[data-theme="warm-mid"] .summary-card,
-html[data-theme="warm-mid"] .bh-panel,
-html[data-theme="warm-mid"] .stage-bar-container,
-html[data-theme="warm-mid"] .chart-container,
-html[data-theme="warm-mid"] .history-item,
-html[data-theme="warm-mid"] .editor-pill,
-html[data-theme="warm-mid"] .editor-btn,
-html[data-theme="warm-mid"] .clinical-header,
-html[data-theme="warm-mid"] .clinical-content,
-html[data-theme="warm-mid"] .clinical-card,
-html[data-theme="warm-mid"] .factor-tag,
-html[data-theme="warm-mid"] .menu-item-button,
-html[data-theme="warm-mid"] .theme-option,
-html[data-theme="warm-mid"] .export-format-option,
-html[data-theme="warm-mid"] .palette-card,
-html[data-theme="warm-mid"] .mode-btn,
-html[data-theme="warm-mid"] .devtools-seed-btn,
-html[data-theme="warm-mid"] .about-privacy,
-html[data-theme="warm-mid"] .section-header,
-html[data-theme="warm-mid"] .tips-container,
-html[data-theme="warm-mid"] .session-card,
-html[data-theme="warm-mid"] .toast-container,
-html[data-theme="warm-mid"] .stat-item,
-html[data-theme="warm-mid"] .contraction-item,
-html[data-theme="warm-mid"] .picker-card,
-html[data-theme="warm-mid"] .ctrl-btn,
-html[data-theme="warm-mid"] .untimed-form,
-html[data-theme="warm-mid"] .collapsible,
-html[data-theme="warm-mid"] .location-pill,
-html[data-theme="warm-mid"] .time-picker,
-html[data-theme="warm-mid"] .time-range-card,
-html[data-theme="warm-mid"] .empty-state,
-html[data-theme="warm-mid"] .empty-state-icon,
-html[data-theme="warm-mid"] .action-card,
-html[data-theme="warm-mid"] .live-card,
-html[data-theme="warm-mid"] .private-explainer,
-html[data-theme="warm-mid"] .mode-tabs,
-html[data-theme="warm-mid"] .sharing-input,
-html[data-theme="warm-mid"] .sharing-select,
-html[data-theme="warm-mid"] .advanced-section,
-html[data-theme="warm-mid"] .btn-secondary,
-html[data-theme="warm-mid"] .code-row,
-html[data-theme="warm-mid"] .peer-list-header,
-html[data-theme="warm-mid"] .expand-section,
-html[data-theme="warm-mid"] .receive-methods,
-html[data-theme="warm-mid"] .share-method-row,
-html[data-theme="warm-mid"] .preview-card,
-html[data-theme="warm-mid"] .result-card,
-html[data-theme="warm-mid"] .mode-radio {
-	--text-primary: #2c1503;
-	--text-secondary: #5c3a1a;
-	--text-muted: rgba(44, 21, 3, 0.65);
-	--text-faint: rgba(44, 21, 3, 0.42);
-	--accent: #8b5e14;
-	--danger: #b83230;
-	--success: #2d6b27;
-	--warning: #8b6508;
-	color: #2c1503;
+html[data-theme="warm-mid"] .card-elevated {
+	backdrop-filter: blur(12px) saturate(1.2);
+	-webkit-backdrop-filter: blur(12px) saturate(1.2);
+	border: 1.5px solid rgba(196, 136, 14, 0.30);
 }
 
 /* Opaque backgrounds for accent-muted elements on dark bg */
@@ -2154,7 +2097,7 @@ html[data-theme="warm-mid"] .stage-row.current {
 	border-color: rgba(232, 168, 32, 0.45);
 }
 
-/* Form elements inside card containers need explicit dark text */
+/* Form elements inside dark frosted cards — light text */
 html[data-theme="warm-mid"] .card input,
 html[data-theme="warm-mid"] .card select,
 html[data-theme="warm-mid"] .card textarea,
@@ -2164,8 +2107,8 @@ html[data-theme="warm-mid"] .collapsible input,
 html[data-theme="warm-mid"] .collapsible select,
 html[data-theme="warm-mid"] .time-picker input,
 html[data-theme="warm-mid"] .time-picker select {
-	color: #2c1503;
-	-webkit-text-fill-color: #2c1503;
+	color: #f5e6c8;
+	-webkit-text-fill-color: #f5e6c8;
 }
 
 html[data-theme="warm-mid"] .card {
@@ -2589,66 +2532,13 @@ html[data-theme="forest-mid"] {
    Global --text-primary is LIGHT (cream) for dark forest bg.
    Override to DARK green-brown ONLY on elements that have background: var(--bg-card).
    IMPORTANT: Do NOT use broad [class*="xxx"] selectors — they catch dark-bg elements too! */
+/* --- Shire dark frosted cards: light text on dark bg ---
+   With --bg-card now dark frosted, card text is LIGHT (matching root). */
 html[data-theme="forest-mid"] .card,
-html[data-theme="forest-mid"] .card-elevated,
-html[data-theme="forest-mid"] .summary-card,
-html[data-theme="forest-mid"] .bh-panel,
-html[data-theme="forest-mid"] .stage-bar-container,
-html[data-theme="forest-mid"] .chart-container,
-html[data-theme="forest-mid"] .history-item,
-html[data-theme="forest-mid"] .editor-pill,
-html[data-theme="forest-mid"] .editor-btn,
-html[data-theme="forest-mid"] .clinical-header,
-html[data-theme="forest-mid"] .clinical-content,
-html[data-theme="forest-mid"] .clinical-card,
-html[data-theme="forest-mid"] .factor-tag,
-html[data-theme="forest-mid"] .menu-item-button,
-html[data-theme="forest-mid"] .theme-option,
-html[data-theme="forest-mid"] .export-format-option,
-html[data-theme="forest-mid"] .palette-card,
-html[data-theme="forest-mid"] .mode-btn,
-html[data-theme="forest-mid"] .devtools-seed-btn,
-html[data-theme="forest-mid"] .about-privacy,
-html[data-theme="forest-mid"] .section-header,
-html[data-theme="forest-mid"] .tips-container,
-html[data-theme="forest-mid"] .session-card,
-html[data-theme="forest-mid"] .toast-container,
-html[data-theme="forest-mid"] .stat-item,
-html[data-theme="forest-mid"] .contraction-item,
-html[data-theme="forest-mid"] .picker-card,
-html[data-theme="forest-mid"] .ctrl-btn,
-html[data-theme="forest-mid"] .untimed-form,
-html[data-theme="forest-mid"] .collapsible,
-html[data-theme="forest-mid"] .location-pill,
-html[data-theme="forest-mid"] .time-picker,
-html[data-theme="forest-mid"] .time-range-card,
-html[data-theme="forest-mid"] .empty-state,
-html[data-theme="forest-mid"] .empty-state-icon,
-html[data-theme="forest-mid"] .action-card,
-html[data-theme="forest-mid"] .live-card,
-html[data-theme="forest-mid"] .private-explainer,
-html[data-theme="forest-mid"] .mode-tabs,
-html[data-theme="forest-mid"] .sharing-input,
-html[data-theme="forest-mid"] .sharing-select,
-html[data-theme="forest-mid"] .advanced-section,
-html[data-theme="forest-mid"] .btn-secondary,
-html[data-theme="forest-mid"] .code-row,
-html[data-theme="forest-mid"] .peer-list-header,
-html[data-theme="forest-mid"] .expand-section,
-html[data-theme="forest-mid"] .receive-methods,
-html[data-theme="forest-mid"] .share-method-row,
-html[data-theme="forest-mid"] .preview-card,
-html[data-theme="forest-mid"] .result-card,
-html[data-theme="forest-mid"] .mode-radio {
-	--text-primary: #14261a;
-	--text-secondary: #264d2e;
-	--text-muted: rgba(20, 38, 26, 0.65);
-	--text-faint: rgba(20, 38, 26, 0.42);
-	--accent: #1a5010;
-	--danger: #b83232;
-	--success: #3d6b1a;
-	--warning: #8b6914;
-	color: #14261a;
+html[data-theme="forest-mid"] .card-elevated {
+	backdrop-filter: blur(12px) saturate(1.2);
+	-webkit-backdrop-filter: blur(12px) saturate(1.2);
+	border: 1.5px solid rgba(93, 158, 62, 0.30);
 }
 
 /* Opaque backgrounds for accent-muted elements on dark bg — gold-green tint */
@@ -2664,7 +2554,7 @@ html[data-theme="forest-mid"] .stage-row.current {
 	border-color: rgba(124, 184, 80, 0.40);
 }
 
-/* Form elements inside card containers need explicit dark text */
+/* Form elements inside dark frosted cards — light text */
 html[data-theme="forest-mid"] .card input,
 html[data-theme="forest-mid"] .card select,
 html[data-theme="forest-mid"] .card textarea,
@@ -2674,9 +2564,14 @@ html[data-theme="forest-mid"] .collapsible input,
 html[data-theme="forest-mid"] .collapsible select,
 html[data-theme="forest-mid"] .time-picker input,
 html[data-theme="forest-mid"] .time-picker select {
-	color: #14261a;
-	-webkit-text-fill-color: #14261a;
+	color: #d4e4c4;
+	-webkit-text-fill-color: #d4e4c4;
 }
+
+/* Devtools toggle label — explicit hex, not var (card overrides may darken --accent) */
+html[data-theme="soft-mid"] .devtools-toggle-label { color: #a78bfa; }
+html[data-theme="warm-mid"] .devtools-toggle-label { color: #e8a820; }
+html[data-theme="forest-mid"] .devtools-toggle-label { color: #7cb850; }
 
 /* Event buttons on dark page bg — make visible on mid themes */
 html[data-theme="soft-mid"] .event-btn,
@@ -3675,6 +3570,154 @@ html[data-theme="blush-mid"] .btn-primary:active {
 		--bg-card: rgba(60, 25, 48, 0.96);
 		--bg-card-hover: rgba(75, 35, 58, 0.98);
 	}
+}
+
+/* =============================================================
+   LIGHT CARD STYLE VARIANTS
+   When data-card-style="light" is set on <html>, restore parchment
+   cards + dark text overrides for Cathedral and Shire.
+   ============================================================= */
+
+/* --- Cathedral light cards --- */
+html[data-theme="warm-mid"][data-card-style="light"] {
+	--bg-card: rgba(252, 246, 228, 0.94);
+	--bg-card-hover: rgba(254, 250, 235, 0.97);
+	--big-button-bg: rgba(252, 246, 228, 0.96);
+	--big-button-color: #8b5e14;
+	--big-button-glow: 0 0 32px rgba(196, 136, 14, 0.40), inset 0 2px 4px rgba(255, 255, 255, 0.55);
+	--big-button-rest-bg: rgba(236, 248, 228, 0.94);
+	--big-button-rest-color: #3d8b37;
+	--big-button-active-bg: rgba(252, 236, 220, 0.94);
+	--big-button-active-color: #b83230;
+}
+
+/* Dark text on light parchment cards */
+html[data-theme="warm-mid"][data-card-style="light"] .card,
+html[data-theme="warm-mid"][data-card-style="light"] .card-elevated,
+html[data-theme="warm-mid"][data-card-style="light"] .summary-card,
+html[data-theme="warm-mid"][data-card-style="light"] .bh-panel,
+html[data-theme="warm-mid"][data-card-style="light"] .stage-bar-container,
+html[data-theme="warm-mid"][data-card-style="light"] .chart-container,
+html[data-theme="warm-mid"][data-card-style="light"] .history-item,
+html[data-theme="warm-mid"][data-card-style="light"] .editor-pill,
+html[data-theme="warm-mid"][data-card-style="light"] .editor-btn,
+html[data-theme="warm-mid"][data-card-style="light"] .clinical-header,
+html[data-theme="warm-mid"][data-card-style="light"] .clinical-content,
+html[data-theme="warm-mid"][data-card-style="light"] .clinical-card,
+html[data-theme="warm-mid"][data-card-style="light"] .factor-tag,
+html[data-theme="warm-mid"][data-card-style="light"] .menu-item-button,
+html[data-theme="warm-mid"][data-card-style="light"] .theme-option,
+html[data-theme="warm-mid"][data-card-style="light"] .export-format-option,
+html[data-theme="warm-mid"][data-card-style="light"] .palette-card,
+html[data-theme="warm-mid"][data-card-style="light"] .mode-btn,
+html[data-theme="warm-mid"][data-card-style="light"] .devtools-seed-btn,
+html[data-theme="warm-mid"][data-card-style="light"] .about-privacy,
+html[data-theme="warm-mid"][data-card-style="light"] .section-header,
+html[data-theme="warm-mid"][data-card-style="light"] .tips-container,
+html[data-theme="warm-mid"][data-card-style="light"] .session-card,
+html[data-theme="warm-mid"][data-card-style="light"] .toast-container,
+html[data-theme="warm-mid"][data-card-style="light"] .stat-item,
+html[data-theme="warm-mid"][data-card-style="light"] .contraction-item,
+html[data-theme="warm-mid"][data-card-style="light"] .picker-card,
+html[data-theme="warm-mid"][data-card-style="light"] .ctrl-btn,
+html[data-theme="warm-mid"][data-card-style="light"] .untimed-form,
+html[data-theme="warm-mid"][data-card-style="light"] .collapsible,
+html[data-theme="warm-mid"][data-card-style="light"] .location-pill,
+html[data-theme="warm-mid"][data-card-style="light"] .time-picker,
+html[data-theme="warm-mid"][data-card-style="light"] .time-range-card,
+html[data-theme="warm-mid"][data-card-style="light"] .empty-state-icon,
+html[data-theme="warm-mid"][data-card-style="light"] .action-card,
+html[data-theme="warm-mid"][data-card-style="light"] .live-card,
+html[data-theme="warm-mid"][data-card-style="light"] .mode-radio {
+	--text-primary: #2c1503;
+	--text-secondary: #5c3a1a;
+	--text-muted: rgba(44, 21, 3, 0.65);
+	--text-faint: rgba(44, 21, 3, 0.42);
+	--accent: #8b5e14;
+	--danger: #b83230;
+	--success: #2d6b27;
+	--warning: #8b6508;
+	color: #2c1503;
+}
+
+html[data-theme="warm-mid"][data-card-style="light"] .card input,
+html[data-theme="warm-mid"][data-card-style="light"] .card select,
+html[data-theme="warm-mid"][data-card-style="light"] .card textarea,
+html[data-theme="warm-mid"][data-card-style="light"] .card-elevated input,
+html[data-theme="warm-mid"][data-card-style="light"] .card-elevated select {
+	color: #2c1503;
+	-webkit-text-fill-color: #2c1503;
+}
+
+/* --- Shire light cards --- */
+html[data-theme="forest-mid"][data-card-style="light"] {
+	--bg-card: rgba(245, 240, 225, 0.93);
+	--bg-card-hover: rgba(248, 244, 232, 0.96);
+	--big-button-bg: rgba(245, 240, 225, 0.94);
+	--big-button-color: #2d5a2d;
+	--big-button-glow: 0 0 24px rgba(93, 158, 62, 0.30), inset 0 2px 0 rgba(255, 255, 255, 0.40);
+	--big-button-rest-bg: rgba(240, 242, 230, 0.90);
+	--big-button-rest-color: #4a7a2a;
+	--big-button-active-bg: rgba(252, 238, 230, 0.92);
+	--big-button-active-color: #b83232;
+}
+
+/* Dark text on light parchment cards */
+html[data-theme="forest-mid"][data-card-style="light"] .card,
+html[data-theme="forest-mid"][data-card-style="light"] .card-elevated,
+html[data-theme="forest-mid"][data-card-style="light"] .summary-card,
+html[data-theme="forest-mid"][data-card-style="light"] .bh-panel,
+html[data-theme="forest-mid"][data-card-style="light"] .stage-bar-container,
+html[data-theme="forest-mid"][data-card-style="light"] .chart-container,
+html[data-theme="forest-mid"][data-card-style="light"] .history-item,
+html[data-theme="forest-mid"][data-card-style="light"] .editor-pill,
+html[data-theme="forest-mid"][data-card-style="light"] .editor-btn,
+html[data-theme="forest-mid"][data-card-style="light"] .clinical-header,
+html[data-theme="forest-mid"][data-card-style="light"] .clinical-content,
+html[data-theme="forest-mid"][data-card-style="light"] .clinical-card,
+html[data-theme="forest-mid"][data-card-style="light"] .factor-tag,
+html[data-theme="forest-mid"][data-card-style="light"] .menu-item-button,
+html[data-theme="forest-mid"][data-card-style="light"] .theme-option,
+html[data-theme="forest-mid"][data-card-style="light"] .export-format-option,
+html[data-theme="forest-mid"][data-card-style="light"] .palette-card,
+html[data-theme="forest-mid"][data-card-style="light"] .mode-btn,
+html[data-theme="forest-mid"][data-card-style="light"] .devtools-seed-btn,
+html[data-theme="forest-mid"][data-card-style="light"] .about-privacy,
+html[data-theme="forest-mid"][data-card-style="light"] .section-header,
+html[data-theme="forest-mid"][data-card-style="light"] .tips-container,
+html[data-theme="forest-mid"][data-card-style="light"] .session-card,
+html[data-theme="forest-mid"][data-card-style="light"] .toast-container,
+html[data-theme="forest-mid"][data-card-style="light"] .stat-item,
+html[data-theme="forest-mid"][data-card-style="light"] .contraction-item,
+html[data-theme="forest-mid"][data-card-style="light"] .picker-card,
+html[data-theme="forest-mid"][data-card-style="light"] .ctrl-btn,
+html[data-theme="forest-mid"][data-card-style="light"] .untimed-form,
+html[data-theme="forest-mid"][data-card-style="light"] .collapsible,
+html[data-theme="forest-mid"][data-card-style="light"] .location-pill,
+html[data-theme="forest-mid"][data-card-style="light"] .time-picker,
+html[data-theme="forest-mid"][data-card-style="light"] .time-range-card,
+html[data-theme="forest-mid"][data-card-style="light"] .empty-state-icon,
+html[data-theme="forest-mid"][data-card-style="light"] .action-card,
+html[data-theme="forest-mid"][data-card-style="light"] .live-card,
+html[data-theme="forest-mid"][data-card-style="light"] .mode-radio {
+	--text-primary: #14261a;
+	--text-secondary: #264d2e;
+	--text-muted: rgba(20, 38, 26, 0.65);
+	--text-faint: rgba(20, 38, 26, 0.42);
+	--accent: #1a5010;
+	--danger: #b83232;
+	--success: #3d6b1a;
+	--warning: #8b6914;
+	color: #14261a;
+}
+
+html[data-theme="forest-mid"][data-card-style="light"] .card input,
+html[data-theme="forest-mid"][data-card-style="light"] .card select,
+html[data-theme="forest-mid"][data-card-style="light"] .card textarea,
+html[data-theme="forest-mid"][data-card-style="light"] .card-elevated input,
+html[data-theme="forest-mid"][data-card-style="light"] .card-elevated select {
+	color: #14261a;
+	-webkit-text-fill-color: #14261a;
 }
 
 /* Accessibility: respect reduced motion — kill all animations */

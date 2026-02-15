@@ -79,6 +79,27 @@ export const PALETTE_FONTS: Record<ThemePalette, string> = {
 
 const THEME_STORAGE_KEY = 'ct-theme';
 
+/** Palettes that support a light/dark card style toggle in mid mode */
+export const CARD_STYLE_PALETTES: ThemePalette[] = ['warm', 'forest'];
+export type CardStyle = 'dark' | 'light';
+
+export function getStoredCardStyle(palette: ThemePalette): CardStyle {
+	try {
+		const stored = localStorage.getItem(`ct-card-style-${palette}`);
+		if (stored === 'light' || stored === 'dark') return stored;
+	} catch { /* ignore */ }
+	return 'dark'; // default: dark frosted cards
+}
+
+export function setCardStyle(palette: ThemePalette, style: CardStyle): void {
+	localStorage.setItem(`ct-card-style-${palette}`, style);
+	if (style === 'light') {
+		document.documentElement.setAttribute('data-card-style', 'light');
+	} else {
+		document.documentElement.removeAttribute('data-card-style');
+	}
+}
+
 export function getStoredTheme(): ThemeId {
 	try {
 		const stored = localStorage.getItem(THEME_STORAGE_KEY);
@@ -106,6 +127,18 @@ export function setTheme(id: ThemeId): void {
 		document.documentElement.style.removeProperty('--theme-font');
 	}
 
+	// Card style for supported mid themes (warm, forest)
+	if (theme.mode === 'mid' && CARD_STYLE_PALETTES.includes(theme.palette)) {
+		const style = getStoredCardStyle(theme.palette);
+		if (style === 'light') {
+			document.documentElement.setAttribute('data-card-style', 'light');
+		} else {
+			document.documentElement.removeAttribute('data-card-style');
+		}
+	} else {
+		document.documentElement.removeAttribute('data-card-style');
+	}
+
 	// Update meta theme-color
 	const meta = document.querySelector('meta[name="theme-color"]');
 	if (meta) meta.setAttribute('content', theme.metaColor);
@@ -120,14 +153,14 @@ export const PALETTE_PREVIEWS: Record<ThemePalette, {
 	primary: string; accent: string; bg: string; bgLight: string; bgMid: string;
 	primaryMid?: string; accentMid?: string;
 }> = {
-	clinical: { primary: '#3b82f6', accent: '#0ea5e9', bg: '#0f172a', bgLight: '#f0f4f8', bgMid: '#0a1a14', primaryMid: '#4ade80', accentMid: '#22c55e' },
-	soft: { primary: '#818cf8', accent: '#a78bfa', bg: '#1a1625', bgLight: '#f5f3ff', bgMid: '#7c5eaa', primaryMid: '#a78bfa', accentMid: '#c4b5fd' },
-	warm: { primary: '#c4880e', accent: '#d4a030', bg: '#1c1917', bgLight: '#fefce8', bgMid: '#1a1008', primaryMid: '#e8a820', accentMid: '#c4880e' },
-	ocean: { primary: '#2dd4bf', accent: '#14b8a6', bg: '#0c1b2a', bgLight: '#e8f4f7', bgMid: '#071c25', primaryMid: '#2dd4bf', accentMid: '#0891b2' },
-	forest: { primary: '#5d9e3e', accent: '#3d7a2e', bg: '#101a14', bgLight: '#eef5e8', bgMid: '#0e1a0e', primaryMid: '#5d9e3e', accentMid: '#c4961e' },
-	sunset: { primary: '#fb923c', accent: '#f97316', bg: '#1a1210', bgLight: '#fff7ed', bgMid: '#1a0a2e', primaryMid: '#ec4899', accentMid: '#fb923c' },
-	lavender: { primary: '#c084fc', accent: '#a855f7', bg: '#16101f', bgLight: '#faf5ff', bgMid: '#e2e8f4', primaryMid: '#94a3b8', accentMid: '#c084fc' },
-	midnight: { primary: '#60a5fa', accent: '#3b82f6', bg: '#080d18', bgLight: '#eef2ff', bgMid: '#0c0c1e', primaryMid: '#60a5fa', accentMid: '#8b5cf6' },
-	sky: { primary: '#38bdf8', accent: '#0284c7', bg: '#0c1929', bgLight: '#e8f4fd', bgMid: '#72b4d8', primaryMid: '#38bdf8', accentMid: '#06b6d4' },
-	blush: { primary: '#f472b6', accent: '#db2777', bg: '#1a0b14', bgLight: '#fdf2f8', bgMid: '#3a1028', primaryMid: '#f472b6', accentMid: '#ec4899' },
+	clinical: { primary: '#3b82f6', accent: '#0ea5e9', bg: '#0f172a', bgLight: '#f0f4f8', bgMid: '#122a1e', primaryMid: '#4ade80', accentMid: '#22c55e' },
+	soft: { primary: '#818cf8', accent: '#a78bfa', bg: '#1a1625', bgLight: '#f5f3ff', bgMid: '#6b4d96', primaryMid: '#a78bfa', accentMid: '#c4b5fd' },
+	warm: { primary: '#c4880e', accent: '#d4a030', bg: '#1c1917', bgLight: '#fefce8', bgMid: '#2a1a0c', primaryMid: '#e8a820', accentMid: '#c4880e' },
+	ocean: { primary: '#2dd4bf', accent: '#14b8a6', bg: '#0c1b2a', bgLight: '#e8f4f7', bgMid: '#0e2e3e', primaryMid: '#2dd4bf', accentMid: '#0891b2' },
+	forest: { primary: '#5d9e3e', accent: '#3d7a2e', bg: '#101a14', bgLight: '#eef5e8', bgMid: '#1a3518', primaryMid: '#5d9e3e', accentMid: '#c4961e' },
+	sunset: { primary: '#fb923c', accent: '#f97316', bg: '#1a1210', bgLight: '#fff7ed', bgMid: '#22103a', primaryMid: '#ec4899', accentMid: '#fb923c' },
+	lavender: { primary: '#c084fc', accent: '#a855f7', bg: '#16101f', bgLight: '#faf5ff', bgMid: '#dde4f0', primaryMid: '#94a3b8', accentMid: '#c084fc' },
+	midnight: { primary: '#60a5fa', accent: '#3b82f6', bg: '#080d18', bgLight: '#eef2ff', bgMid: '#14142e', primaryMid: '#60a5fa', accentMid: '#8b5cf6' },
+	sky: { primary: '#38bdf8', accent: '#0284c7', bg: '#0c1929', bgLight: '#e8f4fd', bgMid: '#5a9ec0', primaryMid: '#38bdf8', accentMid: '#06b6d4' },
+	blush: { primary: '#f472b6', accent: '#db2777', bg: '#1a0b14', bgLight: '#fdf2f8', bgMid: '#4a1830', primaryMid: '#f472b6', accentMid: '#ec4899' },
 };

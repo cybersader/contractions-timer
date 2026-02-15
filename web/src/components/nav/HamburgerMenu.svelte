@@ -3,7 +3,7 @@
 	import { settings } from '../../lib/stores/settings';
 	import { EMPTY_SESSION, DEFAULT_SETTINGS } from '../../lib/labor-logic/types';
 	import { clearAllData, exportData, importData, archiveSession } from '../../lib/storage';
-	import { THEMES, PALETTES, PALETTE_PREVIEWS, UNIQUE_MODE_LABELS, getStoredTheme, setTheme, type ThemePalette, type ThemeMode, type ThemeId } from '../../lib/themes';
+	import { THEMES, PALETTES, PALETTE_PREVIEWS, UNIQUE_MODE_LABELS, CARD_STYLE_PALETTES, getStoredTheme, setTheme, getStoredCardStyle, setCardStyle, type ThemePalette, type ThemeMode, type ThemeId, type CardStyle } from '../../lib/themes';
 	import SettingsPage from '../settings/SettingsPage.svelte';
 	import SessionManager from '../shared/SessionManager.svelte';
 	import { Settings, Palette, Archive, Download, Upload, Info, Trash2, Sun, Moon, Blend, ChevronLeft, X, Clock, FlaskConical, RotateCcw, Share2, Bug } from 'lucide-svelte';
@@ -64,10 +64,27 @@
 	function applyTheme(id: ThemeId) {
 		setTheme(id);
 		currentTheme = id;
+		// Sync card style state when switching themes
+		const palette = id.split('-')[0] as ThemePalette;
+		if (CARD_STYLE_PALETTES.includes(palette)) {
+			cardStyle = getStoredCardStyle(palette);
+		}
 	}
 
 	let currentPalette = $derived(currentTheme.split('-')[0] as ThemePalette);
 	let currentMode = $derived(currentTheme.split('-')[1] as ThemeMode);
+
+	// Card style sub-theme for Cathedral + Shire
+	let cardStyle: CardStyle = $state(
+		CARD_STYLE_PALETTES.includes(getStoredTheme().split('-')[0] as ThemePalette)
+			? getStoredCardStyle(getStoredTheme().split('-')[0] as ThemePalette)
+			: 'dark'
+	);
+
+	function applyCardStyle(style: CardStyle) {
+		cardStyle = style;
+		setCardStyle(currentPalette, style);
+	}
 
 	function handleClose() {
 		activeTab = 'menu';
@@ -322,18 +339,42 @@
 					<div class="palette-grid">
 						{#each PALETTES as palette}
 							{@const preview = PALETTE_PREVIEWS[palette]}
-							<button
-								class="palette-card"
-								class:palette-active={currentPalette === palette}
-								onclick={() => applyTheme(`${palette}-${currentMode}`)}
-							>
-								<div class="palette-swatches">
-									<div class="swatch" style="background: {currentMode === 'dark' ? preview.bg : currentMode === 'mid' ? preview.bgMid : preview.bgLight}"></div>
-									<div class="swatch" style="background: {currentMode === 'mid' && preview.primaryMid ? preview.primaryMid : preview.primary}"></div>
-									<div class="swatch" style="background: {currentMode === 'mid' && preview.accentMid ? preview.accentMid : preview.accent}"></div>
-								</div>
-								<span class="palette-name">{currentMode === 'mid' ? UNIQUE_MODE_LABELS[palette] : palette[0].toUpperCase() + palette.slice(1)}</span>
-							</button>
+							{@const hasCardStyles = currentMode === 'mid' && CARD_STYLE_PALETTES.includes(palette)}
+							{@const isExpanded = hasCardStyles && currentPalette === palette}
+							<div class="palette-cell" class:palette-cell-expanded={isExpanded}>
+								<button
+									class="palette-card"
+									class:palette-active={currentPalette === palette}
+									onclick={() => applyTheme(`${palette}-${currentMode}`)}
+								>
+									<div class="palette-swatches">
+										<div class="swatch" style="background: {currentMode === 'dark' ? preview.bg : currentMode === 'mid' ? preview.bgMid : preview.bgLight}"></div>
+										<div class="swatch" style="background: {currentMode === 'mid' && preview.primaryMid ? preview.primaryMid : preview.primary}"></div>
+										<div class="swatch" style="background: {currentMode === 'mid' && preview.accentMid ? preview.accentMid : preview.accent}"></div>
+									</div>
+									<span class="palette-name">{currentMode === 'mid' ? UNIQUE_MODE_LABELS[palette] : palette[0].toUpperCase() + palette.slice(1)}</span>
+								</button>
+								{#if hasCardStyles}
+									<div class="subtheme-tray" class:subtheme-open={isExpanded}>
+										<button
+											class="subtheme-chip"
+											class:subtheme-active={cardStyle === 'dark'}
+											onclick={() => applyCardStyle('dark')}
+										>
+											<div class="subtheme-dot" style="background: {palette === 'warm' ? 'rgba(30, 20, 10, 0.9)' : 'rgba(14, 26, 14, 0.9)'};"></div>
+											<span>Dark</span>
+										</button>
+										<button
+											class="subtheme-chip"
+											class:subtheme-active={cardStyle === 'light'}
+											onclick={() => applyCardStyle('light')}
+										>
+											<div class="subtheme-dot" style="background: {palette === 'warm' ? 'rgba(252, 246, 228, 0.95)' : 'rgba(245, 240, 225, 0.95)'};"></div>
+											<span>Light</span>
+										</button>
+									</div>
+								{/if}
+							</div>
 						{/each}
 					</div>
 				</div>
@@ -821,6 +862,69 @@
 
 	.palette-active .palette-name {
 		color: var(--accent);
+	}
+
+	/* Palette cell: wrapper for card + sliding sub-theme tray */
+	.palette-cell {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Sub-theme tray: slides down from behind the palette card */
+	.subtheme-tray {
+		display: flex;
+		gap: var(--space-1);
+		padding: 0 var(--space-1);
+		max-height: 0;
+		opacity: 0;
+		overflow: hidden;
+		transform: translateY(-4px);
+		transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+					opacity 0.25s ease,
+					transform 0.25s ease,
+					padding 0.3s ease,
+					margin 0.3s ease;
+		margin-top: 0;
+	}
+
+	.subtheme-tray.subtheme-open {
+		max-height: 40px;
+		opacity: 1;
+		transform: translateY(0);
+		padding: var(--space-1);
+		margin-top: var(--space-1);
+	}
+
+	.subtheme-chip {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		flex: 1;
+		padding: 4px 8px;
+		border-radius: var(--radius-sm);
+		border: 1px solid var(--border-muted);
+		background: transparent;
+		font-size: 11px;
+		color: var(--text-muted);
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+		transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+		white-space: nowrap;
+	}
+
+	.subtheme-chip.subtheme-active {
+		border-color: var(--accent);
+		background: var(--accent-muted);
+		color: var(--accent);
+	}
+
+	.subtheme-dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		border: 1px solid var(--border-muted);
+		flex-shrink: 0;
 	}
 
 	/* Dev tools */

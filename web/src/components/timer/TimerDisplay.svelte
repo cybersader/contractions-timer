@@ -50,14 +50,15 @@
 		<div class="timer-time" class:contracting={phase === 'contracting'} class:resting={phase === 'resting'} class:dimmed={paused}>
 			{displayTime}
 		</div>
-		<PauseOverlay {paused} {phase} onToggle={onPauseToggle} />
 	</div>
+	<PauseOverlay {paused} {phase} onToggle={onPauseToggle} />
 </div>
 
 <style>
 	.timer-display {
 		text-align: center;
 		padding: var(--space-4) 0;
+		position: relative;
 	}
 
 	.timer-label {
@@ -69,7 +70,6 @@
 	}
 
 	.timer-wrapper {
-		position: relative;
 		display: inline-block;
 		padding: var(--space-2) var(--space-4);
 		border-radius: var(--radius-md);

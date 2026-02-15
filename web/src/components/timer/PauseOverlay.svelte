@@ -123,13 +123,15 @@
 	}
 
 	.pause-overlay.paused .pause-icon {
-		color: var(--success);
+		/* Hardcoded: overlay always has dark backdrop regardless of theme */
+		color: #4ade80;
 		opacity: 1;
 	}
 
 	.pause-label {
 		font-size: var(--text-sm);
-		color: var(--text-secondary);
+		/* Hardcoded: overlay always has dark backdrop regardless of theme */
+		color: rgba(255, 255, 255, 0.85);
 		font-weight: 500;
 	}
 </style>

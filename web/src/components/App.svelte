@@ -2,6 +2,7 @@
 	import Swiper from 'swiper';
 	import 'swiper/css';
 	import { startTick } from '../lib/stores/timer';
+	import { session } from '../lib/stores/session';
 	import { tabRequest, settingsRequest, shareRequest } from '../lib/stores/navigation';
 	import { getStoredTheme, setTheme } from '../lib/themes';
 	import Toast from './shared/Toast.svelte';
@@ -35,17 +36,21 @@
 		typeof localStorage !== 'undefined' && !localStorage.getItem('ct-onboarding-done')
 	);
 
-	// Swipe hint: show once on first visit (mobile only)
+	// Swipe hint: show once after first contraction completes (progressive disclosure)
 	let showSwipeHint = $state(false);
 	$effect(() => {
 		if (isDesktop || showOnboarding) return;
 		if (typeof localStorage === 'undefined') return;
-		if (localStorage.getItem('ct-swipe-hint-shown')) return;
-		// Delay slightly so the page renders first
+		if (localStorage.getItem('ct-content-hint-shown')) return;
+
+		const completedCount = $session.contractions.filter(c => c.end !== null).length;
+		if (completedCount === 0) return;
+
+		// Gate immediately so re-runs don't restart timer
+		localStorage.setItem('ct-content-hint-shown', '1');
+
 		const timer = setTimeout(() => {
 			showSwipeHint = true;
-			localStorage.setItem('ct-swipe-hint-shown', '1');
-			// Auto-hide after 2.5s
 			setTimeout(() => { showSwipeHint = false; }, 2500);
 		}, 800);
 		return () => clearTimeout(timer);
