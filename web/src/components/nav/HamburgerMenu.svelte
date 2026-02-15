@@ -452,6 +452,9 @@
 						<a href="https://github.com/cybersader/obsidian-contractions-timer" target="_blank" rel="noopener" class="about-link">
 							GitHub
 						</a>
+						<a href="https://github.com/cybersader/obsidian-contractions-timer/issues" target="_blank" rel="noopener" class="about-link">
+							Report an issue
+						</a>
 					</div>
 				</div>
 			{/if}

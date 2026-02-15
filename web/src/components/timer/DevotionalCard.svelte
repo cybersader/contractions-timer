@@ -1,5 +1,32 @@
 <script lang="ts">
 	let selectedPrayer = $state(0);
+	let carouselEl: HTMLDivElement | undefined = $state();
+	let isScrollSyncing = false;
+
+	function scrollToCard(index: number) {
+		if (!carouselEl) return;
+		const cards = carouselEl.querySelectorAll('.prayer-card');
+		if (cards[index]) {
+			isScrollSyncing = true;
+			cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+			setTimeout(() => { isScrollSyncing = false; }, 400);
+		}
+	}
+
+	function handleCarouselScroll() {
+		if (isScrollSyncing || !carouselEl) return;
+		const scrollLeft = carouselEl.scrollLeft;
+		const cardWidth = carouselEl.offsetWidth;
+		const newIndex = Math.round(scrollLeft / cardWidth);
+		if (newIndex >= 0 && newIndex < prayers.length && newIndex !== selectedPrayer) {
+			selectedPrayer = newIndex;
+		}
+	}
+
+	function selectPrayer(i: number) {
+		selectedPrayer = i;
+		scrollToCard(i);
+	}
 
 	interface PatronSaint {
 		name: string;
@@ -171,22 +198,36 @@
 						class="prayer-tab"
 						class:active={selectedPrayer === i}
 						class:scripture={prayer.kind === 'scripture'}
-						onclick={() => selectedPrayer = i}
+						onclick={() => selectPrayer(i)}
 					>
 						{prayer.shortLabel}
 					</button>
 				{/each}
 			</div>
 		</div>
-		<div class="prayer-content">
-			{#if prayers[selectedPrayer].kind === 'scripture'}
-				<div class="prayer-kind-badge scripture-badge">Scripture</div>
-			{:else}
-				<div class="prayer-kind-badge prayer-badge">Prayer</div>
-			{/if}
-			<h5 class="prayer-title">{prayers[selectedPrayer].title}</h5>
-			<p class="prayer-text">{prayers[selectedPrayer].text}</p>
-			<span class="prayer-attribution">&mdash; {prayers[selectedPrayer].attribution}</span>
+		<div class="prayer-carousel" bind:this={carouselEl} onscroll={handleCarouselScroll}>
+			{#each prayers as prayer, i}
+				<div class="prayer-card">
+					{#if prayer.kind === 'scripture'}
+						<div class="prayer-kind-badge scripture-badge">Scripture</div>
+					{:else}
+						<div class="prayer-kind-badge prayer-badge">Prayer</div>
+					{/if}
+					<h5 class="prayer-title">{prayer.title}</h5>
+					<p class="prayer-text">{prayer.text}</p>
+					<span class="prayer-attribution">&mdash; {prayer.attribution}</span>
+				</div>
+			{/each}
+		</div>
+		<div class="carousel-dots">
+			{#each prayers as _, i}
+				<button
+					class="carousel-dot"
+					class:active={selectedPrayer === i}
+					onclick={() => selectPrayer(i)}
+					aria-label="Prayer {i + 1}"
+				></button>
+			{/each}
 		</div>
 	</div>
 
@@ -313,12 +354,53 @@
 		border-style: solid;
 	}
 
-	.prayer-content {
+	.prayer-carousel {
+		display: flex;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+		margin: 0 calc(-1 * var(--space-4));
+		padding: 0 var(--space-4);
+	}
+
+	.prayer-carousel::-webkit-scrollbar {
+		display: none;
+	}
+
+	.prayer-card {
+		flex: 0 0 100%;
+		scroll-snap-align: center;
 		padding: var(--space-3);
 		background: var(--border-muted);
 		border: 1px solid var(--border-muted);
 		border-radius: 6px;
 		position: relative;
+		box-sizing: border-box;
+	}
+
+	.carousel-dots {
+		display: flex;
+		justify-content: center;
+		gap: 6px;
+		margin-top: var(--space-2);
+	}
+
+	.carousel-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		border: none;
+		padding: 0;
+		background: var(--border);
+		cursor: pointer;
+		transition: all 150ms ease;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.carousel-dot.active {
+		background: var(--accent);
+		transform: scale(1.3);
 	}
 
 	.prayer-kind-badge {

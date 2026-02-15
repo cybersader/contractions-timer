@@ -828,63 +828,66 @@ html[data-theme="blush-light"] {
    Purple aurora background, white glass cards, ethereal violet glow */
 html[data-theme="soft-mid"] {
 	--theme-font: 'Poppins', sans-serif;
-	--bg-primary: #7c5eaa;
-	--bg-secondary: #6a4a96;
-	--bg-elevated: #9070c0;
+	/* Deep purple-black — dark canvas for aurora lights */
+	--bg-primary: #1a0e2e;
+	--bg-secondary: #140a24;
+	--bg-elevated: #2d1b4e;
 	--bg-card: rgba(255, 255, 255, 0.92);
 	--bg-card-hover: rgba(255, 255, 255, 0.96);
-	--text-primary: #1e1b4b;
-	--text-secondary: #312e81;
-	--text-muted: rgba(30, 27, 75, 0.65);
-	--text-faint: rgba(30, 27, 75, 0.42);
-	--accent: #7c3aed;
-	--accent-dim: #6d28d9;
-	--accent-muted: rgba(124, 58, 237, 0.18);
-	--success: #16a34a;
-	--success-muted: rgba(22, 163, 74, 0.15);
-	--warning: #d97706;
-	--warning-muted: rgba(217, 119, 6, 0.15);
-	--danger: #dc2626;
-	--danger-muted: rgba(220, 38, 38, 0.15);
-	--water: #2563eb;
-	--water-muted: rgba(37, 99, 235, 0.15);
-	--border: rgba(255, 255, 255, 0.35);
-	--border-muted: rgba(255, 255, 255, 0.18);
-	--nav-border: rgba(255, 255, 255, 0.25);
-	--nav-inactive: rgba(255, 255, 255, 0.55);
-	--toggle-bg: rgba(255, 255, 255, 0.30);
+	/* Light text for dark bg */
+	--text-primary: #e8e0ff;
+	--text-secondary: #c4b5f0;
+	--text-muted: rgba(232, 224, 255, 0.65);
+	--text-faint: rgba(232, 224, 255, 0.42);
+	--accent: #a78bfa;
+	--accent-dim: #8b5cf6;
+	--accent-muted: rgba(167, 139, 250, 0.18);
+	--success: #4ade80;
+	--success-muted: rgba(74, 222, 128, 0.18);
+	--warning: #fbbf24;
+	--warning-muted: rgba(251, 191, 36, 0.18);
+	--danger: #f87171;
+	--danger-muted: rgba(248, 113, 113, 0.18);
+	--water: #60a5fa;
+	--water-muted: rgba(96, 165, 250, 0.18);
+	--border: rgba(167, 139, 250, 0.25);
+	--border-muted: rgba(167, 139, 250, 0.12);
+	--nav-border: rgba(167, 139, 250, 0.20);
+	--nav-inactive: rgba(232, 224, 255, 0.50);
+	--toggle-bg: rgba(167, 139, 250, 0.25);
 	--toggle-knob: white;
-	--input-bg: rgba(255, 255, 255, 0.65);
-	--input-border: rgba(255, 255, 255, 0.35);
-	--wave-line: rgba(139, 92, 246, 0.25);
-	--wave-grid: rgba(139, 92, 246, 0.12);
-	--wave-grid-text: rgba(46, 16, 101, 0.55);
-	--wave-text: rgba(46, 16, 101, 0.55);
-	--wave-threshold-ok: rgba(22, 163, 74, 0.30);
-	--wave-threshold-warn: rgba(217, 119, 6, 0.25);
-	/* Creative: Vibrant aurora mesh — purple/pink/indigo blobs */
+	--input-bg: rgba(45, 27, 78, 0.60);
+	--input-border: rgba(167, 139, 250, 0.30);
+	--wave-line: rgba(167, 139, 250, 0.25);
+	--wave-grid: rgba(167, 139, 250, 0.12);
+	--wave-grid-text: rgba(232, 224, 255, 0.55);
+	--wave-text: rgba(232, 224, 255, 0.55);
+	--wave-threshold-ok: rgba(74, 222, 128, 0.30);
+	--wave-threshold-warn: rgba(251, 191, 36, 0.25);
+	/* Creative: Vivid aurora bands — green/teal/pink/purple on dark sky */
 	--gradient-bg:
-		radial-gradient(ellipse at 15% 40%, rgba(168, 85, 247, 0.50), transparent 55%),
-		radial-gradient(ellipse at 75% 20%, rgba(99, 102, 241, 0.45), transparent 50%),
-		radial-gradient(ellipse at 50% 85%, rgba(236, 72, 153, 0.35), transparent 55%),
-		radial-gradient(circle at 85% 60%, rgba(124, 58, 237, 0.40), transparent 45%),
-		radial-gradient(ellipse at 30% 75%, rgba(192, 132, 252, 0.30), transparent 50%),
-		linear-gradient(135deg, #6a4a96, #8b5ec8);
-	--glow-color: rgba(124, 58, 237, 0.30);
-	--glow-color-strong: rgba(124, 58, 237, 0.50);
-	--header-bg: linear-gradient(135deg, rgba(106, 74, 150, 0.94), rgba(124, 58, 237, 0.85));
-	--nav-bg: linear-gradient(0deg, #5a3e8c, #6a4a96);
-	/* Big button: white glass on aurora */
+		radial-gradient(ellipse at 10% 30%, rgba(74, 222, 128, 0.35), transparent 50%),
+		radial-gradient(ellipse at 40% 15%, rgba(45, 212, 191, 0.30), transparent 45%),
+		radial-gradient(ellipse at 75% 25%, rgba(167, 139, 250, 0.40), transparent 50%),
+		radial-gradient(ellipse at 55% 70%, rgba(236, 72, 153, 0.25), transparent 55%),
+		radial-gradient(circle at 85% 60%, rgba(139, 92, 246, 0.30), transparent 45%),
+		radial-gradient(ellipse at 25% 80%, rgba(96, 165, 250, 0.20), transparent 50%),
+		linear-gradient(170deg, #1a0e2e, #0f0a1e 50%, #140a24);
+	--glow-color: rgba(167, 139, 250, 0.30);
+	--glow-color-strong: rgba(167, 139, 250, 0.55);
+	--header-bg: linear-gradient(180deg, rgba(26, 14, 46, 0.96), rgba(45, 27, 78, 0.92));
+	--nav-bg: linear-gradient(0deg, #0f0a1e, #1a0e2e);
+	/* Big button: white frosted glass on dark aurora */
 	--big-button-bg: rgba(255, 255, 255, 0.94);
-	--big-button-border: rgba(139, 92, 246, 0.50);
+	--big-button-border: rgba(167, 139, 250, 0.50);
 	--big-button-color: #7c3aed;
-	--big-button-glow: 0 0 32px rgba(139, 92, 246, 0.40), inset 0 2px 0 rgba(255, 255, 255, 1);
-	--big-button-active-bg: rgba(255, 240, 240, 0.85);
-	--big-button-active-border: rgba(220, 38, 38, 0.45);
+	--big-button-glow: 0 0 32px rgba(139, 92, 246, 0.45), inset 0 2px 0 rgba(255, 255, 255, 1);
+	--big-button-active-bg: rgba(255, 240, 240, 0.90);
+	--big-button-active-border: rgba(248, 113, 113, 0.50);
 	--big-button-active-color: #dc2626;
-	--big-button-active-glow: 0 0 32px rgba(220, 38, 38, 0.40);
-	--big-button-rest-bg: rgba(240, 255, 240, 0.85);
-	--big-button-rest-border: rgba(22, 163, 74, 0.40);
+	--big-button-active-glow: 0 0 32px rgba(248, 113, 113, 0.45);
+	--big-button-rest-bg: rgba(240, 255, 240, 0.90);
+	--big-button-rest-border: rgba(74, 222, 128, 0.45);
 	--big-button-rest-color: #16a34a;
 }
 
@@ -1121,12 +1124,13 @@ html[data-theme="forest-mid"] {
 	--wave-threshold-warn: rgba(196, 160, 48, 0.28);
 	/* Creative: Deep forest with dappled sunlight through leaves */
 	--gradient-bg:
-		radial-gradient(ellipse at 25% 20%, rgba(93, 158, 62, 0.12), transparent 45%),
-		radial-gradient(ellipse at 70% 50%, rgba(74, 130, 45, 0.10), transparent 50%),
-		radial-gradient(circle at 50% 85%, rgba(50, 100, 30, 0.08), transparent 48%),
-		radial-gradient(ellipse at 85% 15%, rgba(120, 180, 80, 0.06), transparent 40%),
-		radial-gradient(ellipse at 10% 65%, rgba(60, 110, 40, 0.08), transparent 50%),
-		linear-gradient(160deg, #0a120a, #0e1a0e 50%, #0c160c);
+		radial-gradient(ellipse at 25% 20%, rgba(93, 158, 62, 0.16), transparent 45%),
+		radial-gradient(ellipse at 70% 50%, rgba(74, 130, 45, 0.14), transparent 50%),
+		radial-gradient(circle at 50% 85%, rgba(180, 130, 50, 0.12), transparent 48%),
+		radial-gradient(ellipse at 85% 15%, rgba(120, 180, 80, 0.10), transparent 40%),
+		radial-gradient(ellipse at 10% 65%, rgba(60, 110, 40, 0.12), transparent 50%),
+		radial-gradient(ellipse at 40% 90%, rgba(160, 110, 40, 0.10), transparent 45%),
+		linear-gradient(160deg, #0a120a, #0e1a0e 40%, #12180a 70%, #0c160c);
 	--glow-color: rgba(93, 158, 62, 0.24);
 	--glow-color-strong: rgba(93, 158, 62, 0.42);
 	--header-bg: linear-gradient(160deg, rgba(14, 26, 14, 0.96), rgba(26, 44, 26, 0.92));
@@ -1699,9 +1703,9 @@ html[data-theme="soft-mid"] body::before {
 	position: fixed;
 	inset: 0;
 	background:
-		radial-gradient(circle 120px at 20% 30%, rgba(168, 85, 247, 0.30), transparent),
-		radial-gradient(circle 100px at 75% 65%, rgba(129, 140, 248, 0.25), transparent),
-		radial-gradient(circle 80px at 50% 85%, rgba(236, 72, 153, 0.22), transparent);
+		radial-gradient(circle 150px at 15% 25%, rgba(74, 222, 128, 0.30), transparent),
+		radial-gradient(circle 120px at 50% 40%, rgba(45, 212, 191, 0.25), transparent),
+		radial-gradient(circle 100px at 80% 30%, rgba(236, 72, 153, 0.22), transparent);
 	pointer-events: none;
 	z-index: 0;
 	animation: orb-float 20s ease-in-out infinite;
@@ -1712,9 +1716,9 @@ html[data-theme="soft-mid"] body::after {
 	position: fixed;
 	inset: 0;
 	background:
-		radial-gradient(circle 150px at 70% 20%, rgba(236, 72, 153, 0.18), transparent),
-		radial-gradient(circle 130px at 25% 70%, rgba(99, 102, 241, 0.15), transparent),
-		radial-gradient(circle 100px at 80% 80%, rgba(168, 85, 247, 0.12), transparent);
+		radial-gradient(circle 180px at 70% 20%, rgba(74, 222, 128, 0.20), transparent),
+		radial-gradient(circle 140px at 25% 65%, rgba(167, 139, 250, 0.25), transparent),
+		radial-gradient(circle 120px at 85% 75%, rgba(45, 212, 191, 0.18), transparent);
 	pointer-events: none;
 	z-index: 0;
 	animation: orb-float 35s ease-in-out infinite reverse;
@@ -1761,6 +1765,58 @@ html[data-theme="soft-mid"] .card:hover {
 
 html[data-theme="soft-mid"] .btn-primary:active {
 	box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.20), 0 4px 18px rgba(139, 92, 246, 0.25);
+}
+
+/* --- Dark text inside white-glass card containers ---
+   Aurora now has dark bg with light text; cards need dark text override */
+html[data-theme="soft-mid"] .card,
+html[data-theme="soft-mid"] .card-elevated,
+html[data-theme="soft-mid"] .summary-card,
+html[data-theme="soft-mid"] .bh-panel,
+html[data-theme="soft-mid"] .stage-bar-container,
+html[data-theme="soft-mid"] .chart-container,
+html[data-theme="soft-mid"] .history-item,
+html[data-theme="soft-mid"] .editor-pill,
+html[data-theme="soft-mid"] .editor-btn,
+html[data-theme="soft-mid"] .clinical-header,
+html[data-theme="soft-mid"] .clinical-content,
+html[data-theme="soft-mid"] .clinical-card,
+html[data-theme="soft-mid"] .factor-tag,
+html[data-theme="soft-mid"] .menu-item-button,
+html[data-theme="soft-mid"] .theme-option,
+html[data-theme="soft-mid"] .export-format-option,
+html[data-theme="soft-mid"] .palette-card,
+html[data-theme="soft-mid"] .mode-btn,
+html[data-theme="soft-mid"] .devtools-seed-btn,
+html[data-theme="soft-mid"] .about-privacy,
+html[data-theme="soft-mid"] .section-header,
+html[data-theme="soft-mid"] .tips-container,
+html[data-theme="soft-mid"] .session-card,
+html[data-theme="soft-mid"] .toast-container,
+html[data-theme="soft-mid"] .event-buttons-container,
+html[data-theme="soft-mid"] .hero-section,
+html[data-theme="soft-mid"] .intensity-container,
+html[data-theme="soft-mid"] .location-container,
+html[data-theme="soft-mid"] .stat-item,
+html[data-theme="soft-mid"] .contraction-item,
+html[data-theme="soft-mid"] .controls-container,
+html[data-theme="soft-mid"] .swipe-hint-arrow {
+	--text-primary: #1e1b4b;
+	--text-secondary: #312e81;
+	--text-muted: rgba(30, 27, 75, 0.65);
+	--text-faint: rgba(30, 27, 75, 0.42);
+	--accent: #7c3aed;
+	--danger: #dc2626;
+	color: #1e1b4b;
+}
+
+html[data-theme="soft-mid"] .card input,
+html[data-theme="soft-mid"] .card select,
+html[data-theme="soft-mid"] .card textarea,
+html[data-theme="soft-mid"] .card-elevated input,
+html[data-theme="soft-mid"] .card-elevated select {
+	color: #1e1b4b;
+	-webkit-text-fill-color: #1e1b4b;
 }
 
 /* ============================================
@@ -1919,9 +1975,21 @@ html[data-theme="clinical-mid"] .card {
    ============================================ */
 
 html[data-theme="warm-mid"] body {
-	background: var(--gradient-bg, var(--bg-primary));
+	background:
+		/* Gothic tracery lattice — subtle gold diamond grid */
+		repeating-linear-gradient(
+			45deg,
+			transparent 0, transparent 38px,
+			rgba(196, 136, 14, 0.05) 38px, rgba(196, 136, 14, 0.05) 40px
+		),
+		repeating-linear-gradient(
+			-45deg,
+			transparent 0, transparent 38px,
+			rgba(196, 136, 14, 0.05) 38px, rgba(196, 136, 14, 0.05) 40px
+		),
+		var(--gradient-bg, var(--bg-primary));
 	background-attachment: fixed;
-	background-size: 300% 300%;
+	background-size: auto, auto, 300% 300%;
 	animation: cathedral-breathe 30s ease-in-out infinite;
 }
 
@@ -1936,57 +2004,40 @@ html[data-theme="warm-mid"] {
 
 /* --- Dark text inside light-bg containers (parchment cards & panels) ---
    Global --text-primary is LIGHT (cream) for dark cathedral bg.
-   Override to DARK brown inside any element with a --bg-card background. */
-html[data-theme="warm-mid"] [class*="card"],
-html[data-theme="warm-mid"] [class*="chart"],
-html[data-theme="warm-mid"] [class*="hero"],
-html[data-theme="warm-mid"] [class*="untimed"],
-html[data-theme="warm-mid"] [class*="controls"],
-html[data-theme="warm-mid"] [class*="event-button"],
-html[data-theme="warm-mid"] [class*="collapsible"],
-html[data-theme="warm-mid"] [class*="contextual-tip"],
-html[data-theme="warm-mid"] [class*="braxton"],
-html[data-theme="warm-mid"] [class*="stage-duration"],
-html[data-theme="warm-mid"] [class*="toast"],
-html[data-theme="warm-mid"] [class*="quick-stat"],
-html[data-theme="warm-mid"] [class*="about-privacy"],
-html[data-theme="warm-mid"] [class*="mode-btn"],
-html[data-theme="warm-mid"] [class*="picker"],
-html[data-theme="warm-mid"] [class*="editor-pill"],
-html[data-theme="warm-mid"] [class*="editor-btn"],
-html[data-theme="warm-mid"] [class*="history"],
-html[data-theme="warm-mid"] [class*="item-"],
-html[data-theme="warm-mid"] [class*="event-row"],
-html[data-theme="warm-mid"] [class*="empty-state"],
-html[data-theme="warm-mid"] [class*="factor"],
-html[data-theme="warm-mid"] [class*="recent"],
-html[data-theme="warm-mid"] [class*="session-"],
-html[data-theme="warm-mid"] [class*="snapshot"],
-html[data-theme="warm-mid"] [class*="share"],
-html[data-theme="warm-mid"] [class*="location-"],
-html[data-theme="warm-mid"] [class*="intensity"],
-html[data-theme="warm-mid"] [class*="pause"],
-html[data-theme="warm-mid"] [class*="onboarding"],
-html[data-theme="warm-mid"] [class*="devtools"],
-html[data-theme="warm-mid"] [class*="seed"],
-html[data-theme="warm-mid"] [class*="palette"],
-html[data-theme="warm-mid"] [class*="about-"],
-html[data-theme="warm-mid"] [class*="setting-"],
-html[data-theme="warm-mid"] [class*="toggle"],
-html[data-theme="warm-mid"] [class*="archive"],
-html[data-theme="warm-mid"] [class*="timer-display"],
-html[data-theme="warm-mid"] [class*="post-rating"],
-html[data-theme="warm-mid"] [class*="advisor"],
-html[data-theme="warm-mid"] [class*="clinical"],
-html[data-theme="warm-mid"] [class*="water-break"],
-html[data-theme="warm-mid"] [class*="labor-guide"],
-html[data-theme="warm-mid"] [class*="threshold"],
-html[data-theme="warm-mid"] [class*="trend"],
-html[data-theme="warm-mid"] [class*="progression"],
-html[data-theme="warm-mid"] [class*="summary"],
-html[data-theme="warm-mid"] [class*="wave-"],
+   Override to DARK brown ONLY on elements that have background: var(--bg-card).
+   IMPORTANT: Do NOT use broad [class*="xxx"] selectors — they catch dark-bg elements too! */
 html[data-theme="warm-mid"] .card,
-html[data-theme="warm-mid"] .card-elevated {
+html[data-theme="warm-mid"] .card-elevated,
+html[data-theme="warm-mid"] .summary-card,
+html[data-theme="warm-mid"] .bh-panel,
+html[data-theme="warm-mid"] .stage-bar-container,
+html[data-theme="warm-mid"] .chart-container,
+html[data-theme="warm-mid"] .history-item,
+html[data-theme="warm-mid"] .editor-pill,
+html[data-theme="warm-mid"] .editor-btn,
+html[data-theme="warm-mid"] .clinical-header,
+html[data-theme="warm-mid"] .clinical-content,
+html[data-theme="warm-mid"] .clinical-card,
+html[data-theme="warm-mid"] .factor-tag,
+html[data-theme="warm-mid"] .menu-item-button,
+html[data-theme="warm-mid"] .theme-option,
+html[data-theme="warm-mid"] .export-format-option,
+html[data-theme="warm-mid"] .palette-card,
+html[data-theme="warm-mid"] .mode-btn,
+html[data-theme="warm-mid"] .devtools-seed-btn,
+html[data-theme="warm-mid"] .about-privacy,
+html[data-theme="warm-mid"] .section-header,
+html[data-theme="warm-mid"] .tips-container,
+html[data-theme="warm-mid"] .session-card,
+html[data-theme="warm-mid"] .toast-container,
+html[data-theme="warm-mid"] .event-buttons-container,
+html[data-theme="warm-mid"] .hero-section,
+html[data-theme="warm-mid"] .intensity-container,
+html[data-theme="warm-mid"] .location-container,
+html[data-theme="warm-mid"] .stat-item,
+html[data-theme="warm-mid"] .contraction-item,
+html[data-theme="warm-mid"] .controls-container,
+html[data-theme="warm-mid"] .swipe-hint-arrow {
 	--text-primary: #2c1503;
 	--text-secondary: #5c3a1a;
 	--text-muted: rgba(44, 21, 3, 0.65);
@@ -1997,17 +2048,11 @@ html[data-theme="warm-mid"] .card-elevated {
 }
 
 /* Form elements inside card containers need explicit dark text */
-html[data-theme="warm-mid"] [class*="card"] input,
-html[data-theme="warm-mid"] [class*="card"] select,
-html[data-theme="warm-mid"] [class*="card"] textarea,
-html[data-theme="warm-mid"] [class*="editor"] input,
-html[data-theme="warm-mid"] [class*="editor"] select,
-html[data-theme="warm-mid"] [class*="history"] input,
-html[data-theme="warm-mid"] [class*="history"] select,
-html[data-theme="warm-mid"] [class*="setting"] input,
-html[data-theme="warm-mid"] [class*="setting"] select,
-html[data-theme="warm-mid"] [class*="devtools"] input,
-html[data-theme="warm-mid"] [class*="devtools"] select {
+html[data-theme="warm-mid"] .card input,
+html[data-theme="warm-mid"] .card select,
+html[data-theme="warm-mid"] .card textarea,
+html[data-theme="warm-mid"] .card-elevated input,
+html[data-theme="warm-mid"] .card-elevated select {
 	color: #2c1503;
 	-webkit-text-fill-color: #2c1503;
 }
@@ -2110,21 +2155,21 @@ html[data-theme="warm-mid"] body::before {
 	inset: 0;
 	background:
 		/* Central rose window — golden core */
-		radial-gradient(ellipse 350px 300px at 50% 25%, rgba(255, 215, 0, 0.14), transparent),
+		radial-gradient(ellipse 350px 300px at 50% 25%, rgba(255, 215, 0, 0.22), transparent),
 		/* Ruby red lobe — upper left */
-		radial-gradient(ellipse 280px 220px at 25% 18%, rgba(180, 30, 30, 0.10), transparent),
+		radial-gradient(ellipse 280px 220px at 25% 18%, rgba(180, 30, 30, 0.16), transparent),
 		/* Sapphire blue lobe — upper right */
-		radial-gradient(ellipse 260px 200px at 75% 22%, rgba(30, 60, 160, 0.09), transparent),
+		radial-gradient(ellipse 260px 200px at 75% 22%, rgba(30, 60, 160, 0.14), transparent),
 		/* Emerald green lobe — center left */
-		radial-gradient(ellipse 200px 250px at 15% 50%, rgba(20, 120, 50, 0.07), transparent),
+		radial-gradient(ellipse 200px 250px at 15% 50%, rgba(20, 120, 50, 0.12), transparent),
 		/* Amber shaft — center right */
-		radial-gradient(ellipse 220px 280px at 85% 45%, rgba(196, 136, 14, 0.10), transparent),
+		radial-gradient(ellipse 220px 280px at 85% 45%, rgba(196, 136, 14, 0.16), transparent),
 		/* Deep violet lobe — lower */
-		radial-gradient(ellipse 300px 200px at 40% 70%, rgba(100, 40, 120, 0.06), transparent),
+		radial-gradient(ellipse 300px 200px at 40% 70%, rgba(100, 40, 120, 0.10), transparent),
 		/* Second golden pool — lower right */
-		radial-gradient(ellipse 250px 180px at 70% 75%, rgba(218, 165, 32, 0.08), transparent),
+		radial-gradient(ellipse 250px 180px at 70% 75%, rgba(218, 165, 32, 0.14), transparent),
 		/* Warm wash across bottom */
-		radial-gradient(ellipse 500px 200px at 50% 90%, rgba(139, 69, 19, 0.08), transparent);
+		radial-gradient(ellipse 500px 200px at 50% 90%, rgba(139, 69, 19, 0.12), transparent);
 	pointer-events: none;
 	z-index: 0;
 	animation: rosette-glow 45s ease-in-out infinite;
@@ -2155,7 +2200,7 @@ html[data-theme="warm-mid"] body::after {
 	pointer-events: none;
 	z-index: 0;
 	animation: incense-drift 50s ease-in-out infinite;
-	opacity: 0.6;
+	opacity: 0.85;
 }
 
 /* --- Ornate gold page title divider --- */
@@ -2366,9 +2411,18 @@ html[data-theme="ocean-mid"] .btn-primary:active {
    ============================================ */
 
 html[data-theme="forest-mid"] body {
-	background: var(--gradient-bg, var(--bg-primary));
+	background:
+		/* Warm firelight glow from hearth at bottom */
+		radial-gradient(ellipse 100% 250px at 50% 100%, rgba(180, 120, 40, 0.14), transparent),
+		/* Subtle dark wood-grain texture */
+		repeating-linear-gradient(
+			175deg,
+			transparent 0, transparent 11px,
+			rgba(80, 50, 20, 0.04) 11px, rgba(80, 50, 20, 0.04) 13px
+		),
+		var(--gradient-bg, var(--bg-primary));
 	background-attachment: fixed;
-	background-size: 250% 250%;
+	background-size: auto, auto, 250% 250%;
 	animation: candlelight-drift 22s ease-in-out infinite;
 }
 
@@ -2384,57 +2438,40 @@ html[data-theme="forest-mid"] {
 
 /* --- Dark text inside light-bg containers (parchment cards & panels) ---
    Global --text-primary is LIGHT (cream) for dark forest bg.
-   Override to DARK green-brown inside any element with a --bg-card background. */
-html[data-theme="forest-mid"] [class*="card"],
-html[data-theme="forest-mid"] [class*="chart"],
-html[data-theme="forest-mid"] [class*="hero"],
-html[data-theme="forest-mid"] [class*="untimed"],
-html[data-theme="forest-mid"] [class*="controls"],
-html[data-theme="forest-mid"] [class*="event-button"],
-html[data-theme="forest-mid"] [class*="collapsible"],
-html[data-theme="forest-mid"] [class*="contextual-tip"],
-html[data-theme="forest-mid"] [class*="braxton"],
-html[data-theme="forest-mid"] [class*="stage-duration"],
-html[data-theme="forest-mid"] [class*="toast"],
-html[data-theme="forest-mid"] [class*="quick-stat"],
-html[data-theme="forest-mid"] [class*="about-privacy"],
-html[data-theme="forest-mid"] [class*="mode-btn"],
-html[data-theme="forest-mid"] [class*="picker"],
-html[data-theme="forest-mid"] [class*="editor-pill"],
-html[data-theme="forest-mid"] [class*="editor-btn"],
-html[data-theme="forest-mid"] [class*="history"],
-html[data-theme="forest-mid"] [class*="item-"],
-html[data-theme="forest-mid"] [class*="event-row"],
-html[data-theme="forest-mid"] [class*="empty-state"],
-html[data-theme="forest-mid"] [class*="factor"],
-html[data-theme="forest-mid"] [class*="recent"],
-html[data-theme="forest-mid"] [class*="session-"],
-html[data-theme="forest-mid"] [class*="snapshot"],
-html[data-theme="forest-mid"] [class*="share"],
-html[data-theme="forest-mid"] [class*="location-"],
-html[data-theme="forest-mid"] [class*="intensity"],
-html[data-theme="forest-mid"] [class*="pause"],
-html[data-theme="forest-mid"] [class*="onboarding"],
-html[data-theme="forest-mid"] [class*="devtools"],
-html[data-theme="forest-mid"] [class*="seed"],
-html[data-theme="forest-mid"] [class*="palette"],
-html[data-theme="forest-mid"] [class*="about-"],
-html[data-theme="forest-mid"] [class*="setting-"],
-html[data-theme="forest-mid"] [class*="toggle"],
-html[data-theme="forest-mid"] [class*="archive"],
-html[data-theme="forest-mid"] [class*="timer-display"],
-html[data-theme="forest-mid"] [class*="post-rating"],
-html[data-theme="forest-mid"] [class*="advisor"],
-html[data-theme="forest-mid"] [class*="clinical"],
-html[data-theme="forest-mid"] [class*="water-break"],
-html[data-theme="forest-mid"] [class*="labor-guide"],
-html[data-theme="forest-mid"] [class*="threshold"],
-html[data-theme="forest-mid"] [class*="trend"],
-html[data-theme="forest-mid"] [class*="progression"],
-html[data-theme="forest-mid"] [class*="summary"],
-html[data-theme="forest-mid"] [class*="wave-"],
+   Override to DARK green-brown ONLY on elements that have background: var(--bg-card).
+   IMPORTANT: Do NOT use broad [class*="xxx"] selectors — they catch dark-bg elements too! */
 html[data-theme="forest-mid"] .card,
-html[data-theme="forest-mid"] .card-elevated {
+html[data-theme="forest-mid"] .card-elevated,
+html[data-theme="forest-mid"] .summary-card,
+html[data-theme="forest-mid"] .bh-panel,
+html[data-theme="forest-mid"] .stage-bar-container,
+html[data-theme="forest-mid"] .chart-container,
+html[data-theme="forest-mid"] .history-item,
+html[data-theme="forest-mid"] .editor-pill,
+html[data-theme="forest-mid"] .editor-btn,
+html[data-theme="forest-mid"] .clinical-header,
+html[data-theme="forest-mid"] .clinical-content,
+html[data-theme="forest-mid"] .clinical-card,
+html[data-theme="forest-mid"] .factor-tag,
+html[data-theme="forest-mid"] .menu-item-button,
+html[data-theme="forest-mid"] .theme-option,
+html[data-theme="forest-mid"] .export-format-option,
+html[data-theme="forest-mid"] .palette-card,
+html[data-theme="forest-mid"] .mode-btn,
+html[data-theme="forest-mid"] .devtools-seed-btn,
+html[data-theme="forest-mid"] .about-privacy,
+html[data-theme="forest-mid"] .section-header,
+html[data-theme="forest-mid"] .tips-container,
+html[data-theme="forest-mid"] .session-card,
+html[data-theme="forest-mid"] .toast-container,
+html[data-theme="forest-mid"] .event-buttons-container,
+html[data-theme="forest-mid"] .hero-section,
+html[data-theme="forest-mid"] .intensity-container,
+html[data-theme="forest-mid"] .location-container,
+html[data-theme="forest-mid"] .stat-item,
+html[data-theme="forest-mid"] .contraction-item,
+html[data-theme="forest-mid"] .controls-container,
+html[data-theme="forest-mid"] .swipe-hint-arrow {
 	--text-primary: #14261a;
 	--text-secondary: #264d2e;
 	--text-muted: rgba(20, 38, 26, 0.65);
@@ -2445,17 +2482,11 @@ html[data-theme="forest-mid"] .card-elevated {
 }
 
 /* Form elements inside card containers need explicit dark text */
-html[data-theme="forest-mid"] [class*="card"] input,
-html[data-theme="forest-mid"] [class*="card"] select,
-html[data-theme="forest-mid"] [class*="card"] textarea,
-html[data-theme="forest-mid"] [class*="editor"] input,
-html[data-theme="forest-mid"] [class*="editor"] select,
-html[data-theme="forest-mid"] [class*="history"] input,
-html[data-theme="forest-mid"] [class*="history"] select,
-html[data-theme="forest-mid"] [class*="setting"] input,
-html[data-theme="forest-mid"] [class*="setting"] select,
-html[data-theme="forest-mid"] [class*="devtools"] input,
-html[data-theme="forest-mid"] [class*="devtools"] select {
+html[data-theme="forest-mid"] .card input,
+html[data-theme="forest-mid"] .card select,
+html[data-theme="forest-mid"] .card textarea,
+html[data-theme="forest-mid"] .card-elevated input,
+html[data-theme="forest-mid"] .card-elevated select {
 	color: #14261a;
 	-webkit-text-fill-color: #14261a;
 }
@@ -2516,11 +2547,11 @@ html[data-theme="forest-mid"] body::before {
 	position: fixed;
 	inset: 0;
 	background:
-		radial-gradient(ellipse 120px 80px at 20% 18%, rgba(120, 180, 80, 0.12), transparent),
-		radial-gradient(ellipse 100px 100px at 75% 30%, rgba(93, 158, 62, 0.10), transparent),
-		radial-gradient(circle 70px at 40% 75%, rgba(74, 130, 45, 0.08), transparent),
-		radial-gradient(ellipse 80px 60px at 60% 10%, rgba(150, 200, 100, 0.07), transparent),
-		radial-gradient(circle 50px at 85% 70%, rgba(93, 158, 62, 0.06), transparent);
+		radial-gradient(ellipse 140px 100px at 20% 18%, rgba(120, 180, 80, 0.20), transparent),
+		radial-gradient(ellipse 120px 120px at 75% 30%, rgba(93, 158, 62, 0.18), transparent),
+		radial-gradient(circle 90px at 40% 75%, rgba(74, 130, 45, 0.14), transparent),
+		radial-gradient(ellipse 100px 80px at 60% 10%, rgba(150, 200, 100, 0.12), transparent),
+		radial-gradient(circle 70px at 85% 70%, rgba(93, 158, 62, 0.10), transparent);
 	pointer-events: none;
 	z-index: 0;
 	animation: candlelight-drift 30s ease-in-out infinite;
@@ -2533,12 +2564,12 @@ html[data-theme="forest-mid"] body::after {
 	position: fixed;
 	inset: 0;
 	background:
-		radial-gradient(ellipse 8px 5px at 18% 22%, rgba(93, 158, 62, 0.12), transparent 10px),
-		radial-gradient(ellipse 6px 4px at 78% 35%, rgba(120, 180, 80, 0.10), transparent 8px),
-		radial-gradient(ellipse 7px 4px at 45% 80%, rgba(74, 130, 45, 0.09), transparent 9px),
-		radial-gradient(ellipse 5px 3px at 62% 15%, rgba(93, 158, 62, 0.08), transparent 7px),
-		radial-gradient(ellipse 9px 5px at 30% 55%, rgba(50, 100, 30, 0.07), transparent 11px),
-		radial-gradient(ellipse 6px 3px at 88% 65%, rgba(120, 180, 80, 0.08), transparent 8px);
+		radial-gradient(ellipse 10px 6px at 18% 22%, rgba(93, 158, 62, 0.20), transparent 12px),
+		radial-gradient(ellipse 8px 5px at 78% 35%, rgba(120, 180, 80, 0.18), transparent 10px),
+		radial-gradient(ellipse 9px 5px at 45% 80%, rgba(74, 130, 45, 0.15), transparent 11px),
+		radial-gradient(ellipse 7px 4px at 62% 15%, rgba(93, 158, 62, 0.14), transparent 9px),
+		radial-gradient(ellipse 11px 6px at 30% 55%, rgba(50, 100, 30, 0.12), transparent 13px),
+		radial-gradient(ellipse 8px 4px at 88% 65%, rgba(120, 180, 80, 0.14), transparent 10px);
 	pointer-events: none;
 	z-index: 0;
 	animation: ring-drift 35s ease-in-out infinite;
