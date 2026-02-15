@@ -11,8 +11,9 @@
  * Hash fragments never leave the browser — privacy preserved.
  */
 
-import type { SessionData } from '../labor-logic/types';
+import type { SessionData, ContractionTimerSettings, SharingCategory } from '../labor-logic/types';
 import { generateRoomCode, isValidRoomCode } from './room-codes';
+import { encodeSessionV2, decodeSessionV2, detectIncludedCategories } from './compact-codec';
 
 function debug(...args: unknown[]) { console.debug('[snapshot]', ...args); }
 
@@ -39,10 +40,14 @@ function fromBase64Url(b64url: string): Uint8Array {
 
 /**
  * Compress a session into a base64url string.
- * Uses browser-native CompressionStream (deflate) — no dependencies.
+ * Uses v2 compact encoding + browser-native CompressionStream (deflate).
  */
-export async function compressSession(session: SessionData): Promise<string> {
-	const json = JSON.stringify(session);
+export async function compressSession(
+	session: SessionData,
+	sharedSettings?: Partial<ContractionTimerSettings>,
+): Promise<string> {
+	const compact = encodeSessionV2(session, sharedSettings);
+	const json = JSON.stringify(compact);
 	const raw = new TextEncoder().encode(json);
 
 	const cs = new CompressionStream('deflate');
@@ -73,10 +78,18 @@ export async function compressSession(session: SessionData): Promise<string> {
 	return encoded;
 }
 
+/** Result of decompressing a snapshot — may include shared settings (v2) */
+export interface DecompressedSnapshot {
+	session: SessionData;
+	sharedSettings?: Partial<ContractionTimerSettings>;
+	version: 1 | 2;
+}
+
 /**
- * Decompress a base64url string back into SessionData.
+ * Decompress a base64url string back into session data.
+ * Handles both v1 (raw SessionData JSON) and v2 (compact format).
  */
-export async function decompressSession(code: string): Promise<SessionData> {
+export async function decompressSession(code: string): Promise<DecompressedSnapshot> {
 	const compressed = fromBase64Url(code);
 
 	const ds = new DecompressionStream('deflate');
@@ -104,7 +117,16 @@ export async function decompressSession(code: string): Promise<SessionData> {
 
 	const json = new TextDecoder().decode(raw);
 	debug('Decompressed:', code.length, 'chars →', raw.length, 'bytes');
-	return JSON.parse(json) as SessionData;
+	const parsed = JSON.parse(json);
+
+	// v2 compact format
+	if (parsed.v === 2) {
+		const decoded = decodeSessionV2(parsed);
+		return { session: decoded.session, sharedSettings: decoded.sharedSettings, version: 2 };
+	}
+
+	// v1 fallback: raw SessionData
+	return { session: parsed as SessionData, version: 1 };
 }
 
 // --- URL generation ---
@@ -215,10 +237,15 @@ export interface SnapshotPreview {
 	eventCount: number;
 	timeRange: string | null; // "2:30 PM - 5:15 PM" or null if empty
 	sessionStarted: string | null;
+	/** Settings categories included in the snapshot (v2 only) */
+	includedCategories: SharingCategory[];
 }
 
 /** Generate a human-readable preview of a session snapshot */
-export function previewSnapshot(session: SessionData): SnapshotPreview {
+export function previewSnapshot(
+	session: SessionData,
+	sharedSettings?: Partial<ContractionTimerSettings>,
+): SnapshotPreview {
 	const completed = session.contractions.filter(c => c.end !== null);
 	const allTimes = session.contractions.map(c => new Date(c.start).getTime()).filter(t => !isNaN(t));
 
@@ -236,5 +263,6 @@ export function previewSnapshot(session: SessionData): SnapshotPreview {
 		eventCount: session.events.length,
 		timeRange,
 		sessionStarted: session.sessionStartedAt,
+		includedCategories: sharedSettings ? detectIncludedCategories(sharedSettings) : [],
 	};
 }

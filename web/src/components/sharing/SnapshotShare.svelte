@@ -7,12 +7,15 @@
 		generateSnapshotUrl, extractSnapshotCode,
 		postSnapshotToRelay, getSnapshotFromRelay,
 		isQRCompatible, previewSnapshot,
-		type SnapshotPreview,
+		type SnapshotPreview, type DecompressedSnapshot,
 	} from '../../lib/p2p/snapshot-share';
+	import { extractSharedSettings, filterSettingsByCategories, detectIncludedCategories } from '../../lib/p2p/compact-codec';
 	import { QRCodeToDataURL } from '../../lib/p2p/qr';
 	import { archiveSession } from '../../lib/storage';
-	import type { SessionData } from '../../lib/labor-logic/types';
-	import { Copy, Link, Hash, QrCode, Download, Loader2, Camera, Info, ClipboardPaste, Archive, Share2, ChevronRight } from 'lucide-svelte';
+	import { deepMerge } from '../../lib/labor-logic/deepMerge';
+	import type { SessionData, ContractionTimerSettings, SharingCategory, SharingPreferences } from '../../lib/labor-logic/types';
+	import { SHARING_CATEGORY_LABELS, DEFAULT_SHARING_PREFERENCES } from '../../lib/labor-logic/types';
+	import { Copy, Link, Hash, QrCode, Download, Loader2, Camera, Info, ClipboardPaste, Archive, Share2, ChevronRight, Settings2, ChevronDown, ChevronUp } from 'lucide-svelte';
 	import jsQR from 'jsqr';
 	import { dlog } from '../../lib/debug-log';
 
@@ -29,6 +32,23 @@
 	const showSend = $derived(mode === 'send' || mode === 'both');
 	const showReceive = $derived(mode === 'receive' || mode === 'both');
 
+	// --- Sharing preferences (sender side) ---
+	let showShareOptions = $state(false);
+	let sharePrefs: SharingPreferences = $state({ ...$settings.sharingPreferences });
+
+	// Persist sharing prefs back to settings store when they change
+	$effect(() => {
+		const current = { ...sharePrefs };
+		settings.update(s => ({ ...s, sharingPreferences: current }));
+	});
+
+	// Invalidate compressed code when prefs change
+	$effect(() => {
+		void sharePrefs;
+		compressedCode = '';
+		shareState = 'idle';
+	});
+
 	// --- Send state ---
 	let compressedCode = $state('');
 	let shareState: 'idle' | 'compressing' | 'done' = $state('idle');
@@ -43,6 +63,11 @@
 	let importState: 'idle' | 'loading' | 'preview' | 'error' = $state('idle');
 	let importPreview: SnapshotPreview | null = $state(null);
 	let importSession: SessionData | null = $state(null);
+	let importSharedSettings: Partial<ContractionTimerSettings> | null = $state(null);
+	let importCategories: Record<SharingCategory, boolean> = $state({
+		thresholds: true, provider: true, layout: true,
+		parity: true, travel: true, appearance: true,
+	});
 	let importError = $state('');
 
 	// --- Derived ---
@@ -75,7 +100,8 @@
 		if (compressedCode) return compressedCode;
 		shareState = 'compressing';
 		try {
-			const code = await compressSession($session);
+			const sharedSettings = extractSharedSettings($settings, sharePrefs);
+			const code = await compressSession($session, sharedSettings);
 			compressedCode = code;
 			shareState = 'done';
 			return code;
@@ -181,6 +207,7 @@
 		importError = '';
 		importPreview = null;
 		importSession = null;
+		importSharedSettings = null;
 
 		try {
 			const parsed = extractSnapshotCode(raw);
@@ -199,9 +226,24 @@
 				dataCode = parsed.code;
 			}
 
-			const decompressed = await decompressSession(dataCode);
-			importSession = decompressed;
-			importPreview = previewSnapshot(decompressed);
+			const result = await decompressSession(dataCode);
+			importSession = result.session;
+			importSharedSettings = result.sharedSettings ?? null;
+
+			// Reset category checkboxes — enable all categories that are present
+			if (result.sharedSettings) {
+				const present = detectIncludedCategories(result.sharedSettings);
+				importCategories = {
+					thresholds: present.includes('thresholds'),
+					provider: present.includes('provider'),
+					layout: present.includes('layout'),
+					parity: present.includes('parity'),
+					travel: present.includes('travel'),
+					appearance: present.includes('appearance'),
+				};
+			}
+
+			importPreview = previewSnapshot(result.session, result.sharedSettings);
 			importState = 'preview';
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
@@ -219,17 +261,28 @@
 			archiveSession($session, label);
 		}
 		onImport(importSession);
+
+		// Apply selected shared settings categories
+		if (importSharedSettings) {
+			const filtered = filterSettingsByCategories(importSharedSettings, importCategories);
+			if (Object.keys(filtered).length > 0) {
+				settings.update(s => deepMerge(s as Record<string, unknown>, filtered as Record<string, unknown>) as typeof s);
+			}
+		}
+
 		// Reset state
 		importInput = '';
 		importState = 'idle';
 		importPreview = null;
 		importSession = null;
+		importSharedSettings = null;
 	}
 
 	function handleCancelImport() {
 		importState = 'idle';
 		importPreview = null;
 		importSession = null;
+		importSharedSettings = null;
 		importError = '';
 	}
 
@@ -470,6 +523,35 @@
 				</div>
 			{/if}
 			<p class="section-desc">Share a one-time copy of your session. Your partner gets a frozen snapshot — not a live connection.</p>
+
+			<!-- What to include (sharing preferences) -->
+			<button class="share-options-toggle" onclick={() => showShareOptions = !showShareOptions}>
+				<Settings2 size={14} />
+				<span>What to include</span>
+				{#if showShareOptions}
+					<ChevronUp size={14} />
+				{:else}
+					<ChevronDown size={14} />
+				{/if}
+			</button>
+
+			{#if showShareOptions}
+				<div class="share-options">
+					<p class="share-options-hint">Session data (contractions, events) is always included.</p>
+					{#each Object.entries(SHARING_CATEGORY_LABELS) as [cat, meta]}
+						<div class="share-option-row">
+							<div class="share-option-info">
+								<span class="share-option-label">{meta.label}</span>
+								<span class="share-option-desc">{meta.desc}</span>
+							</div>
+							<label class="toggle">
+								<input type="checkbox" bind:checked={sharePrefs[cat as SharingCategory]} />
+								<span class="toggle-slider"></span>
+							</label>
+						</div>
+					{/each}
+				</div>
+			{/if}
 
 			<!-- Primary action: native share (mobile) or copy link (desktop) -->
 			{#if canNativeShare}
@@ -743,6 +825,17 @@
 							<span class="preview-label">Session started</span>
 							<span class="preview-value">{formatSessionDate(importPreview.sessionStarted)}</span>
 						</div>
+					{/if}
+
+					{#if importSharedSettings && importPreview.includedCategories.length > 0}
+						<div class="preview-divider"></div>
+						<div class="preview-section-header">Included settings</div>
+						{#each importPreview.includedCategories as cat}
+							<label class="preview-category-row">
+								<input type="checkbox" bind:checked={importCategories[cat]} />
+								<span class="preview-category-label">{SHARING_CATEGORY_LABELS[cat].label}</span>
+							</label>
+						{/each}
 					{/if}
 				</div>
 				<div class="preview-actions">
@@ -1477,6 +1570,151 @@
 		color: var(--danger);
 		border-radius: var(--radius-md);
 		font-size: var(--text-sm);
+	}
+
+	/* --- Sharing preferences (sender) --- */
+
+	.share-options-toggle {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		padding: var(--space-2) 0;
+		border: none;
+		background: none;
+		color: var(--text-muted);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.share-options-toggle:active {
+		color: var(--text-secondary);
+	}
+
+	.share-options {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		padding: var(--space-3);
+		background: var(--bg-card);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+	}
+
+	.share-options-hint {
+		font-size: var(--text-xs);
+		color: var(--text-faint);
+		margin: 0 0 var(--space-2) 0;
+		line-height: 1.4;
+	}
+
+	.share-option-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-2);
+		padding: var(--space-1) 0;
+	}
+
+	.share-option-info {
+		display: flex;
+		flex-direction: column;
+		gap: 1px;
+		min-width: 0;
+	}
+
+	.share-option-label {
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--text-primary);
+	}
+
+	.share-option-desc {
+		font-size: var(--text-xs);
+		color: var(--text-faint);
+	}
+
+	/* Toggle (reused from SettingsPage) */
+	.toggle {
+		position: relative;
+		display: inline-block;
+		width: 40px;
+		height: 22px;
+		flex-shrink: 0;
+	}
+
+	.toggle input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.toggle-slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: var(--toggle-bg, var(--border));
+		border-radius: 999px;
+		transition: background 200ms;
+	}
+
+	.toggle-slider::before {
+		content: '';
+		position: absolute;
+		height: 16px;
+		width: 16px;
+		left: 3px;
+		bottom: 3px;
+		background: var(--toggle-knob, white);
+		border-radius: 50%;
+		transition: transform 200ms;
+	}
+
+	.toggle input:checked + .toggle-slider {
+		background: var(--accent);
+	}
+
+	.toggle input:checked + .toggle-slider::before {
+		transform: translateX(18px);
+	}
+
+	/* --- Receiver category checkboxes --- */
+
+	.preview-divider {
+		height: 1px;
+		background: var(--border);
+		margin: var(--space-2) 0;
+	}
+
+	.preview-section-header {
+		font-size: var(--text-sm);
+		font-weight: 700;
+		color: var(--text-secondary);
+	}
+
+	.preview-category-row {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		padding: var(--space-1) 0;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.preview-category-row input[type="checkbox"] {
+		width: 18px;
+		height: 18px;
+		accent-color: var(--accent);
+		flex-shrink: 0;
+	}
+
+	.preview-category-label {
+		font-size: var(--text-sm);
+		color: var(--text-primary);
 	}
 
 	/* --- Animations --- */

@@ -1,5 +1,7 @@
 import { writable } from 'svelte/store';
 import type { SessionData, ContractionTimerSettings } from './labor-logic/types';
+import { DEFAULT_SETTINGS } from './labor-logic/types';
+import { deepMerge } from './labor-logic/deepMerge';
 import { dlog } from './debug-log';
 
 const SESSION_KEY = 'contractions-timer-data';
@@ -112,7 +114,7 @@ export function exportData(): string {
 	return json;
 }
 
-export function importData(json: string): SessionData {
+export function importData(json: string): { session: SessionData; settings?: Partial<ContractionTimerSettings> } {
 	dlog('storage', 'Import started', { bytes: json.length }, { src: 'storage' });
 	const parsed = JSON.parse(json);
 	if (!parsed.session || typeof parsed.session !== 'object') {
@@ -125,6 +127,26 @@ export function importData(json: string): SessionData {
 		throw new Error('Invalid data: session.events must be an array');
 	}
 	saveSession(parsed.session);
-	dlog('storage', 'Import completed', { contractions: parsed.session.contractions.length, events: parsed.session.events.length }, { src: 'storage' });
-	return parsed.session;
+
+	// Restore settings if present — deep merge with existing to preserve unset fields
+	let importedSettings: Partial<ContractionTimerSettings> | undefined;
+	if (parsed.settings && typeof parsed.settings === 'object') {
+		const existing = loadSettings() ?? {};
+		const merged = deepMerge(
+			deepMerge(DEFAULT_SETTINGS as Record<string, unknown>, existing as Record<string, unknown>),
+			parsed.settings as Record<string, unknown>,
+		) as ContractionTimerSettings;
+		saveSettings(merged);
+		importedSettings = parsed.settings;
+		dlog('storage', 'Settings restored from import', {
+			keys: Object.keys(parsed.settings).length,
+		}, { src: 'storage' });
+	}
+
+	dlog('storage', 'Import completed', {
+		contractions: parsed.session.contractions.length,
+		events: parsed.session.events.length,
+		hasSettings: !!importedSettings,
+	}, { src: 'storage' });
+	return { session: parsed.session, settings: importedSettings };
 }

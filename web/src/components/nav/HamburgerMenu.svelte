@@ -116,7 +116,13 @@
 			try {
 				const text = await file.text();
 				dlog('data', 'Import file read', { bytes: text.length, filename: file.name }, { src: 'HamburgerMenu' });
-				importData(text);
+				const result = importData(text);
+				dlog('data', 'Import complete', {
+					contractions: result.session.contractions.length,
+					events: result.session.events.length,
+					settingsRestored: !!result.settings,
+					settingsKeys: result.settings ? Object.keys(result.settings).length : 0,
+				}, { src: 'HamburgerMenu' });
 				window.location.reload();
 			} catch (e) {
 				dlog('data', 'Import failed', { error: String(e) }, { level: 'error', src: 'HamburgerMenu' });

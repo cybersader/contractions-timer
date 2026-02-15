@@ -109,6 +109,38 @@ export const DEFAULT_BH_THRESHOLDS: BHThresholdConfig = {
 	verdictBHThreshold: 30,
 };
 
+/** Categories of settings that can be shared in a snapshot */
+export type SharingCategory = 'thresholds' | 'provider' | 'layout' | 'parity' | 'travel' | 'appearance';
+
+/** Sender-side toggle defaults: which categories to include when sharing */
+export interface SharingPreferences {
+	thresholds: boolean;
+	provider: boolean;
+	layout: boolean;
+	parity: boolean;
+	travel: boolean;
+	appearance: boolean;
+}
+
+export const DEFAULT_SHARING_PREFERENCES: SharingPreferences = {
+	thresholds: true,
+	provider: true,
+	layout: true,
+	parity: false,
+	travel: false,
+	appearance: false,
+};
+
+/** Display labels for sharing categories */
+export const SHARING_CATEGORY_LABELS: Record<SharingCategory, { label: string; desc: string }> = {
+	thresholds: { label: 'Timing rules (5-1-1)', desc: 'Threshold and stage settings' },
+	provider: { label: 'Provider phone', desc: "Your provider's number" },
+	layout: { label: 'Screen layout', desc: 'Panel order and hero mode' },
+	parity: { label: 'Birth history', desc: 'First baby or subsequent' },
+	travel: { label: 'Travel & distance', desc: 'Driving time, risk level' },
+	appearance: { label: 'Theme & display', desc: 'Theme, visibility toggles' },
+};
+
 /** Timer phase for UI state */
 export type TimerPhase = 'idle' | 'contracting' | 'resting';
 
@@ -213,6 +245,8 @@ export interface ContractionTimerSettings {
 	bhThresholds: BHThresholdConfig;
 	// Prayers & devotional tab (always shown on Cathedral/Shire themes)
 	showPrayers: boolean;
+	// Sharing: which settings categories to include by default
+	sharingPreferences: SharingPreferences;
 }
 
 /** Evidence-based defaults: Zhang et al. 2010, ACOG 2024 */
@@ -309,6 +343,7 @@ export const DEFAULT_SETTINGS: ContractionTimerSettings = {
 	showChartOverlay: false,
 	bhThresholds: { ...DEFAULT_BH_THRESHOLDS },
 	showPrayers: false,
+	sharingPreferences: { ...DEFAULT_SHARING_PREFERENCES },
 };
 
 /** Empty session data */
