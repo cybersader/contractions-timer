@@ -997,16 +997,16 @@
 		flex-direction: column;
 		gap: var(--space-2);
 		padding: var(--space-3);
-		border: 1px solid var(--border);
+		border: 1px solid var(--accent, var(--border));
 		border-radius: var(--radius-md);
-		background: var(--bg-card);
+		background: var(--accent-muted, var(--bg-card));
 		margin-bottom: var(--space-3);
 		animation: fadeIn 200ms ease-out;
 	}
 
 	.devtools-archive-text {
 		font-size: var(--text-sm);
-		color: var(--text-muted);
+		color: var(--text-primary);
 		margin: 0;
 		line-height: 1.4;
 	}
@@ -1020,10 +1020,11 @@
 		border: none;
 		border-radius: var(--radius-md);
 		background: var(--accent);
-		color: white;
+		color: var(--bg-primary);
 		font-size: var(--text-sm);
 		font-weight: 600;
 		cursor: pointer;
+		min-height: 44px;
 		-webkit-tap-highlight-color: transparent;
 	}
 
@@ -1035,11 +1036,12 @@
 		padding: var(--space-2) var(--space-3);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-md);
-		background: var(--bg-card);
-		color: var(--text-secondary);
+		background: var(--bg-primary);
+		color: var(--text-primary);
 		font-size: var(--text-sm);
 		font-weight: 500;
 		cursor: pointer;
+		min-height: 44px;
 		-webkit-tap-highlight-color: transparent;
 	}
 
@@ -1048,18 +1050,19 @@
 	}
 
 	.btn-cancel-seed {
-		padding: var(--space-1);
+		padding: var(--space-2);
 		border: none;
 		background: none;
-		color: var(--text-faint);
-		font-size: var(--text-xs);
+		color: var(--text-muted);
+		font-size: var(--text-sm);
 		cursor: pointer;
 		text-align: center;
+		min-height: 44px;
 		-webkit-tap-highlight-color: transparent;
 	}
 
 	.btn-cancel-seed:active {
-		color: var(--text-muted);
+		color: var(--text-primary);
 	}
 
 	.devtools-toggle-row {
