@@ -8,6 +8,7 @@
 	import { STAGE_REFERENCE, BH_VS_REAL, WATER_BREAK_STATS, CLINICAL_SOURCES, getRelevantTipCount } from '../../lib/labor-logic/clinicalData';
 	import { formatElapsedApprox, formatDurationApprox } from '../../lib/labor-logic/formatters';
 	import { tick } from '../../lib/stores/timer';
+	import { dlog } from '../../lib/debug-log';
 	import CollapsibleSection from '../shared/CollapsibleSection.svelte';
 	import ContextualTips from '../shared/ContextualTips.svelte';
 
@@ -70,6 +71,24 @@
 	));
 
 	let tipCount = $derived(getRelevantTipCount($session.contractions, $session.events, stats.laborStage));
+
+	// Log advisor results when urgency or 5-1-1 progress changes
+	let lastLoggedUrgency = '';
+	$effect(() => {
+		const u = advice.urgency;
+		if (u !== lastLoggedUrgency && stats.totalContractions > 0) {
+			dlog('advisor', `Urgency: ${u}`, {
+				stage: stats.laborStage,
+				rule511Met: stats.rule511Met,
+				interval: stats.rule511Progress.intervalValue.toFixed(1),
+				duration: stats.rule511Progress.durationValue.toFixed(0),
+				sustained: stats.rule511Progress.sustainedValue.toFixed(0),
+				timeTo511: timeTo511,
+				reasons: advice.reasons,
+			}, { src: 'HospitalPage' });
+			lastLoggedUrgency = u;
+		}
+	});
 
 	let urgencyColor = $derived(
 		advice.urgency === 'go-now' ? 'urgency--red' :

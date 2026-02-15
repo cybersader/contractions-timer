@@ -4,33 +4,39 @@
 	import { isContractionActive } from '../../lib/labor-logic/calculations';
 	import { generateId } from '../../lib/labor-logic/formatters';
 	import { haptic } from '../../lib/haptic';
+	import { dlog } from '../../lib/debug-log';
 
 	let phase = $derived($timerPhase);
 	let contractionCount = $derived($session.contractions.filter(c => c.end !== null).length);
 
 	function startContraction() {
 		haptic(80);
+		const id = generateId();
+		const now = new Date().toISOString();
+		dlog('session', 'Contraction started', { id, timestamp: now, number: contractionCount + 1 }, { src: 'BigButton' });
 		session.update(s => ({
 			...s,
 			contractions: [...s.contractions, {
-				id: generateId(),
-				start: new Date().toISOString(),
+				id,
+				start: now,
 				end: null,
 				intensity: null,
 				location: null,
 				notes: '',
 			}],
-			sessionStartedAt: s.sessionStartedAt ?? new Date().toISOString(),
+			sessionStartedAt: s.sessionStartedAt ?? now,
 		}));
 	}
 
 	function stopContraction() {
 		haptic(40);
+		const now = new Date().toISOString();
+		dlog('session', 'Contraction stopped', { timestamp: now, number: contractionCount }, { src: 'BigButton' });
 		session.update(s => ({
 			...s,
 			contractions: s.contractions.map(c =>
 				isContractionActive(c)
-					? { ...c, end: new Date().toISOString() }
+					? { ...c, end: now }
 					: c
 			),
 		}));

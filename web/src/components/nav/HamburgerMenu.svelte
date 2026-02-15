@@ -8,7 +8,7 @@
 	import SessionManager from '../shared/SessionManager.svelte';
 	import { Settings, Palette, Archive, Download, Upload, Info, Trash2, Sun, Moon, Blend, ChevronLeft, X, Clock, FlaskConical, RotateCcw, Share2, Bug } from 'lucide-svelte';
 	import { SEED_SCENARIOS } from '../../lib/seedData';
-	import { debugEnabled, dlogCount, dlogDump, dlogClear } from '../../lib/debug-log';
+	import { dlog, debugEnabled, dlogCount, dlogDump, dlogClear } from '../../lib/debug-log';
 	import { isP2PActive, peerCount } from '../../lib/stores/p2p';
 	import { APP_VERSION } from '../../lib/version';
 	import SharingPanel from '../sharing/SharingPanel.svelte';
@@ -62,6 +62,7 @@
 	let currentTheme: ThemeId = $state(getStoredTheme());
 
 	function applyTheme(id: ThemeId) {
+		dlog('theme', `Theme applied: ${id}`, { previous: currentTheme }, { src: 'HamburgerMenu' });
 		setTheme(id);
 		currentTheme = id;
 		// Sync card style state when switching themes
@@ -93,6 +94,7 @@
 	}
 
 	function handleExport() {
+		dlog('data', 'Export initiated', undefined, { src: 'HamburgerMenu' });
 		const json = exportData();
 		const blob = new Blob([json], { type: 'application/json' });
 		const url = URL.createObjectURL(blob);
@@ -104,6 +106,7 @@
 	}
 
 	function handleImport() {
+		dlog('data', 'Import initiated', undefined, { src: 'HamburgerMenu' });
 		const input = document.createElement('input');
 		input.type = 'file';
 		input.accept = '.json';
@@ -112,9 +115,11 @@
 			if (!file) return;
 			try {
 				const text = await file.text();
+				dlog('data', 'Import file read', { bytes: text.length, filename: file.name }, { src: 'HamburgerMenu' });
 				importData(text);
 				window.location.reload();
-			} catch {
+			} catch (e) {
+				dlog('data', 'Import failed', { error: String(e) }, { level: 'error', src: 'HamburgerMenu' });
 				importError = 'Invalid file format';
 				setTimeout(() => importError = '', 3000);
 			}
@@ -124,6 +129,7 @@
 
 	function handleClear() {
 		if (!showClearConfirm) { showClearConfirm = true; return; }
+		dlog('data', 'Clear all data confirmed', { contractions: $session.contractions.length }, { level: 'warn', src: 'HamburgerMenu' });
 		clearAllData();
 		session.set({ ...EMPTY_SESSION, layout: [...EMPTY_SESSION.layout] });
 		settings.set({ ...DEFAULT_SETTINGS });
@@ -149,8 +155,11 @@
 			const count = $session.contractions.length;
 			const label = `Before seed "${id}" (${count} contraction${count === 1 ? '' : 's'})`;
 			archiveSession($session, label);
+			dlog('data', 'Session archived before seed load', { seedId: id, archivedContractions: count }, { src: 'HamburgerMenu' });
 		}
-		session.set(fn());
+		const data = fn();
+		session.set(data);
+		dlog('data', `Seed loaded: ${id}`, { contractions: data.contractions?.length ?? 0, events: data.events?.length ?? 0 }, { src: 'HamburgerMenu' });
 		seedLoaded = id;
 		setTimeout(() => seedLoaded = '', 2000);
 		pendingSeedId = null;

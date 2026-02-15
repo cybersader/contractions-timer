@@ -5,6 +5,7 @@
 	import { session } from '../lib/stores/session';
 	import { tabRequest, settingsRequest, shareRequest } from '../lib/stores/navigation';
 	import { getStoredTheme, setTheme } from '../lib/themes';
+	import { dlog } from '../lib/debug-log';
 	import Toast from './shared/Toast.svelte';
 	import HeaderBar from './nav/HeaderBar.svelte';
 	import HamburgerMenu from './nav/HamburgerMenu.svelte';
@@ -57,7 +58,9 @@
 	});
 
 	// Apply stored theme on mount
-	setTheme(getStoredTheme());
+	const initialTheme = getStoredTheme();
+	setTheme(initialTheme);
+	dlog('app', 'App init', { theme: initialTheme, onboarding: showOnboarding }, { src: 'App' });
 
 	// Detect desktop/mobile via matchMedia
 	$effect(() => {
@@ -89,7 +92,9 @@
 		});
 
 		swiperInstance.on('slideChange', () => {
+			const tabNames = ['Timer', 'Dashboard', 'History', 'Hospital'];
 			activeIndex = swiperInstance.activeIndex;
+			dlog('nav', `Tab: ${tabNames[activeIndex] ?? activeIndex}`, { index: activeIndex }, { src: 'App' });
 		});
 
 		// Sync to current activeIndex (in case switching from desktop)

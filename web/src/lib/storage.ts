@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
 import type { SessionData, ContractionTimerSettings } from './labor-logic/types';
+import { dlog } from './debug-log';
 
 const SESSION_KEY = 'contractions-timer-data';
 const SETTINGS_KEY = 'contractions-timer-settings';
@@ -11,6 +12,7 @@ export const storageError = writable<string | null>(null);
 let errorTimeout: ReturnType<typeof setTimeout> | undefined;
 
 function setStorageError(msg: string) {
+	dlog('storage', 'Storage error', { error: msg }, { level: 'error', src: 'storage' });
 	storageError.set(msg);
 	clearTimeout(errorTimeout);
 	errorTimeout = setTimeout(() => storageError.set(null), 5000);
@@ -19,9 +21,15 @@ function setStorageError(msg: string) {
 export function loadSession(): SessionData | null {
 	try {
 		const raw = localStorage.getItem(SESSION_KEY);
-		if (!raw) return null;
-		return JSON.parse(raw) as SessionData;
-	} catch {
+		if (!raw) {
+			dlog('storage', 'No session in localStorage', undefined, { src: 'storage' });
+			return null;
+		}
+		const data = JSON.parse(raw) as SessionData;
+		dlog('storage', 'Session loaded', { contractions: data.contractions?.length ?? 0, events: data.events?.length ?? 0 }, { src: 'storage' });
+		return data;
+	} catch (e) {
+		dlog('storage', 'Failed to load session', { error: String(e) }, { level: 'error', src: 'storage' });
 		return null;
 	}
 }
@@ -71,6 +79,7 @@ export function archiveSession(session: SessionData, label?: string): ArchivedSe
 		const existing = loadArchives();
 		existing.push(entry);
 		localStorage.setItem(ARCHIVES_KEY, JSON.stringify(existing));
+		dlog('storage', 'Session archived', { archiveId: entry.id, label, totalArchives: existing.length, contractions: session.contractions?.length ?? 0 }, { src: 'storage' });
 	} catch (e) {
 		setStorageError('Could not archive session — storage may be full');
 	}
@@ -89,6 +98,7 @@ export function loadArchives(): ArchivedSession[] {
 }
 
 export function clearAllData(): void {
+	dlog('storage', 'Clearing all data', undefined, { level: 'warn', src: 'storage' });
 	localStorage.removeItem(SESSION_KEY);
 	localStorage.removeItem(SETTINGS_KEY);
 	localStorage.removeItem('ct-dismissed-tips');
@@ -97,10 +107,13 @@ export function clearAllData(): void {
 export function exportData(): string {
 	const session = loadSession();
 	const settings = loadSettings();
-	return JSON.stringify({ session, settings }, null, 2);
+	const json = JSON.stringify({ session, settings }, null, 2);
+	dlog('storage', 'Data exported', { bytes: json.length, hasSession: !!session, hasSettings: !!settings }, { src: 'storage' });
+	return json;
 }
 
 export function importData(json: string): SessionData {
+	dlog('storage', 'Import started', { bytes: json.length }, { src: 'storage' });
 	const parsed = JSON.parse(json);
 	if (!parsed.session || typeof parsed.session !== 'object') {
 		throw new Error('Invalid data: missing session object');
@@ -112,5 +125,6 @@ export function importData(json: string): SessionData {
 		throw new Error('Invalid data: session.events must be an array');
 	}
 	saveSession(parsed.session);
+	dlog('storage', 'Import completed', { contractions: parsed.session.contractions.length, events: parsed.session.events.length }, { src: 'storage' });
 	return parsed.session;
 }

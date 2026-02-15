@@ -43,7 +43,7 @@ function specsToContractions(specs: ContractionSpec[]): Contraction[] {
 
 /** Early labor: 5 contractions, irregular intervals (8-15 min), short duration, low intensity */
 export function earlyLaborSession(): SessionData {
-	let t = 70; // minutes ago
+	let t = 50; // minutes ago
 	const specs: ContractionSpec[] = [];
 	for (let i = 0; i < 5; i++) {
 		const dur = rand(25, 45);
@@ -58,7 +58,7 @@ export function earlyLaborSession(): SessionData {
 	return {
 		...EMPTY_SESSION,
 		contractions: specsToContractions(specs),
-		sessionStartedAt: isoAgo(75),
+		sessionStartedAt: isoAgo(55),
 		events: [],
 		layout: [...EMPTY_SESSION.layout],
 	};
@@ -66,7 +66,7 @@ export function earlyLaborSession(): SessionData {
 
 /** Active labor: 12 contractions, regular intervals (4-6 min), moderate duration, rising intensity */
 export function activeLaborSession(): SessionData {
-	let t = 120; // minutes ago
+	let t = 65; // minutes ago
 	const specs: ContractionSpec[] = [];
 	for (let i = 0; i < 12; i++) {
 		const progress = i / 11; // 0 to 1
@@ -83,7 +83,7 @@ export function activeLaborSession(): SessionData {
 	return {
 		...EMPTY_SESSION,
 		contractions: specsToContractions(specs),
-		sessionStartedAt: isoAgo(125),
+		sessionStartedAt: isoAgo(70),
 		events: [],
 		layout: [...EMPTY_SESSION.layout],
 	};
@@ -91,7 +91,7 @@ export function activeLaborSession(): SessionData {
 
 /** Transition: 22 contractions, tight intervals (2-3 min), long duration, high intensity, water break */
 export function transitionSession(): SessionData {
-	let t = 240; // minutes ago (4 hours)
+	let t = 180; // minutes ago (3 hours)
 	const specs: ContractionSpec[] = [];
 
 	// Phase 1: early (6 contractions, wider intervals)
@@ -137,7 +137,7 @@ export function transitionSession(): SessionData {
 	return {
 		...EMPTY_SESSION,
 		contractions: specsToContractions(specs),
-		sessionStartedAt: isoAgo(245),
+		sessionStartedAt: isoAgo(185),
 		events,
 		layout: [...EMPTY_SESSION.layout],
 	};
@@ -161,7 +161,7 @@ export function singleContractionSession(): SessionData {
 
 /** Mixed session with untimed (manual) entries and a gap for segment testing */
 export function mixedSession(): SessionData {
-	let t = 180;
+	let t = 120;
 	const specs: ContractionSpec[] = [];
 
 	// Cluster 1 (5 contractions, then a 45-min gap)
@@ -193,8 +193,8 @@ export function mixedSession(): SessionData {
 	// Add 2 untimed (manual) entries
 	contractions.splice(3, 0, {
 		id: id(),
-		start: isoAgo(155),
-		end: isoAgo(154),
+		start: isoAgo(95),
+		end: isoAgo(94),
 		intensity: 2,
 		location: 'front',
 		notes: 'Manually logged',
@@ -204,7 +204,7 @@ export function mixedSession(): SessionData {
 	return {
 		...EMPTY_SESSION,
 		contractions,
-		sessionStartedAt: isoAgo(185),
+		sessionStartedAt: isoAgo(125),
 		events: [],
 		layout: [...EMPTY_SESSION.layout],
 	};

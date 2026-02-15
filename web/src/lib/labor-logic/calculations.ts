@@ -136,7 +136,7 @@ export function check511Rule(
 				intervalValue: avgInt === Infinity ? 0 : avgInt,
 				durationOk: avgDur >= threshold.durationSeconds,
 				durationValue: avgDur,
-				sustainedOk: false,
+				sustainedOk: totalSpan >= threshold.sustainedMinutes,
 				sustainedValue: totalSpan,
 			},
 		};
