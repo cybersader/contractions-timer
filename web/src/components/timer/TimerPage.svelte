@@ -209,6 +209,11 @@
 		<WaterBreakQuickAction />
 	{/if}
 
+	<!-- Other events: mucus plug, bloody show (tier 2+, hidden during contracting) -->
+	{#if tier >= 2 && phase !== 'contracting'}
+		<EventButtons hideWaterBreak={true} />
+	{/if}
+
 	<!-- Collapsible sections (tier 2+) -->
 	{#if orderedSections.length > 0}
 		<div class="timer-sections" class:section-appear={tier >= 2}>
@@ -233,11 +238,6 @@
 				</CollapsibleSection>
 			{/each}
 		</div>
-	{/if}
-
-	<!-- Other events: mucus plug, bloody show (tier 2+, hidden during contracting) -->
-	{#if tier >= 2 && phase !== 'contracting'}
-		<EventButtons hideWaterBreak={true} />
 	{/if}
 
 	<!-- Log past contraction (tier 2+, hidden during contracting) -->

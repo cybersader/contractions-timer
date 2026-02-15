@@ -360,7 +360,7 @@
 	.prayer-carousel {
 		display: flex;
 		overflow-x: auto;
-		scroll-snap-type: x proximity;
+		scroll-snap-type: x mandatory;
 		scroll-behavior: smooth;
 		-webkit-overflow-scrolling: touch;
 		scrollbar-width: none;

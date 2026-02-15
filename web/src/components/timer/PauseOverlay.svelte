@@ -63,7 +63,7 @@
 	/* --- Resting (not paused): hidden by default --- */
 	.pause-overlay.resting .pause-icon {
 		color: var(--text-primary);
-		opacity: 0;
+		opacity: 0.15;
 		transition: opacity var(--transition-base);
 	}
 

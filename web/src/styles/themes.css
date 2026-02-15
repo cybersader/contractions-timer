@@ -1802,13 +1802,17 @@ html[data-theme="soft-mid"] .picker-card,
 html[data-theme="soft-mid"] .ctrl-btn,
 html[data-theme="soft-mid"] .untimed-form,
 html[data-theme="soft-mid"] .collapsible,
-html[data-theme="soft-mid"] .location-pill {
+html[data-theme="soft-mid"] .location-pill,
+html[data-theme="soft-mid"] .time-picker,
+html[data-theme="soft-mid"] .time-range-card {
 	--text-primary: #0f0a2a;
 	--text-secondary: #1e1545;
 	--text-muted: rgba(15, 10, 42, 0.60);
 	--text-faint: rgba(15, 10, 42, 0.40);
 	--accent: #6d28d9;
 	--danger: #dc2626;
+	--success: #15803d;
+	--warning: #92400e;
 	color: #0f0a2a;
 }
 
@@ -2050,13 +2054,17 @@ html[data-theme="warm-mid"] .picker-card,
 html[data-theme="warm-mid"] .ctrl-btn,
 html[data-theme="warm-mid"] .untimed-form,
 html[data-theme="warm-mid"] .collapsible,
-html[data-theme="warm-mid"] .location-pill {
+html[data-theme="warm-mid"] .location-pill,
+html[data-theme="warm-mid"] .time-picker,
+html[data-theme="warm-mid"] .time-range-card {
 	--text-primary: #2c1503;
 	--text-secondary: #5c3a1a;
 	--text-muted: rgba(44, 21, 3, 0.65);
 	--text-faint: rgba(44, 21, 3, 0.42);
 	--accent: #8b5e14;
 	--danger: #b83230;
+	--success: #2d6b27;
+	--warning: #8b6508;
 	color: #2c1503;
 }
 
@@ -2495,13 +2503,17 @@ html[data-theme="forest-mid"] .picker-card,
 html[data-theme="forest-mid"] .ctrl-btn,
 html[data-theme="forest-mid"] .untimed-form,
 html[data-theme="forest-mid"] .collapsible,
-html[data-theme="forest-mid"] .location-pill {
+html[data-theme="forest-mid"] .location-pill,
+html[data-theme="forest-mid"] .time-picker,
+html[data-theme="forest-mid"] .time-range-card {
 	--text-primary: #14261a;
 	--text-secondary: #264d2e;
 	--text-muted: rgba(20, 38, 26, 0.65);
 	--text-faint: rgba(20, 38, 26, 0.42);
 	--accent: #2d6e1a;
 	--danger: #b83232;
+	--success: #3d6b1a;
+	--warning: #8b6914;
 	color: #14261a;
 }
 
@@ -2528,6 +2540,17 @@ html[data-theme="forest-mid"] .collapsible input,
 html[data-theme="forest-mid"] .collapsible select {
 	color: #14261a;
 	-webkit-text-fill-color: #14261a;
+}
+
+/* Event buttons on dark page bg — make visible on mid themes */
+html[data-theme="soft-mid"] .event-btn,
+html[data-theme="soft-mid"] .event-confirmed,
+html[data-theme="warm-mid"] .event-btn,
+html[data-theme="warm-mid"] .event-confirmed,
+html[data-theme="forest-mid"] .event-btn,
+html[data-theme="forest-mid"] .event-confirmed {
+	background: rgba(255, 255, 255, 0.08);
+	border-color: rgba(255, 255, 255, 0.15);
 }
 
 html[data-theme="forest-mid"] .card {

@@ -6,7 +6,7 @@
 	import { THEMES, PALETTES, PALETTE_PREVIEWS, UNIQUE_MODE_LABELS, getStoredTheme, setTheme, type ThemePalette, type ThemeMode, type ThemeId } from '../../lib/themes';
 	import SettingsPage from '../settings/SettingsPage.svelte';
 	import SessionManager from '../shared/SessionManager.svelte';
-	import { Settings, Palette, Archive, Download, Upload, Info, Trash2, Sun, Moon, Blend, ChevronLeft, X, Clock, FlaskConical, RotateCcw, Share2 } from 'lucide-svelte';
+	import { Settings, Palette, Archive, Download, Upload, Info, Trash2, Sun, Moon, Blend, ChevronLeft, X, Clock, FlaskConical, RotateCcw, Share2, Bug } from 'lucide-svelte';
 	import { SEED_SCENARIOS } from '../../lib/seedData';
 	import { debugEnabled, dlogCount, dlogDump, dlogClear } from '../../lib/debug-log';
 	import { isP2PActive, peerCount } from '../../lib/stores/p2p';
@@ -243,6 +243,10 @@
 						<Info size={20} />
 						<span>About</span>
 					</button>
+					<a href="https://github.com/cybersader/obsidian-contractions-timer/issues/new" target="_blank" rel="noopener" class="menu-item menu-item--link">
+						<Bug size={20} />
+						<span>Report an issue</span>
+					</a>
 					{#if showDevotional}
 						<button class="menu-item menu-item--devotional" onclick={() => activeTab = 'devotional'}>
 							<span class="devotional-menu-icon">&#128591;</span>
@@ -495,6 +499,7 @@
 		align-items: center;
 		gap: var(--space-2);
 		padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+		padding-top: calc(var(--space-3) + env(safe-area-inset-top, 0px));
 		border-bottom: 1px solid var(--border);
 		min-height: var(--space-7);
 	}
@@ -593,6 +598,11 @@
 
 	.menu-item--danger :global(svg) {
 		color: var(--danger);
+	}
+
+	.menu-item--link {
+		text-decoration: none;
+		color: var(--text-secondary);
 	}
 
 	.menu-divider {
