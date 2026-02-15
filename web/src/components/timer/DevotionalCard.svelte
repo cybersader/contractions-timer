@@ -243,8 +243,9 @@
 	</div>
 
 	<p class="devotional-footer">
-		&#10013; May the Lord bless and protect you and your child.
+		&#10013; <em>Pax Domini sit semper vobiscum.</em>
 	</p>
+	<p class="devotional-translation">The peace of the Lord be always with you.</p>
 	<p class="devotional-dedication">Made with &hearts; for AJR</p>
 </div>
 
@@ -300,7 +301,9 @@
 	}
 
 	.prayers-section {
-		margin-bottom: var(--space-3);
+		margin-bottom: var(--space-4);
+		padding-bottom: var(--space-4);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.prayer-tabs-scroll {
@@ -357,9 +360,11 @@
 	.prayer-carousel {
 		display: flex;
 		overflow-x: auto;
-		scroll-snap-type: x mandatory;
+		scroll-snap-type: x proximity;
+		scroll-behavior: smooth;
 		-webkit-overflow-scrolling: touch;
 		scrollbar-width: none;
+		gap: var(--space-3);
 		margin: 0 calc(-1 * var(--space-4));
 		padding: 0 var(--space-4);
 	}
@@ -456,6 +461,14 @@
 		margin: 0;
 		padding-top: var(--space-2);
 		border-top: 1px solid var(--border-muted);
+	}
+
+	.devotional-translation {
+		text-align: center;
+		font-size: 10px;
+		color: var(--text-faint);
+		margin: 2px 0 0;
+		letter-spacing: 0.3px;
 	}
 
 	.devotional-dedication {

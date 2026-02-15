@@ -1147,6 +1147,9 @@ html[data-theme="forest-mid"] {
 	--big-button-rest-bg: rgba(240, 242, 230, 0.90);
 	--big-button-rest-border: rgba(107, 142, 35, 0.45);
 	--big-button-rest-color: #4a7a2a;
+	/* Gold accent — Tolkien's One Ring palette, warm hearth glow */
+	--accent-gold: #c4961e;
+	--accent-gold-muted: rgba(196, 150, 30, 0.18);
 }
 
 /* --- SUNSET MID: "Retrowave" ---
@@ -1793,30 +1796,41 @@ html[data-theme="soft-mid"] .section-header,
 html[data-theme="soft-mid"] .tips-container,
 html[data-theme="soft-mid"] .session-card,
 html[data-theme="soft-mid"] .toast-container,
-html[data-theme="soft-mid"] .event-buttons-container,
-html[data-theme="soft-mid"] .hero-section,
-html[data-theme="soft-mid"] .intensity-container,
-html[data-theme="soft-mid"] .location-container,
 html[data-theme="soft-mid"] .stat-item,
 html[data-theme="soft-mid"] .contraction-item,
-html[data-theme="soft-mid"] .controls-container,
-html[data-theme="soft-mid"] .swipe-hint-arrow {
-	--text-primary: #1e1b4b;
-	--text-secondary: #312e81;
-	--text-muted: rgba(30, 27, 75, 0.65);
-	--text-faint: rgba(30, 27, 75, 0.42);
-	--accent: #7c3aed;
+html[data-theme="soft-mid"] .picker-card,
+html[data-theme="soft-mid"] .ctrl-btn,
+html[data-theme="soft-mid"] .untimed-form,
+html[data-theme="soft-mid"] .collapsible,
+html[data-theme="soft-mid"] .location-pill {
+	--text-primary: #0f0a2a;
+	--text-secondary: #1e1545;
+	--text-muted: rgba(15, 10, 42, 0.60);
+	--text-faint: rgba(15, 10, 42, 0.40);
+	--accent: #6d28d9;
 	--danger: #dc2626;
-	color: #1e1b4b;
+	color: #0f0a2a;
+}
+
+/* Opaque backgrounds for accent-muted elements on dark bg */
+html[data-theme="soft-mid"] .editor-card,
+html[data-theme="soft-mid"] .editor-pill.selected,
+html[data-theme="soft-mid"] .editor-btn--save,
+html[data-theme="soft-mid"] .location-pill.active,
+html[data-theme="soft-mid"] .stage-row.current {
+	background: rgba(167, 139, 250, 0.35);
+	border-color: rgba(167, 139, 250, 0.45);
 }
 
 html[data-theme="soft-mid"] .card input,
 html[data-theme="soft-mid"] .card select,
 html[data-theme="soft-mid"] .card textarea,
 html[data-theme="soft-mid"] .card-elevated input,
-html[data-theme="soft-mid"] .card-elevated select {
-	color: #1e1b4b;
-	-webkit-text-fill-color: #1e1b4b;
+html[data-theme="soft-mid"] .card-elevated select,
+html[data-theme="soft-mid"] .collapsible input,
+html[data-theme="soft-mid"] .collapsible select {
+	color: #0f0a2a;
+	-webkit-text-fill-color: #0f0a2a;
 }
 
 /* ============================================
@@ -2030,14 +2044,13 @@ html[data-theme="warm-mid"] .section-header,
 html[data-theme="warm-mid"] .tips-container,
 html[data-theme="warm-mid"] .session-card,
 html[data-theme="warm-mid"] .toast-container,
-html[data-theme="warm-mid"] .event-buttons-container,
-html[data-theme="warm-mid"] .hero-section,
-html[data-theme="warm-mid"] .intensity-container,
-html[data-theme="warm-mid"] .location-container,
 html[data-theme="warm-mid"] .stat-item,
 html[data-theme="warm-mid"] .contraction-item,
-html[data-theme="warm-mid"] .controls-container,
-html[data-theme="warm-mid"] .swipe-hint-arrow {
+html[data-theme="warm-mid"] .picker-card,
+html[data-theme="warm-mid"] .ctrl-btn,
+html[data-theme="warm-mid"] .untimed-form,
+html[data-theme="warm-mid"] .collapsible,
+html[data-theme="warm-mid"] .location-pill {
 	--text-primary: #2c1503;
 	--text-secondary: #5c3a1a;
 	--text-muted: rgba(44, 21, 3, 0.65);
@@ -2047,12 +2060,24 @@ html[data-theme="warm-mid"] .swipe-hint-arrow {
 	color: #2c1503;
 }
 
+/* Opaque backgrounds for accent-muted elements on dark bg */
+html[data-theme="warm-mid"] .editor-card,
+html[data-theme="warm-mid"] .editor-pill.selected,
+html[data-theme="warm-mid"] .editor-btn--save,
+html[data-theme="warm-mid"] .location-pill.active,
+html[data-theme="warm-mid"] .stage-row.current {
+	background: rgba(232, 168, 32, 0.35);
+	border-color: rgba(232, 168, 32, 0.45);
+}
+
 /* Form elements inside card containers need explicit dark text */
 html[data-theme="warm-mid"] .card input,
 html[data-theme="warm-mid"] .card select,
 html[data-theme="warm-mid"] .card textarea,
 html[data-theme="warm-mid"] .card-elevated input,
-html[data-theme="warm-mid"] .card-elevated select {
+html[data-theme="warm-mid"] .card-elevated select,
+html[data-theme="warm-mid"] .collapsible input,
+html[data-theme="warm-mid"] .collapsible select {
 	color: #2c1503;
 	-webkit-text-fill-color: #2c1503;
 }
@@ -2464,14 +2489,13 @@ html[data-theme="forest-mid"] .section-header,
 html[data-theme="forest-mid"] .tips-container,
 html[data-theme="forest-mid"] .session-card,
 html[data-theme="forest-mid"] .toast-container,
-html[data-theme="forest-mid"] .event-buttons-container,
-html[data-theme="forest-mid"] .hero-section,
-html[data-theme="forest-mid"] .intensity-container,
-html[data-theme="forest-mid"] .location-container,
 html[data-theme="forest-mid"] .stat-item,
 html[data-theme="forest-mid"] .contraction-item,
-html[data-theme="forest-mid"] .controls-container,
-html[data-theme="forest-mid"] .swipe-hint-arrow {
+html[data-theme="forest-mid"] .picker-card,
+html[data-theme="forest-mid"] .ctrl-btn,
+html[data-theme="forest-mid"] .untimed-form,
+html[data-theme="forest-mid"] .collapsible,
+html[data-theme="forest-mid"] .location-pill {
 	--text-primary: #14261a;
 	--text-secondary: #264d2e;
 	--text-muted: rgba(20, 38, 26, 0.65);
@@ -2481,12 +2505,27 @@ html[data-theme="forest-mid"] .swipe-hint-arrow {
 	color: #14261a;
 }
 
+/* Opaque backgrounds for accent-muted elements on dark bg — gold-green tint */
+html[data-theme="forest-mid"] .editor-card {
+	background: rgba(196, 150, 30, 0.22);
+	border-color: rgba(196, 150, 30, 0.35);
+}
+html[data-theme="forest-mid"] .editor-pill.selected,
+html[data-theme="forest-mid"] .editor-btn--save,
+html[data-theme="forest-mid"] .location-pill.active,
+html[data-theme="forest-mid"] .stage-row.current {
+	background: rgba(124, 184, 80, 0.30);
+	border-color: rgba(124, 184, 80, 0.40);
+}
+
 /* Form elements inside card containers need explicit dark text */
 html[data-theme="forest-mid"] .card input,
 html[data-theme="forest-mid"] .card select,
 html[data-theme="forest-mid"] .card textarea,
 html[data-theme="forest-mid"] .card-elevated input,
-html[data-theme="forest-mid"] .card-elevated select {
+html[data-theme="forest-mid"] .card-elevated select,
+html[data-theme="forest-mid"] .collapsible input,
+html[data-theme="forest-mid"] .collapsible select {
 	color: #14261a;
 	-webkit-text-fill-color: #14261a;
 }
@@ -2501,13 +2540,13 @@ html[data-theme="forest-mid"] .card {
 	position: relative;
 }
 
-/* Organic vine top border — leafy green gradient */
+/* Organic vine top border with gold threading — green+gold gradient */
 html[data-theme="forest-mid"] .card::before {
 	content: '';
 	position: absolute;
 	top: 0; left: 8%; right: 8%;
 	height: 2px;
-	background: linear-gradient(90deg, transparent, rgba(93, 158, 62, 0.40), rgba(120, 180, 80, 0.50), rgba(93, 158, 62, 0.40), transparent);
+	background: linear-gradient(90deg, transparent, rgba(196, 150, 30, 0.35) 20%, rgba(120, 180, 80, 0.50) 40%, rgba(196, 150, 30, 0.45) 50%, rgba(120, 180, 80, 0.50) 60%, rgba(196, 150, 30, 0.35) 80%, transparent);
 	border-radius: 0 0 2px 2px;
 }
 
@@ -2528,7 +2567,13 @@ html[data-theme="forest-mid"] .card-elevated {
 
 html[data-theme="forest-mid"] .nav-tab.active {
 	border-bottom: 2.5px solid currentColor;
-	text-shadow: 0 0 10px rgba(93, 158, 62, 0.40);
+	text-shadow: 0 0 10px rgba(196, 150, 30, 0.40);
+}
+
+/* Gold highlights for section accents */
+html[data-theme="forest-mid"] .devotional-heading,
+html[data-theme="forest-mid"] .section-header .collapsible-title {
+	color: var(--accent-gold, #c4961e);
 }
 
 html[data-theme="forest-mid"] .bottom-nav {
