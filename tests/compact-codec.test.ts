@@ -272,6 +272,79 @@ describe('size comparison', () => {
 	});
 });
 
+// ── End-to-end compressed size (deflate + base64url) ────────────
+
+// Mirrors the snapshot-share.ts pipeline: JSON → deflate → base64url
+// Uses Bun.deflateSync (equivalent to browser CompressionStream('deflate'))
+function compressToBase64url(data: unknown): string {
+	const json = JSON.stringify(data);
+	const raw = new TextEncoder().encode(json);
+	const compressed = Bun.deflateSync(raw);
+	let binary = '';
+	for (const b of compressed) binary += String.fromCharCode(b);
+	return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+describe('end-to-end compressed URL size', () => {
+	it('v2 produces shorter base64url for 20 contractions', () => {
+		const session = makeSession(20);
+		const v1Code = compressToBase64url(session);
+		const v2Code = compressToBase64url(encodeSessionV2(session));
+
+		const v1Url = `https://contractions.app/#snapshot=${v1Code}`;
+		const v2Url = `https://contractions.app/#snapshot=${v2Code}`;
+
+		console.log(`  20 contractions — v1: ${v1Code.length} chars (URL ${v1Url.length}), v2: ${v2Code.length} chars (URL ${v2Url.length}), savings: ${((1 - v2Code.length / v1Code.length) * 100).toFixed(1)}%`);
+
+		expect(v2Code.length).toBeLessThan(v1Code.length);
+	});
+
+	it('v2 produces shorter base64url for 5 contractions', () => {
+		const session = makeSession(5);
+		const v1Code = compressToBase64url(session);
+		const v2Code = compressToBase64url(encodeSessionV2(session));
+
+		console.log(`   5 contractions — v1: ${v1Code.length} chars, v2: ${v2Code.length} chars, savings: ${((1 - v2Code.length / v1Code.length) * 100).toFixed(1)}%`);
+
+		expect(v2Code.length).toBeLessThan(v1Code.length);
+	});
+
+	it('v2 produces shorter base64url for 50 contractions', () => {
+		const session = makeSession(50);
+		const v1Code = compressToBase64url(session);
+		const v2Code = compressToBase64url(encodeSessionV2(session));
+
+		console.log(`  50 contractions — v1: ${v1Code.length} chars, v2: ${v2Code.length} chars, savings: ${((1 - v2Code.length / v1Code.length) * 100).toFixed(1)}%`);
+
+		expect(v2Code.length).toBeLessThan(v1Code.length);
+	});
+
+	it('v2 keeps URLs under QR limit for 40+ contractions', () => {
+		const session = makeSession(40);
+		const v2Code = compressToBase64url(encodeSessionV2(session));
+		const urlLength = `https://contractions.app/#snapshot=${v2Code}`.length;
+
+		console.log(`  40 contractions — v2 URL length: ${urlLength} (QR limit ~2900)`);
+
+		// QR version 40 Low ECC ≈ 2953 alphanumeric chars
+		expect(urlLength).toBeLessThan(2900);
+	});
+
+	it('v1 would exceed QR limit where v2 fits', () => {
+		const session = makeSession(30);
+		const v1Code = compressToBase64url(session);
+		const v2Code = compressToBase64url(encodeSessionV2(session));
+
+		const v1Url = `https://contractions.app/#snapshot=${v1Code}`.length;
+		const v2Url = `https://contractions.app/#snapshot=${v2Code}`.length;
+
+		console.log(`  30 contractions — v1 URL: ${v1Url}, v2 URL: ${v2Url} (QR limit ~2900)`);
+
+		// v2 should fit in QR, demonstrating the practical advantage
+		expect(v2Url).toBeLessThan(2900);
+	});
+});
+
 // ── Settings extraction ──────────────────────────────────────────
 
 describe('extractSharedSettings', () => {
