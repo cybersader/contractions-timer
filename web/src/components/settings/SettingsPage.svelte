@@ -291,11 +291,12 @@
 
 	<!-- Threshold rule -->
 	<div class="section-title" id="settings-threshold">Threshold rule</div>
-	<p class="section-desc">The N-1-1 rule: when contractions are N minutes apart, 1 minute long, for 1 hour. Standard is 5-1-1. Some providers recommend 3-1-1 or 4-1-1.</p>
+	<p class="section-desc">The N-1-1 rule is clinical guidance (ACOG) for when to head to the hospital. Standard is 5-1-1: contractions 5 minutes apart, 1 minute long, for 1 hour. Your provider may recommend 3-1-1, 4-1-1, or other variations — adjust below.</p>
+	<p class="section-desc section-desc--muted">Each criterion uses the <strong>average</strong> of recent contractions within the analysis window, not a single contraction. A contraction lasting 64s counts as "over 1 minute." These are guidelines, not absolute rules — always follow your provider's advice.</p>
 	<div class="setting-row">
 		<div class="setting-label-group">
 			<label for="setting-interval" class="setting-label">Interval target</label>
-			<span class="setting-hint">How far apart contractions should be (start-to-start).</span>
+			<span class="setting-hint">Average time between contraction starts (start-to-start). Checked when average ≤ this value.</span>
 		</div>
 		<select id="setting-interval" class="setting-select" bind:value={$settings.threshold.intervalMinutes}>
 			{#each [3, 4, 5, 6, 7, 8, 10] as mins}
@@ -306,7 +307,7 @@
 	<div class="setting-row">
 		<div class="setting-label-group">
 			<label for="setting-duration" class="setting-label">Duration target</label>
-			<span class="setting-hint">Minimum contraction length.</span>
+			<span class="setting-hint">Average contraction length (start to stop). Checked when average ≥ this value.</span>
 		</div>
 		<select id="setting-duration" class="setting-select" bind:value={$settings.threshold.durationSeconds}>
 			{#each [30, 45, 60, 75, 90, 120] as secs}
@@ -317,7 +318,7 @@
 	<div class="setting-row">
 		<div class="setting-label-group">
 			<label for="setting-sustained" class="setting-label">Sustained period</label>
-			<span class="setting-hint">How long the pattern must hold before triggering the alert.</span>
+			<span class="setting-hint">Total span from first to most recent contraction. Checked when ≥ this value, confirming the pattern is consistent, not a one-off cluster.</span>
 		</div>
 		<select id="setting-sustained" class="setting-select" bind:value={$settings.threshold.sustainedMinutes}>
 			{#each [30, 45, 60, 90, 120] as mins}
@@ -447,6 +448,10 @@
 		color: var(--text-faint);
 		line-height: 1.4;
 		margin: 0 0 var(--space-2) 0;
+	}
+	.section-desc--muted {
+		color: var(--text-muted);
+		font-style: italic;
 	}
 
 	.setting-select {

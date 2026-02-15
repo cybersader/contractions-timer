@@ -107,6 +107,7 @@
 
 	// Inline phone entry
 	let showInlinePhone = $state(false);
+	let showRuleExplainer = $state(false);
 	let inlinePhoneValue = $state('');
 
 	// Section ordering
@@ -272,6 +273,17 @@
 						<span>{$settings.threshold.sustainedMinutes} min sustained ({Math.round(stats.rule511Progress.sustainedValue)} min)</span>
 					</div>
 				</div>
+				<button class="rule-how-toggle" onclick={() => showRuleExplainer = !showRuleExplainer}>
+					{showRuleExplainer ? 'Hide' : 'How we calculate'}
+				</button>
+				{#if showRuleExplainer}
+					<div class="rule-explainer">
+						<p><strong>Interval</strong> — average time between contraction starts within the analysis window. Checked (✓) when average ≤ {$settings.threshold.intervalMinutes} min.</p>
+						<p><strong>Duration</strong> — average length of timed contractions (start to stop). Checked when average ≥ {$settings.threshold.durationSeconds}s. A 64s contraction counts as "over 1 minute."</p>
+						<p><strong>Sustained</strong> — how long the pattern has been going. Measured as the span from your first to most recent contraction. Checked when ≥ {$settings.threshold.sustainedMinutes} min.</p>
+						<p class="rule-explainer-note">These are <strong>clinical guidelines</strong> (ACOG), not absolute rules. Your provider may recommend different thresholds (e.g. 4-1-1 or 3-1-1). Adjust in settings.</p>
+					</div>
+				{/if}
 
 			{:else if sec.id === 'water-break'}
 				<div class="water-header">
@@ -600,6 +612,36 @@
 	.rule-item { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--text-muted); }
 	.rule-item.met { color: var(--success); }
 	.rule-check { font-size: var(--text-base); }
+
+	/* Rule explainer */
+	.rule-how-toggle {
+		display: inline-block;
+		margin-top: var(--space-2);
+		padding: 0;
+		border: none;
+		background: none;
+		color: var(--text-muted);
+		font-size: var(--text-xs);
+		cursor: pointer;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.rule-explainer {
+		margin-top: var(--space-2);
+		padding: var(--space-3);
+		border-radius: var(--radius-sm);
+		background: var(--bg-secondary);
+		font-size: var(--text-xs);
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+	.rule-explainer p { margin: 0 0 var(--space-2) 0; }
+	.rule-explainer p:last-child { margin-bottom: 0; }
+	.rule-explainer-note {
+		border-top: 1px solid var(--border);
+		padding-top: var(--space-2);
+		color: var(--text-muted);
+	}
 
 	/* Water break info */
 	.water-header { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-base); color: var(--water); font-weight: 600; margin-bottom: var(--space-2); }
