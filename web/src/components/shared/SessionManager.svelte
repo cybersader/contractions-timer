@@ -5,7 +5,7 @@
 	import { listArchives, restoreArchive, deleteArchive, newSession, type ArchiveEntry } from '../../lib/sessionArchive';
 	import { saveSession } from '../../lib/storage';
 	import { Plus } from 'lucide-svelte';
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 
 	let archives = $state<ArchiveEntry[]>(listArchives());
 	let confirmDeleteKey = $state<string | null>(null);

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { storageError } from '../../lib/storage';
 	import { AlertTriangle, X } from 'lucide-svelte';
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 </script>
 
 {#if $storageError}

@@ -2,7 +2,7 @@
 	import { peerState } from '../../lib/stores/p2p';
 	import type { PeerInfo } from '../../lib/p2p/quick-connect';
 	import { Wifi, WifiOff } from 'lucide-svelte';
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 
 	interface ToastMessage {
 		id: number;

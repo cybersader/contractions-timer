@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 	import { session } from '../../lib/stores/session';
 	import { timerPhase } from '../../lib/stores/timer';
 	import { isContractionActive } from '../../lib/labor-logic/calculations';

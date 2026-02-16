@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { _, } from 'svelte-i18n';
 	import { settings } from '../../lib/stores/settings';
-	import { locale, SUPPORTED_LANGUAGES } from '../../lib/i18n/index';
+	import { _, locale, SUPPORTED_LANGUAGES } from '../../lib/i18n/index';
 	import type { SupportedLanguage } from '../../lib/labor-logic/types';
 	import { Globe } from 'lucide-svelte';
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 	import type { TimerPhase } from '../../lib/stores/timer';
 	import type { LaborStage } from '../../lib/labor-logic/types';
 	import { ChevronRight } from 'lucide-svelte';

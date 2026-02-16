@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 	let selectedPrayer = $state(0);
 	let carouselEl: HTMLDivElement | undefined = $state();
 	let isScrollSyncing = false;

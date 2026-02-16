@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 	import type { DepartureUrgency } from '../../lib/labor-logic/hospitalAdvisor';
 	import { AlertTriangle, ArrowRight, Clock, ChevronRight } from 'lucide-svelte';
 

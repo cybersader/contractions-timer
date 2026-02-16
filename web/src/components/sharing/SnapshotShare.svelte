@@ -18,7 +18,7 @@
 	import { Copy, Link, Hash, QrCode, Download, Loader2, Camera, Info, ClipboardPaste, Archive, Share2, ChevronRight, Settings2, ChevronDown, ChevronUp } from 'lucide-svelte';
 	import jsQR from 'jsqr';
 	import { dlog } from '../../lib/debug-log';
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 
 	interface Props {
 		/** Called when user imports a snapshot, with the decompressed session data */
@@ -255,13 +255,20 @@
 	}
 
 	function handleConfirmImport(archiveFirst: boolean) {
-		if (!importSession || !onImport) return;
-		if (archiveFirst && hasContractions) {
-			const count = $session.contractions.length;
-			const label = `Before import (${count} contraction${count === 1 ? '' : 's'})`;
-			archiveSession($session, label);
+		if (!importSession) return;
+
+		const isSettingsOnly = importSession.contractions.length === 0 && importSession.events.length === 0;
+
+		// Only touch session data if the snapshot actually has contractions/events
+		if (!isSettingsOnly) {
+			if (!onImport) return;
+			if (archiveFirst && hasContractions) {
+				const count = $session.contractions.length;
+				const label = `Before import (${count} contraction${count === 1 ? '' : 's'})`;
+				archiveSession($session, label);
+			}
+			onImport(importSession);
 		}
-		onImport(importSession);
 
 		// Apply selected shared settings categories
 		if (importSharedSettings) {
@@ -513,7 +520,7 @@
 <div class="snapshot-share">
 
 	<!-- ==================== SEND SECTION ==================== -->
-	{#if showSend && hasContractions}
+	{#if showSend}
 		<div class="snapshot-section">
 			{#if mode === 'both'}
 				<div class="section-header">
@@ -523,7 +530,13 @@
 					</span>
 				</div>
 			{/if}
-			<p class="section-desc">{$_('sharing.snapshot.sendDesc')}</p>
+			<p class="section-desc">
+				{#if hasContractions}
+					{$_('sharing.snapshot.sendDesc')}
+				{:else}
+					{$_('sharing.snapshot.sendDescSettingsOnly')}
+				{/if}
+			</p>
 
 			<!-- What to include (sharing preferences) -->
 			<button class="share-options-toggle" onclick={() => showShareOptions = !showShareOptions}>
@@ -538,7 +551,13 @@
 
 			{#if showShareOptions}
 				<div class="share-options">
-					<p class="share-options-hint">{$_('sharing.snapshot.alwaysIncludedHint')}</p>
+					<p class="share-options-hint">
+						{#if hasContractions}
+							{$_('sharing.snapshot.alwaysIncludedHint')}
+						{:else}
+							{$_('sharing.snapshot.settingsOnlyHint')}
+						{/if}
+					</p>
 					{#each Object.entries(SHARING_CATEGORY_LABELS) as [cat, meta]}
 						<div class="share-option-row">
 							<div class="share-option-info">
@@ -558,7 +577,7 @@
 			{#if canNativeShare}
 				<button class="share-primary-btn" onclick={handleNativeShare}>
 					<Share2 size={20} />
-					<span>{$_('sharing.snapshot.shareSessionButton')}</span>
+					<span>{hasContractions ? $_('sharing.snapshot.shareSessionButton') : $_('sharing.snapshot.shareSettingsButton')}</span>
 				</button>
 			{/if}
 
@@ -703,16 +722,10 @@
 				<div class="copy-toast">{copyFeedback}</div>
 			{/if}
 		</div>
-	{:else if showSend}
-		<div class="empty-state-card">
-			<QrCode size={28} />
-			<p class="empty-state-title">{$_('sharing.snapshot.emptyTitle')}</p>
-			<p class="empty-state-desc">{$_('sharing.snapshot.emptyDesc')}</p>
-		</div>
 	{/if}
 
 	<!-- ==================== DIVIDER ==================== -->
-	{#if showSend && showReceive && hasContractions}
+	{#if showSend && showReceive}
 		<div class="snapshot-divider"></div>
 	{/if}
 
@@ -802,34 +815,43 @@
 			</div>
 
 		{:else if importState === 'preview' && importPreview}
+			{@const importIsSettingsOnly = importPreview.contractionCount === 0 && importPreview.eventCount === 0}
 			<div class="preview-card">
-				<div class="preview-header">{$_('sharing.snapshot.previewHeader')}</div>
+				<div class="preview-header">
+					{#if importIsSettingsOnly}
+						{$_('sharing.snapshot.previewHeaderSettingsOnly')}
+					{:else}
+						{$_('sharing.snapshot.previewHeader')}
+					{/if}
+				</div>
 				<div class="preview-details">
-					<div class="preview-row">
-						<span class="preview-label">{$_('sharing.snapshot.previewContractionsLabel')}</span>
-						<span class="preview-value">{$_('sharing.snapshot.previewContractionsValue', { values: { contractionCount: importPreview.contractionCount, completedCount: importPreview.completedCount } })}</span>
-					</div>
-					{#if importPreview.eventCount > 0}
+					{#if !importIsSettingsOnly}
 						<div class="preview-row">
-							<span class="preview-label">{$_('sharing.snapshot.previewEventsLabel')}</span>
-							<span class="preview-value">{importPreview.eventCount}</span>
+							<span class="preview-label">{$_('sharing.snapshot.previewContractionsLabel')}</span>
+							<span class="preview-value">{$_('sharing.snapshot.previewContractionsValue', { values: { contractionCount: importPreview.contractionCount, completedCount: importPreview.completedCount } })}</span>
 						</div>
-					{/if}
-					{#if importPreview.timeRange}
-						<div class="preview-row">
-							<span class="preview-label">{$_('sharing.snapshot.previewTimeRangeLabel')}</span>
-							<span class="preview-value">{importPreview.timeRange}</span>
-						</div>
-					{/if}
-					{#if importPreview.sessionStarted}
-						<div class="preview-row">
-							<span class="preview-label">{$_('sharing.snapshot.previewSessionStartedLabel')}</span>
-							<span class="preview-value">{formatSessionDate(importPreview.sessionStarted)}</span>
-						</div>
+						{#if importPreview.eventCount > 0}
+							<div class="preview-row">
+								<span class="preview-label">{$_('sharing.snapshot.previewEventsLabel')}</span>
+								<span class="preview-value">{importPreview.eventCount}</span>
+							</div>
+						{/if}
+						{#if importPreview.timeRange}
+							<div class="preview-row">
+								<span class="preview-label">{$_('sharing.snapshot.previewTimeRangeLabel')}</span>
+								<span class="preview-value">{importPreview.timeRange}</span>
+							</div>
+						{/if}
+						{#if importPreview.sessionStarted}
+							<div class="preview-row">
+								<span class="preview-label">{$_('sharing.snapshot.previewSessionStartedLabel')}</span>
+								<span class="preview-value">{formatSessionDate(importPreview.sessionStarted)}</span>
+							</div>
+						{/if}
 					{/if}
 
 					{#if importSharedSettings && importPreview.includedCategories.length > 0}
-						<div class="preview-divider"></div>
+						{#if !importIsSettingsOnly}<div class="preview-divider"></div>{/if}
 						<div class="preview-section-header">{$_('sharing.snapshot.previewIncludedSettingsHeader')}</div>
 						{#each importPreview.includedCategories as cat}
 							<label class="preview-category-row">
@@ -840,7 +862,12 @@
 					{/if}
 				</div>
 				<div class="preview-actions">
-					{#if hasContractions}
+					{#if importIsSettingsOnly}
+						<button class="btn-primary preview-confirm" onclick={() => handleConfirmImport(false)}>
+							<Settings2 size={16} />
+							{$_('sharing.snapshot.previewApplySettingsButton')}
+						</button>
+					{:else if hasContractions}
 						<button class="btn-primary preview-confirm" onclick={() => handleConfirmImport(true)}>
 							<Archive size={16} />
 							{$_('sharing.snapshot.previewArchiveAndImportButton')}
@@ -920,37 +947,6 @@
 		height: 1px;
 		background: var(--border);
 		margin: var(--space-1) 0;
-	}
-
-	/* --- Empty state (send, no contractions) --- */
-
-	.empty-state-card {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: var(--space-2);
-		padding: var(--space-6) var(--space-4);
-		text-align: center;
-		color: var(--text-faint);
-	}
-
-	.empty-state-card :global(svg) {
-		opacity: 0.4;
-	}
-
-	.empty-state-title {
-		font-size: var(--text-base);
-		font-weight: 600;
-		color: var(--text-muted);
-		margin: 0;
-	}
-
-	.empty-state-desc {
-		font-size: var(--text-sm);
-		color: var(--text-faint);
-		line-height: 1.5;
-		margin: 0;
-		max-width: 280px;
 	}
 
 	/* --- Receive intro & methods --- */

@@ -23,7 +23,7 @@
 	import { Copy, Share2, Eye, Pencil, Wifi, WifiOff, Users, Lock, Unlock, Shield, ChevronDown, ChevronUp, Settings, Camera, Dices, Loader2, ExternalLink, Download } from 'lucide-svelte';
 	import jsQR from 'jsqr';
 	import { dlog } from '../../lib/debug-log';
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 
 	const STUN_LABEL_KEYS: Record<string, string> = {
 		'Google (default)': 'sharing.serverOptions.stunGoogle',

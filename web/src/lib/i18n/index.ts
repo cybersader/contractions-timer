@@ -5,6 +5,13 @@ import type { SupportedLanguage } from '../labor-logic/types';
 import en from './locales/en.json';
 addMessages('en', en);
 
+// Initialize IMMEDIATELY with 'en' so $_() never crashes.
+// App.svelte will call locale.set() to switch to the user's saved language.
+init({
+	fallbackLocale: 'en',
+	initialLocale: 'en',
+});
+
 // Other locales lazy-loaded on demand
 register('es', () => import('./locales/es.json'));
 register('fr', () => import('./locales/fr.json'));
@@ -25,11 +32,12 @@ export const SUPPORTED_LANGUAGES: { code: SupportedLanguage; name: string; nativ
 	{ code: 'nl', name: 'Dutch', nativeName: 'Nederlands' },
 ];
 
-export function initI18n(lang: SupportedLanguage) {
-	init({
-		fallbackLocale: 'en',
-		initialLocale: lang,
-	});
+/** Update locale at runtime (called from App.svelte when settings change) */
+export function setI18nLocale(lang: SupportedLanguage) {
+	locale.set(lang);
 }
 
-export { locale };
+// Re-export formatters so all components use the SAME svelte-i18n instance
+// that we called init() on. Importing $_ directly from 'svelte-i18n' in
+// components can resolve to a different pre-bundled instance in Vite dev mode.
+export { locale, format as _, isLoading } from 'svelte-i18n';

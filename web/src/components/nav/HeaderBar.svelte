@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 	import { Clock, Menu, Share2 } from 'lucide-svelte';
 	import { isP2PActive, peerState } from '../../lib/stores/p2p';
 	import { APP_VERSION } from '../../lib/version';

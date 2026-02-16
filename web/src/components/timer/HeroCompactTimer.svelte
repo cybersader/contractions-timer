@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 	import type { TimerPhase } from '../../lib/stores/timer';
 	import { formatDuration, formatRestTime } from '../../lib/labor-logic/formatters';
 	import { settings } from '../../lib/stores/settings';

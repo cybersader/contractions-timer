@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 
 	const INTENSITY_KEYS: Record<number, string> = {
 		1: 'timer.intensityPicker.mild',

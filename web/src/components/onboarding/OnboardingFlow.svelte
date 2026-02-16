@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 	import { settings } from '../../lib/stores/settings';
 	import { HeartPulse, Baby, Car, ChevronRight, Check, Phone } from 'lucide-svelte';
 

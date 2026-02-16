@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import { ChevronRight, ChevronUp, ChevronDown, Settings } from 'lucide-svelte';
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 
 	interface Props {
 		title: string;

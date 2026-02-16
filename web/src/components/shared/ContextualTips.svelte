@@ -5,7 +5,7 @@
 	import { getRelevantTips, dismissTip, type TipCategory } from '../../lib/labor-logic/clinicalData';
 	import { AlertTriangle, ArrowRight, Timer, Heart, BookOpen, Lightbulb, X } from 'lucide-svelte';
 	import type { Component } from 'svelte';
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 
 	interface Props {
 		maxTips?: number;

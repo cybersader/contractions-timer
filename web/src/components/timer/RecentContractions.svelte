@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _ } from '../../lib/i18n/index';
 	import { session } from '../../lib/stores/session';
 	import { formatTimeShort, formatDurationShort } from '../../lib/labor-logic/formatters';
 

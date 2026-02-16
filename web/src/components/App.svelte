@@ -7,15 +7,12 @@
 	import { tabRequest, settingsRequest, shareRequest } from '../lib/stores/navigation';
 	import { getStoredTheme, setTheme } from '../lib/themes';
 	import { dlog } from '../lib/debug-log';
-	import { initI18n, locale } from '../lib/i18n/index';
-	import { isLoading, _ } from 'svelte-i18n';
+	import { setI18nLocale, isLoading, _ } from '../lib/i18n/index';
 
-	// Initialize i18n with saved language preference
-	initI18n($settings.language);
-
-	// Sync locale when settings.language changes
+	// i18n is eagerly initialized in lib/i18n/index.ts (module side-effect).
+	// Sync locale when settings.language changes at runtime.
 	$effect(() => {
-		locale.set($settings.language);
+		setI18nLocale($settings.language);
 	});
 	import Toast from './shared/Toast.svelte';
 	import HeaderBar from './nav/HeaderBar.svelte';
