@@ -5,6 +5,7 @@
 	import { listArchives, restoreArchive, deleteArchive, newSession, type ArchiveEntry } from '../../lib/sessionArchive';
 	import { saveSession } from '../../lib/storage';
 	import { Plus } from 'lucide-svelte';
+	import { _ } from 'svelte-i18n';
 
 	let archives = $state<ArchiveEntry[]>(listArchives());
 	let confirmDeleteKey = $state<string | null>(null);
@@ -43,21 +44,21 @@
 		{#if !confirmNew}
 			<button class="sm-new-btn" onclick={handleNewSession}>
 				<Plus size={18} />
-				New session
+				{$_('shared.sessionManager.newSession')}
 			</button>
 		{:else}
 			<div class="sm-confirm">
-				<span class="sm-confirm-text">Archive current session and start fresh?</span>
+				<span class="sm-confirm-text">{$_('shared.sessionManager.archiveConfirmPrompt')}</span>
 				<div class="sm-confirm-btns">
-					<button class="sm-btn sm-btn--yes" onclick={handleNewSession}>Yes, start new</button>
-					<button class="sm-btn sm-btn--no" onclick={() => confirmNew = false}>Cancel</button>
+					<button class="sm-btn sm-btn--yes" onclick={handleNewSession}>{$_('shared.sessionManager.yesStartNew')}</button>
+					<button class="sm-btn sm-btn--no" onclick={() => confirmNew = false}>{$_('common.cancel')}</button>
 				</div>
 			</div>
 		{/if}
 	</div>
 
 	{#if archives.length > 0}
-		<div class="sm-label">Previous sessions</div>
+		<div class="sm-label">{$_('shared.sessionManager.previousSessions')}</div>
 		<div class="sm-list">
 			{#each archives as arc (arc.key)}
 				<div class="sm-archive">
@@ -66,18 +67,18 @@
 						<span class="sm-archive-count">{arc.summary}</span>
 					</div>
 					<div class="sm-archive-actions">
-						<button class="sm-btn sm-btn--restore" onclick={() => handleRestore(arc.key)}>Restore</button>
+						<button class="sm-btn sm-btn--restore" onclick={() => handleRestore(arc.key)}>{$_('shared.sessionManager.restore')}</button>
 						{#if confirmDeleteKey === arc.key}
-							<button class="sm-btn sm-btn--delete-confirm" onclick={() => handleDelete(arc.key)}>Confirm</button>
+							<button class="sm-btn sm-btn--delete-confirm" onclick={() => handleDelete(arc.key)}>{$_('shared.sessionManager.confirmDelete')}</button>
 						{:else}
-							<button class="sm-btn sm-btn--delete" onclick={() => handleDelete(arc.key)}>Delete</button>
+							<button class="sm-btn sm-btn--delete" onclick={() => handleDelete(arc.key)}>{$_('common.delete')}</button>
 						{/if}
 					</div>
 				</div>
 			{/each}
 		</div>
 	{:else}
-		<div class="sm-empty">No archived sessions.</div>
+		<div class="sm-empty">{$_('shared.sessionManager.noArchivedSessions')}</div>
 	{/if}
 </div>
 

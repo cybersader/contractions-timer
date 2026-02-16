@@ -1,5 +1,13 @@
 <script lang="ts">
-	import { getIntensityLabel } from '../../lib/labor-logic/formatters';
+	import { _ } from 'svelte-i18n';
+
+	const INTENSITY_KEYS: Record<number, string> = {
+		1: 'timer.intensityPicker.mild',
+		2: 'timer.intensityPicker.moderate',
+		3: 'timer.intensityPicker.strong',
+		4: 'timer.intensityPicker.veryStrong',
+		5: 'timer.intensityPicker.intense',
+	};
 	import { haptic } from '../../lib/haptic';
 
 	interface Props {
@@ -18,7 +26,7 @@
 </script>
 
 <div class="picker-card">
-	<div class="picker-label">How strong was that?</div>
+	<div class="picker-label">{$_('timer.intensityPicker.prompt')}</div>
 	<div class="intensity-buttons">
 		{#each levels as level}
 			<button
@@ -28,11 +36,11 @@
 				onclick={() => select(level)}
 			>
 				<span class="intensity-dot" style="background: var(--color-intensity-{level})"></span>
-				<span class="intensity-text">{getIntensityLabel(level)}</span>
+				<span class="intensity-text">{$_(INTENSITY_KEYS[level] || 'timer.intensityPicker.levelFallback', { values: { level } })}</span>
 			</button>
 		{/each}
 	</div>
-	<button class="skip-btn" onclick={onSkip}>Skip</button>
+	<button class="skip-btn" onclick={onSkip}>{$_('common.skip')}</button>
 </div>
 
 <style>

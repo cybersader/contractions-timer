@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { getDurationSeconds, getSessionFilteredIntervals, getLatestSession, getTrend, estimateTimeTo511 } from '../../lib/labor-logic/calculations';
@@ -26,16 +27,16 @@
 
 <div class="insight">
 	{#if !hasEnough}
-		<div class="placeholder">Need 4+ contractions to analyze trends</div>
+		<div class="placeholder">{$_('dashboard.progression.needMore')}</div>
 	{:else}
-		<div class="section-label">Trends</div>
+		<div class="section-label">{$_('dashboard.progression.trendsTitle')}</div>
 
 		{#if intervalTrend}
 			<div class="insight-row">
-				<span class="label">Gap between:</span>
+				<span class="label">{$_('dashboard.progression.gapBetween')}</span>
 				<span class="value value--{intervalTrend.direction}">
 					{formatInterval(intervalTrend.firstValue)} → {formatInterval(intervalTrend.lastValue)}
-					({intervalTrend.direction === 'decreasing' ? 'getting closer' : intervalTrend.direction === 'increasing' ? 'spreading apart' : 'stable'}
+					({intervalTrend.direction === 'decreasing' ? $_('dashboard.progression.gettingCloser') : intervalTrend.direction === 'increasing' ? $_('dashboard.progression.spreadingApart') : $_('dashboard.progression.stable')}
 					{intervalTrend.direction === 'decreasing' ? '↓' : intervalTrend.direction === 'increasing' ? '↑' : '↔'})
 				</span>
 			</div>
@@ -43,10 +44,10 @@
 
 		{#if durationTrend}
 			<div class="insight-row">
-				<span class="label">Each contraction:</span>
+				<span class="label">{$_('dashboard.progression.eachContraction')}</span>
 				<span class="value value--{durationTrend.direction === 'increasing' ? 'decreasing' : durationTrend.direction === 'decreasing' ? 'increasing' : 'stable'}">
 					{formatDurationShort(durationTrend.firstValue)} → {formatDurationShort(durationTrend.lastValue)}
-					({durationTrend.direction === 'increasing' ? 'lasting longer' : durationTrend.direction === 'decreasing' ? 'getting shorter' : 'stable'}
+					({durationTrend.direction === 'increasing' ? $_('dashboard.progression.lastingLonger') : durationTrend.direction === 'decreasing' ? $_('dashboard.progression.gettingShorter') : $_('dashboard.progression.stable')}
 					{durationTrend.direction === 'increasing' ? '↑' : durationTrend.direction === 'decreasing' ? '↓' : '↔'})
 				</span>
 			</div>
@@ -55,12 +56,12 @@
 		{#if estimate !== null}
 			<div class="estimate">
 				{#if estimate === 0}
-					{thresholdVal.intervalMinutes}-1-1 criteria currently met
+					{$_('dashboard.progression.criteriaMet', { values: { rule: `${thresholdVal.intervalMinutes}-1-1` } })}
 				{:else}
-					At this pace, may reach {thresholdVal.intervalMinutes}-1-1 in ~{estimate} min
+					{$_('dashboard.progression.estimateReach', { values: { rule: `${thresholdVal.intervalMinutes}-1-1`, minutes: estimate } })}
 				{/if}
 			</div>
-			<div class="disclaimer">Based on last {intervals.length} interval{intervals.length !== 1 ? 's' : ''} (this session)</div>
+			<div class="disclaimer">{$_('dashboard.progression.disclaimer', { values: { count: intervals.length } })}</div>
 		{/if}
 	{/if}
 </div>

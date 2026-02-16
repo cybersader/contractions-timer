@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { generateId, formatTimeShort } from '../../lib/labor-logic/formatters';
@@ -61,22 +62,22 @@
 <div class="untimed-section">
 	<button class="untimed-toggle" onclick={toggle}>
 		<ClipboardList size={14} aria-hidden="true" />
-		<span>{open ? 'Cancel' : 'Log past contraction'}</span>
+		<span>{open ? $_('common.cancel') : $_('timer.untimedEntry.logPastContraction')}</span>
 	</button>
 
 	{#if open}
 		<div class="untimed-form">
-			<p class="form-intro">Missed one? Log it here.</p>
+			<p class="form-intro">{$_('timer.untimedEntry.formIntro')}</p>
 
 			<!-- When -->
 			<div class="form-group">
-				<span class="form-label">When</span>
+				<span class="form-label">{$_('timer.untimedEntry.whenLabel')}</span>
 				<div class="stepper">
-					<button class="stepper-btn" onclick={() => adjustMinutesAgo(5)} aria-label="Earlier">
+					<button class="stepper-btn" onclick={() => adjustMinutesAgo(5)} aria-label={$_('timer.untimedEntry.earlierAriaLabel')}>
 						<Minus size={16} />
 					</button>
-					<span class="stepper-value">{minutesAgo}m ago</span>
-					<button class="stepper-btn" onclick={() => adjustMinutesAgo(-5)} aria-label="More recent">
+					<span class="stepper-value">{$_('timer.untimedEntry.minutesAgo', { values: { count: minutesAgo } })}</span>
+					<button class="stepper-btn" onclick={() => adjustMinutesAgo(-5)} aria-label={$_('timer.untimedEntry.moreRecentAriaLabel')}>
 						<Plus size={16} />
 					</button>
 				</div>
@@ -85,13 +86,13 @@
 
 			<!-- Duration -->
 			<div class="form-group">
-				<span class="form-label">Duration</span>
+				<span class="form-label">{$_('timer.untimedEntry.durationLabel')}</span>
 				<div class="stepper">
-					<button class="stepper-btn" onclick={() => adjustDuration(-15)} aria-label="Shorter">
+					<button class="stepper-btn" onclick={() => adjustDuration(-15)} aria-label={$_('timer.untimedEntry.shorterAriaLabel')}>
 						<Minus size={16} />
 					</button>
 					<span class="stepper-value">{durationLabel}</span>
-					<button class="stepper-btn" onclick={() => adjustDuration(15)} aria-label="Longer">
+					<button class="stepper-btn" onclick={() => adjustDuration(15)} aria-label={$_('timer.untimedEntry.longerAriaLabel')}>
 						<Plus size={16} />
 					</button>
 				</div>
@@ -99,7 +100,7 @@
 
 			<!-- Intensity (optional) -->
 			<div class="form-group">
-				<span class="form-label">Intensity <span class="optional">optional</span></span>
+				<span class="form-label">{$_('timer.untimedEntry.intensityLabel')} <span class="optional">{$_('timer.untimedEntry.optional')}</span></span>
 				<div class="pill-row">
 					{#each [1, 2, 3, 4, 5] as level}
 						<button
@@ -115,9 +116,9 @@
 
 			<!-- Location (optional) -->
 			<div class="form-group">
-				<span class="form-label">Location <span class="optional">optional</span></span>
+				<span class="form-label">{$_('timer.untimedEntry.locationLabel')} <span class="optional">{$_('timer.untimedEntry.optional')}</span></span>
 				<div class="pill-row">
-					{#each [['front', 'Front'], ['back', 'Back'], ['wrapping', 'Wrap']] as [val, label]}
+					{#each [['front', $_('timer.untimedEntry.front')], ['back', $_('timer.untimedEntry.back')], ['wrapping', $_('timer.untimedEntry.wrap')]] as [val, label]}
 						<button
 							class="pill pill--wide"
 							class:selected={location === val}
@@ -131,7 +132,7 @@
 
 			<button class="log-btn" onclick={logContraction}>
 				<Check size={16} aria-hidden="true" />
-				Log contraction
+				{$_('timer.untimedEntry.logContraction')}
 			</button>
 		</div>
 	{/if}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { EMPTY_SESSION, DEFAULT_SETTINGS } from '../../lib/labor-logic/types';
@@ -40,19 +41,19 @@
 	<div class="session-controls">
 		<button class="ctrl-btn ctrl-btn--undo" onclick={deleteLast}>
 			<Undo2 size={14} aria-hidden="true" />
-			Undo last
+			{$_('timer.sessionControls.undoLast')}
 		</button>
 
 		{#if showNewConfirm}
 			<button class="ctrl-btn ctrl-btn--danger" onclick={handleNewSession}>
-				Archive + start new
+				{$_('timer.sessionControls.archiveAndStartNew')}
 			</button>
 			<button class="ctrl-btn" onclick={() => showNewConfirm = false}>
-				Cancel
+				{$_('common.cancel')}
 			</button>
 		{:else}
 			<button class="ctrl-btn ctrl-btn--new" onclick={handleNewSession}>
-				New session
+				{$_('timer.sessionControls.newSession')}
 			</button>
 		{/if}
 	</div>

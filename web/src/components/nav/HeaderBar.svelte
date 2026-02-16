@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { Clock, Menu, Share2 } from 'lucide-svelte';
 	import { isP2PActive, peerState } from '../../lib/stores/p2p';
 	import { APP_VERSION } from '../../lib/version';
+	import LanguageSelector from './LanguageSelector.svelte';
 
 	interface Props {
 		onMenuToggle: () => void;
@@ -15,19 +17,22 @@
 </script>
 
 <header class="header-bar">
-	<button class="header-brand" onclick={onHomeClick} aria-label="Go to Timer">
+	<button class="header-brand" onclick={onHomeClick} aria-label={$_('nav.goToTimerAriaLabel')}>
 		<Clock size={20} strokeWidth={1.5} color="var(--accent)" aria-hidden="true" />
-		<span class="header-title">contractions.app</span>
+		<span class="header-title">{$_('nav.brandTitle')}</span>
 		<span class="header-version">v{APP_VERSION}</span>
 	</button>
 	<div class="header-actions">
-		<button class="header-icon-btn" onclick={onShareClick} aria-label="Share session">
+		<div class="header-lang-desktop">
+			<LanguageSelector />
+		</div>
+		<button class="header-icon-btn" onclick={onShareClick} aria-label={$_('nav.shareSessionAriaLabel')}>
 			<Share2 size={20} strokeWidth={2} color={p2pActive ? 'var(--accent)' : 'var(--text-muted)'} />
 			{#if p2pActive}
 				<span class="share-dot" class:share-dot--connecting={p2pStatus === 'connecting'}></span>
 			{/if}
 		</button>
-		<button class="header-icon-btn" onclick={onMenuToggle} aria-label="Menu">
+		<button class="header-icon-btn" onclick={onMenuToggle} aria-label={$_('nav.menuAriaLabel')}>
 			<Menu size={22} strokeWidth={2} color="var(--text-muted)" />
 		</button>
 	</div>
@@ -92,6 +97,18 @@
 		display: flex;
 		align-items: center;
 		gap: var(--space-1);
+	}
+
+	.header-lang-desktop {
+		display: none;
+	}
+
+	@media (min-width: 640px) {
+		.header-lang-desktop {
+			display: flex;
+			align-items: center;
+			margin-right: var(--space-1);
+		}
 	}
 
 	.header-icon-btn {

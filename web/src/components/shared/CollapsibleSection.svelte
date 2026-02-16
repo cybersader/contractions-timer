@@ -2,6 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import { ChevronRight, ChevronUp, ChevronDown, Settings } from 'lucide-svelte';
+	import { _ } from 'svelte-i18n';
 
 	interface Props {
 		title: string;
@@ -60,7 +61,7 @@
 			<button
 				class="settings-btn"
 				onclick={(e) => { e.stopPropagation(); onSettingsClick?.(); }}
-				aria-label="Open settings"
+				aria-label={$_('shared.collapsibleSection.openSettingsAriaLabel')}
 			>
 				<Settings size={13} />
 			</button>
@@ -70,7 +71,7 @@
 				class="move-btn"
 				disabled={!canMoveUp}
 				onclick={(e) => { e.stopPropagation(); onMoveUp?.(); }}
-				aria-label="Move up"
+				aria-label={$_('shared.collapsibleSection.moveUpAriaLabel')}
 			>
 				<ChevronUp size={14} />
 			</button>
@@ -78,7 +79,7 @@
 				class="move-btn"
 				disabled={!canMoveDown}
 				onclick={(e) => { e.stopPropagation(); onMoveDown?.(); }}
-				aria-label="Move down"
+				aria-label={$_('shared.collapsibleSection.moveDownAriaLabel')}
 			>
 				<ChevronDown size={14} />
 			</button>

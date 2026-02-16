@@ -1,0 +1,1155 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "none": "None",
+    "skip": "Skip",
+    "continue": "Continue",
+    "share": "Share",
+    "import": "Import",
+    "copyLink": "Copy link"
+  },
+  "nav": {
+    "timer": "Timer",
+    "dashboard": "Dashboard",
+    "history": "History",
+    "advisor": "Advisor",
+    "mainNavAriaLabel": "Main navigation",
+    "brandTitle": "contractions.app",
+    "goToTimerAriaLabel": "Go to Timer",
+    "shareSessionAriaLabel": "Share session",
+    "menuAriaLabel": "Menu",
+    "openMenuAriaLabel": "Open menu",
+    "menu": "Menu"
+  },
+  "menu": {
+    "drawerTitle": "Menu",
+    "closeMenuAriaLabel": "Close menu",
+    "closeAriaLabel": "Close",
+    "backToMenuAriaLabel": "Back to menu",
+    "sharingTitle": "Sharing",
+    "sharingHintConnected": "Connected ({count} peers)",
+    "settingsTitle": "Settings",
+    "themeTitle": "Theme",
+    "sessionsTitle": "Sessions",
+    "devToolsTitle": "Dev tools",
+    "prayersTitle": "Prayers",
+    "aboutTitle": "About",
+    "items": {
+      "sharing": "Sharing",
+      "settings": "Settings",
+      "theme": "Theme",
+      "sessions": "Sessions",
+      "exportData": "Export data (JSON)",
+      "importData": "Import data",
+      "restartSetup": "Restart setup",
+      "restartSetupHint": "Re-run the welcome wizard (data is kept)",
+      "about": "About",
+      "feedbackAndIssues": "Feedback & issues",
+      "prayers": "Prayers",
+      "devTools": "Dev tools",
+      "clearAllData": "Clear all data"
+    },
+    "importError": "Invalid file format",
+    "clearConfirm": {
+      "prompt": "Delete all contraction data?",
+      "confirmButton": "Yes, clear everything",
+      "cancelButton": "Cancel"
+    },
+    "about": {
+      "appName": "Contraction Timer",
+      "description": "Track contractions, assess labor patterns, know when to go to the hospital.",
+      "features": {
+        "liveTimer": "Live timer with wave chart",
+        "rule511": "5-1-1 rule tracking",
+        "braxtonHicks": "Braxton Hicks assessment",
+        "hospitalAdvisor": "Hospital departure advisor",
+        "clinicalReference": "Clinical reference guide"
+      },
+      "privacyNotice": "All data stays on this device. No accounts, no servers, no tracking.",
+      "githubLink": "GitHub",
+      "feedbackLink": "Feedback & issues"
+    },
+    "theme": {
+      "lightMode": "Light",
+      "darkMode": "Dark",
+      "uniqueMode": "Unique",
+      "colorPaletteLabel": "Color palette",
+      "darkCardStyle": "Dark",
+      "lightCardStyle": "Light",
+      "paletteNames": {
+        "soft": "Soft",
+        "clinical": "Clinical",
+        "warm": "Warm",
+        "ocean": "Ocean",
+        "forest": "Forest",
+        "sunset": "Sunset",
+        "lavender": "Lavender",
+        "midnight": "Midnight",
+        "sky": "Sky",
+        "blush": "Blush"
+      },
+      "uniqueModeLabels": {
+        "soft": "Aurora",
+        "clinical": "Terminal",
+        "warm": "Cathedral",
+        "ocean": "Abyss",
+        "forest": "Shire",
+        "sunset": "Retrowave",
+        "lavender": "Frost",
+        "midnight": "Galaxy",
+        "sky": "Dreamscape",
+        "blush": "Sakura"
+      }
+    },
+    "languageSelector": {
+      "changeLanguageAriaLabel": "Change language",
+      "closeMenuAriaLabel": "Close language menu"
+    },
+    "devtools": {
+      "loadSeedData": "Load seed data",
+      "seedHint": "Replace current session with realistic mock data for testing.",
+      "quickActions": "Quick actions",
+      "clearSession": "Clear session",
+      "clearSessionDesc": "Reset to empty state",
+      "loadedToast": "Loaded!",
+      "debugLogging": "Debug logging",
+      "debugLoggingHint": "Capture diagnostic data while testing features. Copy the log and paste it to share.",
+      "enableLogging": "Enable logging",
+      "copyLog": "Copy log ({count} entries)",
+      "copyLogDesc": "Copies full diagnostic log to clipboard",
+      "clearLog": "Clear log",
+      "clearLogDesc": "Remove all logged entries",
+      "copiedFeedback": "Copied!",
+      "copyFailedFeedback": "Copy failed",
+      "clearedFeedback": "Cleared!",
+      "archivePrompt": "You have {count, plural, one {# contraction} other {# contractions}} in your current session.",
+      "archiveCurrentAndLoad": "Archive current & load",
+      "replaceCurrentSession": "Replace current session",
+      "seeds": {
+        "singleLabel": "1 contraction",
+        "singleDesc": "Just started tracking",
+        "earlyLabel": "Early labor",
+        "earlyDesc": "5 contractions, irregular",
+        "activeLabel": "Active labor",
+        "activeDesc": "12 contractions, regular",
+        "mixedLabel": "Mixed + gap",
+        "mixedDesc": "13 contractions, 2 clusters",
+        "transitionLabel": "Transition",
+        "transitionDesc": "22 contractions + water break"
+      }
+    }
+  },
+  "timer": {
+    "bigButton": {
+      "start": "Start",
+      "stop": "Stop",
+      "startN": "Start #{count}"
+    },
+    "timerDisplay": {
+      "contractionLabel": "Contraction",
+      "restLabel": "Rest",
+      "pausedLabel": "Paused",
+      "readyLabel": "Ready",
+      "defaultTime": "0:00"
+    },
+    "liveRating": {
+      "pastThePeak": "Past the peak?",
+      "peakMarked": "Peak marked"
+    },
+    "pauseOverlay": {
+      "tapToResume": "Tap to resume",
+      "tapToPause": "tap to pause",
+      "resumeTimerAriaLabel": "Resume timer",
+      "pauseTimerAriaLabel": "Pause timer"
+    },
+    "intensityPicker": {
+      "prompt": "How strong was that?",
+      "mild": "Mild",
+      "moderate": "Moderate",
+      "strong": "Strong",
+      "veryStrong": "Very strong",
+      "intense": "Intense",
+      "levelFallback": "Level {level}"
+    },
+    "locationPicker": {
+      "prompt": "Where did you feel it?",
+      "lowerBelly": "Lower belly",
+      "lowerBack": "Lower back",
+      "allAround": "All around",
+      "backToIntensityAriaLabel": "Back to intensity"
+    },
+    "eventButtons": {
+      "waterBroke": "Water broke",
+      "waterBrokeAt": "Water broke at {time}",
+      "editTime": "Edit time",
+      "undo": "Undo",
+      "remove": "Remove",
+      "whenDidItHappen": "When did it happen?",
+      "justNow": "Just now",
+      "fiveMinAgo": "~5 min ago",
+      "fifteenMinAgo": "~15 min ago",
+      "thirtyMinAgo": "~30 min ago",
+      "earlier": "Earlier...",
+      "setCustomTime": "Set custom time",
+      "setTime": "Set time",
+      "setATimeAbove": "Set a time above",
+      "aroundTime": "Around {time}",
+      "moreEvents": "More events \u25BC",
+      "fewerEvents": "Fewer events \u25B2",
+      "mucusPlug": "Mucus plug",
+      "mucusPlugAt": "Mucus plug at {time}",
+      "bloodyShow": "Bloody show",
+      "bloodyShowAt": "Bloody show at {time}"
+    },
+    "waterBreakQuickAction": {
+      "waterBroke": "Water broke",
+      "waterBrokeAt": "Water broke at {time}",
+      "editTimeAriaLabel": "Edit time",
+      "removeWaterBreakAriaLabel": "Remove water break",
+      "undoLabel": "Undo",
+      "confirmRemoveAriaLabel": "Confirm remove",
+      "cancelAriaLabel": "Cancel",
+      "whenDidItHappen": "When did it happen?",
+      "closeAriaLabel": "Close",
+      "justNow": "Just now",
+      "fiveMinAgo": "~5 min ago",
+      "fifteenMinAgo": "~15 min ago",
+      "thirtyMinAgo": "~30 min ago",
+      "earlier": "Earlier...",
+      "setCustomTime": "Set custom time",
+      "setTime": "Set time",
+      "setATimeAbove": "Set a time above",
+      "aroundTime": "Around {time}"
+    },
+    "sessionControls": {
+      "undoLast": "Undo last",
+      "newSession": "New session",
+      "archiveAndStartNew": "Archive + start new"
+    },
+    "untimedEntry": {
+      "logPastContraction": "Log past contraction",
+      "formIntro": "Missed one? Log it here.",
+      "whenLabel": "When",
+      "minutesAgo": "{count}m ago",
+      "earlierAriaLabel": "Earlier",
+      "moreRecentAriaLabel": "More recent",
+      "durationLabel": "Duration",
+      "shorterAriaLabel": "Shorter",
+      "longerAriaLabel": "Longer",
+      "intensityLabel": "Intensity",
+      "optional": "optional",
+      "locationLabel": "Location",
+      "front": "Front",
+      "back": "Back",
+      "wrap": "Wrap",
+      "logContraction": "Log contraction"
+    },
+    "welcomeState": {
+      "title": "Contraction Timer",
+      "description": "Tap the button below when a contraction starts. Tap again when it ends.",
+      "trackFeature": "Track timing and intensity",
+      "patternFeature": "See patterns emerge"
+    },
+    "hospitalBanner": {
+      "viewAdvisorAriaLabel": "View advisor details"
+    },
+    "heroAction": {
+      "paused": "Paused",
+      "tapStartPrompt": "Tap start when a contraction begins",
+      "keepTracking": "Keep tracking...",
+      "stageActions": {
+        "preLabor": "Continue normal activities",
+        "early": "Rest and hydrate \u2014 stay home",
+        "active": "Head to hospital soon",
+        "transition": "You should be at the hospital"
+      },
+      "contractionMessages": {
+        "preLabor": "Stay relaxed...",
+        "early": "Nice and easy...",
+        "active": "Breathe through it...",
+        "transition": "One at a time \u2014 you've got this"
+      },
+      "defaultContractionMessage": "Breathe through it...",
+      "waterBrokeActive": "Water broke + active labor \u2014 head to hospital",
+      "waterBrokeTransition": "You should be at the hospital",
+      "waterBrokeDefault": "Water broke \u2014 call your provider",
+      "detailTemplate": "~{interval} min apart \u00B7 ~{duration}s avg"
+    },
+    "heroCompactTimer": {
+      "paused": "Paused",
+      "readyToStart": "Ready to start",
+      "contractingPrefix": "Contracting: {time}",
+      "restPrefix": "Rest: {restTime}",
+      "restAndLast": "Rest: {restTime} \u00B7 Last: {lastTime}"
+    },
+    "quickStats": {
+      "avgDuration": "Avg duration",
+      "avgInterval": "Avg interval",
+      "total": "Total",
+      "noDataPlaceholder": "\u2014"
+    },
+    "recentContractions": {
+      "noCompleted": "No completed contractions yet."
+    },
+    "timerPage": {
+      "sharingBanner": "Sharing with {count, plural, one {# partner} other {# partners}}",
+      "sections": {
+        "quickStats": "Quick stats",
+        "recent": "Recent",
+        "guidance": "Guidance"
+      }
+    },
+    "laborStages": {
+      "preLabor": "Pre-labor",
+      "early": "Early labor",
+      "active": "Active labor",
+      "transition": "Transition"
+    }
+  },
+  "dashboard": {
+    "pageTitle": "Dashboard",
+    "sections": {
+      "summary": "Summary",
+      "waveChart": "Wave chart",
+      "stageProgress": "Stage progress",
+      "trendAnalysis": "Trend analysis",
+      "patternAssessment": "Pattern assessment"
+    },
+    "emptyState": {
+      "title": "No data yet",
+      "hint": "Start timing contractions to see patterns, wave charts, and labor stage analysis here."
+    },
+    "summary": {
+      "contractions": "Contractions",
+      "avgDuration": "Avg duration",
+      "avgInterval": "Avg interval"
+    },
+    "stageBar": {
+      "beenHere": "You've been here {elapsed}",
+      "typical": "Typical: {range}",
+      "location": "Location: {location}"
+    },
+    "progression": {
+      "needMore": "Need 4+ contractions to analyze trends",
+      "trendsTitle": "Trends",
+      "gapBetween": "Gap between:",
+      "eachContraction": "Each contraction:",
+      "gettingCloser": "getting closer",
+      "spreadingApart": "spreading apart",
+      "lastingLonger": "lasting longer",
+      "gettingShorter": "getting shorter",
+      "stable": "stable",
+      "criteriaMet": "{rule} criteria currently met",
+      "estimateReach": "At this pace, may reach {rule} in ~{minutes} min",
+      "disclaimer": "Based on last {count} interval{count, plural, one {} other {s}} (this session)"
+    },
+    "braxtonHicks": {
+      "panelTitle": "Pattern assessment",
+      "likelyRealLabor": "Likely real labor",
+      "likelyPractice": "Likely practice contractions",
+      "mixedSignals": "Mixed signals",
+      "disclaimer": "This is a pattern estimate, not a diagnosis."
+    },
+    "waveChart": {
+      "fitButton": "Fit",
+      "nowButton": "Now \u2192",
+      "canvasAriaLabel": "Contraction wave chart",
+      "emptyText": "Contractions will appear here",
+      "legend": "Green = within {minutes} min"
+    }
+  },
+  "history": {
+    "pageTitle": "History",
+    "emptyState": {
+      "title": "No contractions yet",
+      "hint": "Your contraction history will appear here. Tap each entry to edit timing, intensity, or location."
+    },
+    "untimed": "Untimed",
+    "apart": "apart",
+    "editor": {
+      "editingNumber": "Editing #{num}",
+      "start": "Start",
+      "end": "End",
+      "duration": "Duration",
+      "durationPlaceholder": "M:SS",
+      "intensity": "Intensity",
+      "location": "Location",
+      "front": "Front",
+      "back": "Back",
+      "wrap": "Wrap",
+      "confirmDelete": "Confirm delete"
+    },
+    "events": {
+      "waterBroke": "Water broke",
+      "mucusPlug": "Mucus plug",
+      "bloodyShow": "Bloody show"
+    }
+  },
+  "hospital": {
+    "pageTitle": "Labor advisor",
+    "locationToggle": {
+      "atHome": "At home",
+      "onTheWay": "On the way"
+    },
+    "locationHint": {
+      "enRoute": "Travel time removed \u2014 estimates show time from now",
+      "uncertain": "Travel time unknown \u2014 using ~30 min conservative estimate",
+      "withTravel": "{minutes} min travel time included in estimates"
+    },
+    "sections": {
+      "departureAdvice": "Departure advice",
+      "ruleProgress": "5-1-1 rule progress",
+      "waterBreak": "Water break",
+      "tips": "Tips",
+      "laborGuide": "Labor guide"
+    },
+    "badges": {
+      "goNow": "Go now",
+      "timeToGo": "Time to go"
+    },
+    "range": {
+      "confidence": "{level} confidence",
+      "yourPattern": "Your pattern",
+      "factors": "Factors"
+    },
+    "callProvider": "Call provider ({phone})",
+    "rule511": {
+      "intervalCheck": "\u2264 {target} min apart (avg {actual} min)",
+      "durationCheck": "\u2265 {target} min long (avg {actual}s)",
+      "sustainedCheck": "\u2265 {target} min sustained ({actual} min)",
+      "howWeCalculateShow": "How we calculate",
+      "howWeCalculateHide": "Hide",
+      "explainerInterval": "Interval \u2014 average time between contraction starts within the analysis window. Checked (\u2713) when average \u2264 {target} min.",
+      "explainerDuration": "Duration \u2014 average length of timed contractions (start to stop). Checked when average \u2265 {target}s. A 64s contraction counts as \"over 1 minute.\"",
+      "explainerSustained": "Sustained \u2014 how long the pattern has been going. Measured as the span from your first to most recent contraction. Checked when \u2265 {target} min.",
+      "explainerNote": "These are clinical guidelines (ACOG), not absolute rules. Your provider may recommend different thresholds (e.g. 4-1-1 or 3-1-1). Adjust in settings."
+    },
+    "waterBreakInfo": {
+      "waterBrokeAgo": "Water broke {elapsed} ago",
+      "addProviderPhone": "Add provider phone for quick call access",
+      "phonePlaceholder": "e.g. 555-0123",
+      "safetyNote": "Note fluid color. Clear/pale yellow is normal. Green/brown \u2192 call immediately.",
+      "statChance": "chance",
+      "statBeforeContractions": "Water breaks before contractions start",
+      "statWithin12Hours": "Active labor within 12 hours",
+      "statWithin24Hours": "Active labor within 24 hours",
+      "statReassure": "Most people start labor naturally within a day"
+    },
+    "clinicalReference": {
+      "laborStagesTitle": "Labor stages",
+      "dilationNote": "Dilation = opening of uterus (0 cm = closed, 10 cm = fully open)",
+      "stageNames": {
+        "preLabor": "Pre-labor",
+        "early": "Early",
+        "active": "Active",
+        "transition": "Transition"
+      },
+      "stages": {
+        "preLabor": {
+          "description": "Irregular tightenings that come and go. Not true labor yet \u2014 your body is warming up.",
+          "cervix": "0\u20133 cm",
+          "pattern": "Irregular, 5\u201330 min apart, < 30s",
+          "location": "Front / lower abdomen"
+        },
+        "early": {
+          "description": "Contractions are becoming more regular and closer together. You can still talk through them.",
+          "cervix": "3\u20136 cm",
+          "pattern": "5\u201315 min apart, 30\u201360s",
+          "location": "Lower abdomen, may spread"
+        },
+        "active": {
+          "description": "Strong, regular contractions. Requires focused breathing. This is when most people head to the hospital.",
+          "cervix": "6\u20138 cm",
+          "pattern": "3\u20135 min apart, 45\u201375s",
+          "location": "Wraps from back to front"
+        },
+        "transition": {
+          "description": "The most intense but shortest phase. You may feel pressure, nausea, and an urge to push.",
+          "cervix": "8\u201310 cm",
+          "pattern": "2\u20133 min apart, 60\u201390s",
+          "location": "Intense, all around"
+        }
+      },
+      "currentBadge": "Current",
+      "bhVsRealTitle": "Braxton Hicks vs. real labor",
+      "bhIntro": "Compare your symptoms to help distinguish practice from real labor.",
+      "bhTag": "BH",
+      "realTag": "Real",
+      "bhCriteria": {
+        "timing": "Timing",
+        "pattern": "Pattern",
+        "restResponse": "Rest response",
+        "location": "Location",
+        "intensity": "Intensity"
+      },
+      "bhDescriptions": {
+        "timingBH": "Irregular timing",
+        "timingReal": "Regular timing, getting closer",
+        "patternBH": "Do not get closer together",
+        "patternReal": "Keep coming regardless of activity",
+        "restBH": "Stop with movement or position change",
+        "restReal": "Do not stop with rest or movement",
+        "locationBH": "Felt mainly in front",
+        "locationReal": "Radiate from back or wrap around",
+        "intensityBH": "Do not get stronger over time",
+        "intensityReal": "Get progressively stronger"
+      },
+      "warningTitle": "When to call provider immediately",
+      "warningSigns": {
+        "bleeding": "Vaginal bleeding like a period or heavier",
+        "babyMovement": "Baby stops moving or moves much less",
+        "abdominalPain": "Severe abdominal pain that does not ease",
+        "headache": "Severe headache with vision changes",
+        "fever": "Fever above 100.4\u00B0F (38\u00B0C)",
+        "meconium": "Fluid is green or brown (meconium)"
+      },
+      "sourcesTitle": "Sources",
+      "disclaimer": "General guidelines only. Always follow your provider's instructions."
+    },
+    "emptyState": {
+      "title": "Labor advisor",
+      "hint": "Record at least 3 contractions to see 5-1-1 progress, departure advice, and time estimates."
+    },
+    "advisor": {
+      "headlines": {
+        "keepTracking": "Keep tracking",
+        "goNow": "Go to the hospital now",
+        "timeToGo": "Time to go",
+        "startPreparing": "Start preparing",
+        "notYet": "Not yet",
+        "callProvider": "Call your provider",
+        "stayComfortable": "Stay comfortable"
+      },
+      "details": {
+        "notEnoughData": "Record more contractions to get departure advice.",
+        "transition": "Transition-phase contractions detected. You should be at or heading to the hospital.",
+        "waterAndActive": "Water has broken and contractions are in the active pattern. Head to the hospital.",
+        "waterBroken": "Water has broken. Contact your provider for guidance on when to head in.",
+        "rule511Met": "Contractions match the 5-1-1 pattern. Time to head to the hospital.",
+        "estimatedLeaveSoon": "At current pace, 5-1-1 pattern expected in ~{minutes} min. Consider leaving soon.",
+        "progressing": "Progressing toward 5-1-1. Estimated ~{minutes} min at current pace.",
+        "activeLabor": "Active labor pattern detected. Stay in close contact with your provider.",
+        "earlyLabor": "Early labor \u2014 contractions are present but still spaced out. Rest and conserve energy.",
+        "irregular": "Contractions are irregular. Continue monitoring for a consistent pattern."
+      },
+      "factors": {
+        "fewerThan2": "Fewer than 2 contractions recorded",
+        "fewerThan3": "Fewer than 3 contractions recorded",
+        "intervalApart": "Avg {interval} min apart",
+        "avgDuration": "Avg {duration}s long",
+        "waterBrokeAgo": "Water broke {hours}h ago",
+        "waterBroken": "Water has broken",
+        "travelUnknown": "Travel time unknown",
+        "travelTime": "{minutes} min travel time",
+        "travelUnknownConservative": "Travel time unknown \u2014 using 30 min estimate",
+        "travelAccounted": "{minutes} min travel time included",
+        "assumedProgression": "Assumed {rate} progression rate",
+        "rule511Met": "5-1-1 pattern met",
+        "rule511Pattern": "5-1-1 pattern detected",
+        "timeTo511": "~{minutes} min to 5-1-1 pattern"
+      },
+      "recommendations": {
+        "keepTracking": "Keep timing contractions to build a pattern.",
+        "goNow": "Head to the hospital immediately.",
+        "shouldBeAtHospital": "You should be at or heading to the hospital.",
+        "headToHospital": "Head to the hospital soon.",
+        "planToArriveWithin": "Plan to arrive within {minutes} min.",
+        "planSoon": "Plan to leave soon.",
+        "planWithinRange": "Plan to leave within {range}.",
+        "estimatedRange": "Estimated {range} until 5-1-1.",
+        "activeLeaveRange": "Consider leaving within {range}.",
+        "activeBagReady": "Have your bag ready. Active labor is progressing.",
+        "earlyStayHome": "Stay home and rest. Early labor can last many hours.",
+        "irregularContinue": "Continue monitoring. Pattern is not yet consistent."
+      },
+      "pattern": {
+        "summary": "Avg {interval} min apart, {duration}s long",
+        "notEnoughData": "Not enough data for pattern analysis"
+      },
+      "trend": {
+        "gettingCloser": "Getting closer: {first} min \u2192 {last} min apart",
+        "spacingOut": "Spacing out: {first} min \u2192 {last} min apart",
+        "steadyPace": "Steady pace: ~{avg} min apart"
+      }
+    }
+  },
+  "settings": {
+    "situation": {
+      "title": "Your situation",
+      "firstBabyLabel": "First baby?",
+      "firstBabyHint": "First labors typically last longer. This affects time estimates and stage duration ranges.",
+      "yesFirstBaby": "Yes, first baby",
+      "noHadOneBefore": "No, had one before"
+    },
+    "display": {
+      "title": "Display",
+      "timeFormat": "Time format",
+      "timeFormat12h": "12 hour",
+      "timeFormat24h": "24 hour",
+      "intensityScale": "Intensity scale",
+      "levels5": "5 levels",
+      "levels3": "3 levels",
+      "waveChartHeight": "Wave chart height",
+      "heightSmall": "Small (100px)",
+      "heightMedium": "Medium (150px)",
+      "heightLarge": "Large (200px)",
+      "heightXLarge": "Extra large (250px)",
+      "heroDisplay": "Hero display",
+      "heroHint": "Info card above the timer: stage label, action suggestion, or compact elapsed time.",
+      "heroStageBadge": "Stage badge",
+      "heroActionCard": "Action card",
+      "heroCompactTimer": "Compact timer",
+      "showRestSeconds": "Show rest in seconds",
+      "sessionBreakThreshold": "Session break threshold",
+      "sessionBreakHint": "Gaps longer than this are shown as separate sessions in the wave chart and trend analysis.",
+      "breakOff": "Off",
+      "stageTimerMode": "Stage timer mode",
+      "stageTimerHint": "How stage duration is calculated: from last contraction or continuously.",
+      "stageTimerLastRecorded": "Last recorded",
+      "stageTimerCurrentTime": "Current time"
+    },
+    "behavior": {
+      "title": "Behavior",
+      "hapticFeedback": "Haptic feedback",
+      "postContractionRating": "Post-contraction rating",
+      "showIntensityPicker": "Show intensity picker",
+      "showLocationPicker": "Show location picker",
+      "peakRating": "Peak rating during contraction"
+    },
+    "features": {
+      "title": "Features",
+      "waveChart": "Wave chart",
+      "showTargetLines": "Show target lines on chart",
+      "showTargetLinesHint": "Colored reference lines on the wave chart when contractions hit your timing targets.",
+      "trendAnalysis": "Trend analysis",
+      "trendAnalysisHint": "Linear regression on recent contractions to detect shortening intervals and longer durations.",
+      "patternAssessment": "Pattern assessment",
+      "patternAssessmentHint": "Weighted scoring of 6 criteria (regularity, duration trend, intensity, location, interval trend, sustained activity) to distinguish real labor from Braxton Hicks.",
+      "hospitalAdvisor": "Hospital advisor",
+      "hospitalAdvisorHint": "Departure timing advice on the Advisor page based on your contraction pattern.",
+      "contextualTips": "Contextual tips",
+      "contextualTipsHint": "Stage-appropriate guidance cards on the Timer and Advisor pages.",
+      "waterBreakButton": "Water break button",
+      "thresholdRuleProgress": "Threshold rule progress",
+      "thresholdRuleHint": "Show 5-1-1 (or custom) rule progress on the labor advisor page.",
+      "clinicalReference": "Clinical reference",
+      "clinicalReferenceHint": "Labor guide on the Advisor page: stages, Braxton Hicks comparison, and warning signs."
+    },
+    "advisor": {
+      "title": "Advisor",
+      "introDesc": "These three settings work together: Detail level controls how much info the advisor shows. Alert timing shifts when \"time to go\" appears. Travel time adds buffer so you leave with time to spare.",
+      "detailLevel": "Advisor detail level",
+      "detailLevelHint": "Controls how much detail the hospital advisor shows: time ranges, urgency level, or a single-line summary.",
+      "detailDetailed": "Detailed (range estimates)",
+      "detailUrgency": "Urgency only",
+      "detailMinimal": "Minimal",
+      "travelTime": "Travel time",
+      "travelTimeHint": "How long it takes to reach your hospital. Factored into departure timing.",
+      "alertTiming": "Alert timing",
+      "alertTimingHint": "Conservative alerts you earlier, relaxed waits longer. Affects when you see \"time to go\" advice.",
+      "alertConservative": "Conservative (go early)",
+      "alertModerate": "Moderate",
+      "alertRelaxed": "Relaxed (wait longer)",
+      "providerPhone": "Provider phone",
+      "providerPhonePlaceholder": "e.g. 555-0123"
+    },
+    "threshold": {
+      "title": "Threshold rule",
+      "desc": "The N-1-1 rule is clinical guidance (ACOG) for when to head to the hospital. Standard is 5-1-1: contractions 5 minutes apart, 1 minute long, for 1 hour. Your provider may recommend 3-1-1, 4-1-1, or other variations \u2014 adjust below.",
+      "detailDesc": "Each criterion uses the average of recent contractions within the analysis window, not a single contraction. A contraction lasting 64s counts as \"over 1 minute.\" These are guidelines, not absolute rules \u2014 always follow your provider's advice.",
+      "intervalTarget": "Interval target",
+      "intervalHint": "Average time between contraction starts (start-to-start). Checked when average \u2264 this value.",
+      "intervalOption": "{mins} min apart",
+      "durationTarget": "Duration target",
+      "durationHint": "Average contraction length (start to stop). Checked when average \u2265 this value.",
+      "durationOption": "{secs}s long",
+      "sustainedPeriod": "Sustained period",
+      "sustainedHint": "Total span from first to most recent contraction. Checked when \u2265 this value, confirming the pattern is consistent, not a one-off cluster."
+    },
+    "advanced": {
+      "title": "Advanced",
+      "stageThresholdsTitle": "Stage thresholds",
+      "stageThresholdsDesc": "Define contraction patterns for each labor stage. Based on ACOG guidelines. Max interval = longest gap between contractions; min duration = shortest contraction length.",
+      "maxInterval": "{stage} max interval",
+      "minDuration": "{stage} min duration",
+      "bhThresholdsTitle": "Pattern assessment thresholds",
+      "bhThresholdsDesc": "Fine-tune how we distinguish practice contractions from real labor. Most users should leave these at defaults.",
+      "regularityCVLow": "Regularity CV (low)",
+      "regularityCVHigh": "Regularity CV (high)",
+      "realLaborThreshold": "Real labor threshold",
+      "bhThreshold": "BH threshold",
+      "resetToDefaults": "Reset advanced to defaults"
+    },
+    "extras": {
+      "title": "Extras",
+      "prayers": "Prayers",
+      "prayersHint": "Show the Prayers tab in the menu. Always visible on Cathedral and Shire themes."
+    }
+  },
+  "sharing": {
+    "sendTitle": "Send",
+    "sendDesc": "Share your session data",
+    "receiveTitle": "Receive",
+    "receiveDesc": "Import shared data",
+    "liveTitle": "Share live",
+    "liveExperimentalTag": "(EXPERIMENTAL)",
+    "liveDesc": "Real-time sync between devices",
+    "backButton": "Back",
+    "liveQuickModeDesc": "Uses a relay to find your partner. Works across any network.",
+    "yourNameLabel": "Your name",
+    "yourNamePlaceholder": "Mom, Partner, etc.",
+    "joinersCanLabel": "Joiners can",
+    "modeCollaborative": "View and edit together",
+    "modeViewOnly": "View only",
+    "passwordLabel": "Password (optional)",
+    "passwordPlaceholder": "Adds encryption",
+    "passwordHintVisible": "Share this passphrase with your partner",
+    "passwordHintHidden": "Encrypts the session end-to-end",
+    "generatePassphraseAriaLabel": "Generate passphrase",
+    "showPasswordAriaLabel": "Show password",
+    "hidePasswordAriaLabel": "Hide password",
+    "serverOptionsToggle": "Server options",
+    "signalingBackendLabel": "Signaling backend",
+    "signalingBackendDefaultHint": "Routes the initial handshake (encrypted).",
+    "privacyNote": "All SDP data is encrypted before leaving your device. STUN only sees your IP. TURN relays encrypted data \u2014 cannot read content.",
+    "testSignalingButton": "Test signaling",
+    "testSignalingLoading": "Testing...",
+    "testSignalingReachable": "Reachable ({latencyMs}ms)",
+    "testSignalingUnreachable": "Unreachable \u2014 try a different backend",
+    "startSharingButton": "Start sharing",
+    "joinRoomButton": "Join room",
+    "scanQrCodeButton": "Scan QR code",
+    "roomCodeLabel": "Room code",
+    "roomCodePlaceholder": "blue-tiger-42",
+    "connectButton": "Connect",
+    "usePrivateConnect": "Use private connect instead",
+    "privateConnectTitle": "Private connect",
+    "privateConnectDesc": "Connect by exchanging invite codes manually \u2014 no relay server touches your data.",
+    "privateStep1": "One person creates an invite and shares the code",
+    "privateStep2": "The other person accepts and sends back a response code",
+    "privateStep3": "Once exchanged, you're connected peer-to-peer",
+    "connectionLimitationsTitle": "Connection limitations",
+    "connectionLimitationsText": "Without a TURN relay server, this only works reliably on the same WiFi network. Connections across different networks (mobile data, different WiFi, corporate firewalls) will usually fail because NAT/firewall rules block direct peer-to-peer traffic.",
+    "connectionLimitationsAdvice": "For reliable cross-network connections, use Quick Connect with a Cloudflare Worker relay instead \u2014 it's free, takes 2 minutes to set up, and works everywhere.",
+    "createInviteButton": "Create invite",
+    "acceptInviteButton": "Accept invite",
+    "scanInviteQrButton": "Scan invite QR",
+    "inviteCodeLabel": "Invite code",
+    "inviteCodePlaceholder": "Paste the invite code here...",
+    "hostStep1Label": "Step 1: Share this with your partner",
+    "hostStep2Label": "Step 2: Enter partner's response code",
+    "responseCodePlaceholder": "Paste their response code...",
+    "guestSendCodeLabel": "Send this code back to your partner",
+    "waitingForPartnerToEnterCode": "Waiting for partner to enter code...",
+    "generatingResponseCode": "Generating response code...",
+    "connectedLabel": "Connected",
+    "privateBadge": "Private",
+    "connectedTo": "to {roomCode}",
+    "modeLabel": "Mode: {mode}",
+    "connectedPeersHeader": "Connected ({count})",
+    "peerHostSuffix": "(host)",
+    "stopSharingButton": "Stop sharing",
+    "disconnectButton": "Disconnect",
+    "connectionDetailsToggle": "Connection details",
+    "shareLinkButton": "Share link",
+    "waitingForPartnerToJoin": "Waiting for partner to join...",
+    "copyFeedbackSuccess": "{label} copied!",
+    "copyFeedbackFailed": "Failed to copy",
+    "phaseCreatingOffer": "Creating secure room...",
+    "phasePosting": "Publishing room code...",
+    "phaseWaitingForPartner": "Waiting for partner...",
+    "phasePollingForOffer": "Looking for room...",
+    "phaseGeneratingAnswer": "Connecting to host...",
+    "phasePostingAnswer": "Sending response...",
+    "phaseCompleting": "Completing handshake...",
+    "phaseConnected": "Connected!",
+    "phaseDefault": "Connecting...",
+    "scannerHint": "Point camera at QR code",
+    "tapToEnlargeHint": "Tap to enlarge",
+    "qrPrivateInviteAlt": "QR code for private invite",
+    "qrResponseCodeAlt": "QR code for response code",
+    "qrRoomCodeAlt": "QR code for room {roomCode}",
+    "qrEnlargedAlt": "QR code (enlarged)",
+    "qrFullscreenCloseHint": "Tap anywhere to close",
+    "cameraErrorHttps": "Camera requires HTTPS. This page is not in a secure context.",
+    "cameraErrorUnavailable": "Camera API not available in this browser.",
+    "cameraErrorPermission": "Camera permission denied. Check your browser settings.",
+    "cameraErrorNotFound": "No camera found on this device.",
+    "cameraErrorGeneric": "Camera error: {message}",
+    "responseCodeLabel": "Response code",
+    "responseLinkLabel": "Response link",
+    "receivedInviteBanner": "You've received a private invite!",
+    "enterNameToConnect": "Enter your name to connect",
+    "nameRequired": "Name required to connect",
+    "enterCodeManually": "Enter code manually instead",
+    "serverOptions": {
+      "workerUrl": "Worker URL",
+      "stunServer": "STUN server",
+      "customStunUrl": "Custom STUN URL",
+      "turnRelay": "TURN relay",
+      "turnUrl": "TURN URL",
+      "username": "Username",
+      "credential": "Credential",
+      "usernamePlaceholder": "TURN username",
+      "credentialPlaceholder": "TURN credential",
+      "stunGoogle": "Google (default)",
+      "stunCloudflare": "Cloudflare",
+      "stunNone": "None (LAN only)",
+      "stunCustom": "Custom",
+      "stunGoogleDesc": "Free, reliable. Google sees your IP during the STUN request.",
+      "stunCloudflareDesc": "Privacy-focused alternative. Cloudflare sees your IP.",
+      "stunNoneDesc": "No STUN server. Only works on the same local network.",
+      "stunCustomDesc": "Enter your own STUN server URL.",
+      "turnOpenRelay": "Open Relay (default)",
+      "turnCloudflare": "Cloudflare TURN",
+      "turnNone": "None",
+      "turnCustom": "Custom",
+      "turnOpenRelayDesc": "Free public relay. Relays encrypted data if direct connection fails.",
+      "turnCloudflareDesc": "Requires a Cloudflare account with TURN enabled.",
+      "turnNoneDesc": "No TURN relay. Direct connections only.",
+      "turnCustomDesc": "Enter your own TURN server details."
+    },
+    "diagnostics": {
+      "iceCandidates": "ICE candidates",
+      "hostLocal": "Host (local)",
+      "stunSrflx": "STUN (srflx)",
+      "turnRelay": "TURN (relay)",
+      "gatherTime": "Gather time",
+      "signaling": "Signaling",
+      "fallback": "Fallback",
+      "warning": "Warning",
+      "fallbackDetail": "Using ntfy.sh (primary unreachable)"
+    },
+    "privateTurnHint": {
+      "summary": "Already have a TURN server?",
+      "detail": "If you have your own TURN server credentials, select 'Custom' above and enter them. TURN relays encrypted data when direct peer-to-peer connections fail due to restrictive NAT or firewalls."
+    },
+    "snapshot": {
+      "sendTitle": "Send a snapshot",
+      "sendTooltip": "Sends a frozen copy of your session data. The recipient gets a one-time snapshot, not a live connection.",
+      "sendDesc": "Share a one-time copy of your session. Your partner gets a frozen snapshot \u2014 not a live connection.",
+      "whatToInclude": "What to include",
+      "alwaysIncludedHint": "Session data (contractions, events) is always included.",
+      "shareSessionButton": "Share session data",
+      "copyLinkLabel": "Copy link",
+      "copyLinkDesc": "Shareable URL with your data",
+      "copyDataLabel": "Copy data",
+      "copyDataDesc": "Compressed data for pasting",
+      "qrCodeLabel": "QR code",
+      "qrCodeDesc": "Scan with a phone camera",
+      "qrCodeTooLarge": "Too large for QR",
+      "qrCodeTooLargeTitle": "Session data is too large for a QR code",
+      "shortCodeLabel": "Short code",
+      "shortCodeDesc": "Easy-to-type code (5 min expiry)",
+      "shortCodeDisabledDesc": "Requires relay server",
+      "shortCodeDisabledTitle": "Set up a relay in server options to enable short codes",
+      "shortCodeResultLabel": "Short code",
+      "shortCodeExpiry": "Expires in 5 min",
+      "qrTapHint": "Tap to enlarge",
+      "qrTooLargeError": "Session data too large for QR code ({charCount} chars, max ~2900). Use copy link or short code instead.",
+      "qrGenerationFailed": "QR generation failed: {message}",
+      "emptyTitle": "No session data yet",
+      "emptyDesc": "Start tracking contractions, then come back here to share your data with your partner or another device.",
+      "receiveTitle": "Receive a snapshot",
+      "receiveIntro": "Import session data shared by your partner or from another device.",
+      "receiveMethodQr": "Scan a QR code with your camera",
+      "receiveMethodLink": "Paste a share link from your partner",
+      "receiveMethodShortCode": "Enter a short code (if using a relay)",
+      "importPlaceholder": "Paste a link, short code, or compressed data here...",
+      "loadingText": "Loading snapshot...",
+      "previewHeader": "Import this snapshot?",
+      "previewContractionsLabel": "Contractions",
+      "previewContractionsValue": "{contractionCount} ({completedCount} completed)",
+      "previewEventsLabel": "Events",
+      "previewTimeRangeLabel": "Time range",
+      "previewSessionStartedLabel": "Session started",
+      "previewSessionDateUnknown": "Unknown",
+      "previewIncludedSettingsHeader": "Included settings",
+      "previewArchiveAndImportButton": "Archive current & import",
+      "previewReplaceButton": "Replace current session",
+      "previewCurrentSessionHint": "You have {count} contraction{count, plural, one {} other {s}} in your current session.",
+      "previewImportCountButton": "Import {count} contractions",
+      "importErrorUnrecognized": "Could not recognize this as a snapshot link, code, or data",
+      "importErrorRelayRequired": "Short codes require a relay server. Set one up in server options.",
+      "nativeShareTitle": "Contraction timer data",
+      "nativeShareText": "View my contraction timer session",
+      "pasteFromClipboardAriaLabel": "Paste from clipboard"
+    },
+    "deploy": {
+      "guideToggle": "Deploy your own relay (recommended)",
+      "tierBasicBadge": "Basic",
+      "tierBasicLabel": "No setup needed",
+      "tierBasicDesc": "Uses free public servers. Works on the same WiFi network. Cross-network connections may be unreliable.",
+      "tierBasicConfig": "ntfy.sh + Google STUN + Open Relay TURN",
+      "tierAdvancedBadge": "Advanced",
+      "tierAdvancedLabel": "Your own private relay",
+      "tierAdvancedDesc": "Works everywhere. Free. Takes 2 minutes. No credit card needed.",
+      "step1Title": "Deploy your relay",
+      "step1Desc": "You'll need a free GitHub and Cloudflare account. Cloudflare creates a copy of the relay code and deploys it for you.",
+      "step1Button": "Deploy to Cloudflare (one click)",
+      "step2Title": "Copy your Worker URL",
+      "step2Desc": "After deploying, Cloudflare shows your URL. It looks like ct-signaling.you.workers.dev. Select \"My Cloudflare Worker\" in the dropdown above and paste it in.",
+      "step3Title": "Share the URL with your partner",
+      "step3Desc": "Your partner pastes the same URL into their app. Only one person needs to deploy \u2014 both use the same relay.",
+      "tierSelfHostedBadge": "Self-hosted",
+      "tierSelfHostedLabel": "Full control",
+      "tierSelfHostedDesc": "Run your own signaling server + TURN relay. Zero third-party dependencies."
+    },
+    "categories": {
+      "thresholdsLabel": "Timing rules (5-1-1)",
+      "thresholdsDesc": "Threshold and stage settings",
+      "providerLabel": "Provider phone",
+      "providerDesc": "Your provider's number",
+      "layoutLabel": "Screen layout",
+      "layoutDesc": "Panel order and hero mode",
+      "parityLabel": "Birth history",
+      "parityDesc": "First baby or subsequent",
+      "travelLabel": "Travel & distance",
+      "travelDesc": "Driving time, risk level",
+      "appearanceLabel": "Theme & display",
+      "appearanceDesc": "Theme, visibility toggles"
+    }
+  },
+  "onboarding": {
+    "welcomeTitle": "Contraction Timer",
+    "welcomeDesc": "Track contractions, see patterns, and know when it's time to go to the hospital.",
+    "welcomePrivacyNote": "All data stays on this device. No accounts needed.",
+    "getStartedButton": "Get started",
+    "skipSetupButton": "Skip setup",
+    "quickSetupTitle": "Quick setup",
+    "quickSetupDesc": "Two quick questions to personalize your experience.",
+    "firstBabyLabel": "Is this your first baby?",
+    "firstBabyYes": "Yes, first",
+    "firstBabyNo": "No, had one before",
+    "hospitalDistanceLabel": "How far is your hospital?",
+    "travelTimeMinutes": "{mins} min",
+    "travelTimeNotSure": "Not sure",
+    "travelTimeUncertainHint": "No problem \u2014 we'll use a conservative estimate and give you a range.",
+    "providerPhoneLabel": "Provider or hospital phone (optional)",
+    "providerPhonePlaceholder": "(555) 123-4567",
+    "providerPhoneHint": "Quick-dial from the app when it's time to call.",
+    "readyTitle": "You're all set",
+    "readyDesc": "Tap the big button when a contraction starts. Tap again when it ends. The app does the rest.",
+    "summaryFirstBaby": "First baby",
+    "summaryNotFirstBaby": "Not first baby",
+    "summaryTravelTimeNotSure": "Travel time: not sure",
+    "summaryTravelTimeMinutes": "{travelTime} min to hospital",
+    "startTrackingButton": "Start tracking"
+  },
+  "clinical": {
+    "bhVsReal": {
+      "bh": {
+        "irregularTiming": "Irregular timing",
+        "notCloser": "Do not get closer together",
+        "stopWithMovement": "Stop with movement or position change",
+        "frontOnly": "Felt mainly in front",
+        "notStronger": "Do not get stronger over time"
+      },
+      "real": {
+        "regularCloser": "Regular timing, getting closer",
+        "keepComing": "Keep coming regardless of activity",
+        "noStop": "Do not stop with rest or movement",
+        "radiateBack": "Radiate from back or wrap around",
+        "progressive": "Get progressively stronger"
+      }
+    },
+    "tips": {
+      "firstContraction": "Great start! Keep timing contractions to see if a pattern develops. Most first labors start slowly.",
+      "prelaborNormal": "Irregular contractions are normal and can come and go for days. If they stop when you move or rest, it may be Braxton Hicks.",
+      "earlyRest": "Early labor can last 6-12+ hours for first-time parents. Try to rest, especially if it is nighttime.",
+      "earlyHydrate": "Stay hydrated and eat light snacks. You will need the energy for active labor.",
+      "earlyActivity": "Light activity like walking can help labor progress during the day.",
+      "earlyTiming": "You are likely still at home during early labor. Head to the hospital when contractions reach the 5-1-1 pattern.",
+      "activeEntered": "Active labor means steady progress. If you are not at the hospital yet, it is time to go.",
+      "activeBreathing": "Focus on slow, deep breathing through each contraction. In through the nose, out through the mouth.",
+      "activeDuration": "Active labor typically lasts 3-5 hours for first-time parents. You are making real progress.",
+      "transitionEntered": "Transition is the shortest but most intense phase. You are almost there.",
+      "transitionNormal": "Feeling overwhelmed, nauseous, or shaky is normal during transition. It typically lasts 30 minutes to 2 hours.",
+      "waterNoteColor": "Note the color of the fluid. Clear or pale yellow is normal. Green or brown means call your provider immediately.",
+      "waterCallProvider": "Contact your provider to let them know your water broke. They will advise on next steps.",
+      "waterStats": "77-95% of people go into active labor within 24 hours of their water breaking.",
+      "nightSleep": "Try to sleep between contractions if possible. Rest now will help you through active labor later.",
+      "backLabor": "Back labor can be eased by hands-and-knees position, hip squeezes, or a warm compress on your lower back.",
+      "safetyCall": "Call your provider immediately if: heavy bleeding, baby stops moving, severe headache with vision changes, or fever above 100.4\u00B0F.",
+      "patternRegular": "Your contractions are becoming more regular. This is a good sign that labor is progressing."
+    }
+  },
+  "shared": {
+    "collapsibleSection": {
+      "openSettingsAriaLabel": "Open settings",
+      "moveUpAriaLabel": "Move up",
+      "moveDownAriaLabel": "Move down"
+    },
+    "contextualTips": {
+      "dismissTipAriaLabel": "Dismiss tip"
+    },
+    "toast": {
+      "peerJoined": "{name} joined",
+      "partnerDisconnected": "A partner disconnected"
+    },
+    "storageWarning": {
+      "dismissAriaLabel": "Dismiss"
+    },
+    "sessionManager": {
+      "newSession": "New session",
+      "archiveConfirmPrompt": "Archive current session and start fresh?",
+      "yesStartNew": "Yes, start new",
+      "previousSessions": "Previous sessions",
+      "restore": "Restore",
+      "delete": "Delete",
+      "confirmDelete": "Confirm",
+      "noArchivedSessions": "No archived sessions."
+    }
+  },
+  "devotional": {
+    "headingPrayersAndScripture": "Prayers & Scripture",
+    "headingPatronSaints": "Patron Saints of Childbirth",
+    "prayerBadge": "Prayer",
+    "scriptureBadge": "Scripture",
+    "prayerDotAriaLabel": "Prayer {index}",
+    "footerLatin": "Pax Domini sit semper vobiscum.",
+    "footerTranslation": "The peace of the Lord be always with you.",
+    "dedication": "Made with \u2665 for AJR",
+    "saints": {
+      "gerardMajella": {
+        "name": "St. Gerard Majella",
+        "title": "Patron of expectant mothers",
+        "detail": "An 18th-century Redemptorist lay brother whose intercession is sought by mothers for safe delivery and healthy children."
+      },
+      "giannaMolla": {
+        "name": "St. Gianna Beretta Molla",
+        "title": "Patron of mothers & unborn children",
+        "detail": "An Italian physician and mother who sacrificed her life for her unborn child in 1962. Canonized by Pope John Paul II in 2004."
+      },
+      "raymondNonnatus": {
+        "name": "St. Raymond Nonnatus",
+        "title": "Patron of childbirth & midwives",
+        "detail": "A 13th-century Mercedarian friar named \"non natus\" (not born) because he was delivered by caesarean section after his mother's death."
+      },
+      "margaretAntioch": {
+        "name": "St. Margaret of Antioch",
+        "title": "Patron of childbirth",
+        "detail": "A virgin martyr of the early Church, invoked for centuries by women in labor. One of the Fourteen Holy Helpers."
+      },
+      "ourLadyLaLeche": {
+        "name": "Our Lady of La Leche",
+        "title": "Patroness of nursing mothers",
+        "detail": "A beloved devotion to the Blessed Virgin Mary honoring her as a nursing mother, with a shrine in St. Augustine, Florida since 1615."
+      },
+      "colette": {
+        "name": "St. Colette",
+        "title": "Patron of pregnant women & women in childbirth",
+        "detail": "A 14th-century French Poor Clare nun known for reforming her order. A stillborn child was said to have been revived after she wrapped it in her veil."
+      },
+      "felicity": {
+        "name": "St. Felicity",
+        "title": "Patron of expectant mothers",
+        "detail": "A 2nd-century woman imprisoned and sentenced to death for her Christian faith while pregnant. Her execution was delayed until after she gave birth in prison."
+      },
+      "elizabeth": {
+        "name": "St. Elizabeth",
+        "title": "Patron of expectant mothers",
+        "detail": "Cousin of the Blessed Virgin Mary and mother of St. John the Baptist. Called \"blessed among women,\" she conceived her son in her old age by the grace of God."
+      },
+      "anne": {
+        "name": "St. Anne",
+        "title": "Patron of grandmothers & women in labor",
+        "detail": "Mother of the Blessed Virgin Mary. Venerated since the early Church for conceiving and bearing Mary later in life. Her name means \"grace.\""
+      },
+      "monica": {
+        "name": "St. Monica",
+        "title": "Patron of mothers",
+        "detail": "A 4th-century mother of St. Augustine of Hippo. She endured great hardship during pregnancy with an abusive husband, yet her faith and perseverance brought her son to conversion."
+      },
+      "zelieMartin": {
+        "name": "St. Zélie Martin",
+        "title": "Patron of mothers & grieving parents",
+        "detail": "A 19th-century French mother who lost four of her nine children in infancy. Canonized in 2015 alongside her husband Louis. Mother of St. Thérèse of Lisieux."
+      },
+      "joseph": {
+        "name": "St. Joseph",
+        "title": "Patron of families, fathers & the Universal Church",
+        "detail": "The foster father of Jesus and spouse of the Blessed Virgin Mary. Known as \"Terror of Demons\" for his powerful protection over the Holy Family. Patron of a happy death, workers, and the universal Church."
+      }
+    },
+    "prayers": {
+      "stGerard": {
+        "title": "Prayer to St. Gerard for Safe Delivery",
+        "shortLabel": "St. Gerard",
+        "text": "O great St. Gerard, beloved servant of Jesus Christ, perfect imitator of thy meek and humble Savior, and devoted child of the Mother of God: enrich me with thy blessing before, during, and after the birth of my child. Through thy intercession may I experience a safe and happy delivery. May my child be brought safely into this world and be raised as a true child of God. Amen.",
+        "attribution": "Traditional Catholic Prayer"
+      },
+      "memorare": {
+        "title": "The Memorare",
+        "shortLabel": "Memorare",
+        "text": "Remember, O most gracious Virgin Mary, that never was it known that anyone who fled to thy protection, implored thy help, or sought thy intercession was left unaided. Inspired by this confidence, I fly unto thee, O Virgin of virgins, my Mother. To thee do I come, before thee I stand, sinful and sorrowful. O Mother of the Word Incarnate, despise not my petitions, but in thy mercy hear and answer me. Amen.",
+        "attribution": "Attributed to St. Bernard of Clairvaux"
+      },
+      "motherAndChild": {
+        "title": "Prayer for Mother and Child",
+        "shortLabel": "Mother & Child",
+        "text": "Lord Jesus Christ, who was carried in the womb of the Blessed Virgin Mary, look with mercy upon this mother and her child. Grant her strength in labor, courage in pain, and joy in new life. May the child be born in safety and health, and may both mother and child rest under thy loving protection. Through the intercession of Mary, Mother of God, and all the holy mothers and saints, we ask this in thy name. Amen.",
+        "attribution": "Traditional Catholic Prayer"
+      },
+      "hailMary": {
+        "title": "Hail Mary",
+        "shortLabel": "Hail Mary",
+        "text": "Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.",
+        "attribution": "Traditional Catholic Prayer"
+      },
+      "ourLadyLaLeche": {
+        "title": "Prayer to Our Lady of La Leche",
+        "shortLabel": "Our Lady of La Leche",
+        "text": "Lovely Lady of La Leche, most loving Mother of the Child Jesus, and my mother, I come to ask your help. I believe in God's power, and I place all my trust in you. Grant me the grace of motherhood. Assist me, dear Lady, in this my longing, and if it be the Holy Will of God for me to conceive, obtain for me the grace of carrying my child to term. Through the intercession of Thy Holy Mother and the merits of her divine Son, have mercy on us. Amen.",
+        "attribution": "Traditional — Shrine of Our Lady of La Leche, St. Augustine, FL"
+      },
+      "safeDelivery": {
+        "title": "Prayer for a Safe Delivery",
+        "shortLabel": "Safe Delivery",
+        "text": "Lord Jesus, I place my baby and myself into your loving hands. Calm my fears, strengthen my body, and guide those who care for us. May this birth be safe and filled with your peace. I trust in your plan for our lives. Amen.",
+        "attribution": "Contemporary Catholic Prayer"
+      },
+      "stJoseph": {
+        "title": "Prayer to St. Joseph, Protector of Families",
+        "shortLabel": "St. Joseph",
+        "text": "O St. Joseph, whose protection is so great, so strong, so prompt before the throne of God, I place in thee all my interests and desires. O St. Joseph, assist me by thy powerful intercession and obtain for me all spiritual blessings through thy foster Son, Jesus Christ our Lord, so that, having engaged here below thy heavenly power, I may offer my thanksgiving and homage. O St. Joseph, Terror of Demons, pray for us and for our family. Guard this mother and child with thy fatherly care. Amen.",
+        "attribution": "Traditional Catholic Prayer to St. Joseph"
+      },
+      "psalm139": {
+        "title": "Psalm 139:13\u201316 \u2014 Knit Together",
+        "shortLabel": "\ud83d\udcd6 Psalm 139",
+        "text": "For you created my inmost being; you knit me together in my mother\u2019s womb. I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well. My frame was not hidden from you when I was made in the secret place, when I was woven together in the depths of the earth. Your eyes saw my unformed body; all the days ordained for me were written in your book before one of them came to be.",
+        "attribution": "Psalm 139:13\u201316 (NIV)"
+      },
+      "isaiah66": {
+        "title": "Isaiah 66:9 \u2014 Promise of Delivery",
+        "shortLabel": "\ud83d\udcd6 Isaiah 66:9",
+        "text": "Do I bring to the moment of birth and not give delivery? says the Lord. Do I close up the womb when I bring to delivery? says your God.",
+        "attribution": "Isaiah 66:9 (NIV)"
+      },
+      "jeremiah1": {
+        "title": "Jeremiah 1:5 \u2014 Known Before Birth",
+        "shortLabel": "\ud83d\udcd6 Jeremiah 1:5",
+        "text": "Before I formed you in the womb I knew you, before you were born I set you apart.",
+        "attribution": "Jeremiah 1:5 (NIV)"
+      },
+      "magnificat": {
+        "title": "The Magnificat (Canticle of Mary)",
+        "shortLabel": "\ud83d\udcd6 Magnificat",
+        "text": "My soul proclaims the greatness of the Lord, my spirit rejoices in God my Savior, for he has looked with favor on his lowly servant. From this day all generations will call me blessed: the Almighty has done great things for me, and holy is his Name.",
+        "attribution": "Luke 1:46\u201349 \u2014 The Magnificat"
+      }
+    }
+  },
+  "relay": {
+    "responseSent": "Response sent!",
+    "responseSentDesc": "The response code was sent to your sharing session. You can close this tab.",
+    "closeTab": "Close tab"
+  },
+  "swipeHint": "swipe"
+}

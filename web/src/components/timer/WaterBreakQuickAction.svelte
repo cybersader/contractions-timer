@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { formatTimeShort, generateId } from '../../lib/labor-logic/formatters';
@@ -105,36 +106,36 @@
 	let customTotal = $derived(customHours * 60 + customMinutes);
 	let customPreview = $derived(
 		customTotal === 0
-			? 'Set a time above'
-			: `Around ${formatTimeShort(new Date(Date.now() - customTotal * 60000))}`
+			? $_('timer.waterBreakQuickAction.setATimeAbove')
+			: $_('timer.waterBreakQuickAction.aroundTime', { values: { time: formatTimeShort(new Date(Date.now() - customTotal * 60000)) } })
 	);
 </script>
 
 {#if !waterBreak}
 	<button class="water-quick" onclick={recordWaterBreak}>
 		<Droplets size={16} aria-hidden="true" />
-		<span>Water broke</span>
+		<span>{$_('timer.waterBreakQuickAction.waterBroke')}</span>
 	</button>
 {:else}
 	<div class="water-confirmed-area">
 		<div class="water-quick water-quick--confirmed">
 			<Droplets size={16} aria-hidden="true" />
-			<span>Water broke at {formatTimeShort(new Date(waterBreak.timestamp))}</span>
+			<span>{$_('timer.waterBreakQuickAction.waterBrokeAt', { values: { time: formatTimeShort(new Date(waterBreak.timestamp)) } })}</span>
 			<div class="water-actions">
-				<button class="water-action-btn" onclick={openTimePicker} aria-label="Edit time">
+				<button class="water-action-btn" onclick={openTimePicker} aria-label={$_('timer.waterBreakQuickAction.editTimeAriaLabel')}>
 					<Pencil size={12} aria-hidden="true" />
 				</button>
 				{#if !confirmingUndo}
-					<button class="water-action-btn water-action-btn--undo" onclick={startUndoConfirm} aria-label="Remove water break" title="Remove water break">
+					<button class="water-action-btn water-action-btn--undo" onclick={startUndoConfirm} aria-label={$_('timer.waterBreakQuickAction.removeWaterBreakAriaLabel')} title={$_('timer.waterBreakQuickAction.removeWaterBreakAriaLabel')}>
 						<Undo2 size={12} aria-hidden="true" />
-						<span class="undo-label">Undo</span>
+						<span class="undo-label">{$_('timer.waterBreakQuickAction.undoLabel')}</span>
 					</button>
 				{:else}
 					<div class="undo-confirm">
-						<button class="water-action-btn water-action-btn--confirm-yes" onclick={confirmUndoWaterBreak} aria-label="Confirm remove">
+						<button class="water-action-btn water-action-btn--confirm-yes" onclick={confirmUndoWaterBreak} aria-label={$_('timer.waterBreakQuickAction.confirmRemoveAriaLabel')}>
 							<Check size={12} aria-hidden="true" />
 						</button>
-						<button class="water-action-btn water-action-btn--confirm-no" onclick={cancelUndo} aria-label="Cancel">
+						<button class="water-action-btn water-action-btn--confirm-no" onclick={cancelUndo} aria-label={$_('timer.waterBreakQuickAction.cancelAriaLabel')}>
 							<X size={12} aria-hidden="true" />
 						</button>
 					</div>
@@ -145,24 +146,24 @@
 		{#if showTimePicker && !showStepper}
 			<div class="time-picker">
 				<div class="picker-header">
-					<span>When did it happen?</span>
-					<button class="picker-close" onclick={closeTimePicker} aria-label="Close">
+					<span>{$_('timer.waterBreakQuickAction.whenDidItHappen')}</span>
+					<button class="picker-close" onclick={closeTimePicker} aria-label={$_('timer.waterBreakQuickAction.closeAriaLabel')}>
 						<X size={14} />
 					</button>
 				</div>
 				<div class="picker-grid">
-					<button class="time-pill" onclick={() => pickTime(0)}>Just now</button>
-					<button class="time-pill" onclick={() => pickTime(5)}>~5 min ago</button>
-					<button class="time-pill" onclick={() => pickTime(15)}>~15 min ago</button>
-					<button class="time-pill" onclick={() => pickTime(30)}>~30 min ago</button>
-					<button class="time-pill time-pill--custom" onclick={openStepper}>Earlier...</button>
+					<button class="time-pill" onclick={() => pickTime(0)}>{$_('timer.waterBreakQuickAction.justNow')}</button>
+					<button class="time-pill" onclick={() => pickTime(5)}>{$_('timer.waterBreakQuickAction.fiveMinAgo')}</button>
+					<button class="time-pill" onclick={() => pickTime(15)}>{$_('timer.waterBreakQuickAction.fifteenMinAgo')}</button>
+					<button class="time-pill" onclick={() => pickTime(30)}>{$_('timer.waterBreakQuickAction.thirtyMinAgo')}</button>
+					<button class="time-pill time-pill--custom" onclick={openStepper}>{$_('timer.waterBreakQuickAction.earlier')}</button>
 				</div>
 			</div>
 		{:else if showTimePicker && showStepper}
 			<div class="time-picker">
 				<div class="picker-header">
-					<span>Set custom time</span>
-					<button class="picker-close" onclick={closeTimePicker} aria-label="Close">
+					<span>{$_('timer.waterBreakQuickAction.setCustomTime')}</span>
+					<button class="picker-close" onclick={closeTimePicker} aria-label={$_('timer.waterBreakQuickAction.closeAriaLabel')}>
 						<X size={14} />
 					</button>
 				</div>
@@ -180,7 +181,7 @@
 					</div>
 				</div>
 				<div class="stepper-preview">{customPreview}</div>
-				<button class="stepper-log" onclick={() => pickTime(customTotal)}>Set time</button>
+				<button class="stepper-log" onclick={() => pickTime(customTotal)}>{$_('timer.waterBreakQuickAction.setTime')}</button>
 			</div>
 		{/if}
 	</div>

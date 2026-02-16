@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { settings } from '../../lib/stores/settings';
 	import { HeartPulse, Baby, Car, ChevronRight, Check, Phone } from 'lucide-svelte';
 
@@ -60,29 +61,29 @@
 				<div class="step-icon">
 					<HeartPulse size={36} />
 				</div>
-				<h1 class="step-title">Contraction Timer</h1>
-				<p class="step-desc">Track contractions, see patterns, and know when it's time to go to the hospital.</p>
-				<p class="step-sub">All data stays on this device. No accounts needed.</p>
+				<h1 class="step-title">{$_('onboarding.welcomeTitle')}</h1>
+				<p class="step-desc">{$_('onboarding.welcomeDesc')}</p>
+				<p class="step-sub">{$_('onboarding.welcomePrivacyNote')}</p>
 
 				<button class="onboarding-btn onboarding-btn-primary" onclick={() => step = 1}>
-					Get started
+					{$_('onboarding.getStartedButton')}
 					<ChevronRight size={18} />
 				</button>
 				<button class="onboarding-btn onboarding-btn-ghost" onclick={skip}>
-					Skip setup
+					{$_('onboarding.skipSetupButton')}
 				</button>
 			</div>
 
 		{:else if step === 1}
 			<!-- Step 2: Quick setup -->
 			<div class="step step-setup">
-				<h2 class="step-title">Quick setup</h2>
-				<p class="step-desc">Two quick questions to personalize your experience.</p>
+				<h2 class="step-title">{$_('onboarding.quickSetupTitle')}</h2>
+				<p class="step-desc">{$_('onboarding.quickSetupDesc')}</p>
 
 				<div class="setup-group">
 					<label class="setup-label">
 						<Baby size={18} />
-						Is this your first baby?
+						{$_('onboarding.firstBabyLabel')}
 					</label>
 					<div class="setup-options">
 						<button
@@ -90,14 +91,14 @@
 							class:option-active={parity === 'first-baby'}
 							onclick={() => parity = 'first-baby'}
 						>
-							Yes, first
+							{$_('onboarding.firstBabyYes')}
 						</button>
 						<button
 							class="option-btn"
 							class:option-active={parity === 'subsequent'}
 							onclick={() => parity = 'subsequent'}
 						>
-							No, had one before
+							{$_('onboarding.firstBabyNo')}
 						</button>
 					</div>
 				</div>
@@ -105,7 +106,7 @@
 				<div class="setup-group">
 					<label class="setup-label">
 						<Car size={18} />
-						How far is your hospital?
+						{$_('onboarding.hospitalDistanceLabel')}
 					</label>
 					<div class="setup-options setup-options-wrap">
 						{#each [10, 15, 20, 30, 45, 60] as mins}
@@ -114,7 +115,7 @@
 								class:option-active={!travelUncertain && travelTime === mins}
 								onclick={() => selectTravelTime(mins)}
 							>
-								{mins} min
+								{$_('onboarding.travelTimeMinutes', { values: { mins } })}
 							</button>
 						{/each}
 						<button
@@ -122,34 +123,34 @@
 							class:option-active={travelUncertain}
 							onclick={selectUncertain}
 						>
-							Not sure
+							{$_('onboarding.travelTimeNotSure')}
 						</button>
 					</div>
 					{#if travelUncertain}
-						<p class="setup-hint">No problem — we'll use a conservative estimate and give you a range.</p>
+						<p class="setup-hint">{$_('onboarding.travelTimeUncertainHint')}</p>
 					{/if}
 				</div>
 
 				<div class="setup-group">
 					<label class="setup-label">
 						<Phone size={18} />
-						Provider or hospital phone (optional)
+						{$_('onboarding.providerPhoneLabel')}
 					</label>
 					<input
 						type="tel"
 						class="setup-input"
-						placeholder="(555) 123-4567"
+						placeholder={$_('onboarding.providerPhonePlaceholder')}
 						bind:value={providerPhone}
 					/>
-					<p class="setup-hint">Quick-dial from the app when it's time to call.</p>
+					<p class="setup-hint">{$_('onboarding.providerPhoneHint')}</p>
 				</div>
 
 				<button class="onboarding-btn onboarding-btn-primary" onclick={() => step = 2}>
-					Continue
+					{$_('common.continue')}
 					<ChevronRight size={18} />
 				</button>
 				<button class="onboarding-btn onboarding-btn-ghost" onclick={skip}>
-					Skip
+					{$_('common.skip')}
 				</button>
 			</div>
 
@@ -159,17 +160,17 @@
 				<div class="step-icon step-icon-success">
 					<Check size={36} />
 				</div>
-				<h2 class="step-title">You're all set</h2>
-				<p class="step-desc">Tap the big button when a contraction starts. Tap again when it ends. The app does the rest.</p>
+				<h2 class="step-title">{$_('onboarding.readyTitle')}</h2>
+				<p class="step-desc">{$_('onboarding.readyDesc')}</p>
 
 				<div class="ready-summary">
 					<div class="summary-item">
 						<Baby size={16} />
-						<span>{parity === 'first-baby' ? 'First baby' : 'Not first baby'}</span>
+						<span>{parity === 'first-baby' ? $_('onboarding.summaryFirstBaby') : $_('onboarding.summaryNotFirstBaby')}</span>
 					</div>
 					<div class="summary-item">
 						<Car size={16} />
-						<span>{travelUncertain ? 'Travel time: not sure' : `${travelTime} min to hospital`}</span>
+						<span>{travelUncertain ? $_('onboarding.summaryTravelTimeNotSure') : $_('onboarding.summaryTravelTimeMinutes', { values: { travelTime } })}</span>
 					</div>
 					{#if providerPhone.trim()}
 						<div class="summary-item">
@@ -180,7 +181,7 @@
 				</div>
 
 				<button class="onboarding-btn onboarding-btn-primary" onclick={finish}>
-					Start tracking
+					{$_('onboarding.startTrackingButton')}
 				</button>
 			</div>
 		{/if}

@@ -19,7 +19,7 @@ import type {
 	SharingCategory,
 	SharingPreferences,
 } from '../labor-logic/types';
-import { DEFAULT_LAYOUT, EMPTY_SESSION } from '../labor-logic/types';
+import { DEFAULT_LAYOUT, DEFAULT_STAGE_THRESHOLDS, EMPTY_SESSION } from '../labor-logic/types';
 
 // ── Enum lookup tables ─────────────────────────────────────────────
 
@@ -58,6 +58,260 @@ type CompactContraction = (string | number | null | (number | null)[])[];
  */
 type CompactEvent = (string | number | null)[];
 
+// ── Settings compression ──────────────────────────────────────────
+
+/** Ordered list of boolean settings keys for bitfield encoding.
+ *  Order is stable — append only, never reorder. */
+const BOOL_KEYS: (keyof ContractionTimerSettings)[] = [
+	'showWaveChart',             // bit 0
+	'showTimeline',              // bit 1
+	'showSummaryCards',          // bit 2
+	'showProgressionInsight',    // bit 3
+	'showPostRating',            // bit 4
+	'showIntensityPicker',       // bit 5
+	'showLocationPicker',        // bit 6
+	'showRestSeconds',           // bit 7
+	'showHospitalAdvisor',       // bit 8
+	'showContextualTips',        // bit 9
+	'showBraxtonHicksAssessment',// bit 10
+	'showClinicalReference',     // bit 11
+	'showWaterBreakButton',      // bit 12
+	'showThresholdRule',         // bit 13
+	'showLiveRating',            // bit 14
+	'showChartOverlay',          // bit 15
+	'showPrayers',               // bit 16
+	'hapticFeedback',            // bit 17
+	'persistPause',              // bit 18
+	'enableDebugLog',            // bit 19
+];
+
+const HERO_MODE_TO_NUM: Record<string, number> = { 'stage-badge': 0, 'action-card': 1, 'compact-timer': 2 };
+const NUM_TO_HERO_MODE: Record<number, string> = { 0: 'stage-badge', 1: 'action-card', 2: 'compact-timer' };
+
+const ADVISOR_MODE_TO_NUM: Record<string, number> = { range: 0, urgency: 1, minimal: 2 };
+const NUM_TO_ADVISOR_MODE: Record<number, string> = { 0: 'range', 1: 'urgency', 2: 'minimal' };
+
+const PARITY_TO_NUM: Record<string, number> = { 'first-baby': 0, subsequent: 1 };
+const NUM_TO_PARITY: Record<number, string> = { 0: 'first-baby', 1: 'subsequent' };
+
+const TIME_FORMAT_TO_NUM: Record<string, number> = { '12h': 0, '24h': 1 };
+const NUM_TO_TIME_FORMAT: Record<number, string> = { 0: '12h', 1: '24h' };
+
+const RISK_TO_NUM: Record<string, number> = { conservative: 0, moderate: 1, relaxed: 2 };
+const NUM_TO_RISK: Record<number, string> = { 0: 'conservative', 1: 'moderate', 2: 'relaxed' };
+
+const STAGE_BASIS_TO_NUM: Record<string, number> = { 'last-recorded': 0, 'current-time': 1 };
+const NUM_TO_STAGE_BASIS: Record<number, string> = { 0: 'last-recorded', 1: 'current-time' };
+
+const PROGRESSION_TO_NUM: Record<string, number> = { slower: 0, average: 1, faster: 2 };
+const NUM_TO_PROGRESSION: Record<number, string> = { 0: 'slower', 1: 'average', 2: 'faster' };
+
+const SHARING_KEYS: (keyof import('../labor-logic/types').SharingPreferences)[] = [
+	'thresholds', 'provider', 'layout', 'parity', 'travel', 'appearance',
+];
+
+/** Compressed settings wire format */
+interface CompactSettings {
+	b?: number;       // boolean values bitfield
+	bp?: number;      // boolean presence mask (which bits are set)
+	t?: [number, number, number]; // threshold [intervalMin, durSec, sustainedMin]
+	st?: Record<string, [number, number]>; // stageThresholds [maxInterval, minDur]
+	bh?: number[];    // bhThresholds as ordered 8-element array
+	is?: number;      // intensityScale
+	ha?: (string | number | boolean)[]; // hospitalAdvisor [travel, uncertain, risk, phone]
+	hm?: number;      // heroMode enum
+	am?: number;      // advisorMode enum
+	pr?: number;      // parity enum
+	tf?: number;      // timeFormat enum
+	th?: string;      // theme
+	wh?: number;      // waveChartHeight
+	cg?: number;      // chartGapThresholdMin
+	sb?: number;      // stageTimeBasis enum
+	sp?: number;      // sharingPreferences bitfield (6 bits)
+	ws?: string[];    // waterBreakStats as 4-element array
+	apr?: number;     // advisorProgressionRate enum
+}
+
+export function encodeSettings(settings: Partial<ContractionTimerSettings>): CompactSettings {
+	const cs: CompactSettings = {};
+
+	// Boolean bitfield
+	let bv = 0, bp = 0;
+	for (let i = 0; i < BOOL_KEYS.length; i++) {
+		const key = BOOL_KEYS[i];
+		if (key in settings) {
+			bp |= (1 << i);
+			if ((settings as any)[key]) bv |= (1 << i);
+		}
+	}
+	if (bp !== 0) { cs.b = bv; cs.bp = bp; }
+
+	// Threshold
+	if (settings.threshold) {
+		cs.t = [settings.threshold.intervalMinutes, settings.threshold.durationSeconds, settings.threshold.sustainedMinutes];
+	}
+
+	// Stage thresholds (only maxInterval + minDuration per stage)
+	if (settings.stageThresholds) {
+		const st: Record<string, [number, number]> = {};
+		for (const [stage, cfg] of Object.entries(settings.stageThresholds)) {
+			st[stage] = [cfg.maxIntervalMin, cfg.minDurationSec];
+		}
+		cs.st = st;
+	}
+
+	// BH thresholds as ordered array
+	if (settings.bhThresholds) {
+		const bh = settings.bhThresholds;
+		cs.bh = [bh.regularityCVLow, bh.regularityCVHigh, bh.locationRatioHigh, bh.locationRatioLow,
+			bh.sustainedMinMinutes, bh.sustainedMaxGapMinutes, bh.verdictRealThreshold, bh.verdictBHThreshold];
+	}
+
+	if (settings.intensityScale !== undefined) cs.is = settings.intensityScale;
+
+	// Hospital advisor
+	if (settings.hospitalAdvisor) {
+		const ha = settings.hospitalAdvisor as Partial<import('../labor-logic/types').HospitalAdvisorConfig>;
+		cs.ha = [
+			ha.travelTimeMinutes ?? -1,
+			ha.travelTimeUncertain ?? false,
+			ha.riskAppetite ? (RISK_TO_NUM[ha.riskAppetite] ?? 1) : -1,
+			ha.providerPhone ?? '',
+		];
+		// Trim trailing defaults
+		while (cs.ha.length > 0 && (cs.ha[cs.ha.length - 1] === '' || cs.ha[cs.ha.length - 1] === -1 || cs.ha[cs.ha.length - 1] === false)) {
+			cs.ha.pop();
+		}
+		if (cs.ha.length === 0) delete cs.ha;
+	}
+
+	// Enum settings
+	if (settings.heroMode !== undefined) cs.hm = HERO_MODE_TO_NUM[settings.heroMode] ?? 0;
+	if (settings.advisorMode !== undefined) cs.am = ADVISOR_MODE_TO_NUM[settings.advisorMode] ?? 0;
+	if (settings.parity !== undefined) cs.pr = PARITY_TO_NUM[settings.parity] ?? 0;
+	if (settings.timeFormat !== undefined) cs.tf = TIME_FORMAT_TO_NUM[settings.timeFormat] ?? 0;
+	if (settings.stageTimeBasis !== undefined) cs.sb = STAGE_BASIS_TO_NUM[settings.stageTimeBasis] ?? 0;
+	if (settings.advisorProgressionRate !== undefined) cs.apr = PROGRESSION_TO_NUM[settings.advisorProgressionRate] ?? 0;
+
+	// Simple values
+	if (settings.theme !== undefined) cs.th = settings.theme;
+	if (settings.waveChartHeight !== undefined) cs.wh = settings.waveChartHeight;
+	if (settings.chartGapThresholdMin !== undefined) cs.cg = settings.chartGapThresholdMin;
+
+	// Sharing preferences bitfield
+	if (settings.sharingPreferences) {
+		let sp = 0;
+		for (let i = 0; i < SHARING_KEYS.length; i++) {
+			if (settings.sharingPreferences[SHARING_KEYS[i]]) sp |= (1 << i);
+		}
+		cs.sp = sp;
+	}
+
+	// Water break stats as array
+	if (settings.waterBreakStats) {
+		const ws = settings.waterBreakStats;
+		cs.ws = [ws.beforeContractions, ws.duringLabor, ws.laborWithin12Hours, ws.laborWithin24Hours];
+	}
+
+	return cs;
+}
+
+export function decodeSettings(cs: CompactSettings): Partial<ContractionTimerSettings> {
+	const result: Partial<ContractionTimerSettings> = {};
+
+	// Boolean bitfield
+	if (cs.bp !== undefined) {
+		for (let i = 0; i < BOOL_KEYS.length; i++) {
+			if (cs.bp & (1 << i)) {
+				(result as any)[BOOL_KEYS[i]] = !!((cs.b ?? 0) & (1 << i));
+			}
+		}
+	}
+
+	// Threshold
+	if (cs.t) {
+		result.threshold = {
+			intervalMinutes: cs.t[0],
+			durationSeconds: cs.t[1],
+			sustainedMinutes: cs.t[2],
+		};
+	}
+
+	// Stage thresholds — reconstruct full objects with default descriptive fields
+	if (cs.st) {
+		const stageThresholds: Record<string, any> = {};
+		for (const [stage, [maxInt, minDur]] of Object.entries(cs.st)) {
+			const defaults = DEFAULT_STAGE_THRESHOLDS[stage] || {};
+			stageThresholds[stage] = {
+				...defaults,
+				maxIntervalMin: maxInt,
+				minDurationSec: minDur,
+			};
+		}
+		result.stageThresholds = stageThresholds;
+	}
+
+	// BH thresholds
+	if (cs.bh && cs.bh.length >= 8) {
+		result.bhThresholds = {
+			regularityCVLow: cs.bh[0],
+			regularityCVHigh: cs.bh[1],
+			locationRatioHigh: cs.bh[2],
+			locationRatioLow: cs.bh[3],
+			sustainedMinMinutes: cs.bh[4],
+			sustainedMaxGapMinutes: cs.bh[5],
+			verdictRealThreshold: cs.bh[6],
+			verdictBHThreshold: cs.bh[7],
+		};
+	}
+
+	if (cs.is !== undefined) result.intensityScale = cs.is as 3 | 5;
+
+	// Hospital advisor
+	if (cs.ha) {
+		const ha: Partial<import('../labor-logic/types').HospitalAdvisorConfig> = {};
+		if (cs.ha.length > 0 && cs.ha[0] !== -1) ha.travelTimeMinutes = cs.ha[0] as number;
+		if (cs.ha.length > 1 && cs.ha[1] !== false) ha.travelTimeUncertain = cs.ha[1] as boolean;
+		if (cs.ha.length > 2 && cs.ha[2] !== -1) ha.riskAppetite = (NUM_TO_RISK[cs.ha[2] as number] ?? 'moderate') as any;
+		if (cs.ha.length > 3 && cs.ha[3] !== '') ha.providerPhone = cs.ha[3] as string;
+		result.hospitalAdvisor = ha as import('../labor-logic/types').HospitalAdvisorConfig;
+	}
+
+	// Enum settings
+	if (cs.hm !== undefined) result.heroMode = (NUM_TO_HERO_MODE[cs.hm] ?? 'stage-badge') as any;
+	if (cs.am !== undefined) result.advisorMode = (NUM_TO_ADVISOR_MODE[cs.am] ?? 'range') as any;
+	if (cs.pr !== undefined) result.parity = (NUM_TO_PARITY[cs.pr] ?? 'first-baby') as any;
+	if (cs.tf !== undefined) result.timeFormat = (NUM_TO_TIME_FORMAT[cs.tf] ?? '12h') as any;
+	if (cs.sb !== undefined) result.stageTimeBasis = (NUM_TO_STAGE_BASIS[cs.sb] ?? 'last-recorded') as any;
+	if (cs.apr !== undefined) result.advisorProgressionRate = (NUM_TO_PROGRESSION[cs.apr] ?? 'slower') as any;
+
+	// Simple values
+	if (cs.th !== undefined) result.theme = cs.th as any;
+	if (cs.wh !== undefined) result.waveChartHeight = cs.wh;
+	if (cs.cg !== undefined) result.chartGapThresholdMin = cs.cg;
+
+	// Sharing preferences
+	if (cs.sp !== undefined) {
+		const prefs: any = {};
+		for (let i = 0; i < SHARING_KEYS.length; i++) {
+			prefs[SHARING_KEYS[i]] = !!(cs.sp & (1 << i));
+		}
+		result.sharingPreferences = prefs;
+	}
+
+	// Water break stats
+	if (cs.ws && cs.ws.length >= 4) {
+		result.waterBreakStats = {
+			beforeContractions: cs.ws[0],
+			duringLabor: cs.ws[1],
+			laborWithin12Hours: cs.ws[2],
+			laborWithin24Hours: cs.ws[3],
+		};
+	}
+
+	return result;
+}
+
 /** v2 wire format */
 export interface CompactV2 {
 	v: 2;
@@ -65,8 +319,11 @@ export interface CompactV2 {
 	c: CompactContraction[];                     // contractions
 	e?: CompactEvent[];                          // events (omit if empty)
 	p?: true;                                    // paused (omit if false)
+	pa?: number;                                 // pausedAt as delta from t0
+	pm?: number;                                 // pauseAccumulatedMs
 	l?: number[];                                // layout as indices (omit if default)
-	s?: Partial<ContractionTimerSettings>;       // shared settings
+	s?: Partial<ContractionTimerSettings>;       // legacy: raw shared settings (v0.3.13)
+	sk?: CompactSettings;                        // compressed shared settings (v0.4.0+)
 }
 
 // ── Encoder ────────────────────────────────────────────────────────
@@ -164,12 +421,20 @@ export function encodeSessionV2(
 		result.p = true;
 	}
 
+	if (session.pausedAt) {
+		result.pa = Date.parse(session.pausedAt) - t0;
+	}
+
+	if (session.pauseAccumulatedMs > 0) {
+		result.pm = session.pauseAccumulatedMs;
+	}
+
 	if (!layoutMatchesDefault(session.layout)) {
 		result.l = session.layout.map(s => SECTION_TO_NUM[s] ?? 0);
 	}
 
 	if (sharedSettings && Object.keys(sharedSettings).length > 0) {
-		result.s = sharedSettings;
+		result.sk = encodeSettings(sharedSettings);
 	}
 
 	return result;
@@ -243,11 +508,18 @@ export function decodeSessionV2(compact: CompactV2): {
 			? compact.l.map(n => NUM_TO_SECTION[n] ?? 'summary')
 			: [...DEFAULT_LAYOUT],
 		paused: compact.p === true,
+		pausedAt: compact.pa != null ? new Date(t0 + compact.pa).toISOString() : null,
+		pauseAccumulatedMs: compact.pm ?? 0,
 	};
+
+	// Prefer compressed settings (sk), fall back to legacy raw settings (s)
+	const sharedSettings = compact.sk
+		? decodeSettings(compact.sk)
+		: compact.s;
 
 	return {
 		session,
-		sharedSettings: compact.s,
+		sharedSettings,
 	};
 }
 

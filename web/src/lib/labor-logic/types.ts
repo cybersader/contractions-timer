@@ -53,6 +53,9 @@ export interface SessionData {
 	sessionStartedAt: string | null;
 	layout: SectionId[];
 	paused: boolean;
+	pausedAt: string | null;
+	/** Cumulative ms spent paused during the current rest period */
+	pauseAccumulatedMs: number;
 	settingsOverrides?: Partial<ContractionTimerSettings>;
 }
 
@@ -197,6 +200,9 @@ export type AdvisorMode = 'range' | 'urgency' | 'minimal';
 /** Progression rate assumption */
 export type ProgressionRate = 'slower' | 'average' | 'faster';
 
+/** Supported UI languages */
+export type SupportedLanguage = 'en' | 'es' | 'fr' | 'de' | 'pt' | 'zh' | 'it' | 'nl';
+
 /** Plugin settings */
 export interface ContractionTimerSettings {
 	threshold: ThresholdConfig;
@@ -247,6 +253,8 @@ export interface ContractionTimerSettings {
 	showPrayers: boolean;
 	// Sharing: which settings categories to include by default
 	sharingPreferences: SharingPreferences;
+	// UI language
+	language: SupportedLanguage;
 }
 
 /** Evidence-based defaults: Zhang et al. 2010, ACOG 2024 */
@@ -344,6 +352,7 @@ export const DEFAULT_SETTINGS: ContractionTimerSettings = {
 	bhThresholds: { ...DEFAULT_BH_THRESHOLDS },
 	showPrayers: false,
 	sharingPreferences: { ...DEFAULT_SHARING_PREFERENCES },
+	language: 'en',
 };
 
 /** Empty session data */
@@ -353,4 +362,6 @@ export const EMPTY_SESSION: SessionData = {
 	sessionStartedAt: null,
 	layout: [...DEFAULT_LAYOUT],
 	paused: false,
+	pausedAt: null,
+	pauseAccumulatedMs: 0,
 };

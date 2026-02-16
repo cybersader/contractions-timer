@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { tick } from '../../lib/stores/timer';
@@ -44,9 +45,9 @@
 		const v = (name: string) => s.getPropertyValue(name).trim();
 		return {
 			line: v('--wave-line') || 'rgba(255,255,255,0.1)',
-			grid: v('--wave-grid') || 'rgba(255,255,255,0.05)',
-			gridText: v('--wave-grid-text') || 'rgba(255,255,255,0.25)',
-			text: v('--wave-text') || 'rgba(255,255,255,0.3)',
+			grid: v('--wave-grid') || 'rgba(255,255,255,0.07)',
+			gridText: v('--wave-grid-text') || 'rgba(255,255,255,0.4)',
+			text: v('--wave-text') || 'rgba(255,255,255,0.45)',
 			thresholdOk: v('--wave-threshold-ok') || 'rgba(74,222,128,0.25)',
 			thresholdWarn: v('--wave-threshold-warn') || 'rgba(251,191,36,0.15)',
 			water: v('--water') || '#3b82f6',
@@ -124,7 +125,7 @@
 			ctx.fillStyle = wc.text;
 			ctx.font = '13px system-ui, sans-serif';
 			ctx.textAlign = 'center';
-			ctx.fillText('Contractions will appear here', containerWidth / 2, height / 2);
+			ctx.fillText($_('dashboard.waveChart.emptyText'), containerWidth / 2, height / 2);
 			return;
 		}
 
@@ -401,15 +402,15 @@
 <div class="wave-chart">
 	{#if contractions.filter(c => c.end !== null).length > 0 || contractions.some(isContractionActive)}
 		<div class="chart-toolbar">
-			<button class="chart-btn" onclick={handleFit}>Fit</button>
-			<button class="chart-btn" onclick={handleNow}>Now →</button>
+			<button class="chart-btn" onclick={handleFit}>{$_('dashboard.waveChart.fitButton')}</button>
+			<button class="chart-btn" onclick={handleNow}>{$_('dashboard.waveChart.nowButton')}</button>
 		</div>
 	{/if}
 	<div class="canvas-container" bind:this={container}>
-		<canvas bind:this={canvas} role="img" aria-label="Contraction wave chart"></canvas>
+		<canvas bind:this={canvas} role="img" aria-label={$_('dashboard.waveChart.canvasAriaLabel')}></canvas>
 	</div>
 	{#if showOverlay}
-		<div class="chart-legend">Green = within {threshold.intervalMinutes} min</div>
+		<div class="chart-legend">{$_('dashboard.waveChart.legend', { values: { minutes: threshold.intervalMinutes } })}</div>
 	{/if}
 </div>
 

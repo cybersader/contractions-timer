@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import type { TimerPhase } from '../../lib/stores/timer';
 	import { haptic } from '../../lib/haptic';
 	import { settings } from '../../lib/stores/settings';
@@ -26,20 +27,20 @@
 	<button
 		class="pause-overlay paused"
 		onclick={handleClick}
-		aria-label="Resume timer"
+		aria-label={$_('timer.pauseOverlay.resumeTimerAriaLabel')}
 	>
-		<span class="pause-icon play"><Play size={40} /></span>
-		<span class="pause-label">Tap to resume</span>
+		<span class="pause-icon play"><Play size={28} /></span>
+		<span class="pause-label">{$_('timer.pauseOverlay.tapToResume')}</span>
 	</button>
 {:else if canPause}
 	<!-- Resting: invisible tappable area, subtle periodic hint -->
 	<button
 		class="pause-overlay resting"
 		onclick={handleClick}
-		aria-label="Pause timer"
+		aria-label={$_('timer.pauseOverlay.pauseTimerAriaLabel')}
 	>
 		<span class="pause-icon"><Pause size={28} /></span>
-		<span class="pause-hint">tap to pause</span>
+		<span class="pause-hint">{$_('timer.pauseOverlay.tapToPause')}</span>
 	</button>
 {/if}
 
@@ -115,23 +116,19 @@
 		}
 	}
 
-	/* --- Paused: full overlay --- */
+	/* --- Paused: semi-transparent overlay (frozen time visible) --- */
 	.pause-overlay.paused {
-		background: var(--bg-overlay, rgba(0, 0, 0, 0.6));
-		backdrop-filter: blur(4px);
-		-webkit-backdrop-filter: blur(4px);
+		background: var(--bg-overlay, rgba(0, 0, 0, 0.35));
 	}
 
 	.pause-overlay.paused .pause-icon {
-		/* Hardcoded: overlay always has dark backdrop regardless of theme */
 		color: #4ade80;
-		opacity: 1;
+		opacity: 0.9;
 	}
 
 	.pause-label {
-		font-size: var(--text-sm);
-		/* Hardcoded: overlay always has dark backdrop regardless of theme */
-		color: rgba(255, 255, 255, 0.85);
+		font-size: var(--text-xs);
+		color: rgba(255, 255, 255, 0.7);
 		font-weight: 500;
 	}
 </style>

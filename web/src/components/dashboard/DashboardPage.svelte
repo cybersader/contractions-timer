@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { settingsRequest } from '../../lib/stores/navigation';
@@ -46,11 +47,11 @@
 
 	type SectionDef = { id: string; title: string; defaultExpanded: boolean; visible: boolean; badge?: string; hasSettings?: boolean; settingsSection?: string };
 	let sections = $derived<SectionDef[]>([
-		{ id: 'summary', title: 'Summary', defaultExpanded: true, visible: true },
-		{ id: 'wave-chart', title: 'Wave chart', defaultExpanded: true, visible: $settings.showWaveChart },
-		{ id: 'stage-progress', title: 'Stage progress', defaultExpanded: true, visible: true, hasSettings: true, settingsSection: 'advanced' },
-		{ id: 'trend-analysis', title: 'Trend analysis', defaultExpanded: false, visible: $settings.showProgressionInsight, hasSettings: true, settingsSection: 'features' },
-		{ id: 'pattern-assessment', title: 'Pattern assessment', defaultExpanded: false, visible: $settings.showBraxtonHicksAssessment, hasSettings: true, settingsSection: 'features' },
+		{ id: 'summary', title: $_('dashboard.sections.summary'), defaultExpanded: true, visible: true },
+		{ id: 'wave-chart', title: $_('dashboard.sections.waveChart'), defaultExpanded: true, visible: $settings.showWaveChart },
+		{ id: 'stage-progress', title: $_('dashboard.sections.stageProgress'), defaultExpanded: true, visible: true, hasSettings: true, settingsSection: 'advanced' },
+		{ id: 'trend-analysis', title: $_('dashboard.sections.trendAnalysis'), defaultExpanded: false, visible: $settings.showProgressionInsight, hasSettings: true, settingsSection: 'features' },
+		{ id: 'pattern-assessment', title: $_('dashboard.sections.patternAssessment'), defaultExpanded: false, visible: $settings.showBraxtonHicksAssessment, hasSettings: true, settingsSection: 'features' },
 	]);
 
 	let orderedSections = $derived(
@@ -59,7 +60,7 @@
 </script>
 
 <div class="page">
-	<h2 class="page-title">Dashboard</h2>
+	<h2 class="page-title">{$_('dashboard.pageTitle')}</h2>
 
 	{#if hasData}
 		{#each orderedSections as sec, i (sec.id)}
@@ -93,8 +94,8 @@
 			<div class="empty-state-icon">
 				<BarChart3 size={24} aria-hidden="true" />
 			</div>
-			<p class="empty-state-title">No data yet</p>
-			<p class="empty-state-hint">Start timing contractions to see patterns, wave charts, and labor stage analysis here.</p>
+			<p class="empty-state-title">{$_('dashboard.emptyState.title')}</p>
+			<p class="empty-state-hint">{$_('dashboard.emptyState.hint')}</p>
 		</div>
 	{/if}
 </div>

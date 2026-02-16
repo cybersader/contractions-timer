@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { timerPhase, tick } from '../../lib/stores/timer';
 	import { getSessionStats, getElapsedSeconds, getRestSeconds } from '../../lib/labor-logic/calculations';
@@ -44,14 +45,32 @@
 		return getElapsedSeconds(active);
 	});
 
-	// Live rest seconds (tick-driven)
+	// Live rest seconds (tick-driven, frozen when paused, offset by accumulated pause)
 	let rest = $derived.by(() => {
 		void $tick;
-		return getRestSeconds($session.contractions);
+		return getRestSeconds($session.contractions, $session.pausedAt, $session.pauseAccumulatedMs ?? 0);
 	});
 
 	function togglePause() {
-		session.update(s => ({ ...s, paused: !s.paused }));
+		session.update(s => {
+			if (s.paused && s.pausedAt) {
+				// Unpausing: accumulate the pause duration
+				const pauseDuration = Date.now() - Date.parse(s.pausedAt);
+				return {
+					...s,
+					paused: false,
+					pausedAt: null,
+					pauseAccumulatedMs: (s.pauseAccumulatedMs ?? 0) + pauseDuration,
+				};
+			} else {
+				// Pausing: freeze at current time
+				return {
+					...s,
+					paused: true,
+					pausedAt: new Date().toISOString(),
+				};
+			}
+		});
 	}
 
 	// === Progressive Disclosure Tiers ===
@@ -122,9 +141,9 @@
 
 	type SectionDef = { id: string; title: string; defaultExpanded: boolean; visible: boolean; minTier: number };
 	let sections = $derived<SectionDef[]>([
-		{ id: 'quick-stats', title: 'Quick stats', defaultExpanded: true, visible: completed.length > 0, minTier: 2 },
-		{ id: 'recent', title: 'Recent', defaultExpanded: true, visible: completed.length > 0, minTier: 2 },
-		{ id: 'guidance', title: 'Guidance', defaultExpanded: false, visible: $settings.showContextualTips && tipCount > 0, minTier: 3 },
+		{ id: 'quick-stats', title: $_('timer.timerPage.sections.quickStats'), defaultExpanded: true, visible: completed.length > 0, minTier: 2 },
+		{ id: 'recent', title: $_('timer.timerPage.sections.recent'), defaultExpanded: true, visible: completed.length > 0, minTier: 2 },
+		{ id: 'guidance', title: $_('timer.timerPage.sections.guidance'), defaultExpanded: false, visible: $settings.showContextualTips && tipCount > 0, minTier: 3 },
 	]);
 
 	let orderedSections = $derived(
@@ -139,7 +158,7 @@
 	{#if $isP2PActive}
 		<button class="sharing-banner" onclick={() => shareRequest.set(true)}>
 			<Wifi size={14} />
-			<span>Sharing with {$peerCount - 1} partner{$peerCount - 1 !== 1 ? 's' : ''}</span>
+			<span>{$_('timer.timerPage.sharingBanner', { values: { count: $peerCount - 1 } })}</span>
 			<code class="sharing-code">{$peerState.roomCode}</code>
 		</button>
 	{/if}
@@ -153,8 +172,8 @@
 	{#if tier >= 4 && departureAdvice && departureAdvice.urgency !== 'not-yet'}
 		<HospitalBanner
 			urgency={departureAdvice.urgency}
-			headline={departureAdvice.headline}
-			detail={departureAdvice.detail}
+			headline={$_(departureAdvice.headline.key, { values: departureAdvice.headline.values })}
+			detail={$_(departureAdvice.detail.key, { values: departureAdvice.detail.values })}
 			onNavigate={() => tabRequest.set(3)}
 		/>
 	{/if}
@@ -191,7 +210,7 @@
 	{/if}
 
 	<!-- Timer display with pause overlay -->
-	<TimerDisplay {paused} onPauseToggle={togglePause} />
+	<TimerDisplay {paused} pausedAt={$session.pausedAt} pauseAccumulatedMs={$session.pauseAccumulatedMs ?? 0} onPauseToggle={togglePause} />
 
 	<!-- Big start/stop button -->
 	<BigButton />

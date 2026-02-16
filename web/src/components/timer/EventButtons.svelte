@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { formatTimeShort, generateId } from '../../lib/labor-logic/formatters';
@@ -127,8 +128,8 @@
 	let customTotal = $derived(customHours * 60 + customMinutes);
 	let customPreview = $derived(
 		customTotal === 0
-			? 'Set a time above'
-			: `Around ${formatTimeShort(new Date(Date.now() - customTotal * 60000))}`
+			? $_('timer.eventButtons.setATimeAbove')
+			: $_('timer.eventButtons.aroundTime', { values: { time: formatTimeShort(new Date(Date.now() - customTotal * 60000)) } })
 	);
 </script>
 
@@ -137,44 +138,44 @@
 		{#if !hideWaterBreak && !waterBreak}
 			<button class="water-btn" onclick={recordWaterBreak}>
 				<span class="water-icon">💧</span>
-				<span>Water broke</span>
+				<span>{$_('timer.eventButtons.waterBroke')}</span>
 			</button>
 		{:else if !hideWaterBreak}
 			<button class="water-btn water-btn--confirmed" disabled>
 				<span class="water-icon">💧</span>
-				<span>Water broke at {formatTimeShort(new Date(waterBreak.timestamp))}</span>
+				<span>{$_('timer.eventButtons.waterBrokeAt', { values: { time: formatTimeShort(new Date(waterBreak.timestamp)) } })}</span>
 			</button>
 
 			{#if !showTimePicker}
 				<div class="water-actions">
-					<button class="action-btn" onclick={openTimePicker}>Edit time</button>
+					<button class="action-btn" onclick={openTimePicker}>{$_('timer.eventButtons.editTime')}</button>
 					{#if confirmingUndoType !== 'water-break'}
-						<button class="action-btn action-btn--undo" onclick={() => startUndoConfirm('water-break')}>Undo</button>
+						<button class="action-btn action-btn--undo" onclick={() => startUndoConfirm('water-break')}>{$_('timer.eventButtons.undo')}</button>
 					{:else}
 						<div class="undo-confirm-inline">
-							<button class="action-btn action-btn--confirm-yes" onclick={() => confirmUndoEvent('water-break')}>Remove</button>
-							<button class="action-btn action-btn--confirm-no" onclick={cancelUndo}>Cancel</button>
+							<button class="action-btn action-btn--confirm-yes" onclick={() => confirmUndoEvent('water-break')}>{$_('timer.eventButtons.remove')}</button>
+							<button class="action-btn action-btn--confirm-no" onclick={cancelUndo}>{$_('common.cancel')}</button>
 						</div>
 					{/if}
 				</div>
 			{:else if !showStepper}
 				<div class="time-picker">
 					<div class="picker-header">
-						<span>When did it happen?</span>
+						<span>{$_('timer.eventButtons.whenDidItHappen')}</span>
 						<button class="picker-close" onclick={() => showTimePicker = false}>✕</button>
 					</div>
 					<div class="picker-grid">
-						<button class="time-pill" onclick={() => pickTime(0)}>Just now</button>
-						<button class="time-pill" onclick={() => pickTime(5)}>~5 min ago</button>
-						<button class="time-pill" onclick={() => pickTime(15)}>~15 min ago</button>
-						<button class="time-pill" onclick={() => pickTime(30)}>~30 min ago</button>
-						<button class="time-pill time-pill--custom" onclick={openStepper}>Earlier...</button>
+						<button class="time-pill" onclick={() => pickTime(0)}>{$_('timer.eventButtons.justNow')}</button>
+						<button class="time-pill" onclick={() => pickTime(5)}>{$_('timer.eventButtons.fiveMinAgo')}</button>
+						<button class="time-pill" onclick={() => pickTime(15)}>{$_('timer.eventButtons.fifteenMinAgo')}</button>
+						<button class="time-pill" onclick={() => pickTime(30)}>{$_('timer.eventButtons.thirtyMinAgo')}</button>
+						<button class="time-pill time-pill--custom" onclick={openStepper}>{$_('timer.eventButtons.earlier')}</button>
 					</div>
 				</div>
 			{:else}
 				<div class="time-picker">
 					<div class="picker-header">
-						<span>Set custom time</span>
+						<span>{$_('timer.eventButtons.setCustomTime')}</span>
 						<button class="picker-close" onclick={() => { showTimePicker = false; showStepper = false; }}>✕</button>
 					</div>
 					<div class="stepper-row">
@@ -191,14 +192,14 @@
 						</div>
 					</div>
 					<div class="stepper-preview">{customPreview}</div>
-					<button class="stepper-log" onclick={() => pickTime(customTotal)}>Set time</button>
+					<button class="stepper-log" onclick={() => pickTime(customTotal)}>{$_('timer.eventButtons.setTime')}</button>
 				</div>
 			{/if}
 		{/if}
 
 		<!-- More events toggle -->
 		<button class="more-events-btn" onclick={() => showMoreEvents = !showMoreEvents}>
-			{showMoreEvents ? 'Fewer events \u25B2' : 'More events \u25BC'}
+			{showMoreEvents ? $_('timer.eventButtons.fewerEvents') : $_('timer.eventButtons.moreEvents')}
 		</button>
 		{#if showMoreEvents}
 			<div class="more-events">
@@ -206,18 +207,18 @@
 				{#if !mucusPlug}
 					<button class="event-btn event-btn--mucus" onclick={() => recordEvent('mucus-plug')}>
 						<span class="event-btn-icon">🔴</span>
-						<span>Mucus plug</span>
+						<span>{$_('timer.eventButtons.mucusPlug')}</span>
 					</button>
 				{:else}
 					<div class="event-confirmed">
 						<span class="event-btn-icon">🔴</span>
-						<span>Mucus plug at {formatTimeShort(new Date(mucusPlug.timestamp))}</span>
+						<span>{$_('timer.eventButtons.mucusPlugAt', { values: { time: formatTimeShort(new Date(mucusPlug.timestamp)) } })}</span>
 						{#if confirmingUndoType !== 'mucus-plug'}
-						<button class="event-undo" onclick={() => startUndoConfirm('mucus-plug')}>Undo</button>
+						<button class="event-undo" onclick={() => startUndoConfirm('mucus-plug')}>{$_('timer.eventButtons.undo')}</button>
 					{:else}
 						<div class="undo-confirm-inline">
-							<button class="event-undo event-undo--confirm" onclick={() => confirmUndoEvent('mucus-plug')}>Remove</button>
-							<button class="event-undo event-undo--cancel" onclick={cancelUndo}>Cancel</button>
+							<button class="event-undo event-undo--confirm" onclick={() => confirmUndoEvent('mucus-plug')}>{$_('timer.eventButtons.remove')}</button>
+							<button class="event-undo event-undo--cancel" onclick={cancelUndo}>{$_('common.cancel')}</button>
 						</div>
 					{/if}
 					</div>
@@ -227,18 +228,18 @@
 				{#if !bloodyShow}
 					<button class="event-btn event-btn--bloody" onclick={() => recordEvent('bloody-show')}>
 						<span class="event-btn-icon">🩸</span>
-						<span>Bloody show</span>
+						<span>{$_('timer.eventButtons.bloodyShow')}</span>
 					</button>
 				{:else}
 					<div class="event-confirmed">
 						<span class="event-btn-icon">🩸</span>
-						<span>Bloody show at {formatTimeShort(new Date(bloodyShow.timestamp))}</span>
+						<span>{$_('timer.eventButtons.bloodyShowAt', { values: { time: formatTimeShort(new Date(bloodyShow.timestamp)) } })}</span>
 						{#if confirmingUndoType !== 'bloody-show'}
-						<button class="event-undo" onclick={() => startUndoConfirm('bloody-show')}>Undo</button>
+						<button class="event-undo" onclick={() => startUndoConfirm('bloody-show')}>{$_('timer.eventButtons.undo')}</button>
 					{:else}
 						<div class="undo-confirm-inline">
-							<button class="event-undo event-undo--confirm" onclick={() => confirmUndoEvent('bloody-show')}>Remove</button>
-							<button class="event-undo event-undo--cancel" onclick={cancelUndo}>Cancel</button>
+							<button class="event-undo event-undo--confirm" onclick={() => confirmUndoEvent('bloody-show')}>{$_('timer.eventButtons.remove')}</button>
+							<button class="event-undo event-undo--cancel" onclick={cancelUndo}>{$_('common.cancel')}</button>
 						</div>
 					{/if}
 					</div>

@@ -1,6 +1,12 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import type { ContractionLocation } from '../../lib/labor-logic/types';
-	import { getLocationLabel } from '../../lib/labor-logic/formatters';
+
+	const LOCATION_KEYS: Record<string, string> = {
+		front: 'timer.locationPicker.lowerBelly',
+		back: 'timer.locationPicker.lowerBack',
+		wrapping: 'timer.locationPicker.allAround',
+	};
 	import { haptic } from '../../lib/haptic';
 	import { ChevronLeft } from 'lucide-svelte';
 
@@ -23,11 +29,11 @@
 <div class="picker-card">
 	<div class="picker-top">
 		{#if onBack}
-			<button class="back-btn" onclick={onBack} aria-label="Back to intensity">
+			<button class="back-btn" onclick={onBack} aria-label={$_('timer.locationPicker.backToIntensityAriaLabel')}>
 				<ChevronLeft size={16} />
 			</button>
 		{/if}
-		<div class="picker-label">Where did you feel it?</div>
+		<div class="picker-label">{$_('timer.locationPicker.prompt')}</div>
 	</div>
 	<div class="location-buttons">
 		{#each locations as loc}
@@ -36,11 +42,11 @@
 				class:selected={value === loc}
 				onclick={() => select(loc)}
 			>
-				{getLocationLabel(loc)}
+				{$_(LOCATION_KEYS[loc] || loc)}
 			</button>
 		{/each}
 	</div>
-	<button class="skip-btn" onclick={onSkip}>Skip</button>
+	<button class="skip-btn" onclick={onSkip}>{$_('common.skip')}</button>
 </div>
 
 <style>

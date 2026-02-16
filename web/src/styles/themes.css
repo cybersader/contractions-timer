@@ -47,9 +47,9 @@ html[data-theme="soft-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -87,9 +87,9 @@ html[data-theme="soft-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -127,9 +127,9 @@ html[data-theme="clinical-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -167,9 +167,9 @@ html[data-theme="clinical-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -207,9 +207,9 @@ html[data-theme="warm-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -247,9 +247,9 @@ html[data-theme="warm-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -291,9 +291,9 @@ html[data-theme="ocean-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -331,9 +331,9 @@ html[data-theme="ocean-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -371,9 +371,9 @@ html[data-theme="forest-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -411,9 +411,9 @@ html[data-theme="forest-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -451,9 +451,9 @@ html[data-theme="sunset-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -491,9 +491,9 @@ html[data-theme="sunset-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -531,9 +531,9 @@ html[data-theme="lavender-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -571,9 +571,9 @@ html[data-theme="lavender-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -611,9 +611,9 @@ html[data-theme="midnight-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -651,9 +651,9 @@ html[data-theme="midnight-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -691,9 +691,9 @@ html[data-theme="sky-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -731,9 +731,9 @@ html[data-theme="sky-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -771,9 +771,9 @@ html[data-theme="blush-dark"] {
 	--input-bg: rgba(255, 255, 255, 0.06);
 	--input-border: rgba(255, 255, 255, 0.1);
 	--wave-line: rgba(255, 255, 255, 0.1);
-	--wave-grid: rgba(255, 255, 255, 0.05);
-	--wave-grid-text: rgba(255, 255, 255, 0.25);
-	--wave-text: rgba(255, 255, 255, 0.3);
+	--wave-grid: rgba(255, 255, 255, 0.07);
+	--wave-grid-text: rgba(255, 255, 255, 0.4);
+	--wave-text: rgba(255, 255, 255, 0.45);
 	--wave-threshold-ok: rgba(74, 222, 128, 0.25);
 	--wave-threshold-warn: rgba(251, 191, 36, 0.15);
 }
@@ -811,9 +811,9 @@ html[data-theme="blush-light"] {
 	--input-bg: rgba(0, 0, 0, 0.04);
 	--input-border: rgba(0, 0, 0, 0.1);
 	--wave-line: rgba(0, 0, 0, 0.12);
-	--wave-grid: rgba(0, 0, 0, 0.06);
-	--wave-grid-text: rgba(0, 0, 0, 0.35);
-	--wave-text: rgba(0, 0, 0, 0.35);
+	--wave-grid: rgba(0, 0, 0, 0.08);
+	--wave-grid-text: rgba(0, 0, 0, 0.45);
+	--wave-text: rgba(0, 0, 0, 0.45);
 	--wave-threshold-ok: rgba(22, 163, 74, 0.15);
 	--wave-threshold-warn: rgba(217, 119, 6, 0.12);
 }
@@ -3660,6 +3660,11 @@ html[data-theme="forest-mid"][data-card-style="light"] {
 	--big-button-rest-color: #4a7a2a;
 	--big-button-active-bg: rgba(252, 238, 230, 0.92);
 	--big-button-active-color: #b83232;
+	/* Wave chart: dark green on light parchment (getComputedStyle reads from html) */
+	--wave-grid: rgba(20, 38, 26, 0.10);
+	--wave-grid-text: rgba(20, 38, 26, 0.55);
+	--wave-text: rgba(20, 38, 26, 0.60);
+	--wave-line: rgba(45, 90, 45, 0.30);
 }
 
 /* Dark text on light parchment cards */
@@ -3718,6 +3723,29 @@ html[data-theme="forest-mid"][data-card-style="light"] .card-elevated input,
 html[data-theme="forest-mid"][data-card-style="light"] .card-elevated select {
 	color: #14261a;
 	-webkit-text-fill-color: #14261a;
+}
+
+/* Sharing panel cards: opaque parchment + strong contrast in drawer */
+html[data-theme="forest-mid"][data-card-style="light"] .action-card,
+html[data-theme="forest-mid"][data-card-style="light"] .live-card {
+	background: rgba(245, 240, 225, 1) !important;
+	border-color: rgba(45, 90, 45, 0.40);
+	color: #14261a;
+}
+
+html[data-theme="forest-mid"][data-card-style="light"] .action-card svg,
+html[data-theme="forest-mid"][data-card-style="light"] .live-card svg {
+	color: #2d5a2d !important;
+}
+
+html[data-theme="forest-mid"][data-card-style="light"] .action-card-title,
+html[data-theme="forest-mid"][data-card-style="light"] .live-card-title {
+	color: #14261a;
+}
+
+html[data-theme="forest-mid"][data-card-style="light"] .action-card-desc,
+html[data-theme="forest-mid"][data-card-style="light"] .live-card-desc {
+	color: rgba(20, 38, 26, 0.70);
 }
 
 /* Accessibility: respect reduced motion — kill all animations */

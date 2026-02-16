@@ -1,0 +1,1155 @@
+{
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "back": "Retour",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "none": "Aucun",
+    "skip": "Passer",
+    "continue": "Continuer",
+    "share": "Partager",
+    "import": "Importer",
+    "copyLink": "Copier le lien"
+  },
+  "nav": {
+    "timer": "Minuteur",
+    "dashboard": "Tableau de bord",
+    "history": "Historique",
+    "advisor": "Conseiller",
+    "mainNavAriaLabel": "Navigation principale",
+    "brandTitle": "contractions.app",
+    "goToTimerAriaLabel": "Aller au minuteur",
+    "shareSessionAriaLabel": "Partager la session",
+    "menuAriaLabel": "Menu",
+    "openMenuAriaLabel": "Ouvrir le menu",
+    "menu": "Menu"
+  },
+  "menu": {
+    "drawerTitle": "Menu",
+    "closeMenuAriaLabel": "Fermer le menu",
+    "closeAriaLabel": "Fermer",
+    "backToMenuAriaLabel": "Retour au menu",
+    "sharingTitle": "Partage",
+    "sharingHintConnected": "Connect\u00e9 ({count} pairs)",
+    "settingsTitle": "Param\u00e8tres",
+    "themeTitle": "Th\u00e8me",
+    "sessionsTitle": "Sessions",
+    "devToolsTitle": "Outils de d\u00e9veloppement",
+    "prayersTitle": "Pri\u00e8res",
+    "aboutTitle": "\u00c0 propos",
+    "items": {
+      "sharing": "Partage",
+      "settings": "Param\u00e8tres",
+      "theme": "Th\u00e8me",
+      "sessions": "Sessions",
+      "exportData": "Exporter les donn\u00e9es (JSON)",
+      "importData": "Importer des donn\u00e9es",
+      "restartSetup": "Relancer la configuration",
+      "restartSetupHint": "Relancer l\u2019assistant de bienvenue (les donn\u00e9es sont conserv\u00e9es)",
+      "about": "\u00c0 propos",
+      "feedbackAndIssues": "Commentaires et probl\u00e8mes",
+      "prayers": "Pri\u00e8res",
+      "devTools": "Outils de d\u00e9veloppement",
+      "clearAllData": "Effacer toutes les donn\u00e9es"
+    },
+    "importError": "Format de fichier invalide",
+    "clearConfirm": {
+      "prompt": "Supprimer toutes les donn\u00e9es de contractions\u00a0?",
+      "confirmButton": "Oui, tout effacer",
+      "cancelButton": "Annuler"
+    },
+    "about": {
+      "appName": "Minuteur de contractions",
+      "description": "Suivez les contractions, analysez les sch\u00e9mas de travail, sachez quand partir \u00e0 l\u2019h\u00f4pital.",
+      "features": {
+        "liveTimer": "Minuteur en direct avec graphique en vagues",
+        "rule511": "Suivi de la r\u00e8gle 5-1-1",
+        "braxtonHicks": "\u00c9valuation des contractions de Braxton Hicks",
+        "hospitalAdvisor": "Conseiller de d\u00e9part \u00e0 l\u2019h\u00f4pital",
+        "clinicalReference": "Guide de r\u00e9f\u00e9rence clinique"
+      },
+      "privacyNotice": "Toutes les donn\u00e9es restent sur cet appareil. Aucun compte, aucun serveur, aucun suivi.",
+      "githubLink": "GitHub",
+      "feedbackLink": "Commentaires et probl\u00e8mes"
+    },
+    "theme": {
+      "lightMode": "Clair",
+      "darkMode": "Sombre",
+      "uniqueMode": "Unique",
+      "colorPaletteLabel": "Palette de couleurs",
+      "darkCardStyle": "Sombre",
+      "lightCardStyle": "Clair",
+      "paletteNames": {
+        "soft": "Doux",
+        "clinical": "Clinique",
+        "warm": "Chaleureux",
+        "ocean": "Oc\u00e9an",
+        "forest": "For\u00eat",
+        "sunset": "Coucher de soleil",
+        "lavender": "Lavande",
+        "midnight": "Minuit",
+        "sky": "Ciel",
+        "blush": "Ros\u00e9"
+      },
+      "uniqueModeLabels": {
+        "soft": "Aurora",
+        "clinical": "Terminal",
+        "warm": "Cathedral",
+        "ocean": "Abyss",
+        "forest": "Shire",
+        "sunset": "Retrowave",
+        "lavender": "Frost",
+        "midnight": "Galaxy",
+        "sky": "Dreamscape",
+        "blush": "Sakura"
+      }
+    },
+    "languageSelector": {
+      "changeLanguageAriaLabel": "Changer de langue",
+      "closeMenuAriaLabel": "Fermer le menu de langue"
+    },
+    "devtools": {
+      "loadSeedData": "Charger des donn\u00e9es de test",
+      "seedHint": "Remplacer la session en cours par des donn\u00e9es fictives r\u00e9alistes pour les tests.",
+      "quickActions": "Actions rapides",
+      "clearSession": "Effacer la session",
+      "clearSessionDesc": "R\u00e9initialiser \u00e0 l\u2019\u00e9tat vide",
+      "loadedToast": "Charg\u00e9\u00a0!",
+      "debugLogging": "Journalisation de d\u00e9bogage",
+      "debugLoggingHint": "Capturer des donn\u00e9es de diagnostic pendant les tests. Copiez le journal et collez-le pour le partager.",
+      "enableLogging": "Activer la journalisation",
+      "copyLog": "Copier le journal ({count} entr\u00e9es)",
+      "copyLogDesc": "Copie le journal de diagnostic complet dans le presse-papiers",
+      "clearLog": "Effacer le journal",
+      "clearLogDesc": "Supprimer toutes les entr\u00e9es du journal",
+      "copiedFeedback": "Copi\u00e9\u00a0!",
+      "copyFailedFeedback": "\u00c9chec de la copie",
+      "clearedFeedback": "Effac\u00e9\u00a0!",
+      "archivePrompt": "Vous avez {count, plural, one {# contraction} other {# contractions}} dans votre session en cours.",
+      "archiveCurrentAndLoad": "Archiver la session en cours et charger",
+      "replaceCurrentSession": "Remplacer la session en cours",
+      "seeds": {
+        "singleLabel": "1 contraction",
+        "singleDesc": "Suivi tout juste commenc\u00e9",
+        "earlyLabel": "D\u00e9but de travail",
+        "earlyDesc": "5 contractions, irr\u00e9guli\u00e8res",
+        "activeLabel": "Travail actif",
+        "activeDesc": "12 contractions, r\u00e9guli\u00e8res",
+        "mixedLabel": "Mixte + pause",
+        "mixedDesc": "13 contractions, 2 groupes",
+        "transitionLabel": "Transition",
+        "transitionDesc": "22 contractions + rupture des eaux"
+      }
+    }
+  },
+  "timer": {
+    "bigButton": {
+      "start": "D\u00e9marrer",
+      "stop": "Arr\u00eater",
+      "startN": "D\u00e9marrer #{count}"
+    },
+    "timerDisplay": {
+      "contractionLabel": "Contraction",
+      "restLabel": "Repos",
+      "pausedLabel": "En pause",
+      "readyLabel": "Pr\u00eat",
+      "defaultTime": "0:00"
+    },
+    "liveRating": {
+      "pastThePeak": "Pass\u00e9 le pic\u00a0?",
+      "peakMarked": "Pic marqu\u00e9"
+    },
+    "pauseOverlay": {
+      "tapToResume": "Appuyez pour reprendre",
+      "tapToPause": "appuyez pour mettre en pause",
+      "resumeTimerAriaLabel": "Reprendre le minuteur",
+      "pauseTimerAriaLabel": "Mettre le minuteur en pause"
+    },
+    "intensityPicker": {
+      "prompt": "Quelle \u00e9tait l\u2019intensit\u00e9\u00a0?",
+      "mild": "L\u00e9g\u00e8re",
+      "moderate": "Mod\u00e9r\u00e9e",
+      "strong": "Forte",
+      "veryStrong": "Tr\u00e8s forte",
+      "intense": "Intense",
+      "levelFallback": "Niveau {level}"
+    },
+    "locationPicker": {
+      "prompt": "O\u00f9 l\u2019avez-vous ressentie\u00a0?",
+      "lowerBelly": "Bas du ventre",
+      "lowerBack": "Bas du dos",
+      "allAround": "Tout autour",
+      "backToIntensityAriaLabel": "Retour \u00e0 l\u2019intensit\u00e9"
+    },
+    "eventButtons": {
+      "waterBroke": "Perte des eaux",
+      "waterBrokeAt": "Perte des eaux \u00e0 {time}",
+      "editTime": "Modifier l\u2019heure",
+      "undo": "Annuler",
+      "remove": "Supprimer",
+      "whenDidItHappen": "Quand est-ce arriv\u00e9\u00a0?",
+      "justNow": "\u00c0 l\u2019instant",
+      "fiveMinAgo": "Il y a ~5 min",
+      "fifteenMinAgo": "Il y a ~15 min",
+      "thirtyMinAgo": "Il y a ~30 min",
+      "earlier": "Plus t\u00f4t...",
+      "setCustomTime": "D\u00e9finir une heure personnalis\u00e9e",
+      "setTime": "D\u00e9finir l\u2019heure",
+      "setATimeAbove": "D\u00e9finissez une heure ci-dessus",
+      "aroundTime": "Vers {time}",
+      "moreEvents": "Plus d\u2019\u00e9v\u00e9nements \u25BC",
+      "fewerEvents": "Moins d\u2019\u00e9v\u00e9nements \u25B2",
+      "mucusPlug": "Bouchon muqueux",
+      "mucusPlugAt": "Bouchon muqueux \u00e0 {time}",
+      "bloodyShow": "Marque sanglante",
+      "bloodyShowAt": "Marque sanglante \u00e0 {time}"
+    },
+    "waterBreakQuickAction": {
+      "waterBroke": "Perte des eaux",
+      "waterBrokeAt": "Perte des eaux \u00e0 {time}",
+      "editTimeAriaLabel": "Modifier l\u2019heure",
+      "removeWaterBreakAriaLabel": "Supprimer la perte des eaux",
+      "undoLabel": "Annuler",
+      "confirmRemoveAriaLabel": "Confirmer la suppression",
+      "cancelAriaLabel": "Annuler",
+      "whenDidItHappen": "Quand est-ce arriv\u00e9\u00a0?",
+      "closeAriaLabel": "Fermer",
+      "justNow": "\u00c0 l\u2019instant",
+      "fiveMinAgo": "Il y a ~5 min",
+      "fifteenMinAgo": "Il y a ~15 min",
+      "thirtyMinAgo": "Il y a ~30 min",
+      "earlier": "Plus t\u00f4t...",
+      "setCustomTime": "D\u00e9finir une heure personnalis\u00e9e",
+      "setTime": "D\u00e9finir l\u2019heure",
+      "setATimeAbove": "D\u00e9finissez une heure ci-dessus",
+      "aroundTime": "Vers {time}"
+    },
+    "sessionControls": {
+      "undoLast": "Annuler la derni\u00e8re",
+      "newSession": "Nouvelle session",
+      "archiveAndStartNew": "Archiver + nouvelle session"
+    },
+    "untimedEntry": {
+      "logPastContraction": "Enregistrer une contraction pass\u00e9e",
+      "formIntro": "Vous en avez manqu\u00e9 une\u00a0? Enregistrez-la ici.",
+      "whenLabel": "Quand",
+      "minutesAgo": "Il y a {count} min",
+      "earlierAriaLabel": "Plus t\u00f4t",
+      "moreRecentAriaLabel": "Plus r\u00e9cent",
+      "durationLabel": "Dur\u00e9e",
+      "shorterAriaLabel": "Plus courte",
+      "longerAriaLabel": "Plus longue",
+      "intensityLabel": "Intensit\u00e9",
+      "optional": "facultatif",
+      "locationLabel": "Localisation",
+      "front": "Avant",
+      "back": "Dos",
+      "wrap": "Ceinture",
+      "logContraction": "Enregistrer la contraction"
+    },
+    "welcomeState": {
+      "title": "Minuteur de contractions",
+      "description": "Appuyez sur le bouton ci-dessous quand une contraction commence. Appuyez \u00e0 nouveau quand elle se termine.",
+      "trackFeature": "Suivez le rythme et l\u2019intensit\u00e9",
+      "patternFeature": "Observez les sch\u00e9mas appara\u00eetre"
+    },
+    "hospitalBanner": {
+      "viewAdvisorAriaLabel": "Voir les d\u00e9tails du conseiller"
+    },
+    "heroAction": {
+      "paused": "En pause",
+      "tapStartPrompt": "Appuyez sur D\u00e9marrer quand une contraction commence",
+      "keepTracking": "Continuez le suivi...",
+      "stageActions": {
+        "preLabor": "Poursuivez vos activit\u00e9s normales",
+        "early": "Reposez-vous et hydratez-vous \u2014 restez \u00e0 la maison",
+        "active": "Partez bient\u00f4t pour l\u2019h\u00f4pital",
+        "transition": "Vous devriez \u00eatre \u00e0 l\u2019h\u00f4pital"
+      },
+      "contractionMessages": {
+        "preLabor": "Restez d\u00e9tendue...",
+        "early": "Tout en douceur...",
+        "active": "Respirez \u00e0 travers...",
+        "transition": "Une \u00e0 la fois \u2014 vous y \u00eates presque"
+      },
+      "defaultContractionMessage": "Respirez \u00e0 travers...",
+      "waterBrokeActive": "Perte des eaux + travail actif \u2014 direction l\u2019h\u00f4pital",
+      "waterBrokeTransition": "Vous devriez \u00eatre \u00e0 l\u2019h\u00f4pital",
+      "waterBrokeDefault": "Perte des eaux \u2014 appelez votre m\u00e9decin",
+      "detailTemplate": "~{interval} min d\u2019intervalle \u00B7 ~{duration}s en moyenne"
+    },
+    "heroCompactTimer": {
+      "paused": "En pause",
+      "readyToStart": "Pr\u00eat \u00e0 d\u00e9marrer",
+      "contractingPrefix": "Contraction\u00a0: {time}",
+      "restPrefix": "Repos\u00a0: {restTime}",
+      "restAndLast": "Repos\u00a0: {restTime} \u00B7 Derni\u00e8re\u00a0: {lastTime}"
+    },
+    "quickStats": {
+      "avgDuration": "Dur\u00e9e moy.",
+      "avgInterval": "Intervalle moy.",
+      "total": "Total",
+      "noDataPlaceholder": "\u2014"
+    },
+    "recentContractions": {
+      "noCompleted": "Aucune contraction termin\u00e9e pour l\u2019instant."
+    },
+    "timerPage": {
+      "sharingBanner": "Partage avec {count, plural, one {# partenaire} other {# partenaires}}",
+      "sections": {
+        "quickStats": "Statistiques rapides",
+        "recent": "R\u00e9centes",
+        "guidance": "Conseils"
+      }
+    },
+    "laborStages": {
+      "preLabor": "Pr\u00e9-travail",
+      "early": "D\u00e9but de travail",
+      "active": "Travail actif",
+      "transition": "Transition"
+    }
+  },
+  "dashboard": {
+    "pageTitle": "Tableau de bord",
+    "sections": {
+      "summary": "R\u00e9sum\u00e9",
+      "waveChart": "Graphique en vagues",
+      "stageProgress": "Progression des stades",
+      "trendAnalysis": "Analyse des tendances",
+      "patternAssessment": "\u00c9valuation des sch\u00e9mas"
+    },
+    "emptyState": {
+      "title": "Aucune donn\u00e9e pour l\u2019instant",
+      "hint": "Commencez \u00e0 chronom\u00e9trer les contractions pour voir les sch\u00e9mas, graphiques en vagues et l\u2019analyse des stades de travail ici."
+    },
+    "summary": {
+      "contractions": "Contractions",
+      "avgDuration": "Dur\u00e9e moy.",
+      "avgInterval": "Intervalle moy."
+    },
+    "stageBar": {
+      "beenHere": "Vous \u00eates \u00e0 ce stade depuis {elapsed}",
+      "typical": "Typique\u00a0: {range}",
+      "location": "Localisation\u00a0: {location}"
+    },
+    "progression": {
+      "needMore": "Il faut 4 contractions ou plus pour analyser les tendances",
+      "trendsTitle": "Tendances",
+      "gapBetween": "Intervalle entre\u00a0:",
+      "eachContraction": "Chaque contraction\u00a0:",
+      "gettingCloser": "se rapprochent",
+      "spreadingApart": "s\u2019espacent",
+      "lastingLonger": "durent plus longtemps",
+      "gettingShorter": "raccourcissent",
+      "stable": "stables",
+      "criteriaMet": "Crit\u00e8res {rule} actuellement remplis",
+      "estimateReach": "\u00c0 ce rythme, pourrait atteindre {rule} dans ~{minutes} min",
+      "disclaimer": "Bas\u00e9 sur les {count} dernier{count, plural, one {} other {s}} intervalle{count, plural, one {} other {s}} (cette session)"
+    },
+    "waveChart": {
+      "fitButton": "Ajuster",
+      "nowButton": "Maintenant \u2192",
+      "canvasAriaLabel": "Graphique en vagues des contractions",
+      "emptyText": "Les contractions appara\u00eetront ici",
+      "legend": "Vert = dans les {minutes} min"
+    },
+    "braxtonHicks": {
+      "panelTitle": "\u00c9valuation des sch\u00e9mas",
+      "likelyRealLabor": "Probablement un vrai travail",
+      "likelyPractice": "Probablement des contractions d\u2019entra\u00eenement",
+      "mixedSignals": "Signaux mixtes",
+      "disclaimer": "Ceci est une estimation de sch\u00e9ma, pas un diagnostic."
+    }
+  },
+  "history": {
+    "pageTitle": "Historique",
+    "emptyState": {
+      "title": "Aucune contraction pour l\u2019instant",
+      "hint": "Votre historique de contractions appara\u00eetra ici. Appuyez sur chaque entr\u00e9e pour modifier le rythme, l\u2019intensit\u00e9 ou la localisation."
+    },
+    "untimed": "Non chronom\u00e9tr\u00e9e",
+    "apart": "d\u2019intervalle",
+    "editor": {
+      "editingNumber": "Modification de la #{num}",
+      "start": "D\u00e9but",
+      "end": "Fin",
+      "duration": "Dur\u00e9e",
+      "durationPlaceholder": "M:SS",
+      "intensity": "Intensit\u00e9",
+      "location": "Localisation",
+      "front": "Avant",
+      "back": "Dos",
+      "wrap": "Ceinture",
+      "confirmDelete": "Confirmer la suppression"
+    },
+    "events": {
+      "waterBroke": "Perte des eaux",
+      "mucusPlug": "Bouchon muqueux",
+      "bloodyShow": "Marque sanglante"
+    }
+  },
+  "hospital": {
+    "pageTitle": "Conseiller de travail",
+    "locationToggle": {
+      "atHome": "\u00c0 la maison",
+      "onTheWay": "En route"
+    },
+    "locationHint": {
+      "enRoute": "Temps de trajet retir\u00e9 \u2014 les estimations indiquent le temps \u00e0 partir de maintenant",
+      "uncertain": "Temps de trajet inconnu \u2014 estimation prudente de ~30 min utilis\u00e9e",
+      "withTravel": "{minutes} min de trajet incluses dans les estimations"
+    },
+    "sections": {
+      "departureAdvice": "Conseil de d\u00e9part",
+      "ruleProgress": "Progression de la r\u00e8gle 5-1-1",
+      "waterBreak": "Perte des eaux",
+      "tips": "Conseils",
+      "laborGuide": "Guide du travail"
+    },
+    "badges": {
+      "goNow": "Partez maintenant",
+      "timeToGo": "Il est temps de partir"
+    },
+    "range": {
+      "confidence": "Confiance {level}",
+      "yourPattern": "Votre sch\u00e9ma",
+      "factors": "Facteurs"
+    },
+    "callProvider": "Appeler le m\u00e9decin ({phone})",
+    "rule511": {
+      "intervalCheck": "\u2264 {target} min d\u2019intervalle (moy. {actual} min)",
+      "durationCheck": "\u2265 {target} min de dur\u00e9e (moy. {actual}s)",
+      "sustainedCheck": "\u2265 {target} min en continu ({actual} min)",
+      "howWeCalculateShow": "Comment nous calculons",
+      "howWeCalculateHide": "Masquer",
+      "explainerInterval": "Intervalle \u2014 temps moyen entre les d\u00e9buts de contractions dans la fen\u00eatre d\u2019analyse. Coch\u00e9 (\u2713) quand la moyenne est \u2264 {target} min.",
+      "explainerDuration": "Dur\u00e9e \u2014 dur\u00e9e moyenne des contractions chronom\u00e9tr\u00e9es (d\u00e9but \u00e0 fin). Coch\u00e9 quand la moyenne est \u2265 {target}s. Une contraction de 64s compte comme \u00ab\u00a0plus d\u2019une minute\u00a0\u00bb.",
+      "explainerSustained": "Soutenu \u2014 depuis combien de temps le sch\u00e9ma dure. Mesur\u00e9 de la premi\u00e8re \u00e0 la plus r\u00e9cente contraction. Coch\u00e9 quand \u2265 {target} min.",
+      "explainerNote": "Ce sont des recommandations cliniques (ACOG), pas des r\u00e8gles absolues. Votre m\u00e9decin peut recommander des seuils diff\u00e9rents (par ex. 4-1-1 ou 3-1-1). Ajustez dans les param\u00e8tres."
+    },
+    "waterBreakInfo": {
+      "waterBrokeAgo": "Perte des eaux il y a {elapsed}",
+      "addProviderPhone": "Ajoutez le num\u00e9ro de votre m\u00e9decin pour un appel rapide",
+      "phonePlaceholder": "par ex. 01 23 45 67 89",
+      "safetyNote": "Notez la couleur du liquide. Clair/jaune p\u00e2le est normal. Vert/marron \u2192 appelez imm\u00e9diatement.",
+      "statChance": "de chances",
+      "statBeforeContractions": "Perte des eaux avant le d\u00e9but des contractions",
+      "statWithin12Hours": "Travail actif dans les 12 heures",
+      "statWithin24Hours": "Travail actif dans les 24 heures",
+      "statReassure": "La plupart des personnes commencent le travail naturellement dans la journ\u00e9e"
+    },
+    "clinicalReference": {
+      "laborStagesTitle": "Stades du travail",
+      "dilationNote": "Dilatation = ouverture du col de l\u2019ut\u00e9rus (0 cm = ferm\u00e9, 10 cm = compl\u00e8tement ouvert)",
+      "stageNames": {
+        "preLabor": "Pr\u00e9-travail",
+        "early": "D\u00e9but",
+        "active": "Actif",
+        "transition": "Transition"
+      },
+      "stages": {
+        "preLabor": {
+          "description": "Tensions irr\u00e9guli\u00e8res qui vont et viennent. Ce n\u2019est pas encore le vrai travail \u2014 votre corps se pr\u00e9pare.",
+          "cervix": "0\u20133 cm",
+          "pattern": "Irr\u00e9gulier, 5\u201330 min d\u2019intervalle, < 30s",
+          "location": "Avant / bas du ventre"
+        },
+        "early": {
+          "description": "Les contractions deviennent plus r\u00e9guli\u00e8res et plus rapproch\u00e9es. Vous pouvez encore parler pendant.",
+          "cervix": "3\u20136 cm",
+          "pattern": "5\u201315 min d\u2019intervalle, 30\u201360s",
+          "location": "Bas du ventre, peut s\u2019\u00e9tendre"
+        },
+        "active": {
+          "description": "Contractions fortes et r\u00e9guli\u00e8res. N\u00e9cessite une respiration concentr\u00e9e. C\u2019est le moment o\u00f9 la plupart partent \u00e0 l\u2019h\u00f4pital.",
+          "cervix": "6\u20138 cm",
+          "pattern": "3\u20135 min d\u2019intervalle, 45\u201375s",
+          "location": "Ceinture du dos vers l\u2019avant"
+        },
+        "transition": {
+          "description": "La phase la plus intense mais la plus courte. Vous pouvez ressentir une pression, des naus\u00e9es et une envie de pousser.",
+          "cervix": "8\u201310 cm",
+          "pattern": "2\u20133 min d\u2019intervalle, 60\u201390s",
+          "location": "Intense, partout"
+        }
+      },
+      "currentBadge": "Actuel",
+      "bhVsRealTitle": "Braxton Hicks vs. vrai travail",
+      "bhIntro": "Comparez vos sympt\u00f4mes pour distinguer les contractions d\u2019entra\u00eenement du vrai travail.",
+      "bhTag": "BH",
+      "realTag": "Vrai",
+      "bhCriteria": {
+        "timing": "Rythme",
+        "pattern": "Sch\u00e9ma",
+        "restResponse": "R\u00e9ponse au repos",
+        "location": "Localisation",
+        "intensity": "Intensit\u00e9"
+      },
+      "bhDescriptions": {
+        "timingBH": "Rythme irr\u00e9gulier",
+        "timingReal": "Rythme r\u00e9gulier, se rapprochant",
+        "patternBH": "Ne se rapprochent pas",
+        "patternReal": "Continuent quelle que soit l\u2019activit\u00e9",
+        "restBH": "S\u2019arr\u00eatent avec le mouvement ou le changement de position",
+        "restReal": "Ne s\u2019arr\u00eatent pas avec le repos ou le mouvement",
+        "locationBH": "Ressenties principalement \u00e0 l\u2019avant",
+        "locationReal": "Irradient depuis le dos ou ceinturent",
+        "intensityBH": "Ne deviennent pas plus fortes avec le temps",
+        "intensityReal": "Deviennent progressivement plus fortes"
+      },
+      "warningTitle": "Quand appeler votre m\u00e9decin imm\u00e9diatement",
+      "warningSigns": {
+        "bleeding": "Saignement vaginal comparable \u00e0 des r\u00e8gles ou plus abondant",
+        "babyMovement": "Le b\u00e9b\u00e9 ne bouge plus ou bouge beaucoup moins",
+        "abdominalPain": "Douleur abdominale s\u00e9v\u00e8re qui ne c\u00e8de pas",
+        "headache": "Mal de t\u00eate s\u00e9v\u00e8re avec troubles de la vision",
+        "fever": "Fi\u00e8vre sup\u00e9rieure \u00e0 38\u00a0\u00b0C (100,4\u00a0\u00b0F)",
+        "meconium": "Le liquide est vert ou marron (m\u00e9conium)"
+      },
+      "sourcesTitle": "Sources",
+      "disclaimer": "Recommandations g\u00e9n\u00e9rales uniquement. Suivez toujours les instructions de votre m\u00e9decin."
+    },
+    "emptyState": {
+      "title": "Conseiller de travail",
+      "hint": "Enregistrez au moins 3 contractions pour voir la progression 5-1-1, les conseils de d\u00e9part et les estimations de temps."
+    },
+    "advisor": {
+      "headlines": {
+        "keepTracking": "Continuez le suivi",
+        "goNow": "Partez \u00e0 l\u2019h\u00f4pital maintenant",
+        "timeToGo": "Il est temps de partir",
+        "startPreparing": "Commencez \u00e0 vous pr\u00e9parer",
+        "notYet": "Pas encore",
+        "callProvider": "Appelez votre m\u00e9decin",
+        "stayComfortable": "Restez \u00e0 l\u2019aise"
+      },
+      "details": {
+        "notEnoughData": "Enregistrez plus de contractions pour obtenir des conseils de d\u00e9part.",
+        "transition": "Contractions de phase de transition d\u00e9tect\u00e9es. Vous devriez \u00eatre \u00e0 l\u2019h\u00f4pital ou en route.",
+        "waterAndActive": "Perte des eaux et contractions en sch\u00e9ma actif. Partez \u00e0 l\u2019h\u00f4pital.",
+        "waterBroken": "Perte des eaux. Contactez votre m\u00e9decin pour savoir quand partir.",
+        "rule511Met": "Les contractions correspondent au sch\u00e9ma 5-1-1. Il est temps de partir \u00e0 l\u2019h\u00f4pital.",
+        "estimatedLeaveSoon": "Au rythme actuel, le sch\u00e9ma 5-1-1 est attendu dans ~{minutes} min. Envisagez de partir bient\u00f4t.",
+        "progressing": "Progression vers le 5-1-1. Estim\u00e9 ~{minutes} min au rythme actuel.",
+        "activeLabor": "Sch\u00e9ma de travail actif d\u00e9tect\u00e9. Restez en contact \u00e9troit avec votre m\u00e9decin.",
+        "earlyLabor": "D\u00e9but de travail \u2014 les contractions sont pr\u00e9sentes mais encore espac\u00e9es. Reposez-vous et conservez votre \u00e9nergie.",
+        "irregular": "Les contractions sont irr\u00e9guli\u00e8res. Continuez \u00e0 surveiller pour d\u00e9tecter un sch\u00e9ma r\u00e9gulier."
+      },
+      "factors": {
+        "fewerThan2": "Moins de 2 contractions enregistr\u00e9es",
+        "fewerThan3": "Moins de 3 contractions enregistr\u00e9es",
+        "intervalApart": "Moy. {interval} min d\u2019intervalle",
+        "avgDuration": "Moy. {duration}s de dur\u00e9e",
+        "waterBrokeAgo": "Perte des eaux il y a {hours}h",
+        "waterBroken": "Perte des eaux",
+        "travelUnknown": "Temps de trajet inconnu",
+        "travelTime": "{minutes} min de trajet",
+        "travelUnknownConservative": "Temps de trajet inconnu \u2014 estimation de 30 min utilis\u00e9e",
+        "travelAccounted": "{minutes} min de trajet incluses",
+        "assumedProgression": "Taux de progression suppos\u00e9\u00a0: {rate}",
+        "rule511Met": "Sch\u00e9ma 5-1-1 atteint",
+        "rule511Pattern": "Sch\u00e9ma 5-1-1 d\u00e9tect\u00e9",
+        "timeTo511": "~{minutes} min avant le sch\u00e9ma 5-1-1"
+      },
+      "recommendations": {
+        "keepTracking": "Continuez \u00e0 chronom\u00e9trer les contractions pour \u00e9tablir un sch\u00e9ma.",
+        "goNow": "Partez \u00e0 l\u2019h\u00f4pital imm\u00e9diatement.",
+        "shouldBeAtHospital": "Vous devriez \u00eatre \u00e0 l\u2019h\u00f4pital ou en route.",
+        "headToHospital": "Partez \u00e0 l\u2019h\u00f4pital bient\u00f4t.",
+        "planToArriveWithin": "Pr\u00e9voyez d\u2019arriver dans {minutes} min.",
+        "planSoon": "Pr\u00e9voyez de partir bient\u00f4t.",
+        "planWithinRange": "Pr\u00e9voyez de partir dans {range}.",
+        "estimatedRange": "Estim\u00e9 {range} avant le 5-1-1.",
+        "activeLeaveRange": "Envisagez de partir dans {range}.",
+        "activeBagReady": "Pr\u00e9parez votre valise. Le travail actif progresse.",
+        "earlyStayHome": "Restez \u00e0 la maison et reposez-vous. Le d\u00e9but du travail peut durer de nombreuses heures.",
+        "irregularContinue": "Continuez \u00e0 surveiller. Le sch\u00e9ma n\u2019est pas encore r\u00e9gulier."
+      },
+      "pattern": {
+        "summary": "Moy. {interval} min d\u2019intervalle, {duration}s de dur\u00e9e",
+        "notEnoughData": "Pas assez de donn\u00e9es pour analyser le sch\u00e9ma"
+      },
+      "trend": {
+        "gettingCloser": "Se rapprochent\u00a0: {first} min \u2192 {last} min d\u2019intervalle",
+        "spacingOut": "S\u2019espacent\u00a0: {first} min \u2192 {last} min d\u2019intervalle",
+        "steadyPace": "Rythme r\u00e9gulier\u00a0: ~{avg} min d\u2019intervalle"
+      }
+    }
+  },
+  "settings": {
+    "situation": {
+      "title": "Votre situation",
+      "firstBabyLabel": "Premier b\u00e9b\u00e9\u00a0?",
+      "firstBabyHint": "Les premiers accouchements durent g\u00e9n\u00e9ralement plus longtemps. Cela affecte les estimations de temps et les dur\u00e9es typiques des stades.",
+      "yesFirstBaby": "Oui, premier b\u00e9b\u00e9",
+      "noHadOneBefore": "Non, j\u2019ai d\u00e9j\u00e0 accouche\u0301"
+    },
+    "display": {
+      "title": "Affichage",
+      "timeFormat": "Format de l\u2019heure",
+      "timeFormat12h": "12 heures",
+      "timeFormat24h": "24 heures",
+      "intensityScale": "\u00c9chelle d\u2019intensit\u00e9",
+      "levels5": "5 niveaux",
+      "levels3": "3 niveaux",
+      "waveChartHeight": "Hauteur du graphique en vagues",
+      "heightSmall": "Petit (100px)",
+      "heightMedium": "Moyen (150px)",
+      "heightLarge": "Grand (200px)",
+      "heightXLarge": "Tr\u00e8s grand (250px)",
+      "heroDisplay": "Affichage principal",
+      "heroHint": "Carte d\u2019information au-dessus du minuteur\u00a0: \u00e9tiquette de stade, suggestion d\u2019action ou minuteur compact.",
+      "heroStageBadge": "Badge de stade",
+      "heroActionCard": "Carte d\u2019action",
+      "heroCompactTimer": "Minuteur compact",
+      "showRestSeconds": "Afficher le repos en secondes",
+      "sessionBreakThreshold": "Seuil de coupure de session",
+      "sessionBreakHint": "Les pauses plus longues que cette dur\u00e9e apparaissent comme des sessions s\u00e9par\u00e9es dans le graphique en vagues et l\u2019analyse des tendances.",
+      "breakOff": "D\u00e9sactiv\u00e9",
+      "stageTimerMode": "Mode du minuteur de stade",
+      "stageTimerHint": "Comment la dur\u00e9e du stade est calcul\u00e9e\u00a0: depuis la derni\u00e8re contraction ou en continu.",
+      "stageTimerLastRecorded": "Derni\u00e8re enregistr\u00e9e",
+      "stageTimerCurrentTime": "Heure actuelle"
+    },
+    "behavior": {
+      "title": "Comportement",
+      "hapticFeedback": "Retour haptique",
+      "postContractionRating": "\u00c9valuation post-contraction",
+      "showIntensityPicker": "Afficher le s\u00e9lecteur d\u2019intensit\u00e9",
+      "showLocationPicker": "Afficher le s\u00e9lecteur de localisation",
+      "peakRating": "\u00c9valuation du pic pendant la contraction"
+    },
+    "features": {
+      "title": "Fonctionnalit\u00e9s",
+      "waveChart": "Graphique en vagues",
+      "showTargetLines": "Afficher les lignes cibles sur le graphique",
+      "showTargetLinesHint": "Lignes de r\u00e9f\u00e9rence color\u00e9es sur le graphique en vagues quand les contractions atteignent vos objectifs de rythme.",
+      "trendAnalysis": "Analyse des tendances",
+      "trendAnalysisHint": "R\u00e9gression lin\u00e9aire sur les contractions r\u00e9centes pour d\u00e9tecter le raccourcissement des intervalles et l\u2019allongement des dur\u00e9es.",
+      "patternAssessment": "\u00c9valuation des sch\u00e9mas",
+      "patternAssessmentHint": "Scoring pond\u00e9r\u00e9 de 6 crit\u00e8res (r\u00e9gularit\u00e9, tendance de dur\u00e9e, intensit\u00e9, localisation, tendance d\u2019intervalle, activit\u00e9 soutenue) pour distinguer le vrai travail des Braxton Hicks.",
+      "hospitalAdvisor": "Conseiller h\u00f4pital",
+      "hospitalAdvisorHint": "Conseils de timing de d\u00e9part sur la page Conseiller bas\u00e9s sur vos sch\u00e9mas de contractions.",
+      "contextualTips": "Conseils contextuels",
+      "contextualTipsHint": "Cartes de conseils adapt\u00e9s au stade sur les pages Minuteur et Conseiller.",
+      "waterBreakButton": "Bouton perte des eaux",
+      "thresholdRuleProgress": "Progression de la r\u00e8gle de seuil",
+      "thresholdRuleHint": "Afficher la progression de la r\u00e8gle 5-1-1 (ou personnalis\u00e9e) sur la page du conseiller de travail.",
+      "clinicalReference": "R\u00e9f\u00e9rence clinique",
+      "clinicalReferenceHint": "Guide du travail sur la page Conseiller\u00a0: stades, comparaison Braxton Hicks et signes d\u2019alerte."
+    },
+    "advisor": {
+      "title": "Conseiller",
+      "introDesc": "Ces trois param\u00e8tres fonctionnent ensemble\u00a0: le niveau de d\u00e9tail contr\u00f4le la quantit\u00e9 d\u2019informations affich\u00e9es. Le timing d\u2019alerte d\u00e9cale le moment o\u00f9 \u00ab\u00a0il est temps de partir\u00a0\u00bb appara\u00eet. Le temps de trajet ajoute un tampon pour que vous partiez avec une marge.",
+      "detailLevel": "Niveau de d\u00e9tail du conseiller",
+      "detailLevelHint": "Contr\u00f4le la quantit\u00e9 de d\u00e9tails affich\u00e9s par le conseiller\u00a0: plages horaires, niveau d\u2019urgence ou r\u00e9sum\u00e9 en une ligne.",
+      "detailDetailed": "D\u00e9taill\u00e9 (estimations par plage)",
+      "detailUrgency": "Urgence uniquement",
+      "detailMinimal": "Minimal",
+      "travelTime": "Temps de trajet",
+      "travelTimeHint": "Combien de temps pour atteindre votre h\u00f4pital. Pris en compte dans le timing de d\u00e9part.",
+      "alertTiming": "Timing d\u2019alerte",
+      "alertTimingHint": "Le mode prudent vous alerte plus t\u00f4t, le mode d\u00e9tendu attend plus longtemps. Affecte le moment o\u00f9 le conseil \u00ab\u00a0il est temps de partir\u00a0\u00bb appara\u00eet.",
+      "alertConservative": "Prudent (partir t\u00f4t)",
+      "alertModerate": "Mod\u00e9r\u00e9",
+      "alertRelaxed": "D\u00e9tendu (attendre plus)",
+      "providerPhone": "T\u00e9l\u00e9phone du m\u00e9decin",
+      "providerPhonePlaceholder": "par ex. 01 23 45 67 89"
+    },
+    "threshold": {
+      "title": "R\u00e8gle de seuil",
+      "desc": "La r\u00e8gle N-1-1 est une recommandation clinique (ACOG) pour savoir quand partir \u00e0 l\u2019h\u00f4pital. Le standard est 5-1-1\u00a0: contractions toutes les 5 minutes, d\u2019une dur\u00e9e d\u20191 minute, pendant 1 heure. Votre m\u00e9decin peut recommander 3-1-1, 4-1-1 ou d\u2019autres variantes \u2014 ajustez ci-dessous.",
+      "detailDesc": "Chaque crit\u00e8re utilise la moyenne des contractions r\u00e9centes dans la fen\u00eatre d\u2019analyse, pas une seule contraction. Une contraction de 64s compte comme \u00ab\u00a0plus d\u20191 minute\u00a0\u00bb. Ce sont des recommandations, pas des r\u00e8gles absolues \u2014 suivez toujours l\u2019avis de votre m\u00e9decin.",
+      "intervalTarget": "Objectif d\u2019intervalle",
+      "intervalHint": "Temps moyen entre les d\u00e9buts de contractions (d\u00e9but \u00e0 d\u00e9but). Coch\u00e9 quand la moyenne est \u2264 cette valeur.",
+      "intervalOption": "{mins} min d\u2019intervalle",
+      "durationTarget": "Objectif de dur\u00e9e",
+      "durationHint": "Dur\u00e9e moyenne des contractions (d\u00e9but \u00e0 fin). Coch\u00e9 quand la moyenne est \u2265 cette valeur.",
+      "durationOption": "{secs}s de dur\u00e9e",
+      "sustainedPeriod": "P\u00e9riode soutenue",
+      "sustainedHint": "Dur\u00e9e totale de la premi\u00e8re \u00e0 la plus r\u00e9cente contraction. Coch\u00e9 quand \u2265 cette valeur, confirmant que le sch\u00e9ma est constant et non un \u00e9pisode isol\u00e9."
+    },
+    "advanced": {
+      "title": "Avanc\u00e9",
+      "stageThresholdsTitle": "Seuils des stades",
+      "stageThresholdsDesc": "D\u00e9finissez les sch\u00e9mas de contractions pour chaque stade de travail. Bas\u00e9 sur les recommandations ACOG. Intervalle max = plus long intervalle entre les contractions\u00a0; dur\u00e9e min = plus courte dur\u00e9e de contraction.",
+      "maxInterval": "Intervalle max {stage}",
+      "minDuration": "Dur\u00e9e min {stage}",
+      "bhThresholdsTitle": "Seuils d\u2019\u00e9valuation des sch\u00e9mas",
+      "bhThresholdsDesc": "Ajustez finement la distinction entre contractions d\u2019entra\u00eenement et vrai travail. La plupart des utilisateurs devraient laisser les valeurs par d\u00e9faut.",
+      "regularityCVLow": "R\u00e9gularit\u00e9 CV (bas)",
+      "regularityCVHigh": "R\u00e9gularit\u00e9 CV (haut)",
+      "realLaborThreshold": "Seuil de vrai travail",
+      "bhThreshold": "Seuil BH",
+      "resetToDefaults": "R\u00e9initialiser les param\u00e8tres avanc\u00e9s"
+    },
+    "extras": {
+      "title": "Extras",
+      "prayers": "Pri\u00e8res",
+      "prayersHint": "Afficher l\u2019onglet Pri\u00e8res dans le menu. Toujours visible avec les th\u00e8mes Cathedral et Shire."
+    }
+  },
+  "sharing": {
+    "sendTitle": "Envoyer",
+    "sendDesc": "Partagez les donn\u00e9es de votre session",
+    "receiveTitle": "Recevoir",
+    "receiveDesc": "Importer des donn\u00e9es partag\u00e9es",
+    "liveTitle": "Partage en direct",
+    "liveExperimentalTag": "(EXP\u00c9RIMENTAL)",
+    "liveDesc": "Synchronisation en temps r\u00e9el entre appareils",
+    "backButton": "Retour",
+    "liveQuickModeDesc": "Utilise un relais pour trouver votre partenaire. Fonctionne sur n\u2019importe quel r\u00e9seau.",
+    "yourNameLabel": "Votre nom",
+    "yourNamePlaceholder": "Maman, Partenaire, etc.",
+    "joinersCanLabel": "Les participants peuvent",
+    "modeCollaborative": "Voir et modifier ensemble",
+    "modeViewOnly": "Lecture seule",
+    "passwordLabel": "Mot de passe (facultatif)",
+    "passwordPlaceholder": "Ajoute le chiffrement",
+    "passwordHintVisible": "Partagez cette phrase de passe avec votre partenaire",
+    "passwordHintHidden": "Chiffre la session de bout en bout",
+    "generatePassphraseAriaLabel": "G\u00e9n\u00e9rer une phrase de passe",
+    "showPasswordAriaLabel": "Afficher le mot de passe",
+    "hidePasswordAriaLabel": "Masquer le mot de passe",
+    "serverOptionsToggle": "Options du serveur",
+    "signalingBackendLabel": "Backend de signalisation",
+    "signalingBackendDefaultHint": "Achemine la n\u00e9gociation initiale (chiffr\u00e9e).",
+    "privacyNote": "Toutes les donn\u00e9es SDP sont chiffr\u00e9es avant de quitter votre appareil. STUN ne voit que votre IP. TURN relaie des donn\u00e9es chiffr\u00e9es \u2014 ne peut pas lire le contenu.",
+    "testSignalingButton": "Tester la signalisation",
+    "testSignalingLoading": "Test en cours...",
+    "testSignalingReachable": "Accessible ({latencyMs}ms)",
+    "testSignalingUnreachable": "Inaccessible \u2014 essayez un autre backend",
+    "startSharingButton": "D\u00e9marrer le partage",
+    "joinRoomButton": "Rejoindre le salon",
+    "scanQrCodeButton": "Scanner le code QR",
+    "roomCodeLabel": "Code du salon",
+    "roomCodePlaceholder": "blue-tiger-42",
+    "connectButton": "Se connecter",
+    "usePrivateConnect": "Utiliser la connexion priv\u00e9e \u00e0 la place",
+    "privateConnectTitle": "Connexion priv\u00e9e",
+    "privateConnectDesc": "Connectez-vous en \u00e9changeant manuellement des codes d\u2019invitation \u2014 aucun serveur relais ne touche vos donn\u00e9es.",
+    "privateStep1": "Une personne cr\u00e9e une invitation et partage le code",
+    "privateStep2": "L\u2019autre personne accepte et renvoie un code de r\u00e9ponse",
+    "privateStep3": "Une fois les codes \u00e9chang\u00e9s, vous \u00eates connect\u00e9s en pair-\u00e0-pair",
+    "connectionLimitationsTitle": "Limitations de connexion",
+    "connectionLimitationsText": "Sans serveur relais TURN, cela ne fonctionne de mani\u00e8re fiable que sur le m\u00eame r\u00e9seau Wi-Fi. Les connexions entre r\u00e9seaux diff\u00e9rents (donn\u00e9es mobiles, Wi-Fi diff\u00e9rents, pare-feux d\u2019entreprise) \u00e9choueront g\u00e9n\u00e9ralement car les r\u00e8gles NAT/pare-feu bloquent le trafic pair-\u00e0-pair direct.",
+    "connectionLimitationsAdvice": "Pour des connexions fiables entre r\u00e9seaux, utilisez la connexion rapide avec un relais Cloudflare Worker \u2014 c\u2019est gratuit, cela prend 2 minutes \u00e0 configurer et fonctionne partout.",
+    "createInviteButton": "Cr\u00e9er une invitation",
+    "acceptInviteButton": "Accepter l\u2019invitation",
+    "scanInviteQrButton": "Scanner le QR d\u2019invitation",
+    "inviteCodeLabel": "Code d\u2019invitation",
+    "inviteCodePlaceholder": "Collez le code d\u2019invitation ici...",
+    "hostStep1Label": "\u00c9tape 1\u00a0: Partagez ceci avec votre partenaire",
+    "hostStep2Label": "\u00c9tape 2\u00a0: Entrez le code de r\u00e9ponse de votre partenaire",
+    "responseCodePlaceholder": "Collez son code de r\u00e9ponse...",
+    "guestSendCodeLabel": "Renvoyez ce code \u00e0 votre partenaire",
+    "waitingForPartnerToEnterCode": "En attente que le partenaire entre le code...",
+    "generatingResponseCode": "G\u00e9n\u00e9ration du code de r\u00e9ponse...",
+    "connectedLabel": "Connect\u00e9",
+    "privateBadge": "Priv\u00e9",
+    "connectedTo": "\u00e0 {roomCode}",
+    "modeLabel": "Mode\u00a0: {mode}",
+    "connectedPeersHeader": "Connect\u00e9s ({count})",
+    "peerHostSuffix": "(h\u00f4te)",
+    "stopSharingButton": "Arr\u00eater le partage",
+    "disconnectButton": "Se d\u00e9connecter",
+    "connectionDetailsToggle": "D\u00e9tails de connexion",
+    "shareLinkButton": "Partager le lien",
+    "waitingForPartnerToJoin": "En attente que le partenaire rejoigne...",
+    "copyFeedbackSuccess": "{label} copi\u00e9\u00a0!",
+    "copyFeedbackFailed": "\u00c9chec de la copie",
+    "phaseCreatingOffer": "Cr\u00e9ation du salon s\u00e9curis\u00e9...",
+    "phasePosting": "Publication du code du salon...",
+    "phaseWaitingForPartner": "En attente du partenaire...",
+    "phasePollingForOffer": "Recherche du salon...",
+    "phaseGeneratingAnswer": "Connexion \u00e0 l\u2019h\u00f4te...",
+    "phasePostingAnswer": "Envoi de la r\u00e9ponse...",
+    "phaseCompleting": "Finalisation de la n\u00e9gociation...",
+    "phaseConnected": "Connect\u00e9\u00a0!",
+    "phaseDefault": "Connexion en cours...",
+    "cameraErrorHttps": "La cam\u00e9ra n\u00e9cessite HTTPS. Cette page n\u2019est pas dans un contexte s\u00e9curis\u00e9.",
+    "cameraErrorUnavailable": "L\u2019API cam\u00e9ra n\u2019est pas disponible dans ce navigateur.",
+    "cameraErrorPermission": "Permission de la cam\u00e9ra refus\u00e9e. V\u00e9rifiez les param\u00e8tres de votre navigateur.",
+    "cameraErrorNotFound": "Aucune cam\u00e9ra trouv\u00e9e sur cet appareil.",
+    "cameraErrorGeneric": "Erreur de cam\u00e9ra\u00a0: {message}",
+    "responseCodeLabel": "Code de r\u00e9ponse",
+    "responseLinkLabel": "Lien de r\u00e9ponse",
+    "receivedInviteBanner": "Vous avez re\u00e7u une invitation priv\u00e9e\u00a0!",
+    "enterNameToConnect": "Entrez votre nom pour vous connecter",
+    "nameRequired": "Le nom est requis pour se connecter",
+    "enterCodeManually": "Entrer le code manuellement \u00e0 la place",
+    "serverOptions": {
+      "workerUrl": "URL du Worker",
+      "stunServer": "Serveur STUN",
+      "customStunUrl": "URL STUN personnalis\u00e9e",
+      "turnRelay": "Relais TURN",
+      "turnUrl": "URL TURN",
+      "username": "Nom d\u2019utilisateur",
+      "credential": "Identifiant",
+      "usernamePlaceholder": "Nom d\u2019utilisateur TURN",
+      "credentialPlaceholder": "Identifiant TURN",
+      "stunGoogle": "Google (par d\u00e9faut)",
+      "stunCloudflare": "Cloudflare",
+      "stunNone": "Aucun (LAN uniquement)",
+      "stunCustom": "Personnalis\u00e9",
+      "stunGoogleDesc": "Gratuit et fiable. Google voit votre IP lors de la requ\u00eate STUN.",
+      "stunCloudflareDesc": "Alternative ax\u00e9e sur la confidentialit\u00e9. Cloudflare voit votre IP.",
+      "stunNoneDesc": "Pas de serveur STUN. Fonctionne uniquement sur le m\u00eame r\u00e9seau local.",
+      "stunCustomDesc": "Entrez votre propre URL de serveur STUN.",
+      "turnOpenRelay": "Open Relay (par d\u00e9faut)",
+      "turnCloudflare": "Cloudflare TURN",
+      "turnNone": "Aucun",
+      "turnCustom": "Personnalis\u00e9",
+      "turnOpenRelayDesc": "Relais public gratuit. Relaie des donn\u00e9es chiffr\u00e9es si la connexion directe \u00e9choue.",
+      "turnCloudflareDesc": "N\u00e9cessite un compte Cloudflare avec TURN activ\u00e9.",
+      "turnNoneDesc": "Pas de relais TURN. Connexions directes uniquement.",
+      "turnCustomDesc": "Entrez les d\u00e9tails de votre propre serveur TURN."
+    },
+    "diagnostics": {
+      "iceCandidates": "Candidats ICE",
+      "hostLocal": "Host (local)",
+      "stunSrflx": "STUN (srflx)",
+      "turnRelay": "TURN (relay)",
+      "gatherTime": "Temps de collecte",
+      "signaling": "Signalisation",
+      "fallback": "Alternative",
+      "warning": "Avertissement",
+      "fallbackDetail": "Utilisation de ntfy.sh (serveur principal inaccessible)"
+    },
+    "privateTurnHint": {
+      "summary": "Vous avez d\u00e9j\u00e0 un serveur TURN\u00a0?",
+      "detail": "Si vous avez vos propres identifiants de serveur TURN, s\u00e9lectionnez \u00ab\u00a0Personnalis\u00e9\u00a0\u00bb ci-dessus et entrez-les. TURN relaie des donn\u00e9es chiffr\u00e9es quand les connexions directes pair-\u00e0-pair \u00e9chouent en raison de NAT restrictif ou de pare-feux."
+    },
+    "scannerHint": "Pointez la cam\u00e9ra vers le code QR",
+    "tapToEnlargeHint": "Appuyez pour agrandir",
+    "qrPrivateInviteAlt": "Code QR pour invitation priv\u00e9e",
+    "qrResponseCodeAlt": "Code QR pour code de réponse",
+    "qrRoomCodeAlt": "Code QR pour le salon {roomCode}",
+    "qrEnlargedAlt": "Code QR (agrandi)",
+    "qrFullscreenCloseHint": "Appuyez n\u2019importe o\u00f9 pour fermer",
+    "snapshot": {
+      "sendTitle": "Envoyer un instantan\u00e9",
+      "sendTooltip": "Envoie une copie fig\u00e9e des donn\u00e9es de votre session. Le destinataire re\u00e7oit un instantan\u00e9 unique, pas une connexion en direct.",
+      "sendDesc": "Partagez une copie unique de votre session. Votre partenaire re\u00e7oit un instantan\u00e9 fig\u00e9 \u2014 pas une connexion en direct.",
+      "whatToInclude": "Que faut-il inclure",
+      "alwaysIncludedHint": "Les donn\u00e9es de session (contractions, \u00e9v\u00e9nements) sont toujours incluses.",
+      "shareSessionButton": "Partager les donn\u00e9es de session",
+      "copyLinkLabel": "Copier le lien",
+      "copyLinkDesc": "URL partageable avec vos donn\u00e9es",
+      "copyDataLabel": "Copier les donn\u00e9es",
+      "copyDataDesc": "Donn\u00e9es compress\u00e9es \u00e0 coller",
+      "qrCodeLabel": "Code QR",
+      "qrCodeDesc": "Scannez avec l\u2019appareil photo",
+      "qrCodeTooLarge": "Trop volumineux pour le QR",
+      "qrCodeTooLargeTitle": "Les donn\u00e9es de session sont trop volumineuses pour un code QR",
+      "shortCodeLabel": "Code court",
+      "shortCodeDesc": "Code facile \u00e0 saisir (expire dans 5 min)",
+      "shortCodeDisabledDesc": "N\u00e9cessite un serveur relais",
+      "shortCodeDisabledTitle": "Configurez un relais dans les options du serveur pour activer les codes courts",
+      "shortCodeResultLabel": "Code court",
+      "shortCodeExpiry": "Expire dans 5 min",
+      "qrTapHint": "Appuyez pour agrandir",
+      "qrTooLargeError": "Donn\u00e9es de session trop volumineuses pour un code QR ({charCount} caract\u00e8res, max ~2900). Utilisez le lien ou le code court \u00e0 la place.",
+      "qrGenerationFailed": "\u00c9chec de la g\u00e9n\u00e9ration du QR\u00a0: {message}",
+      "emptyTitle": "Aucune donn\u00e9e de session pour l\u2019instant",
+      "emptyDesc": "Commencez \u00e0 suivre les contractions, puis revenez ici pour partager vos donn\u00e9es avec votre partenaire ou un autre appareil.",
+      "receiveTitle": "Recevoir un instantan\u00e9",
+      "receiveIntro": "Importez les donn\u00e9es de session partag\u00e9es par votre partenaire ou depuis un autre appareil.",
+      "receiveMethodQr": "Scannez un code QR avec votre cam\u00e9ra",
+      "receiveMethodLink": "Collez un lien de partage de votre partenaire",
+      "receiveMethodShortCode": "Entrez un code court (si vous utilisez un relais)",
+      "pasteFromClipboardAriaLabel": "Coller depuis le presse-papiers",
+      "importPlaceholder": "Collez un lien, code court ou donn\u00e9es compress\u00e9es ici...",
+      "loadingText": "Chargement de l\u2019instantan\u00e9...",
+      "previewHeader": "Importer cet instantan\u00e9\u00a0?",
+      "previewContractionsLabel": "Contractions",
+      "previewContractionsValue": "{contractionCount} ({completedCount} termin\u00e9es)",
+      "previewEventsLabel": "\u00c9v\u00e9nements",
+      "previewTimeRangeLabel": "Plage horaire",
+      "previewSessionStartedLabel": "Session commenc\u00e9e",
+      "previewSessionDateUnknown": "Inconnue",
+      "previewIncludedSettingsHeader": "Param\u00e8tres inclus",
+      "previewArchiveAndImportButton": "Archiver et importer",
+      "previewReplaceButton": "Remplacer la session en cours",
+      "previewCurrentSessionHint": "Vous avez {count} contraction{count, plural, one {} other {s}} dans votre session en cours.",
+      "previewImportCountButton": "Importer {count} contractions",
+      "importErrorUnrecognized": "Impossible de reconna\u00eetre ceci comme un lien, code ou donn\u00e9es d\u2019instantan\u00e9",
+      "importErrorRelayRequired": "Les codes courts n\u00e9cessitent un serveur relais. Configurez-en un dans les options du serveur.",
+      "nativeShareTitle": "Donn\u00e9es du minuteur de contractions",
+      "nativeShareText": "Voir ma session du minuteur de contractions"
+    },
+    "deploy": {
+      "guideToggle": "D\u00e9ployer votre propre relais (recommand\u00e9)",
+      "tierBasicBadge": "Basique",
+      "tierBasicLabel": "Aucune configuration n\u00e9cessaire",
+      "tierBasicDesc": "Utilise des serveurs publics gratuits. Fonctionne sur le m\u00eame r\u00e9seau Wi-Fi. Les connexions entre r\u00e9seaux peuvent \u00eatre instables.",
+      "tierBasicConfig": "ntfy.sh + Google STUN + Open Relay TURN",
+      "tierAdvancedBadge": "Avanc\u00e9",
+      "tierAdvancedLabel": "Votre propre relais priv\u00e9",
+      "tierAdvancedDesc": "Fonctionne partout. Gratuit. Prend 2 minutes. Aucune carte bancaire n\u00e9cessaire.",
+      "step1Title": "D\u00e9ployer votre relais",
+      "step1Desc": "Vous aurez besoin d\u2019un compte GitHub et Cloudflare gratuit. Cloudflare cr\u00e9e une copie du code du relais et le d\u00e9ploie pour vous.",
+      "step1Button": "D\u00e9ployer sur Cloudflare (un clic)",
+      "step2Title": "Copier l\u2019URL de votre Worker",
+      "step2Desc": "Apr\u00e8s le d\u00e9ploiement, Cloudflare affiche votre URL. Elle ressemble \u00e0 ct-signaling.you.workers.dev. S\u00e9lectionnez \u00ab\u00a0Mon Cloudflare Worker\u00a0\u00bb dans le menu d\u00e9roulant ci-dessus et collez-la.",
+      "step3Title": "Partager l\u2019URL avec votre partenaire",
+      "step3Desc": "Votre partenaire colle la m\u00eame URL dans son application. Une seule personne a besoin de d\u00e9ployer \u2014 les deux utilisent le m\u00eame relais.",
+      "tierSelfHostedBadge": "Auto-h\u00e9berg\u00e9",
+      "tierSelfHostedLabel": "Contr\u00f4le total",
+      "tierSelfHostedDesc": "Faites tourner votre propre serveur de signalisation + relais TURN. Z\u00e9ro d\u00e9pendance tierce."
+    },
+    "categories": {
+      "thresholdsLabel": "R\u00e8gles de timing (5-1-1)",
+      "thresholdsDesc": "Param\u00e8tres de seuil et de stade",
+      "providerLabel": "T\u00e9l\u00e9phone du m\u00e9decin",
+      "providerDesc": "Le num\u00e9ro de votre m\u00e9decin",
+      "layoutLabel": "Disposition de l\u2019\u00e9cran",
+      "layoutDesc": "Ordre des panneaux et mode principal",
+      "parityLabel": "Historique de naissance",
+      "parityDesc": "Premier b\u00e9b\u00e9 ou suivant",
+      "travelLabel": "Trajet et distance",
+      "travelDesc": "Temps de conduite, niveau de risque",
+      "appearanceLabel": "Th\u00e8me et affichage",
+      "appearanceDesc": "Th\u00e8me, options de visibilit\u00e9"
+    }
+  },
+  "onboarding": {
+    "welcomeTitle": "Minuteur de contractions",
+    "welcomeDesc": "Suivez les contractions, observez les sch\u00e9mas et sachez quand il est temps de partir \u00e0 l\u2019h\u00f4pital.",
+    "welcomePrivacyNote": "Toutes les donn\u00e9es restent sur cet appareil. Aucun compte n\u00e9cessaire.",
+    "getStartedButton": "Commencer",
+    "skipSetupButton": "Passer la configuration",
+    "quickSetupTitle": "Configuration rapide",
+    "quickSetupDesc": "Deux questions rapides pour personnaliser votre exp\u00e9rience.",
+    "firstBabyLabel": "Est-ce votre premier b\u00e9b\u00e9\u00a0?",
+    "firstBabyYes": "Oui, le premier",
+    "firstBabyNo": "Non, j\u2019ai d\u00e9j\u00e0 accouche\u0301",
+    "hospitalDistanceLabel": "\u00c0 quelle distance est votre h\u00f4pital\u00a0?",
+    "travelTimeMinutes": "{mins} min",
+    "travelTimeNotSure": "Pas s\u00fbr(e)",
+    "travelTimeUncertainHint": "Pas de souci \u2014 nous utiliserons une estimation prudente et vous donnerons une fourchette.",
+    "providerPhoneLabel": "T\u00e9l\u00e9phone du m\u00e9decin ou de l\u2019h\u00f4pital (facultatif)",
+    "providerPhonePlaceholder": "01 23 45 67 89",
+    "providerPhoneHint": "Appel rapide depuis l\u2019application quand il est temps d\u2019appeler.",
+    "readyTitle": "Vous \u00eates pr\u00eat(e)",
+    "readyDesc": "Appuyez sur le gros bouton quand une contraction commence. Appuyez \u00e0 nouveau quand elle se termine. L\u2019application fait le reste.",
+    "summaryFirstBaby": "Premier b\u00e9b\u00e9",
+    "summaryNotFirstBaby": "Pas le premier b\u00e9b\u00e9",
+    "summaryTravelTimeNotSure": "Temps de trajet\u00a0: pas s\u00fbr(e)",
+    "summaryTravelTimeMinutes": "{travelTime} min jusqu\u2019\u00e0 l\u2019h\u00f4pital",
+    "startTrackingButton": "Commencer le suivi"
+  },
+  "clinical": {
+    "bhVsReal": {
+      "bh": {
+        "irregularTiming": "Rythme irr\u00e9gulier",
+        "notCloser": "Ne se rapprochent pas",
+        "stopWithMovement": "S\u2019arr\u00eatent avec le mouvement ou le changement de position",
+        "frontOnly": "Ressenties principalement \u00e0 l\u2019avant",
+        "notStronger": "Ne deviennent pas plus fortes avec le temps"
+      },
+      "real": {
+        "regularCloser": "Rythme r\u00e9gulier, se rapprochant",
+        "keepComing": "Continuent quelle que soit l\u2019activit\u00e9",
+        "noStop": "Ne s\u2019arr\u00eatent pas avec le repos ou le mouvement",
+        "radiateBack": "Irradient depuis le dos ou ceinturent",
+        "progressive": "Deviennent progressivement plus fortes"
+      }
+    },
+    "tips": {
+      "firstContraction": "Bon d\u00e9but\u00a0! Continuez \u00e0 chronom\u00e9trer les contractions pour voir si un sch\u00e9ma se dessine. La plupart des premiers accouchements commencent lentement.",
+      "prelaborNormal": "Des contractions irr\u00e9guli\u00e8res sont normales et peuvent aller et venir pendant des jours. Si elles s\u2019arr\u00eatent quand vous bougez ou vous reposez, il peut s\u2019agir de Braxton Hicks.",
+      "earlyRest": "Le d\u00e9but du travail peut durer de 6 \u00e0 12 heures ou plus pour un premier accouchement. Essayez de vous reposer, surtout s\u2019il fait nuit.",
+      "earlyHydrate": "Restez hydrat\u00e9e et prenez des collations l\u00e9g\u00e8res. Vous aurez besoin d\u2019\u00e9nergie pour le travail actif.",
+      "earlyActivity": "Une activit\u00e9 l\u00e9g\u00e8re comme la marche peut aider le travail \u00e0 progresser pendant la journ\u00e9e.",
+      "earlyTiming": "Vous \u00eates probablement encore \u00e0 la maison pendant le d\u00e9but du travail. Partez \u00e0 l\u2019h\u00f4pital quand les contractions atteignent le sch\u00e9ma 5-1-1.",
+      "activeEntered": "Le travail actif signifie une progression r\u00e9guli\u00e8re. Si vous n\u2019\u00eates pas encore \u00e0 l\u2019h\u00f4pital, il est temps d\u2019y aller.",
+      "activeBreathing": "Concentrez-vous sur une respiration lente et profonde pendant chaque contraction. Inspirez par le nez, expirez par la bouche.",
+      "activeDuration": "Le travail actif dure g\u00e9n\u00e9ralement 3 \u00e0 5 heures pour un premier accouchement. Vous progressez vraiment.",
+      "transitionEntered": "La transition est la phase la plus courte mais la plus intense. Vous y \u00eates presque.",
+      "transitionNormal": "Se sentir d\u00e9bord\u00e9e, naus\u00e9euse ou tremblante est normal pendant la transition. Elle dure g\u00e9n\u00e9ralement de 30 minutes \u00e0 2 heures.",
+      "waterNoteColor": "Notez la couleur du liquide. Clair ou jaune p\u00e2le est normal. Vert ou marron signifie appelez votre m\u00e9decin imm\u00e9diatement.",
+      "waterCallProvider": "Contactez votre m\u00e9decin pour l\u2019informer de la perte des eaux. Il vous conseillera sur la marche \u00e0 suivre.",
+      "waterStats": "77 \u00e0 95\u00a0% des personnes entrent en travail actif dans les 24 heures suivant la perte des eaux.",
+      "nightSleep": "Essayez de dormir entre les contractions si possible. Vous reposer maintenant vous aidera pendant le travail actif plus tard.",
+      "backLabor": "Le travail dorsal peut \u00eatre soulag\u00e9 par la position \u00e0 quatre pattes, les compressions des hanches ou une compresse chaude sur le bas du dos.",
+      "safetyCall": "Appelez votre m\u00e9decin imm\u00e9diatement si\u00a0: saignement abondant, le b\u00e9b\u00e9 ne bouge plus, mal de t\u00eate s\u00e9v\u00e8re avec troubles de la vision, ou fi\u00e8vre sup\u00e9rieure \u00e0 38\u00a0\u00b0C.",
+      "patternRegular": "Vos contractions deviennent plus r\u00e9guli\u00e8res. C\u2019est un bon signe que le travail progresse."
+    }
+  },
+  "shared": {
+    "collapsibleSection": {
+      "openSettingsAriaLabel": "Ouvrir les param\u00e8tres",
+      "moveUpAriaLabel": "D\u00e9placer vers le haut",
+      "moveDownAriaLabel": "D\u00e9placer vers le bas"
+    },
+    "contextualTips": {
+      "dismissTipAriaLabel": "Fermer le conseil"
+    },
+    "toast": {
+      "peerJoined": "{name} a rejoint",
+      "partnerDisconnected": "Un partenaire s\u2019est d\u00e9connect\u00e9"
+    },
+    "storageWarning": {
+      "dismissAriaLabel": "Fermer"
+    },
+    "sessionManager": {
+      "newSession": "Nouvelle session",
+      "archiveConfirmPrompt": "Archiver la session en cours et recommencer\u00a0?",
+      "yesStartNew": "Oui, recommencer",
+      "previousSessions": "Sessions pr\u00e9c\u00e9dentes",
+      "restore": "Restaurer",
+      "delete": "Supprimer",
+      "confirmDelete": "Confirmer",
+      "noArchivedSessions": "Aucune session archiv\u00e9e."
+    }
+  },
+  "devotional": {
+    "headingPrayersAndScripture": "Pri\u00e8res et \u00c9critures",
+    "headingPatronSaints": "Saints patrons de l\u2019accouchement",
+    "prayerBadge": "Pri\u00e8re",
+    "scriptureBadge": "\u00c9criture",
+    "prayerDotAriaLabel": "Prière {index}",
+    "footerLatin": "Pax Domini sit semper vobiscum.",
+    "footerTranslation": "Que la paix du Seigneur soit toujours avec vous.",
+    "dedication": "Made with \u2665 for AJR",
+    "saints": {
+      "gerardMajella": {
+        "name": "St Gérard Majella",
+        "title": "Patron des femmes enceintes",
+        "detail": "Un frère lai rédemptoriste du XVIIIe siècle dont l'intercession est demandée par les mères pour un accouchement sûr et des enfants en bonne santé."
+      },
+      "giannaMolla": {
+        "name": "Ste Gianna Beretta Molla",
+        "title": "Patronne des mères et des enfants à naître",
+        "detail": "Médecin et mère italienne qui a sacrifié sa vie pour son enfant à naître en 1962. Canonisée par le pape Jean-Paul II en 2004."
+      },
+      "raymondNonnatus": {
+        "name": "St Raymond Nonnat",
+        "title": "Patron de l'accouchement et des sages-femmes",
+        "detail": "Un frère mercédaire du XIIIe siècle nommé « non natus » (non né) car il est né par césarienne après la mort de sa mère."
+      },
+      "margaretAntioch": {
+        "name": "Ste Marguerite d'Antioche",
+        "title": "Patronne de l'accouchement",
+        "detail": "Vierge martyre de l'Église primitive, invoquée depuis des siècles par les femmes en travail. L'une des Quatorze Saints Auxiliaires."
+      },
+      "ourLadyLaLeche": {
+        "name": "Notre-Dame de La Leche",
+        "title": "Patronne des mères qui allaitent",
+        "detail": "Dévotion bien-aimée à la Sainte Vierge Marie l'honorant comme mère allaitante, avec un sanctuaire à Saint-Augustine, Floride, depuis 1615."
+      },
+      "colette": {
+        "name": "Ste Colette",
+        "title": "Patronne des femmes enceintes et en travail",
+        "detail": "Religieuse pauvre Claire française du XIVe siècle connue pour avoir réformé son ordre. On dit qu'un enfant mort-né a été ressuscité après qu'elle l'ait enveloppé dans son voile."
+      },
+      "felicity": {
+        "name": "Ste Félicité",
+        "title": "Patronne des femmes enceintes",
+        "detail": "Femme du IIe siècle emprisonnée et condamnée à mort pour sa foi chrétienne alors qu'elle était enceinte. Son exécution a été retardée jusqu'après qu'elle ait accouché en prison."
+      },
+      "elizabeth": {
+        "name": "Ste Élisabeth",
+        "title": "Patronne des femmes enceintes",
+        "detail": "Cousine de la Sainte Vierge Marie et mère de saint Jean-Baptiste. Appelée « bénie entre les femmes », elle a conçu son fils dans sa vieillesse par la grâce de Dieu."
+      },
+      "anne": {
+        "name": "Ste Anne",
+        "title": "Patronne des grands-mères et des femmes en travail",
+        "detail": "Mère de la Sainte Vierge Marie. Vénérée depuis l'Église primitive pour avoir conçu et enfanté Marie plus tard dans sa vie. Son nom signifie « grâce »."
+      },
+      "monica": {
+        "name": "Ste Monique",
+        "title": "Patronne des mères",
+        "detail": "Mère de saint Augustin d'Hippone au IVe siècle. Elle a enduré de grandes difficultés pendant sa grossesse avec un mari violent, mais sa foi et sa persévérance ont conduit son fils à la conversion."
+      },
+      "zelieMartin": {
+        "name": "Ste Zélie Martin",
+        "title": "Patronne des mères et des parents en deuil",
+        "detail": "Mère française du XIXe siècle qui a perdu quatre de ses neuf enfants en bas âge. Canonisée en 2015 avec son mari Louis. Mère de sainte Thérèse de Lisieux."
+      },
+      "joseph": {
+        "name": "St Joseph",
+        "title": "Patron des familles, des pères et de l'Église universelle",
+        "detail": "Père nourricier de Jésus et époux de la Sainte Vierge Marie. Connu comme « Terreur des démons » pour sa puissante protection de la Sainte Famille. Patron de la bonne mort, des travailleurs et de l'Église universelle."
+      }
+    },
+    "prayers": {
+      "stGerard": {
+        "title": "Prière à saint Gérard pour un accouchement sûr",
+        "shortLabel": "St Gérard",
+        "text": "Ô grand saint Gérard, serviteur bien-aimé de Jésus-Christ, parfait imitateur de ton doux et humble Sauveur, et enfant dévoué de la Mère de Dieu : enrichis-moi de ta bénédiction avant, pendant et après la naissance de mon enfant. Par ton intercession, puissé-je vivre un accouchement sûr et heureux. Que mon enfant soit mis au monde en toute sécurité et soit élevé comme un vrai enfant de Dieu. Amen.",
+        "attribution": "Prière catholique traditionnelle"
+      },
+      "memorare": {
+        "title": "Le Souvenez-vous",
+        "shortLabel": "Souvenez-vous",
+        "text": "Souvenez-vous, ô très miséricordieuse Vierge Marie, qu'on n'a jamais entendu dire qu'aucun de ceux qui ont eu recours à votre protection, imploré votre assistance ou réclamé votre secours, ait été abandonné. Animé d'une pareille confiance, ô Vierge des vierges, ô ma Mère, je viens à vous, et gémissant sous le poids de mes péchés, je me prosterne à vos pieds. Ô Mère du Verbe incarné, ne méprisez pas mes prières, mais écoutez-les favorablement et daignez les exaucer. Amen.",
+        "attribution": "Attribué à saint Bernard de Clairvaux"
+      },
+      "motherAndChild": {
+        "title": "Prière pour la mère et l'enfant",
+        "shortLabel": "Mère et enfant",
+        "text": "Seigneur Jésus-Christ, qui avez été porté dans le sein de la Sainte Vierge Marie, regardez avec miséricorde cette mère et son enfant. Donnez-lui la force dans le travail, le courage dans la douleur et la joie dans la nouvelle vie. Que l'enfant naisse en sécurité et en santé, et que la mère et l'enfant reposent sous votre protection aimante. Par l'intercession de Marie, Mère de Dieu, et de tous les saints mères et saints, nous vous le demandons en votre nom. Amen.",
+        "attribution": "Prière catholique traditionnelle"
+      },
+      "hailMary": {
+        "title": "Je vous salue Marie",
+        "shortLabel": "Ave Maria",
+        "text": "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes, et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen.",
+        "attribution": "Prière catholique traditionnelle"
+      },
+      "ourLadyLaLeche": {
+        "title": "Prière à Notre-Dame de La Leche",
+        "shortLabel": "Notre-Dame de La Leche",
+        "text": "Douce Dame de La Leche, Mère très aimante de l'Enfant Jésus et ma mère, je viens demander votre aide. Je crois en la puissance de Dieu et je place toute ma confiance en vous. Accordez-moi la grâce de la maternité. Assistez-moi, chère Dame, dans ce désir, et si c'est la sainte volonté de Dieu que je conçoive, obtenez pour moi la grâce de porter mon enfant à terme. Par l'intercession de votre Sainte Mère et les mérites de son divin Fils, ayez pitié de nous. Amen.",
+        "attribution": "Traditionnel — Sanctuaire de Notre-Dame de La Leche, Saint-Augustine, FL"
+      },
+      "safeDelivery": {
+        "title": "Prière pour un accouchement sûr",
+        "shortLabel": "Accouchement sûr",
+        "text": "Seigneur Jésus, je place mon bébé et moi-même entre vos mains aimantes. Apaisez mes craintes, fortifiez mon corps et guidez ceux qui prennent soin de nous. Que cette naissance soit sûre et remplie de votre paix. Je fais confiance à votre plan pour nos vies. Amen.",
+        "attribution": "Prière catholique contemporaine"
+      },
+      "stJoseph": {
+        "title": "Prière à saint Joseph, protecteur des familles",
+        "shortLabel": "St Joseph",
+        "text": "Ô saint Joseph, dont la protection est si grande, si forte, si prompte devant le trône de Dieu, je place en toi tous mes intérêts et désirs. Ô saint Joseph, assiste-moi par ta puissante intercession et obtiens pour moi toutes les bénédictions spirituelles par ton Fils adoptif, Jésus-Christ notre Seigneur, afin qu'ayant engagé ici-bas ta puissance céleste, je puisse offrir mes remerciements et mon hommage. Ô saint Joseph, Terreur des démons, prie pour nous et pour notre famille. Garde cette mère et cet enfant avec ton soin paternel. Amen.",
+        "attribution": "Prière catholique traditionnelle à saint Joseph"
+      },
+      "psalm139": {
+        "title": "Psaume 139:13-16 — Tissé ensemble",
+        "shortLabel": "\ud83d\udcd6 Psaume 139",
+        "text": "C'est toi qui as formé mes reins, qui m'as tissé dans le sein de ma mère. Je te loue de ce que je suis une créature si merveilleuse. Tes œuvres sont admirables, et mon âme le reconnaît bien. Mon corps n'était point caché devant toi, lorsque j'ai été fait dans un lieu secret, tissé dans les profondeurs de la terre. Quand je n'étais qu'une masse informe, tes yeux me voyaient ; et sur ton livre étaient tous inscrits les jours qui m'étaient destinés, avant qu'aucun d'eux existât.",
+        "attribution": "Psaume 139:13-16 (Louis Segond)"
+      },
+      "isaiah66": {
+        "title": "Isaïe 66:9 — Promesse de délivrance",
+        "shortLabel": "\ud83d\udcd6 Isaïe 66:9",
+        "text": "Ferais-je ouvrir le sein maternel, pour ne pas laisser enfanter ? dit l'Éternel ; moi qui fais naître, empêcherais-je d'enfanter ? dit ton Dieu.",
+        "attribution": "Isaïe 66:9 (Louis Segond)"
+      },
+      "jeremiah1": {
+        "title": "Jérémie 1:5 — Connu avant la naissance",
+        "shortLabel": "\ud83d\udcd6 Jérémie 1:5",
+        "text": "Avant que je t'eusse formé dans le ventre de ta mère, je te connaissais, et avant que tu fusses sorti de son sein, je t'avais consacré.",
+        "attribution": "Jérémie 1:5 (Louis Segond)"
+      },
+      "magnificat": {
+        "title": "Le Magnificat (Cantique de Marie)",
+        "shortLabel": "\ud83d\udcd6 Magnificat",
+        "text": "Mon âme exalte le Seigneur, exulte mon esprit en Dieu, mon Sauveur ! Il s'est penché sur son humble servante ; désormais tous les âges me diront bienheureuse. Le Puissant fit pour moi des merveilles ; saint est son nom !",
+        "attribution": "Luc 1:46-49 — Le Magnificat"
+      }
+    }
+  },
+  "relay": {
+    "responseSent": "R\u00e9ponse envoy\u00e9e\u00a0!",
+    "responseSentDesc": "Le code de r\u00e9ponse a \u00e9t\u00e9 envoy\u00e9 \u00e0 votre session de partage. Vous pouvez fermer cet onglet.",
+    "closeTab": "Fermer l\u2019onglet"
+  },
+  "swipeHint": "glisser"
+}

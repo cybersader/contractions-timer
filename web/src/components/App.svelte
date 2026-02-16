@@ -3,9 +3,20 @@
 	import 'swiper/css';
 	import { startTick } from '../lib/stores/timer';
 	import { session } from '../lib/stores/session';
+	import { settings } from '../lib/stores/settings';
 	import { tabRequest, settingsRequest, shareRequest } from '../lib/stores/navigation';
 	import { getStoredTheme, setTheme } from '../lib/themes';
 	import { dlog } from '../lib/debug-log';
+	import { initI18n, locale } from '../lib/i18n/index';
+	import { isLoading, _ } from 'svelte-i18n';
+
+	// Initialize i18n with saved language preference
+	initI18n($settings.language);
+
+	// Sync locale when settings.language changes
+	$effect(() => {
+		locale.set($settings.language);
+	});
 	import Toast from './shared/Toast.svelte';
 	import HeaderBar from './nav/HeaderBar.svelte';
 	import HamburgerMenu from './nav/HamburgerMenu.svelte';
@@ -250,7 +261,7 @@
 		<div class="swipe-hint" aria-hidden="true">
 			<div class="swipe-hint-arrow">
 				<span class="swipe-hint-chevron">‹</span>
-				<span class="swipe-hint-text">swipe</span>
+				<span class="swipe-hint-text">{$_('swipeHint')}</span>
 				<span class="swipe-hint-chevron">›</span>
 			</div>
 		</div>
@@ -288,10 +299,10 @@
 	<div class="relay-overlay">
 		<div class="relay-card">
 			<div class="relay-icon">&#10003;</div>
-			<h2 class="relay-title">Response sent!</h2>
-			<p class="relay-desc">The response code was sent to your sharing session. You can close this tab.</p>
+			<h2 class="relay-title">{$_('relay.responseSent')}</h2>
+			<p class="relay-desc">{$_('relay.responseSentDesc')}</p>
 			<button class="relay-close" onclick={() => { try { window.close(); } catch {} answerRelayMode = false; }}>
-				Close tab
+				{$_('relay.closeTab')}
 			</button>
 		</div>
 	</div>

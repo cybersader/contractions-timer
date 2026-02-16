@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { formatTimeShort, formatDurationShort } from '../../lib/labor-logic/formatters';
 
@@ -27,7 +28,7 @@
 		{/each}
 	</div>
 {:else}
-	<div class="recent-empty">No completed contractions yet.</div>
+	<div class="recent-empty">{$_('timer.recentContractions.noCompleted')}</div>
 {/if}
 
 <style>

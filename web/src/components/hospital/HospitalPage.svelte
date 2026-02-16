@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { settingsRequest } from '../../lib/stores/navigation';
@@ -12,23 +13,23 @@
 	import CollapsibleSection from '../shared/CollapsibleSection.svelte';
 	import ContextualTips from '../shared/ContextualTips.svelte';
 
-	// BH comparison criteria with icons
+	// BH comparison criteria with icons — i18n keys used inline in template
 	const BH_ROWS = [
-		{ criterion: 'Timing', icon: Clock, bh: 'Irregular timing', real: 'Regular timing, getting closer' },
-		{ criterion: 'Pattern', icon: Activity, bh: 'Do not get closer together', real: 'Keep coming regardless of activity' },
-		{ criterion: 'Rest response', icon: Footprints, bh: 'Stop with movement or position change', real: 'Do not stop with rest or movement' },
-		{ criterion: 'Location', icon: MapPinned, bh: 'Felt mainly in front', real: 'Radiate from back or wrap around' },
-		{ criterion: 'Intensity', icon: TrendingUp, bh: 'Do not get stronger over time', real: 'Get progressively stronger' },
+		{ criterionKey: 'timing', icon: Clock, bhKey: 'timingBH', realKey: 'timingReal' },
+		{ criterionKey: 'pattern', icon: Activity, bhKey: 'patternBH', realKey: 'patternReal' },
+		{ criterionKey: 'restResponse', icon: Footprints, bhKey: 'restBH', realKey: 'restReal' },
+		{ criterionKey: 'location', icon: MapPinned, bhKey: 'locationBH', realKey: 'locationReal' },
+		{ criterionKey: 'intensity', icon: TrendingUp, bhKey: 'intensityBH', realKey: 'intensityReal' },
 	];
 
-	// Warning signs with icons
+	// Warning signs with icons — i18n keys used inline in template
 	const WARNING_SIGNS = [
-		{ text: 'Vaginal bleeding like a period or heavier', icon: Droplets },
-		{ text: 'Baby stops moving or moves much less', icon: Baby },
-		{ text: 'Severe abdominal pain that does not ease', icon: AlertTriangle },
-		{ text: 'Severe headache with vision changes', icon: Eye },
-		{ text: 'Fever above 100.4°F (38°C)', icon: Flame },
-		{ text: 'Fluid is green or brown (meconium)', icon: Droplet },
+		{ key: 'bleeding', icon: Droplets },
+		{ key: 'babyMovement', icon: Baby },
+		{ key: 'abdominalPain', icon: AlertTriangle },
+		{ key: 'headache', icon: Eye },
+		{ key: 'fever', icon: Flame },
+		{ key: 'meconium', icon: Droplet },
 	];
 
 	// Cervix dilation fraction for SVG ring visual
@@ -84,7 +85,7 @@
 				duration: stats.rule511Progress.durationValue.toFixed(0),
 				sustained: stats.rule511Progress.sustainedValue.toFixed(0),
 				timeTo511: timeTo511,
-				reasons: advice.reasons,
+				factors: advice.factors.map(f => f.key),
 			}, { src: 'HospitalPage' });
 			lastLoggedUrgency = u;
 		}
@@ -143,11 +144,11 @@
 
 	type SectionDef = { id: string; title: string; defaultExpanded: boolean; visible: boolean; badge?: string; hasSettings?: boolean; settingsSection?: string };
 	let sections = $derived<SectionDef[]>([
-		{ id: 'advisor', title: 'Departure advice', defaultExpanded: true, visible: true, badge: advice.urgency === 'go-now' ? 'Go now' : advice.urgency === 'time-to-go' ? 'Time to go' : undefined, hasSettings: true, settingsSection: 'advisor' },
-		{ id: 'rule-511', title: '5-1-1 rule progress', defaultExpanded: true, visible: $settings.showThresholdRule && stats.totalContractions >= 3, hasSettings: true, settingsSection: 'threshold' },
-		{ id: 'water-break', title: 'Water break', defaultExpanded: true, visible: !!waterBreak },
-		{ id: 'tips', title: 'Tips', defaultExpanded: true, visible: $settings.showContextualTips && tipCount > 0 },
-		{ id: 'clinical-reference', title: 'Labor guide', defaultExpanded: false, visible: $settings.showClinicalReference },
+		{ id: 'advisor', title: $_('hospital.sections.departureAdvice'), defaultExpanded: true, visible: true, badge: advice.urgency === 'go-now' ? $_('hospital.badges.goNow') : advice.urgency === 'time-to-go' ? $_('hospital.badges.timeToGo') : undefined, hasSettings: true, settingsSection: 'advisor' },
+		{ id: 'rule-511', title: $_('hospital.sections.ruleProgress'), defaultExpanded: true, visible: $settings.showThresholdRule && stats.totalContractions >= 3, hasSettings: true, settingsSection: 'threshold' },
+		{ id: 'water-break', title: $_('hospital.sections.waterBreak'), defaultExpanded: true, visible: !!waterBreak },
+		{ id: 'tips', title: $_('hospital.sections.tips'), defaultExpanded: true, visible: $settings.showContextualTips && tipCount > 0 },
+		{ id: 'clinical-reference', title: $_('hospital.sections.laborGuide'), defaultExpanded: false, visible: $settings.showClinicalReference },
 	]);
 
 	let orderedSections = $derived(
@@ -156,26 +157,26 @@
 </script>
 
 <div class="page">
-	<h2 class="page-title">Labor advisor</h2>
+	<h2 class="page-title">{$_('hospital.pageTitle')}</h2>
 
 	<!-- Location toggle -->
 	<div class="location-toggle">
 		<button class="location-pill" class:active={!enRoute} onclick={() => enRoute = false}>
 			<MapPin size={14} aria-hidden="true" />
-			At home
+			{$_('hospital.locationToggle.atHome')}
 		</button>
 		<button class="location-pill" class:active={enRoute} onclick={() => enRoute = true}>
 			<Car size={14} aria-hidden="true" />
-			On the way
+			{$_('hospital.locationToggle.onTheWay')}
 		</button>
 	</div>
 	<p class="location-hint">
 		{#if enRoute}
-			Travel time removed — estimates show time from now
+			{$_('hospital.locationHint.enRoute')}
 		{:else if $settings.hospitalAdvisor.travelTimeUncertain}
-			Travel time unknown — using ~30 min conservative estimate
+			{$_('hospital.locationHint.uncertain')}
 		{:else}
-			{$settings.hospitalAdvisor.travelTimeMinutes} min travel time included in estimates
+			{$_('hospital.locationHint.withTravel', { values: { minutes: $settings.hospitalAdvisor.travelTimeMinutes } })}
 		{/if}
 	</p>
 
@@ -195,56 +196,56 @@
 			{#if sec.id === 'advisor'}
 				{#if $settings.advisorMode === 'minimal'}
 					<!-- Minimal: single-line summary -->
-					<div class="advisor-headline {urgencyColor}">{advice.headline}</div>
-					{#if rangeEstimate.patternSummary}
-						<p class="advisor-detail">{rangeEstimate.patternSummary}</p>
+					<div class="advisor-headline {urgencyColor}">{$_(advice.headline.key, { values: advice.headline.values })}</div>
+					{#if rangeEstimate.patternSummary.key}
+						<p class="advisor-detail">{$_(rangeEstimate.patternSummary.key, { values: rangeEstimate.patternSummary.values })}</p>
 					{/if}
 				{:else if $settings.advisorMode === 'range'}
 					<!-- Range: structured layout with clear visual hierarchy -->
-					<div class="urgency-badge {urgencyColor}">{advice.headline}</div>
-					<p class="advisor-action">{rangeEstimate.recommendation}</p>
+					<div class="urgency-badge {urgencyColor}">{$_(advice.headline.key, { values: advice.headline.values })}</div>
+					<p class="advisor-action">{$_(rangeEstimate.recommendation.key, { values: rangeEstimate.recommendation.values })}</p>
 
 					{#if rangeEstimate.likelyMinutes > 0}
 						<div class="time-range-card">
 							<span class="time-range-value">{formatDurationApprox(rangeEstimate.earliestMinutes)} – {formatDurationApprox(rangeEstimate.latestMinutes)}</span>
 							<span class="confidence-pill confidence--{rangeEstimate.confidence}">
-								{rangeEstimate.confidence} confidence
+								{$_('hospital.range.confidence', { values: { level: rangeEstimate.confidence } })}
 							</span>
 						</div>
 					{/if}
 
-					{#if rangeEstimate.patternSummary || rangeEstimate.trendSummary}
+					{#if rangeEstimate.patternSummary.key || rangeEstimate.trendSummary}
 						<div class="pattern-block">
-							<div class="block-label">Your pattern</div>
-							{#if rangeEstimate.patternSummary}
-								<p class="pattern-line">{rangeEstimate.patternSummary}</p>
+							<div class="block-label">{$_('hospital.range.yourPattern')}</div>
+							{#if rangeEstimate.patternSummary.key}
+								<p class="pattern-line">{$_(rangeEstimate.patternSummary.key, { values: rangeEstimate.patternSummary.values })}</p>
 							{/if}
 							{#if rangeEstimate.trendSummary}
-								<p class="pattern-line pattern-trend">{rangeEstimate.trendSummary}</p>
+								<p class="pattern-line pattern-trend">{$_(rangeEstimate.trendSummary.key, { values: rangeEstimate.trendSummary.values })}</p>
 							{/if}
 						</div>
 					{/if}
 
 					{#if rangeEstimate.factors.length > 0}
 						<div class="factors-block">
-							<div class="block-label">Factors</div>
+							<div class="block-label">{$_('hospital.range.factors')}</div>
 							<div class="advisor-factors">
 								{#each rangeEstimate.factors as factor}
-									<span class="factor-tag">{factor}</span>
+									<span class="factor-tag" class:factor-tag--water={factor.key.includes('water')}>{$_(factor.key, { values: factor.values })}</span>
 								{/each}
 							</div>
 						</div>
 					{/if}
 				{:else}
 					<!-- Urgency (default): headline + detail + factors -->
-					<div class="urgency-badge {urgencyColor}">{advice.headline}</div>
-					<p class="advisor-action">{advice.detail}</p>
+					<div class="urgency-badge {urgencyColor}">{$_(advice.headline.key, { values: advice.headline.values })}</div>
+					<p class="advisor-action">{$_(advice.detail.key, { values: advice.detail.values })}</p>
 					{#if advice.factors.length > 0}
 						<div class="factors-block">
-							<div class="block-label">Factors</div>
+							<div class="block-label">{$_('hospital.range.factors')}</div>
 							<div class="advisor-factors">
 								{#each advice.factors as factor}
-									<span class="factor-tag">{factor}</span>
+									<span class="factor-tag" class:factor-tag--water={factor.key.includes('water')}>{$_(factor.key, { values: factor.values })}</span>
 								{/each}
 							</div>
 						</div>
@@ -254,7 +255,7 @@
 				<!-- Provider phone call button when urgency is high -->
 				{#if (advice.urgency === 'go-now' || advice.urgency === 'time-to-go') && $settings.hospitalAdvisor.providerPhone}
 					<a href="tel:{$settings.hospitalAdvisor.providerPhone}" class="call-provider-btn">
-						Call provider ({$settings.hospitalAdvisor.providerPhone})
+						{$_('hospital.callProvider', { values: { phone: $settings.hospitalAdvisor.providerPhone } })}
 					</a>
 				{/if}
 
@@ -262,37 +263,37 @@
 				<div class="rule-items">
 					<div class="rule-item" class:met={stats.rule511Progress.intervalOk}>
 						<span class="rule-check">{stats.rule511Progress.intervalOk ? '✓' : '○'}</span>
-						<span>≤ {$settings.threshold.intervalMinutes} min apart (avg {stats.rule511Progress.intervalValue.toFixed(1)} min)</span>
+						<span>{$_('hospital.rule511.intervalCheck', { values: { target: $settings.threshold.intervalMinutes, actual: stats.rule511Progress.intervalValue.toFixed(1) } })}</span>
 					</div>
 					<div class="rule-item" class:met={stats.rule511Progress.durationOk}>
 						<span class="rule-check">{stats.rule511Progress.durationOk ? '✓' : '○'}</span>
-						<span>≥ {Math.round($settings.threshold.durationSeconds / 60)} min long (avg {Math.round(stats.rule511Progress.durationValue)}s)</span>
+						<span>{$_('hospital.rule511.durationCheck', { values: { target: Math.round($settings.threshold.durationSeconds / 60), actual: Math.round(stats.rule511Progress.durationValue) } })}</span>
 					</div>
 					<div class="rule-item" class:met={stats.rule511Progress.sustainedOk}>
 						<span class="rule-check">{stats.rule511Progress.sustainedOk ? '✓' : '○'}</span>
-						<span>≥ {$settings.threshold.sustainedMinutes} min sustained ({Math.round(stats.rule511Progress.sustainedValue)} min)</span>
+						<span>{$_('hospital.rule511.sustainedCheck', { values: { target: $settings.threshold.sustainedMinutes, actual: Math.round(stats.rule511Progress.sustainedValue) } })}</span>
 					</div>
 				</div>
 				<button class="rule-how-toggle" onclick={() => showRuleExplainer = !showRuleExplainer}>
-					{showRuleExplainer ? 'Hide' : 'How we calculate'}
+					{showRuleExplainer ? $_('hospital.rule511.howWeCalculateHide') : $_('hospital.rule511.howWeCalculateShow')}
 				</button>
 				{#if showRuleExplainer}
 					<div class="rule-explainer">
-						<p><strong>Interval</strong> — average time between contraction starts within the analysis window. Checked (✓) when average ≤ {$settings.threshold.intervalMinutes} min.</p>
-						<p><strong>Duration</strong> — average length of timed contractions (start to stop). Checked when average ≥ {$settings.threshold.durationSeconds}s. A 64s contraction counts as "over 1 minute."</p>
-						<p><strong>Sustained</strong> — how long the pattern has been going. Measured as the span from your first to most recent contraction. Checked when ≥ {$settings.threshold.sustainedMinutes} min.</p>
-						<p class="rule-explainer-note">These are <strong>clinical guidelines</strong> (ACOG), not absolute rules. Your provider may recommend different thresholds (e.g. 4-1-1 or 3-1-1). Adjust in settings.</p>
+						<p>{@html $_('hospital.rule511.explainerInterval', { values: { target: $settings.threshold.intervalMinutes } })}</p>
+						<p>{@html $_('hospital.rule511.explainerDuration', { values: { target: $settings.threshold.durationSeconds } })}</p>
+						<p>{@html $_('hospital.rule511.explainerSustained', { values: { target: $settings.threshold.sustainedMinutes } })}</p>
+						<p class="rule-explainer-note">{@html $_('hospital.rule511.explainerNote')}</p>
 					</div>
 				{/if}
 
 			{:else if sec.id === 'water-break'}
 				<div class="water-header">
 					<span class="water-icon">💧</span>
-					<span>Water broke {formatElapsedApprox(waterBreakMinutesAgo)} ago</span>
+					<span>{$_('hospital.waterBreakInfo.waterBrokeAgo', { values: { elapsed: formatElapsedApprox(waterBreakMinutesAgo) } })}</span>
 				</div>
 				{#if $settings.hospitalAdvisor.providerPhone}
 					<a href="tel:{$settings.hospitalAdvisor.providerPhone}" class="call-btn">
-						Call provider ({$settings.hospitalAdvisor.providerPhone})
+						{$_('hospital.callProvider', { values: { phone: $settings.hospitalAdvisor.providerPhone } })}
 					</a>
 				{:else if showInlinePhone}
 					<div class="inline-phone-entry">
@@ -300,7 +301,7 @@
 							<input
 								type="tel"
 								class="inline-phone-input"
-								placeholder="e.g. 555-0123"
+								placeholder={$_('hospital.waterBreakInfo.phonePlaceholder')}
 								bind:value={inlinePhoneValue}
 							/>
 							<button
@@ -314,35 +315,35 @@
 									showInlinePhone = false;
 								}}
 							>
-								Save
+								{$_('common.save')}
 							</button>
 							<button class="inline-phone-cancel" onclick={() => { showInlinePhone = false; inlinePhoneValue = ''; }}>
-								Cancel
+								{$_('common.cancel')}
 							</button>
 						</div>
 					</div>
 				{:else}
 					<button class="water-note-link" onclick={() => showInlinePhone = true}>
-						Add provider phone for quick call access
+						{$_('hospital.waterBreakInfo.addProviderPhone')}
 					</button>
 				{/if}
-				<p class="water-safety">Note fluid color. Clear/pale yellow is normal. Green/brown → call immediately.</p>
+				<p class="water-safety">{$_('hospital.waterBreakInfo.safetyNote')}</p>
 				<div class="water-stats">
 					<div class="stat-card">
 						<div class="stat-bar-track"><div class="stat-bar-fill" style="width:12%"></div></div>
-						<div class="stat-main"><span class="stat-pct">{WATER_BREAK_STATS.beforeContractions}</span> <span class="stat-chance">chance</span></div>
-						<div class="stat-label">Water breaks before contractions start</div>
+						<div class="stat-main"><span class="stat-pct">{WATER_BREAK_STATS.beforeContractions}</span> <span class="stat-chance">{$_('hospital.waterBreakInfo.statChance')}</span></div>
+						<div class="stat-label">{$_('hospital.waterBreakInfo.statBeforeContractions')}</div>
 					</div>
 					<div class="stat-card">
 						<div class="stat-bar-track"><div class="stat-bar-fill stat-bar--mid" style="width:45%"></div></div>
-						<div class="stat-main"><span class="stat-pct">{WATER_BREAK_STATS.laborWithin12Hours}</span> <span class="stat-chance">chance</span></div>
-						<div class="stat-label">Active labor within 12 hours</div>
+						<div class="stat-main"><span class="stat-pct">{WATER_BREAK_STATS.laborWithin12Hours}</span> <span class="stat-chance">{$_('hospital.waterBreakInfo.statChance')}</span></div>
+						<div class="stat-label">{$_('hospital.waterBreakInfo.statWithin12Hours')}</div>
 					</div>
 					<div class="stat-card stat-card--highlight">
 						<div class="stat-bar-track"><div class="stat-bar-fill stat-bar--high" style="width:86%"></div></div>
-						<div class="stat-main"><span class="stat-pct">{WATER_BREAK_STATS.laborWithin24Hours}</span> <span class="stat-chance">chance</span></div>
-						<div class="stat-label">Active labor within 24 hours</div>
-						<div class="stat-reassure">Most people start labor naturally within a day</div>
+						<div class="stat-main"><span class="stat-pct">{WATER_BREAK_STATS.laborWithin24Hours}</span> <span class="stat-chance">{$_('hospital.waterBreakInfo.statChance')}</span></div>
+						<div class="stat-label">{$_('hospital.waterBreakInfo.statWithin24Hours')}</div>
+						<div class="stat-reassure">{$_('hospital.waterBreakInfo.statReassure')}</div>
 					</div>
 				</div>
 
@@ -352,12 +353,13 @@
 			{:else if sec.id === 'clinical-reference'}
 				<div class="clinical-section">
 					<div class="clinical-card">
-						<div class="clinical-title">Labor stages</div>
-						<div class="clinical-note">Dilation = opening of uterus (0 cm = closed, 10 cm = fully open)</div>
+						<div class="clinical-title">{$_('hospital.clinicalReference.laborStagesTitle')}</div>
+						<div class="clinical-note">{$_('hospital.clinicalReference.dilationNote')}</div>
 						{#each ['pre-labor', 'early', 'active', 'transition'] as stage}
 							{@const ref = STAGE_REFERENCE[stage]}
 							{@const frac = stageDilationFraction(stage)}
 							{@const isCurrent = stats.laborStage === stage}
+							{@const stageNameKey = stage === 'pre-labor' ? 'preLabor' : stage}
 							{#if ref}
 								<div class="stage-row" class:current={isCurrent}>
 									<div class="stage-header">
@@ -375,18 +377,18 @@
 												<circle cx="14" cy="14" r="3" fill={isCurrent ? 'var(--accent)' : 'var(--text-muted)'} opacity="0.4" />
 											{/if}
 										</svg>
-										<div class="stage-name">{stage === 'pre-labor' ? 'Pre-labor' : stage === 'early' ? 'Early' : stage === 'active' ? 'Active' : 'Transition'}</div>
+										<div class="stage-name">{$_(`hospital.clinicalReference.stageNames.${stageNameKey}`)}</div>
 										{#if isCurrent}
-											<span class="stage-current-badge">Current</span>
+											<span class="stage-current-badge">{$_('hospital.clinicalReference.currentBadge')}</span>
 										{/if}
-										<span class="stage-location-tag">{ref.location}</span>
+										<span class="stage-location-tag">{$_(ref.locationKey)}</span>
 									</div>
 									<div class="stage-details">
-										<span class="stage-pattern">{ref.contractionPattern}</span>
-										<span class="stage-cervix">{ref.cervix}</span>
+										<span class="stage-pattern">{$_(ref.patternKey)}</span>
+										<span class="stage-cervix">{$_(ref.cervixKey)}</span>
 									</div>
-									{#if isCurrent && ref.description}
-										<div class="stage-desc">{ref.description}</div>
+									{#if isCurrent && ref.descriptionKey}
+										<div class="stage-desc">{$_(ref.descriptionKey)}</div>
 									{/if}
 								</div>
 							{/if}
@@ -394,23 +396,23 @@
 					</div>
 
 					<div class="clinical-card">
-						<div class="clinical-title">Braxton Hicks vs. real labor</div>
-						<div class="bh-intro">Compare your symptoms to help distinguish practice from real labor.</div>
+						<div class="clinical-title">{$_('hospital.clinicalReference.bhVsRealTitle')}</div>
+						<div class="bh-intro">{$_('hospital.clinicalReference.bhIntro')}</div>
 						<div class="bh-rows">
 							{#each BH_ROWS as row}
 								<div class="bh-row">
 									<div class="bh-row-header">
 										<svelte:component this={row.icon} size={14} aria-hidden="true" />
-										<span class="bh-criterion">{row.criterion}</span>
+										<span class="bh-criterion">{$_(`hospital.clinicalReference.bhCriteria.${row.criterionKey}`)}</span>
 									</div>
 									<div class="bh-row-items">
 										<div class="bh-item bh-item--practice">
-											<span class="bh-tag bh-tag--practice">BH</span>
-											<span>{row.bh}</span>
+											<span class="bh-tag bh-tag--practice">{$_('hospital.clinicalReference.bhTag')}</span>
+											<span>{$_(`hospital.clinicalReference.bhDescriptions.${row.bhKey}`)}</span>
 										</div>
 										<div class="bh-item bh-item--real">
-											<span class="bh-tag bh-tag--real">Real</span>
-											<span>{row.real}</span>
+											<span class="bh-tag bh-tag--real">{$_('hospital.clinicalReference.realTag')}</span>
+											<span>{$_(`hospital.clinicalReference.bhDescriptions.${row.realKey}`)}</span>
 										</div>
 									</div>
 								</div>
@@ -421,7 +423,7 @@
 					<div class="clinical-card clinical-card--warning">
 						<div class="warning-title-row">
 							<AlertTriangle size={16} aria-hidden="true" />
-							<div class="clinical-title">When to call provider immediately</div>
+							<div class="clinical-title">{$_('hospital.clinicalReference.warningTitle')}</div>
 						</div>
 						<div class="warning-items">
 							{#each WARNING_SIGNS as sign}
@@ -429,20 +431,20 @@
 									<div class="warning-icon">
 										<svelte:component this={sign.icon} size={14} aria-hidden="true" />
 									</div>
-									<span>{sign.text}</span>
+									<span>{$_(`hospital.clinicalReference.warningSigns.${sign.key}`)}</span>
 								</div>
 							{/each}
 						</div>
 					</div>
 
 					<div class="sources">
-						<div class="sources-title">Sources</div>
+						<div class="sources-title">{$_('hospital.clinicalReference.sourcesTitle')}</div>
 						{#each Object.values(CLINICAL_SOURCES) as source}
 							<a href={source.url} target="_blank" rel="noopener" class="source-link">{source.label}</a>
 						{/each}
 					</div>
 
-					<div class="clinical-disclaimer">General guidelines only. Always follow your provider's instructions.</div>
+					<div class="clinical-disclaimer">{$_('hospital.clinicalReference.disclaimer')}</div>
 				</div>
 			{/if}
 		</CollapsibleSection>
@@ -453,8 +455,8 @@
 			<div class="empty-state-icon">
 				<Stethoscope size={24} aria-hidden="true" />
 			</div>
-			<p class="empty-state-title">Labor advisor</p>
-			<p class="empty-state-hint">Record at least 3 contractions to see 5-1-1 progress, departure advice, and time estimates.</p>
+			<p class="empty-state-title">{$_('hospital.emptyState.title')}</p>
+			<p class="empty-state-hint">{$_('hospital.emptyState.hint')}</p>
 		</div>
 	{/if}
 </div>
@@ -592,6 +594,7 @@
 
 	.advisor-factors { display: flex; flex-wrap: wrap; gap: var(--space-1); }
 	.factor-tag { font-size: var(--text-xs); padding: var(--space-1) var(--space-2); border-radius: var(--radius-sm); background: var(--bg-card-hover); color: var(--text-muted); }
+	.factor-tag--water { background: var(--danger-muted); color: var(--danger); font-weight: 600; }
 
 	/* Provider call button in advisor section */
 	.call-provider-btn {
@@ -644,9 +647,9 @@
 	}
 
 	/* Water break info */
-	.water-header { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-base); color: var(--water); font-weight: 600; margin-bottom: var(--space-2); }
+	.water-header { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-base); color: var(--danger); font-weight: 600; margin-bottom: var(--space-2); }
 	.water-icon { font-size: var(--text-lg); }
-	.call-btn { display: block; padding: var(--space-2); border-radius: var(--radius-sm); background: var(--water-muted); color: var(--water); text-decoration: none; text-align: center; font-size: var(--text-base); margin-bottom: var(--space-2); }
+	.call-btn { display: block; padding: var(--space-2); border-radius: var(--radius-sm); background: var(--danger-muted); color: var(--danger); text-decoration: none; text-align: center; font-size: var(--text-base); font-weight: 600; margin-bottom: var(--space-2); }
 	.water-note-link {
 		display: block;
 		width: 100%;
@@ -725,8 +728,8 @@
 		padding: var(--space-2) var(--space-3);
 		border-radius: var(--radius-sm);
 		border: none;
-		background: var(--water-muted);
-		color: var(--water);
+		background: var(--danger-muted);
+		color: var(--danger);
 		font-size: var(--text-sm);
 		font-weight: 600;
 		cursor: pointer;

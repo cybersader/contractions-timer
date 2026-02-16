@@ -5,6 +5,7 @@
 	import { getRelevantTips, dismissTip, type TipCategory } from '../../lib/labor-logic/clinicalData';
 	import { AlertTriangle, ArrowRight, Timer, Heart, BookOpen, Lightbulb, X } from 'lucide-svelte';
 	import type { Component } from 'svelte';
+	import { _ } from 'svelte-i18n';
 
 	interface Props {
 		maxTips?: number;
@@ -50,8 +51,8 @@
 						<Lightbulb size={16} />
 					{/if}
 				</span>
-				<span class="tip-text">{tip.text}</span>
-				<button class="tip-dismiss" onclick={() => handleDismiss(tip.id)} aria-label="Dismiss tip">
+				<span class="tip-text">{$_(tip.textKey)}</span>
+				<button class="tip-dismiss" onclick={() => handleDismiss(tip.id)} aria-label={$_('shared.contextualTips.dismissTipAriaLabel')}>
 					<X size={14} />
 				</button>
 			</div>

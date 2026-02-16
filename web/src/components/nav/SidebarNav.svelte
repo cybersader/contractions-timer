@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { Clock, BarChart3, List, Stethoscope, Menu } from 'lucide-svelte';
 
 	interface Props {
@@ -9,17 +10,17 @@
 	let { activeIndex, onTabClick, onMenuToggle } = $props<Props>();
 
 	const tabs = [
-		{ label: 'Timer', icon: Clock },
-		{ label: 'Dashboard', icon: BarChart3 },
-		{ label: 'History', icon: List },
-		{ label: 'Advisor', icon: Stethoscope },
+		{ labelKey: 'nav.timer', icon: Clock },
+		{ labelKey: 'nav.dashboard', icon: BarChart3 },
+		{ labelKey: 'nav.history', icon: List },
+		{ labelKey: 'nav.advisor', icon: Stethoscope },
 	];
 </script>
 
-<aside class="sidebar" role="navigation" aria-label="Main navigation">
-	<button class="sidebar-brand" onclick={() => onTabClick(0)} aria-label="Go to Timer">
+<aside class="sidebar" role="navigation" aria-label={$_('nav.mainNavAriaLabel')}>
+	<button class="sidebar-brand" onclick={() => onTabClick(0)} aria-label={$_('nav.goToTimerAriaLabel')}>
 		<Clock size={22} strokeWidth={1.5} color="var(--accent)" aria-hidden="true" />
-		<span class="sidebar-title">contractions.app</span>
+		<span class="sidebar-title">{$_('nav.brandTitle')}</span>
 	</button>
 
 	<nav class="sidebar-tabs" role="tablist">
@@ -30,19 +31,19 @@
 				onclick={() => onTabClick(i)}
 				role="tab"
 				aria-selected={activeIndex === i}
-				aria-label={tab.label}
+				aria-label={$_(tab.labelKey)}
 			>
 				<tab.icon size={20} strokeWidth={1.5} aria-hidden="true" />
-				<span>{tab.label}</span>
+				<span>{$_(tab.labelKey)}</span>
 			</button>
 		{/each}
 	</nav>
 
 	<div class="sidebar-spacer"></div>
 
-	<button class="sidebar-tab sidebar-menu-btn" onclick={onMenuToggle} aria-label="Open menu">
+	<button class="sidebar-tab sidebar-menu-btn" onclick={onMenuToggle} aria-label={$_('nav.openMenuAriaLabel')}>
 		<Menu size={20} strokeWidth={1.5} aria-hidden="true" />
-		<span>Menu</span>
+		<span>{$_('nav.menu')}</span>
 	</button>
 </aside>
 

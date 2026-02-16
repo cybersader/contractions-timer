@@ -1,15 +1,20 @@
 import type { Contraction, LaborEvent, SessionStats, HospitalAdvisorConfig, StageThresholdConfig, LaborStage, ProgressionRate } from './types';
 import { getTrend, getIntervalMinutes, getDurationSeconds } from './calculations';
 
+export interface I18nMessage {
+	key: string;
+	values?: Record<string, string | number>;
+}
+
 export type DepartureUrgency = 'not-yet' | 'start-preparing' | 'time-to-go' | 'go-now';
 
 export interface DepartureAdvice {
 	urgency: DepartureUrgency;
-	headline: string;
-	detail: string;
+	headline: I18nMessage;
+	detail: I18nMessage;
 	bufferMinutes: number | null;
 	estimatedDepartureTime: Date | null;
-	factors: string[];
+	factors: I18nMessage[];
 }
 
 export interface RangeEstimate {
@@ -17,10 +22,10 @@ export interface RangeEstimate {
 	likelyMinutes: number;
 	latestMinutes: number;
 	confidence: 'low' | 'medium' | 'high';
-	recommendation: string;
-	patternSummary: string;
-	trendSummary: string | null;
-	factors: string[];
+	recommendation: I18nMessage;
+	patternSummary: I18nMessage;
+	trendSummary: I18nMessage | null;
+	factors: I18nMessage[];
 }
 
 const RATE_MULTIPLIERS: Record<ProgressionRate, { fast: number; avg: number; slow: number }> = {
@@ -39,7 +44,7 @@ export function getRangeEstimate(
 ): RangeEstimate {
 	const completed = contractions.filter(c => c.end !== null);
 	const hasWaterBreak = events.some(e => e.type === 'water-break');
-	const factors: string[] = [];
+	const factors: I18nMessage[] = [];
 	const mult = RATE_MULTIPLIERS[progressionRate];
 	// Use conservative 30 min default when travel time is uncertain
 	const effectiveTravel = config.travelTimeUncertain ? 30 : config.travelTimeMinutes;
@@ -48,11 +53,11 @@ export function getRangeEstimate(
 	if (completed.length >= 10) confidence = 'high';
 	else if (completed.length >= 6) confidence = 'medium';
 
-	const patternSummary = stats.avgIntervalMin > 0
-		? `~${stats.avgIntervalMin.toFixed(0)} min between contractions, ~${Math.round(stats.avgDurationSec)}s each`
-		: 'Not enough data for pattern analysis';
+	const patternSummary: I18nMessage = stats.avgIntervalMin > 0
+		? { key: 'hospital.advisor.pattern.summary', values: { interval: stats.avgIntervalMin.toFixed(0), duration: Math.round(stats.avgDurationSec) } }
+		: { key: 'hospital.advisor.pattern.notEnoughData' };
 
-	let trendSummary: string | null = null;
+	let trendSummary: I18nMessage | null = null;
 	if (completed.length >= 4) {
 		const intervals: number[] = [];
 		for (let i = 1; i < completed.length; i++) {
@@ -61,30 +66,30 @@ export function getRangeEstimate(
 		const trend = getTrend(intervals);
 		if (trend) {
 			if (trend.direction === 'decreasing') {
-				trendSummary = `Getting closer together (${trend.firstValue.toFixed(0)} \u2192 ${trend.lastValue.toFixed(0)} min apart)`;
+				trendSummary = { key: 'hospital.advisor.trend.gettingCloser', values: { first: trend.firstValue.toFixed(0), last: trend.lastValue.toFixed(0) } };
 			} else if (trend.direction === 'increasing') {
-				trendSummary = `Spacing out (${trend.firstValue.toFixed(0)} \u2192 ${trend.lastValue.toFixed(0)} min apart)`;
+				trendSummary = { key: 'hospital.advisor.trend.spacingOut', values: { first: trend.firstValue.toFixed(0), last: trend.lastValue.toFixed(0) } };
 			} else {
-				trendSummary = `Steady pace, ~${stats.avgIntervalMin.toFixed(0)} min apart`;
+				trendSummary = { key: 'hospital.advisor.trend.steadyPace', values: { avg: stats.avgIntervalMin.toFixed(0) } };
 			}
 		}
 	}
 
-	if (hasWaterBreak) factors.push('Water has broken');
+	if (hasWaterBreak) factors.push({ key: 'hospital.advisor.factors.waterBroken' });
 	if (config.travelTimeUncertain) {
-		factors.push('Travel time unknown — using conservative 30 min estimate');
+		factors.push({ key: 'hospital.advisor.factors.travelUnknownConservative' });
 	} else if (config.travelTimeMinutes > 0) {
-		factors.push(`${config.travelTimeMinutes} min travel time accounted for`);
+		factors.push({ key: 'hospital.advisor.factors.travelAccounted', values: { minutes: config.travelTimeMinutes } });
 	}
-	factors.push(`Assumed progression: ${progressionRate}`);
+	factors.push({ key: 'hospital.advisor.factors.assumedProgression', values: { rate: progressionRate } });
 
 	if (completed.length < 3 || !stats.laborStage) {
 		return {
 			earliestMinutes: 0, likelyMinutes: 0, latestMinutes: 0,
 			confidence: 'low',
-			recommendation: 'Keep tracking to build a pattern',
+			recommendation: { key: 'hospital.advisor.recommendations.keepTracking' },
 			patternSummary, trendSummary,
-			factors: ['Fewer than 3 contractions recorded'],
+			factors: [{ key: 'hospital.advisor.factors.fewerThan3' }],
 		};
 	}
 
@@ -92,7 +97,9 @@ export function getRangeEstimate(
 		return {
 			earliestMinutes: 0, likelyMinutes: 0, latestMinutes: 0,
 			confidence,
-			recommendation: hasWaterBreak ? 'Go to hospital now' : 'You should be at the hospital',
+			recommendation: hasWaterBreak
+				? { key: 'hospital.advisor.recommendations.goNow' }
+				: { key: 'hospital.advisor.recommendations.shouldBeAtHospital' },
 			patternSummary, trendSummary, factors,
 		};
 	}
@@ -101,7 +108,7 @@ export function getRangeEstimate(
 		return {
 			earliestMinutes: 0, likelyMinutes: 0, latestMinutes: Math.round(30 * mult.slow),
 			confidence,
-			recommendation: 'Head to hospital now',
+			recommendation: { key: 'hospital.advisor.recommendations.headToHospital' },
 			patternSummary, trendSummary, factors,
 		};
 	}
@@ -110,9 +117,11 @@ export function getRangeEstimate(
 		return {
 			earliestMinutes: 0, likelyMinutes: effectiveTravel, latestMinutes: effectiveTravel + 30,
 			confidence,
-			recommendation: effectiveTravel > 0 ? `Plan to arrive within ${effectiveTravel} min` : 'Plan to be at hospital soon',
+			recommendation: effectiveTravel > 0
+				? { key: 'hospital.advisor.recommendations.planToArriveWithin', values: { minutes: effectiveTravel } }
+				: { key: 'hospital.advisor.recommendations.planSoon' },
 			patternSummary, trendSummary,
-			factors: [...factors, '5-1-1 pattern is met'],
+			factors: [...factors, { key: 'hospital.advisor.factors.rule511Pattern' }],
 		};
 	}
 
@@ -122,9 +131,9 @@ export function getRangeEstimate(
 		const likely = Math.round(base * mult.avg);
 		const latest = Math.round(base * mult.slow);
 
-		const recommendation = effectiveTravel > 0
-			? `Plan to be at hospital within ~${formatRange(earliest, latest)}`
-			: `Estimated ~${formatRange(earliest, latest)} until hospital-worthy pattern`;
+		const recommendation: I18nMessage = effectiveTravel > 0
+			? { key: 'hospital.advisor.recommendations.planWithinRange', values: { range: formatRange(earliest, latest) } }
+			: { key: 'hospital.advisor.recommendations.estimatedRange', values: { range: formatRange(earliest, latest) } };
 
 		return {
 			earliestMinutes: Math.max(0, earliest - effectiveTravel),
@@ -141,8 +150,8 @@ export function getRangeEstimate(
 			latestMinutes: Math.round(120 * mult.slow),
 			confidence: 'low',
 			recommendation: effectiveTravel > 0
-				? `Active labor \u2014 plan to leave within ~${formatRange(30, 120)}`
-				: 'Active labor \u2014 have your hospital bag ready',
+				? { key: 'hospital.advisor.recommendations.activeLeaveRange', values: { range: formatRange(30, 120) } }
+				: { key: 'hospital.advisor.recommendations.activeBagReady' },
 			patternSummary, trendSummary, factors,
 		};
 	}
@@ -153,7 +162,7 @@ export function getRangeEstimate(
 			likelyMinutes: Math.round(180 * mult.avg),
 			latestMinutes: Math.round(720 * mult.slow),
 			confidence: 'low',
-			recommendation: 'Early labor \u2014 stay home, rest, and hydrate',
+			recommendation: { key: 'hospital.advisor.recommendations.earlyStayHome' },
 			patternSummary, trendSummary, factors,
 		};
 	}
@@ -161,7 +170,7 @@ export function getRangeEstimate(
 	return {
 		earliestMinutes: 0, likelyMinutes: 0, latestMinutes: 0,
 		confidence: 'low',
-		recommendation: 'Contractions are irregular \u2014 continue normal activities',
+		recommendation: { key: 'hospital.advisor.recommendations.irregularContinue' },
 		patternSummary, trendSummary, factors,
 	};
 }
@@ -190,44 +199,47 @@ export function getDepartureAdvice(
 	const effectiveTravelMinutes = config.travelTimeUncertain ? 30 : config.travelTimeMinutes;
 	const { riskAppetite } = config;
 	const stage = stats.laborStage;
-	const factors: string[] = [];
+	const factors: I18nMessage[] = [];
 
 	if (completed.length < 2 || !stage) {
 		return {
-			urgency: 'not-yet', headline: 'Keep tracking',
-			detail: 'Not enough data yet to assess. Keep timing contractions to build a pattern.',
+			urgency: 'not-yet',
+			headline: { key: 'hospital.advisor.headlines.keepTracking' },
+			detail: { key: 'hospital.advisor.details.notEnoughData' },
 			bufferMinutes: null, estimatedDepartureTime: null,
-			factors: ['Fewer than 2 completed contractions'],
+			factors: [{ key: 'hospital.advisor.factors.fewerThan2' }],
 		};
 	}
 
-	if (stats.avgIntervalMin > 0) factors.push(`Contractions ~${stats.avgIntervalMin.toFixed(1)} min apart`);
-	if (stats.avgDurationSec > 0) factors.push(`~${Math.round(stats.avgDurationSec)}s avg duration`);
+	if (stats.avgIntervalMin > 0) factors.push({ key: 'hospital.advisor.factors.intervalApart', values: { interval: stats.avgIntervalMin.toFixed(1) } });
+	if (stats.avgDurationSec > 0) factors.push({ key: 'hospital.advisor.factors.avgDuration', values: { duration: Math.round(stats.avgDurationSec) } });
 	if (hasWaterBreak) {
 		const waterEvent = events.find(e => e.type === 'water-break');
 		if (waterEvent) {
 			const hoursAgo = (Date.now() - new Date(waterEvent.timestamp).getTime()) / 3600000;
-			factors.push(`Water broke ${hoursAgo.toFixed(1)} hours ago`);
+			factors.push({ key: 'hospital.advisor.factors.waterBrokeAgo', values: { hours: hoursAgo.toFixed(1) } });
 		}
 	}
 	if (config.travelTimeUncertain) {
-		factors.push('Travel time: unknown (using ~30 min estimate)');
+		factors.push({ key: 'hospital.advisor.factors.travelUnknown' });
 	} else {
-		factors.push(`Travel time: ${effectiveTravelMinutes} min`);
+		factors.push({ key: 'hospital.advisor.factors.travelTime', values: { minutes: effectiveTravelMinutes } });
 	}
 
 	if (stage === 'transition') {
 		return {
-			urgency: 'go-now', headline: 'Go now',
-			detail: 'You appear to be in transition. If you are not at the hospital, go immediately.',
+			urgency: 'go-now',
+			headline: { key: 'hospital.advisor.headlines.goNow' },
+			detail: { key: 'hospital.advisor.details.transition' },
 			bufferMinutes: 0, estimatedDepartureTime: new Date(), factors,
 		};
 	}
 
 	if (hasWaterBreak && stage === 'active') {
 		return {
-			urgency: 'time-to-go', headline: 'Time to go',
-			detail: 'Your water has broken and contractions are active. Call your provider, then head in.',
+			urgency: 'time-to-go',
+			headline: { key: 'hospital.advisor.headlines.timeToGo' },
+			detail: { key: 'hospital.advisor.details.waterAndActive' },
 			bufferMinutes: effectiveTravelMinutes,
 			estimatedDepartureTime: new Date(Date.now() + effectiveTravelMinutes * 60000), factors,
 		};
@@ -235,8 +247,9 @@ export function getDepartureAdvice(
 
 	if (hasWaterBreak) {
 		return {
-			urgency: 'start-preparing', headline: 'Call your provider',
-			detail: 'Your water has broken. Call your provider \u2014 they will advise whether to come in now or wait.',
+			urgency: 'start-preparing',
+			headline: { key: 'hospital.advisor.headlines.callProvider' },
+			detail: { key: 'hospital.advisor.details.waterBroken' },
 			bufferMinutes: null, estimatedDepartureTime: null, factors,
 		};
 	}
@@ -246,15 +259,17 @@ export function getDepartureAdvice(
 			conservative: 'go-now', moderate: 'time-to-go', relaxed: 'start-preparing',
 		};
 		const urgency = urgencyMap[riskAppetite] || 'time-to-go';
-		const headlineMap: Record<DepartureUrgency, string> = {
-			'go-now': 'Go now', 'time-to-go': 'Time to go',
-			'start-preparing': 'Start preparing', 'not-yet': 'Not yet',
+		const headlineMap: Record<DepartureUrgency, I18nMessage> = {
+			'go-now': { key: 'hospital.advisor.headlines.goNow' },
+			'time-to-go': { key: 'hospital.advisor.headlines.timeToGo' },
+			'start-preparing': { key: 'hospital.advisor.headlines.startPreparing' },
+			'not-yet': { key: 'hospital.advisor.headlines.notYet' },
 		};
 		return {
 			urgency, headline: headlineMap[urgency],
-			detail: 'The 5-1-1 pattern is met. Contractions are regular, close, and sustained.',
+			detail: { key: 'hospital.advisor.details.rule511Met' },
 			bufferMinutes: 0, estimatedDepartureTime: new Date(),
-			factors: [...factors, '5-1-1 rule met'],
+			factors: [...factors, { key: 'hospital.advisor.factors.rule511Met' }],
 		};
 	}
 
@@ -263,27 +278,30 @@ export function getDepartureAdvice(
 
 		if (riskAppetite === 'conservative') {
 			return {
-				urgency: 'time-to-go', headline: 'Time to go',
-				detail: `Estimated ${estimatedTimeTo511} min until 5-1-1 pattern. Leave soon.`,
+				urgency: 'time-to-go',
+				headline: { key: 'hospital.advisor.headlines.timeToGo' },
+				detail: { key: 'hospital.advisor.details.estimatedLeaveSoon', values: { minutes: estimatedTimeTo511 } },
 				bufferMinutes: Math.max(0, buffer),
 				estimatedDepartureTime: new Date(Date.now() + Math.max(0, buffer) * 60000),
-				factors: [...factors, `~${estimatedTimeTo511} min to 5-1-1`],
+				factors: [...factors, { key: 'hospital.advisor.factors.timeTo511', values: { minutes: estimatedTimeTo511 } }],
 			};
 		}
 		if (riskAppetite === 'moderate') {
 			return {
-				urgency: 'start-preparing', headline: 'Start preparing',
-				detail: `Contractions are progressing. Estimated ${estimatedTimeTo511} min until 5-1-1 pattern.`,
+				urgency: 'start-preparing',
+				headline: { key: 'hospital.advisor.headlines.startPreparing' },
+				detail: { key: 'hospital.advisor.details.progressing', values: { minutes: estimatedTimeTo511 } },
 				bufferMinutes: Math.max(0, buffer),
 				estimatedDepartureTime: new Date(Date.now() + Math.max(0, buffer) * 60000),
-				factors: [...factors, `~${estimatedTimeTo511} min to 5-1-1`],
+				factors: [...factors, { key: 'hospital.advisor.factors.timeTo511', values: { minutes: estimatedTimeTo511 } }],
 			};
 		}
 		return {
-			urgency: 'not-yet', headline: 'Not yet',
-			detail: `Contractions are progressing. Estimated ${estimatedTimeTo511} min until 5-1-1 pattern.`,
+			urgency: 'not-yet',
+			headline: { key: 'hospital.advisor.headlines.notYet' },
+			detail: { key: 'hospital.advisor.details.progressing', values: { minutes: estimatedTimeTo511 } },
 			bufferMinutes: Math.max(0, buffer), estimatedDepartureTime: null,
-			factors: [...factors, `~${estimatedTimeTo511} min to 5-1-1`],
+			factors: [...factors, { key: 'hospital.advisor.factors.timeTo511', values: { minutes: estimatedTimeTo511 } }],
 		};
 	}
 
@@ -292,13 +310,15 @@ export function getDepartureAdvice(
 			conservative: 'time-to-go', moderate: 'start-preparing', relaxed: 'not-yet',
 		};
 		const urgency = urgencyMap[riskAppetite] || 'start-preparing';
-		const headlineMap: Record<DepartureUrgency, string> = {
-			'go-now': 'Go now', 'time-to-go': 'Time to go',
-			'start-preparing': 'Start preparing', 'not-yet': 'Not yet',
+		const headlineMap: Record<DepartureUrgency, I18nMessage> = {
+			'go-now': { key: 'hospital.advisor.headlines.goNow' },
+			'time-to-go': { key: 'hospital.advisor.headlines.timeToGo' },
+			'start-preparing': { key: 'hospital.advisor.headlines.startPreparing' },
+			'not-yet': { key: 'hospital.advisor.headlines.notYet' },
 		};
 		return {
 			urgency, headline: headlineMap[urgency],
-			detail: 'Contractions suggest active labor. Have your hospital bag ready.',
+			detail: { key: 'hospital.advisor.details.activeLabor' },
 			bufferMinutes: null, estimatedDepartureTime: null, factors,
 		};
 	}
@@ -307,15 +327,18 @@ export function getDepartureAdvice(
 		const urgency: DepartureUrgency = riskAppetite === 'conservative' ? 'start-preparing' : 'not-yet';
 		return {
 			urgency,
-			headline: urgency === 'start-preparing' ? 'Start preparing' : 'Stay comfortable',
-			detail: 'Early labor can take a while. Stay home, rest, hydrate, and keep timing.',
+			headline: urgency === 'start-preparing'
+				? { key: 'hospital.advisor.headlines.startPreparing' }
+				: { key: 'hospital.advisor.headlines.stayComfortable' },
+			detail: { key: 'hospital.advisor.details.earlyLabor' },
 			bufferMinutes: null, estimatedDepartureTime: null, factors,
 		};
 	}
 
 	return {
-		urgency: 'not-yet', headline: 'Stay comfortable',
-		detail: 'Contractions are still irregular. Continue normal activities and keep timing.',
+		urgency: 'not-yet',
+		headline: { key: 'hospital.advisor.headlines.stayComfortable' },
+		detail: { key: 'hospital.advisor.details.irregular' },
 		bufferMinutes: null, estimatedDepartureTime: null, factors,
 	};
 }

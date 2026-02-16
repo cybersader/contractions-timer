@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import type { TimerPhase } from '../../lib/stores/timer';
 	import { formatDuration, formatRestTime } from '../../lib/labor-logic/formatters';
 	import { settings } from '../../lib/stores/settings';
@@ -13,13 +14,15 @@
 	let { phase, elapsed, rest, lastDurationSec, paused } = $props<Props>();
 
 	let text = $derived.by(() => {
-		if (paused) return 'Paused';
-		if (phase === 'idle') return 'Ready to start';
-		if (phase === 'contracting') return `Contracting: ${formatDuration(elapsed)}`;
+		if (paused) return $_('timer.heroCompactTimer.paused');
+		if (phase === 'idle') return $_('timer.heroCompactTimer.readyToStart');
+		if (phase === 'contracting') return $_('timer.heroCompactTimer.contractingPrefix', { values: { time: formatDuration(elapsed) } });
 		// resting
 		const restStr = formatRestTime(rest, $settings.showRestSeconds);
 		const lastStr = lastDurationSec > 0 ? formatDuration(lastDurationSec) : '';
-		return lastStr ? `Rest: ${restStr} · Last: ${lastStr}` : `Rest: ${restStr}`;
+		return lastStr
+			? $_('timer.heroCompactTimer.restAndLast', { values: { restTime: restStr, lastTime: lastStr } })
+			: $_('timer.heroCompactTimer.restPrefix', { values: { restTime: restStr } });
 	});
 </script>
 

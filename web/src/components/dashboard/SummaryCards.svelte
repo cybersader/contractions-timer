@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { getSessionStats } from '../../lib/labor-logic/calculations';
@@ -10,19 +11,19 @@
 <div class="summary-grid">
 	<div class="summary-card">
 		<div class="card-value">{stats.totalContractions}</div>
-		<div class="card-label">Contractions</div>
+		<div class="card-label">{$_('dashboard.summary.contractions')}</div>
 	</div>
 	<div class="summary-card">
 		<div class="card-value">
 			{stats.avgDurationSec > 0 ? formatDurationShort(stats.avgDurationSec) : '--'}
 		</div>
-		<div class="card-label">Avg duration</div>
+		<div class="card-label">{$_('dashboard.summary.avgDuration')}</div>
 	</div>
 	<div class="summary-card">
 		<div class="card-value">
 			{stats.avgIntervalMin > 0 ? formatInterval(stats.avgIntervalMin) : '--'}
 		</div>
-		<div class="card-label">Avg interval</div>
+		<div class="card-label">{$_('dashboard.summary.avgInterval')}</div>
 	</div>
 </div>
 

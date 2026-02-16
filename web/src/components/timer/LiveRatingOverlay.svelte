@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import type { TimerPhase } from '../../lib/stores/timer';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
@@ -48,9 +49,9 @@
 </script>
 
 {#if visible}
-	<button class="peak-btn" onclick={markPeak}>Past the peak?</button>
+	<button class="peak-btn" onclick={markPeak}>{$_('timer.liveRating.pastThePeak')}</button>
 {:else if showConfirmation}
-	<div class="peak-confirmed">Peak marked</div>
+	<div class="peak-confirmed">{$_('timer.liveRating.peakMarked')}</div>
 {/if}
 
 <style>

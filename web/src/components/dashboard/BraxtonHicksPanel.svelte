@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { assessBraxtonHicks } from '../../lib/labor-logic/braxtonHicksAssessment';
@@ -16,9 +17,9 @@
 	);
 
 	let verdictLabel = $derived(
-		assessment?.verdict === 'likely-real-labor' ? 'Likely real labor'
-		: assessment?.verdict === 'likely-braxton-hicks' ? 'Likely practice contractions'
-		: 'Mixed signals'
+		assessment?.verdict === 'likely-real-labor' ? $_('dashboard.braxtonHicks.likelyRealLabor')
+		: assessment?.verdict === 'likely-braxton-hicks' ? $_('dashboard.braxtonHicks.likelyPractice')
+		: $_('dashboard.braxtonHicks.mixedSignals')
 	);
 
 	let expandedCriterion = $state<string | null>(null);
@@ -31,7 +32,7 @@
 {#if assessment && !assessment.requiresMore}
 	<div class="bh-panel">
 		<div class="panel-header">
-			<span class="panel-title">Pattern assessment</span>
+			<span class="panel-title">{$_('dashboard.braxtonHicks.panelTitle')}</span>
 			<span class="verdict-badge {verdictColor}">{verdictLabel}</span>
 		</div>
 
@@ -57,7 +58,7 @@
 			{/each}
 		</div>
 
-		<div class="disclaimer">This is a pattern estimate, not a diagnosis.</div>
+		<div class="disclaimer">{$_('dashboard.braxtonHicks.disclaimer')}</div>
 	</div>
 {/if}
 

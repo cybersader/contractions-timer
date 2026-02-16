@@ -23,6 +23,32 @@
 	import { Copy, Share2, Eye, Pencil, Wifi, WifiOff, Users, Lock, Unlock, Shield, ChevronDown, ChevronUp, Settings, Camera, Dices, Loader2, ExternalLink, Download } from 'lucide-svelte';
 	import jsQR from 'jsqr';
 	import { dlog } from '../../lib/debug-log';
+	import { _ } from 'svelte-i18n';
+
+	const STUN_LABEL_KEYS: Record<string, string> = {
+		'Google (default)': 'sharing.serverOptions.stunGoogle',
+		'Cloudflare': 'sharing.serverOptions.stunCloudflare',
+		'None (LAN only)': 'sharing.serverOptions.stunNone',
+		'Custom': 'sharing.serverOptions.stunCustom',
+	};
+	const STUN_DESC_KEYS: Record<string, string> = {
+		'Google (default)': 'sharing.serverOptions.stunGoogleDesc',
+		'Cloudflare': 'sharing.serverOptions.stunCloudflareDesc',
+		'None (LAN only)': 'sharing.serverOptions.stunNoneDesc',
+		'Custom': 'sharing.serverOptions.stunCustomDesc',
+	};
+	const TURN_LABEL_KEYS: Record<string, string> = {
+		'Open Relay (default)': 'sharing.serverOptions.turnOpenRelay',
+		'Cloudflare TURN': 'sharing.serverOptions.turnCloudflare',
+		'None': 'sharing.serverOptions.turnNone',
+		'Custom': 'sharing.serverOptions.turnCustom',
+	};
+	const TURN_DESC_KEYS: Record<string, string> = {
+		'Open Relay (default)': 'sharing.serverOptions.turnOpenRelayDesc',
+		'Cloudflare TURN': 'sharing.serverOptions.turnCloudflareDesc',
+		'None': 'sharing.serverOptions.turnNoneDesc',
+		'Custom': 'sharing.serverOptions.turnCustomDesc',
+	};
 
 	interface Props {
 		/** Pre-filled offer code from URL parameter */
@@ -126,15 +152,15 @@
 	/** Human-readable phase label */
 	function phaseLabel(phase: string | null): string {
 		switch (phase) {
-			case 'creating-offer': return 'Creating secure room...';
-			case 'posting': return 'Publishing room code...';
-			case 'waiting-for-partner': return 'Waiting for partner...';
-			case 'polling-for-offer': return 'Looking for room...';
-			case 'generating-answer': return 'Connecting to host...';
-			case 'posting-answer': return 'Sending response...';
-			case 'completing': return 'Completing handshake...';
-			case 'connected': return 'Connected!';
-			default: return 'Connecting...';
+			case 'creating-offer': return $_('sharing.phaseCreatingOffer');
+			case 'posting': return $_('sharing.phasePosting');
+			case 'waiting-for-partner': return $_('sharing.phaseWaitingForPartner');
+			case 'polling-for-offer': return $_('sharing.phasePollingForOffer');
+			case 'generating-answer': return $_('sharing.phaseGeneratingAnswer');
+			case 'posting-answer': return $_('sharing.phasePostingAnswer');
+			case 'completing': return $_('sharing.phaseCompleting');
+			case 'connected': return $_('sharing.phaseConnected');
+			default: return $_('sharing.phaseDefault');
 		}
 	}
 
@@ -410,8 +436,8 @@
 			if (!navigator.mediaDevices?.getUserMedia) {
 				throw new Error(
 					window.isSecureContext === false
-						? 'Camera requires HTTPS. This page is not in a secure context.'
-						: 'Camera API not available in this browser.'
+						? $_('sharing.cameraErrorHttps')
+						: $_('sharing.cameraErrorUnavailable')
 				);
 			}
 
@@ -528,10 +554,10 @@
 			const msg = e instanceof Error ? e.message : String(e);
 			console.error('[SharingPanel] Camera access failed:', msg);
 			scanError = msg.includes('Permission') || msg.includes('NotAllowed')
-				? 'Camera permission denied. Check your browser settings.'
+				? $_('sharing.cameraErrorPermission')
 				: msg.includes('NotFound') || msg.includes('DevicesNotFound')
-				? 'No camera found on this device.'
-				: `Camera error: ${msg}`;
+				? $_('sharing.cameraErrorNotFound')
+				: $_('sharing.cameraErrorGeneric', { values: { message: msg } });
 			scanning = false;
 			if (scanStream) { scanStream.getTracks().forEach(t => t.stop()); scanStream = null; }
 		}
@@ -561,10 +587,10 @@
 	async function handleCopy(text: string, label: string) {
 		try {
 			await navigator.clipboard.writeText(text);
-			copyFeedback = `${label} copied!`;
+			copyFeedback = $_('sharing.copyFeedbackSuccess', { values: { label } });
 			setTimeout(() => copyFeedback = '', 2000);
 		} catch {
-			copyFeedback = 'Failed to copy';
+			copyFeedback = $_('sharing.copyFeedbackFailed');
 			setTimeout(() => copyFeedback = '', 2000);
 		}
 	}
@@ -580,21 +606,21 @@
 	{#if privateStep === 'hosting-waiting'}
 		<!-- ======= Private: Host waiting for guest's answer ======= -->
 		<div class="sharing-section">
-			<div class="step-label">Step 1: Share this with your partner</div>
+			<div class="step-label">{$_('sharing.hostStep1Label')}</div>
 
 			{#if qrDataUrl}
-				<button class="qr-container" onclick={() => fullscreenQr = qrDataUrl} aria-label="Tap to enlarge QR code">
-					<img src={qrDataUrl} alt="QR code for private invite" class="qr-image" />
+				<button class="qr-container" onclick={() => fullscreenQr = qrDataUrl} aria-label={$_('sharing.tapToEnlargeHint')}>
+					<img src={qrDataUrl} alt={$_('sharing.qrPrivateInviteAlt')} class="qr-image" />
 				</button>
-				<p class="qr-tap-hint">Tap to enlarge</p>
+				<p class="qr-tap-hint">{$_('sharing.tapToEnlargeHint')}</p>
 			{/if}
 
 			{#if offerCode}
 				<div class="code-box">
-					<span class="code-box-label">Invite code</span>
+					<span class="code-box-label">{$_('sharing.inviteCodeLabel')}</span>
 					<div class="code-row">
 						<code class="code-value">{offerCode.length > 40 ? offerCode.slice(0, 40) + '...' : offerCode}</code>
-						<button class="icon-btn" onclick={() => handleCopy(offerCode!, 'Invite code')} aria-label="Copy invite code">
+						<button class="icon-btn" onclick={() => handleCopy(offerCode!, $_('sharing.inviteCodeLabel'))} aria-label={$_('sharing.copyFeedbackSuccess', { values: { label: $_('sharing.inviteCodeLabel') } })}>
 							<Copy size={16} />
 						</button>
 					</div>
@@ -602,36 +628,36 @@
 
 				<div class="share-buttons">
 					{#if typeof navigator !== 'undefined' && navigator.share}
-						<button class="btn-secondary share-btn" onclick={() => handleNativeShare('Join my contraction timer', 'Open this link to connect:', getPrivateOfferUrl(offerCode!))}>
+						<button class="btn-secondary share-btn" onclick={() => handleNativeShare($_('sharing.snapshot.nativeShareTitle'), $_('sharing.snapshot.nativeShareText'), getPrivateOfferUrl(offerCode!))}>
 							<Share2 size={16} />
-							Share
+							{$_('common.share')}
 						</button>
 					{/if}
-					<button class="btn-secondary share-btn" onclick={() => handleCopy(getPrivateOfferUrl(offerCode!), 'Link')}>
+					<button class="btn-secondary share-btn" onclick={() => handleCopy(getPrivateOfferUrl(offerCode!), $_('common.copyLink'))}>
 						<Copy size={16} />
-						Copy link
+						{$_('common.copyLink')}
 					</button>
 				</div>
 			{/if}
 
-			<div class="step-label step-2">Step 2: Enter partner's response code</div>
+			<div class="step-label step-2">{$_('sharing.hostStep2Label')}</div>
 
 			<label class="sharing-label">
-				<input type="text" class="sharing-input mono-input" placeholder="Paste their response code..." bind:value={privateAnswerInput} />
+				<input type="text" class="sharing-input mono-input" placeholder={$_('sharing.responseCodePlaceholder')} bind:value={privateAnswerInput} />
 			</label>
 			<div class="step2-actions">
 				<button class="btn-primary step2-connect" onclick={handlePrivateComplete} disabled={!privateAnswerInput.trim()}>
-					Connect
+					{$_('sharing.connectButton')}
 				</button>
 				{#if !scanning}
-					<button class="btn-secondary scan-btn" onclick={() => startQRScan('answer')} aria-label="Scan QR code">
+					<button class="btn-secondary scan-btn" onclick={() => startQRScan('answer')} aria-label={$_('sharing.scanQrCodeButton')}>
 						<Camera size={18} />
 					</button>
 				{/if}
 			</div>
 
 			<button class="btn-text" onclick={handleStop}>
-				Cancel
+				{$_('common.cancel')}
 			</button>
 		</div>
 
@@ -639,20 +665,20 @@
 		<!-- ======= Private: Guest showing answer code ======= -->
 		<div class="sharing-section">
 			{#if answerCode}
-				<div class="step-label">Send this code back to your partner</div>
+				<div class="step-label">{$_('sharing.guestSendCodeLabel')}</div>
 
 				{#if answerQrDataUrl}
-					<button class="qr-container" onclick={() => fullscreenQr = answerQrDataUrl} aria-label="Tap to enlarge QR code">
-						<img src={answerQrDataUrl} alt="QR code for response code" class="qr-image" />
+					<button class="qr-container" onclick={() => fullscreenQr = answerQrDataUrl} aria-label={$_('sharing.tapToEnlargeHint')}>
+						<img src={answerQrDataUrl} alt={$_('sharing.qrResponseCodeAlt')} class="qr-image" />
 					</button>
-					<p class="qr-tap-hint">Tap to enlarge</p>
+					<p class="qr-tap-hint">{$_('sharing.tapToEnlargeHint')}</p>
 				{/if}
 
 				<div class="code-box">
-					<span class="code-box-label">Response code</span>
+					<span class="code-box-label">{$_('sharing.responseCodeLabel')}</span>
 					<div class="code-row">
 						<code class="code-value">{answerCode.length > 40 ? answerCode.slice(0, 40) + '...' : answerCode}</code>
-						<button class="icon-btn" onclick={() => handleCopy(answerCode!, 'Response code')} aria-label="Copy response code">
+						<button class="icon-btn" onclick={() => handleCopy(answerCode!, $_('sharing.responseCodeLabel'))} aria-label={$_('sharing.copyFeedbackSuccess', { values: { label: $_('sharing.responseCodeLabel') } })}>
 							<Copy size={16} />
 						</button>
 					</div>
@@ -660,30 +686,30 @@
 
 				<div class="share-buttons">
 					{#if typeof navigator !== 'undefined' && navigator.share}
-						<button class="btn-secondary share-btn" onclick={() => handleNativeShare('Response code', 'Open this link to connect:', getPrivateAnswerUrl(answerCode!))}>
+						<button class="btn-secondary share-btn" onclick={() => handleNativeShare($_('sharing.responseCodeLabel'), $_('sharing.snapshot.nativeShareText'), getPrivateAnswerUrl(answerCode!))}>
 							<Share2 size={16} />
-							Share
+							{$_('common.share')}
 						</button>
 					{/if}
-					<button class="btn-secondary share-btn" onclick={() => handleCopy(getPrivateAnswerUrl(answerCode!), 'Response link')}>
+					<button class="btn-secondary share-btn" onclick={() => handleCopy(getPrivateAnswerUrl(answerCode!), $_('sharing.responseLinkLabel'))}>
 						<Copy size={16} />
-						Copy link
+						{$_('common.copyLink')}
 					</button>
 				</div>
 
 				<div class="waiting-hint">
 					<div class="connecting-spinner small-spinner"></div>
-					Waiting for partner to enter code...
+					{$_('sharing.waitingForPartnerToEnterCode')}
 				</div>
 			{:else}
 				<div class="sharing-status">
 					<div class="connecting-spinner"></div>
-					<p class="status-text">Generating response code...</p>
+					<p class="status-text">{$_('sharing.generatingResponseCode')}</p>
 				</div>
 			{/if}
 
 			<button class="btn-text" onclick={handleStop}>
-				Cancel
+				{$_('common.cancel')}
 			</button>
 		</div>
 
@@ -693,70 +719,70 @@
 			<div class="action-cards">
 				<button class="action-card" onclick={() => view = 'send'}>
 					<Share2 size={24} />
-					<span class="action-card-title">Send</span>
-					<span class="action-card-desc">Share your session data</span>
+					<span class="action-card-title">{$_('sharing.sendTitle')}</span>
+					<span class="action-card-desc">{$_('sharing.sendDesc')}</span>
 				</button>
 				<button class="action-card" onclick={() => view = 'receive'}>
 					<Download size={24} />
-					<span class="action-card-title">Receive</span>
-					<span class="action-card-desc">Import shared data</span>
+					<span class="action-card-title">{$_('sharing.receiveTitle')}</span>
+					<span class="action-card-desc">{$_('sharing.receiveDesc')}</span>
 				</button>
 			</div>
 
 			<button class="live-card" onclick={() => view = 'live-quick'}>
 				<Wifi size={20} />
 				<div class="live-card-text">
-					<span class="live-card-title">Share live</span>
-					<span class="live-card-desc">Real-time sync between devices</span>
+					<span class="live-card-title">{$_('sharing.liveTitle')} <span class="experimental-tag">{$_('sharing.liveExperimentalTag')}</span></span>
+					<span class="live-card-desc">{$_('sharing.liveDesc')}</span>
 				</div>
 			</button>
 
 		{:else if view === 'send'}
-			<button class="back-link" onclick={() => view = 'menu'}>← Back</button>
+			<button class="back-link" onclick={() => view = 'menu'}>&larr; {$_('sharing.backButton')}</button>
 			<SnapshotShare mode="send" onImport={handleSnapshotImport} />
 
 		{:else if view === 'receive'}
-			<button class="back-link" onclick={() => view = 'menu'}>← Back</button>
+			<button class="back-link" onclick={() => view = 'menu'}>&larr; {$_('sharing.backButton')}</button>
 			<SnapshotShare mode="receive" {initialSnapshotCode} onImport={handleSnapshotImport} />
 
 		{:else if view === 'live-quick'}
-			<button class="back-link" onclick={() => view = 'menu'}>← Back</button>
+			<button class="back-link" onclick={() => view = 'menu'}>&larr; {$_('sharing.backButton')}</button>
 			<div class="mode-desc">
-				Uses a relay to find your partner. Works across any network.
+				{$_('sharing.liveQuickModeDesc')}
 			</div>
 
 			<div class="sharing-section">
 				<label class="sharing-label">
-					Your name
-					<input type="text" class="sharing-input" placeholder="Mom, Partner, etc." bind:value={userName} maxlength={30} />
+					{$_('sharing.yourNameLabel')}
+					<input type="text" class="sharing-input" placeholder={$_('sharing.yourNamePlaceholder')} bind:value={userName} maxlength={30} />
 				</label>
 
-				<div class="sharing-label">Joiners can</div>
+				<div class="sharing-label">{$_('sharing.joinersCanLabel')}</div>
 				<div class="mode-radios">
 					<label class="mode-radio" class:mode-selected={mode === 'collaborative'}>
 						<input type="radio" bind:group={mode} value="collaborative" />
 						<Pencil size={16} />
-						<span>View and edit together</span>
+						<span>{$_('sharing.modeCollaborative')}</span>
 					</label>
 					<label class="mode-radio" class:mode-selected={mode === 'view-only'}>
 						<input type="radio" bind:group={mode} value="view-only" />
 						<Eye size={16} />
-						<span>View only</span>
+						<span>{$_('sharing.modeViewOnly')}</span>
 					</label>
 				</div>
 
 				<label class="sharing-label">
-					Password (optional)
+					{$_('sharing.passwordLabel')}
 					<div class="password-field">
 						{#if showPassword}
-							<input type="text" class="sharing-input" placeholder="Adds encryption" bind:value={password} />
+							<input type="text" class="sharing-input" placeholder={$_('sharing.passwordPlaceholder')} bind:value={password} />
 						{:else}
-							<input type="password" class="sharing-input" placeholder="Adds encryption" bind:value={password} />
+							<input type="password" class="sharing-input" placeholder={$_('sharing.passwordPlaceholder')} bind:value={password} />
 						{/if}
-						<button class="password-action" onclick={handleGeneratePassphrase} aria-label="Generate passphrase" title="Generate passphrase">
+						<button class="password-action" onclick={handleGeneratePassphrase} aria-label={$_('sharing.generatePassphraseAriaLabel')} title={$_('sharing.generatePassphraseAriaLabel')}>
 							<Dices size={16} />
 						</button>
-						<button class="password-toggle" onclick={() => showPassword = !showPassword} aria-label={showPassword ? 'Hide password' : 'Show password'}>
+						<button class="password-toggle" onclick={() => showPassword = !showPassword} aria-label={showPassword ? $_('sharing.hidePasswordAriaLabel') : $_('sharing.showPasswordAriaLabel')}>
 							{#if password}
 								{#if showPassword}<Unlock size={16} />{:else}<Lock size={16} />{/if}
 							{/if}
@@ -764,9 +790,9 @@
 					</div>
 					<span class="sharing-hint">
 						{#if password && showPassword}
-							Share this passphrase with your partner
+							{$_('sharing.passwordHintVisible')}
 						{:else}
-							Encrypts the session end-to-end
+							{$_('sharing.passwordHintHidden')}
 						{/if}
 					</span>
 				</label>
@@ -774,105 +800,105 @@
 				<!-- Advanced: Server selection -->
 				<button class="advanced-toggle" onclick={() => showAdvanced = !showAdvanced}>
 					<Settings size={14} />
-					<span>Server options</span>
+					<span>{$_('sharing.serverOptionsToggle')}</span>
 					{#if showAdvanced}<ChevronUp size={14} />{:else}<ChevronDown size={14} />{/if}
 				</button>
 
 				{#if showAdvanced}
 					<div class="advanced-section">
 						<label class="sharing-label">
-							Signaling backend
+							{$_('sharing.signalingBackendLabel')}
 							<select class="sharing-select" bind:value={signalingUrl} onchange={() => setStoredSignalingUrl(signalingUrl)}>
 								{#each SIGNALING_PRESETS as preset}
 									<option value={preset.url}>{preset.label}</option>
 								{/each}
 							</select>
 							<span class="sharing-hint">
-								{SIGNALING_PRESETS.find(p => p.url === signalingUrl)?.description ?? 'Routes the initial handshake (encrypted).'}
+								{SIGNALING_PRESETS.find(p => p.url === signalingUrl)?.description ?? $_('sharing.signalingBackendDefaultHint')}
 							</span>
 						</label>
 
 						{#if signalingUrl === ''}
 							<label class="sharing-label">
-								Worker URL
+								{$_('sharing.serverOptions.workerUrl')}
 								<input type="url" class="sharing-input mono-input" placeholder="https://ct-signaling.yourname.workers.dev" bind:value={signalingUrl} onblur={() => setStoredSignalingUrl(signalingUrl)} />
 							</label>
 						{/if}
 
 						<label class="sharing-label">
-							STUN server
+							{$_('sharing.serverOptions.stunServer')}
 							<select class="sharing-select" bind:value={stunPreset} onchange={() => setStoredStunPreset(stunPreset)}>
 								{#each STUN_PRESETS as preset}
-									<option value={preset.label}>{preset.label}</option>
+									<option value={preset.label}>{$_(STUN_LABEL_KEYS[preset.label] || preset.label)}</option>
 								{/each}
 							</select>
 							<span class="sharing-hint">
-								{STUN_PRESETS.find(p => p.label === stunPreset)?.description ?? ''}
+								{$_(STUN_DESC_KEYS[stunPreset] || '')}
 							</span>
 						</label>
 
 						{#if stunPreset === 'Custom'}
 							<label class="sharing-label">
-								Custom STUN URL
+								{$_('sharing.serverOptions.customStunUrl')}
 								<input type="url" class="sharing-input mono-input" placeholder="stun:stun.example.com:3478" bind:value={customStunUrl} onblur={() => setStoredCustomStunUrl(customStunUrl)} />
 							</label>
 						{/if}
 
 						<label class="sharing-label">
-							TURN relay
+							{$_('sharing.serverOptions.turnRelay')}
 							<select class="sharing-select" bind:value={turnPreset} onchange={() => setStoredTurnPreset(turnPreset)}>
 								{#each TURN_PRESETS as preset}
-									<option value={preset.label}>{preset.label}</option>
+									<option value={preset.label}>{$_(TURN_LABEL_KEYS[preset.label] || preset.label)}</option>
 								{/each}
 							</select>
 							<span class="sharing-hint">
-								{TURN_PRESETS.find(p => p.label === turnPreset)?.description ?? ''}
+								{$_(TURN_DESC_KEYS[turnPreset] || '')}
 							</span>
 						</label>
 
 						{#if turnPreset === 'Cloudflare TURN' || turnPreset === 'Custom'}
 							<div class="custom-turn-fields">
 								<label class="sharing-label">
-									TURN URL
+									{$_('sharing.serverOptions.turnUrl')}
 									<input type="url" class="sharing-input mono-input" placeholder="turn:turn.example.com:3478" bind:value={customTurn.url} onblur={() => setStoredCustomTurnConfig(customTurn)} />
 								</label>
 								<label class="sharing-label">
-									Username
-									<input type="text" class="sharing-input" placeholder="username" bind:value={customTurn.username} onblur={() => setStoredCustomTurnConfig(customTurn)} />
+									{$_('sharing.serverOptions.username')}
+									<input type="text" class="sharing-input" placeholder={$_('sharing.serverOptions.usernamePlaceholder')} bind:value={customTurn.username} onblur={() => setStoredCustomTurnConfig(customTurn)} />
 								</label>
 								<label class="sharing-label">
-									Credential
-									<input type="password" class="sharing-input" placeholder="credential" bind:value={customTurn.credential} onblur={() => setStoredCustomTurnConfig(customTurn)} />
+									{$_('sharing.serverOptions.credential')}
+									<input type="password" class="sharing-input" placeholder={$_('sharing.serverOptions.credentialPlaceholder')} bind:value={customTurn.credential} onblur={() => setStoredCustomTurnConfig(customTurn)} />
 								</label>
 							</div>
 						{/if}
 
 						<div class="privacy-note">
-							<span class="sharing-hint">All SDP data is encrypted before leaving your device. STUN only sees your IP. TURN relays encrypted data — cannot read content.</span>
+							<span class="sharing-hint">{$_('sharing.privacyNote')}</span>
 						</div>
 
 						<!-- Test signaling button -->
 						<button class="btn-secondary btn-with-icon" onclick={handleTestSignaling} disabled={testingSignaling} style="font-size: var(--text-sm)">
 							{#if testingSignaling}
 								<Loader2 size={14} class="spin-icon" />
-								Testing...
+								{$_('sharing.testSignalingLoading')}
 							{:else}
-								Test signaling
+								{$_('sharing.testSignalingButton')}
 							{/if}
 						</button>
 						{#if signalingTestResult}
 							<div class="test-result" class:test-ok={signalingTestResult.reachable} class:test-fail={!signalingTestResult.reachable}>
 								{#if signalingTestResult.reachable}
-									Reachable ({signalingTestResult.latencyMs}ms)
+									{$_('sharing.testSignalingReachable', { values: { latencyMs: signalingTestResult.latencyMs } })}
 								{:else}
-									Unreachable — try a different backend
+									{$_('sharing.testSignalingUnreachable')}
 								{/if}
 							</div>
 						{/if}
 
 						<!-- Connection reliability guide -->
 						<button class="setup-guide-toggle" onclick={() => showSetupGuide = !showSetupGuide}>
-							<span>Deploy your own relay (recommended)</span>
+							<span>{$_('sharing.deploy.guideToggle')}</span>
 							{#if showSetupGuide}<ChevronUp size={14} />{:else}<ChevronDown size={14} />{/if}
 						</button>
 
@@ -880,43 +906,43 @@
 							<div class="setup-guide">
 								<div class="tier-card">
 									<div class="tier-header">
-										<span class="tier-badge tier-basic">Basic</span>
-										<span class="tier-label">No setup needed</span>
+										<span class="tier-badge tier-basic">{$_('sharing.deploy.tierBasicBadge')}</span>
+										<span class="tier-label">{$_('sharing.deploy.tierBasicLabel')}</span>
 									</div>
-									<p class="tier-desc">Uses free public servers. Works on the same WiFi network. Cross-network connections may be unreliable.</p>
-									<div class="tier-config">ntfy.sh + Google STUN + Open Relay TURN</div>
+									<p class="tier-desc">{$_('sharing.deploy.tierBasicDesc')}</p>
+									<div class="tier-config">{$_('sharing.deploy.tierBasicConfig')}</div>
 								</div>
 
 								<div class="tier-card tier-recommended">
 									<div class="tier-header">
-										<span class="tier-badge tier-cf">Advanced</span>
-										<span class="tier-label">Your own private relay</span>
+										<span class="tier-badge tier-cf">{$_('sharing.deploy.tierAdvancedBadge')}</span>
+										<span class="tier-label">{$_('sharing.deploy.tierAdvancedLabel')}</span>
 									</div>
-									<p class="tier-desc">Works everywhere. Free. Takes 2 minutes. No credit card needed.</p>
+									<p class="tier-desc">{$_('sharing.deploy.tierAdvancedDesc')}</p>
 									<div class="tier-steps">
 										<div class="tier-step">
 											<span class="tier-step-num">1</span>
 											<div class="tier-step-content">
-												<span class="tier-step-title">Deploy your relay</span>
-												<span class="tier-step-desc">You'll need a free <a href="https://github.com/signup" target="_blank" rel="noopener">GitHub</a> and <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">Cloudflare</a> account. Cloudflare creates a copy of the relay code and deploys it for you.</span>
+												<span class="tier-step-title">{$_('sharing.deploy.step1Title')}</span>
+												<span class="tier-step-desc">{$_('sharing.deploy.step1Desc')}</span>
 												<a href={CF_DEPLOY_URL} target="_blank" rel="noopener" class="tier-deploy-btn">
 													<ExternalLink size={14} />
-													Deploy to Cloudflare (one click)
+													{$_('sharing.deploy.step1Button')}
 												</a>
 											</div>
 										</div>
 										<div class="tier-step">
 											<span class="tier-step-num">2</span>
 											<div class="tier-step-content">
-												<span class="tier-step-title">Copy your Worker URL</span>
-												<span class="tier-step-desc">After deploying, Cloudflare shows your URL. It looks like <code>ct-signaling.you.workers.dev</code>. Select "My Cloudflare Worker" in the dropdown above and paste it in.</span>
+												<span class="tier-step-title">{$_('sharing.deploy.step2Title')}</span>
+												<span class="tier-step-desc">{$_('sharing.deploy.step2Desc')}</span>
 											</div>
 										</div>
 										<div class="tier-step">
 											<span class="tier-step-num">3</span>
 											<div class="tier-step-content">
-												<span class="tier-step-title">Share the URL with your partner</span>
-												<span class="tier-step-desc">Your partner pastes the same URL into their app. Only one person needs to deploy — both use the same relay.</span>
+												<span class="tier-step-title">{$_('sharing.deploy.step3Title')}</span>
+												<span class="tier-step-desc">{$_('sharing.deploy.step3Desc')}</span>
 											</div>
 										</div>
 									</div>
@@ -930,10 +956,10 @@
 
 								<div class="tier-card">
 									<div class="tier-header">
-										<span class="tier-badge tier-self">Self-hosted</span>
-										<span class="tier-label">Full control</span>
+										<span class="tier-badge tier-self">{$_('sharing.deploy.tierSelfHostedBadge')}</span>
+										<span class="tier-label">{$_('sharing.deploy.tierSelfHostedLabel')}</span>
 									</div>
-									<p class="tier-desc">Run your own signaling server + TURN relay. Zero third-party dependencies.</p>
+									<p class="tier-desc">{$_('sharing.deploy.tierSelfHostedDesc')}</p>
 									<a href="https://github.com/cybersader/obsidian-contractions-timer/tree/main/web/cf-signaling#self-hosting" target="_blank" rel="noopener" class="tier-link">
 										<ExternalLink size={12} />
 										Setup instructions
@@ -951,7 +977,7 @@
 							<Loader2 size={18} class="spin-icon" />
 							{phaseLabel(connectPhase)}
 						{:else}
-							Start sharing
+							{$_('sharing.startSharingButton')}
 						{/if}
 					</button>
 					<button
@@ -960,7 +986,7 @@
 						onclick={() => quickAction = quickAction === 'join' ? 'none' : 'join'}
 						disabled={isStarting}
 					>
-						Join room
+						{$_('sharing.joinRoomButton')}
 					</button>
 				</div>
 
@@ -970,20 +996,20 @@
 						{#if !scanning}
 							<button class="btn-scan-qr" onclick={() => startQRScan('room')}>
 								<Camera size={18} />
-								Scan QR code
+								{$_('sharing.scanQrCodeButton')}
 							</button>
 						{/if}
 
 						<label class="sharing-label">
-							Room code
-							<input type="text" class="sharing-input" placeholder="blue-tiger-42" bind:value={joinCode} />
+							{$_('sharing.roomCodeLabel')}
+							<input type="text" class="sharing-input" placeholder={$_('sharing.roomCodePlaceholder')} bind:value={joinCode} />
 						</label>
 						<button class="btn-primary btn-with-icon" onclick={handleJoin} disabled={!joinCode.trim() || !userName.trim() || isJoining}>
 							{#if isJoining}
 								<Loader2 size={18} class="spin-icon" />
 								{phaseLabel(connectPhase)}
 							{:else}
-								Connect
+								{$_('sharing.connectButton')}
 							{/if}
 						</button>
 					</div>
@@ -993,46 +1019,46 @@
 
 			<button class="btn-text private-connect-link" onclick={() => view = 'live-private'}>
 				<Shield size={14} />
-				Use private connect instead
+				{$_('sharing.usePrivateConnect')}
 			</button>
 
 		{:else if view === 'live-private'}
-			<button class="back-link" onclick={() => view = 'live-quick'}>← Back</button>
+			<button class="back-link" onclick={() => view = 'live-quick'}>&larr; {$_('sharing.backButton')}</button>
 
 			<div class="private-explainer">
 				<div class="private-explainer-header">
 					<Shield size={20} />
-					<span class="private-explainer-title">Private connect</span>
+					<span class="private-explainer-title">{$_('sharing.privateConnectTitle')}</span>
 				</div>
-				<p class="private-explainer-desc">Connect by exchanging invite codes manually — no relay server touches your data.</p>
+				<p class="private-explainer-desc">{$_('sharing.privateConnectDesc')}</p>
 
 				<div class="private-explainer-details">
 					<div class="private-detail">
 						<span class="private-detail-icon">1</span>
-						<span>One person creates an invite and shares the code</span>
+						<span>{$_('sharing.privateStep1')}</span>
 					</div>
 					<div class="private-detail">
 						<span class="private-detail-icon">2</span>
-						<span>The other person accepts and sends back a response code</span>
+						<span>{$_('sharing.privateStep2')}</span>
 					</div>
 					<div class="private-detail">
 						<span class="private-detail-icon">3</span>
-						<span>Once exchanged, you're connected peer-to-peer</span>
+						<span>{$_('sharing.privateStep3')}</span>
 					</div>
 				</div>
 
 				<div class="private-warning">
 					<div class="private-warning-header">
 						<WifiOff size={14} />
-						<span>Connection limitations</span>
+						<span>{$_('sharing.connectionLimitationsTitle')}</span>
 					</div>
-					<p class="private-warning-text">Without a TURN relay server, this <strong>only works reliably on the same WiFi network</strong>. Connections across different networks (mobile data, different WiFi, corporate firewalls) will usually fail because NAT/firewall rules block direct peer-to-peer traffic.</p>
-					<p class="private-warning-text">For reliable cross-network connections, use <strong>Quick Connect</strong> with a Cloudflare Worker relay instead — it's free, takes 2 minutes to set up, and works everywhere.</p>
+					<p class="private-warning-text">{$_('sharing.connectionLimitationsText')}</p>
+					<p class="private-warning-text">{$_('sharing.connectionLimitationsAdvice')}</p>
 				</div>
 
 				<details class="private-turn-hint">
-					<summary>Already have a TURN server?</summary>
-					<p>If you've configured a TURN relay in Quick Connect's server options, private connect will use it too. With TURN, private connect works across any network — you get full privacy <em>and</em> reliability.</p>
+					<summary>{$_('sharing.privateTurnHint.summary')}</summary>
+					<p>{$_('sharing.privateTurnHint.detail')}</p>
 				</details>
 			</div>
 
@@ -1041,50 +1067,50 @@
 				<div class="sharing-section">
 					<div class="invite-banner">
 						<Shield size={20} />
-						<span>You've received a private invite!</span>
+						<span>{$_('sharing.receivedInviteBanner')}</span>
 					</div>
 
 					<label class="sharing-label">
-						Enter your name to connect
+						{$_('sharing.enterNameToConnect')}
 						<input
 							type="text"
 							class="sharing-input"
-							placeholder="Your name"
+							placeholder={$_('sharing.yourNamePlaceholder')}
 							bind:value={userName}
 							maxlength={30}
 						/>
 						{#if !userName.trim()}
-							<span class="sharing-hint name-required">Name required to connect</span>
+							<span class="sharing-hint name-required">{$_('sharing.nameRequired')}</span>
 						{/if}
 					</label>
 
 					<button class="btn-primary" onclick={handlePrivateJoin} disabled={!userName.trim()}>
-						Connect
+						{$_('sharing.connectButton')}
 					</button>
 
 					<button class="btn-text" onclick={() => { hasInviteToAccept = false; privateOfferInput = ''; }}>
-						Enter code manually instead
+						{$_('sharing.enterCodeManually')}
 					</button>
 				</div>
 			{:else}
 				<!-- Normal flow: create or accept invite -->
 				<div class="sharing-section">
 					<label class="sharing-label">
-						Your name
-						<input type="text" class="sharing-input" placeholder="Mom, Partner, etc." bind:value={userName} maxlength={30} />
+						{$_('sharing.yourNameLabel')}
+						<input type="text" class="sharing-input" placeholder={$_('sharing.yourNamePlaceholder')} bind:value={userName} maxlength={30} />
 					</label>
 
 					<!-- Action buttons: Create or Accept -->
 					<div class="action-buttons">
 						<button class="btn-primary" onclick={handlePrivateHost} disabled={!userName.trim()}>
-							Create invite
+							{$_('sharing.createInviteButton')}
 						</button>
 						<button
 							class="btn-secondary"
 							class:btn-active={privateAction === 'accept'}
 							onclick={() => privateAction = privateAction === 'accept' ? 'none' : 'accept'}
 						>
-							Accept invite
+							{$_('sharing.acceptInviteButton')}
 						</button>
 					</div>
 
@@ -1094,16 +1120,16 @@
 							{#if !scanning}
 								<button class="btn-scan-qr" onclick={() => startQRScan('offer')}>
 									<Camera size={18} />
-									Scan invite QR
+									{$_('sharing.scanInviteQrButton')}
 								</button>
 							{/if}
 
 							<label class="sharing-label">
-								Invite code
-								<input type="text" class="sharing-input mono-input" placeholder="Paste the invite code here..." bind:value={privateOfferInput} />
+								{$_('sharing.inviteCodeLabel')}
+								<input type="text" class="sharing-input mono-input" placeholder={$_('sharing.inviteCodePlaceholder')} bind:value={privateOfferInput} />
 							</label>
 							<button class="btn-primary btn-with-icon" onclick={handlePrivateJoin} disabled={!privateOfferInput.trim() || !userName.trim()}>
-								Connect
+								{$_('sharing.connectButton')}
 							</button>
 						</div>
 					{/if}
@@ -1115,7 +1141,7 @@
 		<div class="sharing-status">
 			<div class="connecting-spinner"></div>
 			<p class="status-text">{phaseLabel(connectPhase)}</p>
-			<button class="btn-text" onclick={handleStop}>Cancel</button>
+			<button class="btn-text" onclick={handleStop}>{$_('common.cancel')}</button>
 		</div>
 
 	{:else if status === 'hosting' || status === 'joined'}
@@ -1123,17 +1149,17 @@
 		<div class="sharing-section">
 			{#if status === 'hosting' && shareMode === 'quick'}
 				{#if qrDataUrl}
-					<button class="qr-container" onclick={() => fullscreenQr = qrDataUrl} aria-label="Tap to enlarge QR code">
-						<img src={qrDataUrl} alt="QR code for room {roomCode}" class="qr-image" />
+					<button class="qr-container" onclick={() => fullscreenQr = qrDataUrl} aria-label={$_('sharing.tapToEnlargeHint')}>
+						<img src={qrDataUrl} alt={$_('sharing.qrRoomCodeAlt', { values: { roomCode } })} class="qr-image" />
 					</button>
-					<p class="qr-tap-hint">Tap to enlarge</p>
+					<p class="qr-tap-hint">{$_('sharing.tapToEnlargeHint')}</p>
 				{/if}
 
 				<div class="code-box">
-					<span class="code-box-label">Room code</span>
+					<span class="code-box-label">{$_('sharing.roomCodeLabel')}</span>
 					<div class="code-row">
 						<code class="code-value code-lg">{roomCode}</code>
-						<button class="icon-btn" onclick={() => handleCopy(roomCode!, 'Room code')} aria-label="Copy room code">
+						<button class="icon-btn" onclick={() => handleCopy(roomCode!, $_('sharing.roomCodeLabel'))} aria-label={$_('sharing.copyFeedbackSuccess', { values: { label: $_('sharing.roomCodeLabel') } })}>
 							<Copy size={16} />
 						</button>
 					</div>
@@ -1141,52 +1167,52 @@
 
 				<div class="share-buttons">
 					{#if typeof navigator !== 'undefined' && navigator.share}
-						<button class="btn-secondary share-btn" onclick={() => handleNativeShare('Join my contraction timer', `Room: ${roomCode}`, getRoomUrl(roomCode!, password || undefined))}>
+						<button class="btn-secondary share-btn" onclick={() => handleNativeShare($_('sharing.snapshot.nativeShareTitle'), `Room: ${roomCode}`, getRoomUrl(roomCode!, password || undefined))}>
 							<Share2 size={16} />
-							Share link
+							{$_('sharing.shareLinkButton')}
 						</button>
 					{/if}
-					<button class="btn-secondary share-btn" onclick={() => handleCopy(getRoomUrl(roomCode!, password || undefined), 'Link')}>
+					<button class="btn-secondary share-btn" onclick={() => handleCopy(getRoomUrl(roomCode!, password || undefined), $_('common.copyLink'))}>
 						<Copy size={16} />
-						Copy link
+						{$_('common.copyLink')}
 					</button>
 				</div>
 
 				{#if password}
 					<div class="code-box">
-						<span class="code-box-label">Password</span>
+						<span class="code-box-label">{$_('sharing.passwordLabel')}</span>
 						<div class="code-row">
 							<code class="code-value">{password}</code>
-							<button class="icon-btn" onclick={() => handleCopy(password, 'Password')} aria-label="Copy password">
+							<button class="icon-btn" onclick={() => handleCopy(password, $_('sharing.passwordLabel'))} aria-label={$_('sharing.copyFeedbackSuccess', { values: { label: $_('sharing.passwordLabel') } })}>
 								<Copy size={16} />
 							</button>
 						</div>
-						<span class="sharing-hint">Share this with your partner</span>
+						<span class="sharing-hint">{$_('sharing.passwordHintVisible')}</span>
 					</div>
 				{/if}
 
 				{#if connectPhase === 'waiting-for-partner'}
 					<div class="waiting-hint">
 						<div class="connecting-spinner small-spinner"></div>
-						Waiting for partner to join...
+						{$_('sharing.waitingForPartnerToJoin')}
 					</div>
 				{/if}
 			{:else}
 				<div class="joined-header">
 					<Wifi size={18} class="connected-icon" />
 					<span>
-						Connected
+						{$_('sharing.connectedLabel')}
 						{#if shareMode === 'private'}
-							<span class="privacy-badge"><Shield size={12} /> Private</span>
+							<span class="privacy-badge"><Shield size={12} /> {$_('sharing.privateBadge')}</span>
 						{/if}
 						{#if roomCode}
-							to <strong>{roomCode}</strong>
+							{$_('sharing.connectedTo', { values: { roomCode } })}
 						{/if}
 					</span>
 				</div>
 				{#if status === 'joined'}
 					<div class="joined-mode">
-						Mode: {currentMode === 'collaborative' ? 'View and edit together' : 'View only'}
+						{$_('sharing.modeLabel', { values: { mode: currentMode === 'collaborative' ? $_('sharing.modeCollaborative') : $_('sharing.modeViewOnly') } })}
 					</div>
 				{/if}
 			{/if}
@@ -1198,12 +1224,12 @@
 			<div class="peer-list">
 				<div class="peer-list-header">
 					<Users size={16} />
-					<span>Connected ({peers.length})</span>
+					<span>{$_('sharing.connectedPeersHeader', { values: { count: peers.length } })}</span>
 				</div>
 				{#each peers as peer}
 					<div class="peer-row">
 						<span class="peer-name">
-							{peer.name}{peer.isOwner ? ' (host)' : ''}
+							{peer.name}{peer.isOwner ? ` ${$_('sharing.peerHostSuffix')}` : ''}
 						</span>
 						{#if currentMode === 'view-only' && !peer.isOwner}
 							<Eye size={14} class="peer-icon" />
@@ -1215,7 +1241,7 @@
 			</div>
 
 			<button class="btn-danger" onclick={handleStop}>
-				{status === 'hosting' ? 'Stop sharing' : 'Disconnect'}
+				{status === 'hosting' ? $_('sharing.stopSharingButton') : $_('sharing.disconnectButton')}
 			</button>
 		</div>
 	{/if}
@@ -1230,45 +1256,45 @@
 
 	{#if diagnostics}
 		<details class="diagnostics-panel">
-			<summary class="diagnostics-toggle">Connection details</summary>
+			<summary class="diagnostics-toggle">{$_('sharing.connectionDetailsToggle')}</summary>
 			<div class="diagnostics-content">
 				{#if diagnostics.ice}
 					<div class="diag-row">
-						<span class="diag-label">ICE candidates</span>
-						<span class="diag-value">{diagnostics.ice.candidateCount} total</span>
+						<span class="diag-label">{$_('sharing.diagnostics.iceCandidates')}</span>
+						<span class="diag-value">{diagnostics.ice.candidateCount} {$_('sharing.diagnostics.total')}</span>
 					</div>
 					<div class="diag-row">
-						<span class="diag-label">Host (local)</span>
+						<span class="diag-label">{$_('sharing.diagnostics.hostLocal')}</span>
 						<span class="diag-value">{diagnostics.ice.hostCandidates}</span>
 					</div>
 					<div class="diag-row">
-						<span class="diag-label">STUN (srflx)</span>
-						<span class="diag-value" class:diag-warn={diagnostics.ice.srflxCandidates === 0}>{diagnostics.ice.srflxCandidates || 'none'}</span>
+						<span class="diag-label">{$_('sharing.diagnostics.stunSrflx')}</span>
+						<span class="diag-value" class:diag-warn={diagnostics.ice.srflxCandidates === 0}>{diagnostics.ice.srflxCandidates || $_('sharing.diagnostics.none')}</span>
 					</div>
 					<div class="diag-row">
-						<span class="diag-label">TURN (relay)</span>
-						<span class="diag-value" class:diag-warn={diagnostics.ice.relayCandidates === 0}>{diagnostics.ice.relayCandidates || 'none'}</span>
+						<span class="diag-label">{$_('sharing.diagnostics.turnRelay')}</span>
+						<span class="diag-value" class:diag-warn={diagnostics.ice.relayCandidates === 0}>{diagnostics.ice.relayCandidates || $_('sharing.diagnostics.none')}</span>
 					</div>
 					<div class="diag-row">
-						<span class="diag-label">Gather time</span>
+						<span class="diag-label">{$_('sharing.diagnostics.gatherTime')}</span>
 						<span class="diag-value">{diagnostics.ice.gatherTimeMs}ms</span>
 					</div>
 				{/if}
 				{#if diagnostics.signalingBackend}
 					<div class="diag-row">
-						<span class="diag-label">Signaling</span>
+						<span class="diag-label">{$_('sharing.diagnostics.signaling')}</span>
 						<span class="diag-value">{diagnostics.signalingBackend}</span>
 					</div>
 				{/if}
 				{#if diagnostics.usedFallback}
 					<div class="diag-row diag-row-warn">
-						<span class="diag-label">Fallback</span>
-						<span class="diag-value">Using ntfy.sh (primary unreachable)</span>
+						<span class="diag-label">{$_('sharing.diagnostics.fallback')}</span>
+						<span class="diag-value">{$_('sharing.diagnostics.fallbackDetail')}</span>
 					</div>
 				{/if}
 				{#if diagnostics.failureReason}
 					<div class="diag-row diag-row-warn">
-						<span class="diag-label">Warning</span>
+						<span class="diag-label">{$_('sharing.diagnostics.warning')}</span>
 						<span class="diag-value diag-warn">{diagnostics.failureReason}</span>
 					</div>
 				{/if}
@@ -1286,9 +1312,9 @@
 			<canvas bind:this={scanCanvasEl} class="scan-canvas"></canvas>
 			<div class="scan-overlay">
 				<div class="scan-frame"></div>
-				<p class="scan-hint-text">Point camera at QR code</p>
+				<p class="scan-hint-text">{$_('sharing.scannerHint')}</p>
 			</div>
-			<button class="scan-close-btn" onclick={stopQRScan} aria-label="Close scanner">
+			<button class="scan-close-btn" onclick={stopQRScan} aria-label={$_('common.close')}>
 				&times;
 			</button>
 		</div>
@@ -1297,11 +1323,11 @@
 	{/if}
 
 	{#if fullscreenQr}
-		<button class="qr-fullscreen" onclick={() => fullscreenQr = ''} aria-label="Close enlarged QR code">
+		<button class="qr-fullscreen" onclick={() => fullscreenQr = ''} aria-label={$_('sharing.qrFullscreenCloseHint')}>
 			<div class="qr-fullscreen-card">
-				<img src={fullscreenQr} alt="QR code (enlarged)" class="qr-fullscreen-img" />
+				<img src={fullscreenQr} alt={$_('sharing.qrEnlargedAlt')} class="qr-fullscreen-img" />
 			</div>
-			<p class="qr-fullscreen-hint">Tap anywhere to close</p>
+			<p class="qr-fullscreen-hint">{$_('sharing.qrFullscreenCloseHint')}</p>
 		</button>
 	{/if}
 </div>
@@ -1415,6 +1441,13 @@
 		font-size: var(--text-sm);
 		font-weight: 700;
 		color: var(--text-primary);
+	}
+
+	.experimental-tag {
+		font-size: var(--text-xs);
+		font-weight: 500;
+		color: var(--warning);
+		opacity: 0.85;
 	}
 
 	.live-card-desc {

@@ -1,0 +1,1155 @@
+{
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "close": "关闭",
+    "back": "返回",
+    "delete": "删除",
+    "confirm": "确认",
+    "none": "无",
+    "skip": "跳过",
+    "continue": "继续",
+    "share": "分享",
+    "import": "导入",
+    "copyLink": "复制链接"
+  },
+  "nav": {
+    "timer": "计时器",
+    "dashboard": "仪表盘",
+    "history": "历史",
+    "advisor": "顾问",
+    "mainNavAriaLabel": "主导航",
+    "brandTitle": "contractions.app",
+    "goToTimerAriaLabel": "前往计时器",
+    "shareSessionAriaLabel": "分享会话",
+    "menuAriaLabel": "菜单",
+    "openMenuAriaLabel": "打开菜单",
+    "menu": "菜单"
+  },
+  "menu": {
+    "drawerTitle": "菜单",
+    "closeMenuAriaLabel": "关闭菜单",
+    "closeAriaLabel": "关闭",
+    "backToMenuAriaLabel": "返回菜单",
+    "sharingTitle": "共享",
+    "sharingHintConnected": "已连接（{count} 个设备）",
+    "settingsTitle": "设置",
+    "themeTitle": "主题",
+    "sessionsTitle": "会话",
+    "devToolsTitle": "开发者工具",
+    "prayersTitle": "祈祷",
+    "aboutTitle": "关于",
+    "items": {
+      "sharing": "共享",
+      "settings": "设置",
+      "theme": "主题",
+      "sessions": "会话",
+      "exportData": "导出数据 (JSON)",
+      "importData": "导入数据",
+      "restartSetup": "重新设置",
+      "restartSetupHint": "重新运行欢迎向导（数据将保留）",
+      "about": "关于",
+      "feedbackAndIssues": "反馈与问题",
+      "prayers": "祈祷",
+      "devTools": "开发者工具",
+      "clearAllData": "清除所有数据"
+    },
+    "importError": "文件格式无效",
+    "clearConfirm": {
+      "prompt": "删除所有宫缩数据？",
+      "confirmButton": "是的，清除全部",
+      "cancelButton": "取消"
+    },
+    "about": {
+      "appName": "宫缩计时器",
+      "description": "跟踪宫缩，评估产程模式，了解何时前往医院。",
+      "features": {
+        "liveTimer": "实时计时器与波形图",
+        "rule511": "5-1-1 规则跟踪",
+        "braxtonHicks": "假性宫缩评估",
+        "hospitalAdvisor": "就医出发顾问",
+        "clinicalReference": "临床参考指南"
+      },
+      "privacyNotice": "所有数据保存在本设备上。无需账户，无服务器，无追踪。",
+      "githubLink": "GitHub",
+      "feedbackLink": "反馈与问题"
+    },
+    "theme": {
+      "lightMode": "浅色",
+      "darkMode": "深色",
+      "uniqueMode": "独特",
+      "colorPaletteLabel": "调色板",
+      "darkCardStyle": "深色",
+      "lightCardStyle": "浅色",
+      "paletteNames": {
+        "soft": "柔和",
+        "clinical": "临床",
+        "warm": "温暖",
+        "ocean": "海洋",
+        "forest": "森林",
+        "sunset": "日落",
+        "lavender": "薰衣草",
+        "midnight": "午夜",
+        "sky": "天空",
+        "blush": "腮红"
+      },
+      "uniqueModeLabels": {
+        "soft": "Aurora",
+        "clinical": "Terminal",
+        "warm": "Cathedral",
+        "ocean": "Abyss",
+        "forest": "Shire",
+        "sunset": "Retrowave",
+        "lavender": "Frost",
+        "midnight": "Galaxy",
+        "sky": "Dreamscape",
+        "blush": "Sakura"
+      }
+    },
+    "languageSelector": {
+      "changeLanguageAriaLabel": "更改语言",
+      "closeMenuAriaLabel": "关闭语言菜单"
+    },
+    "devtools": {
+      "loadSeedData": "加载测试数据",
+      "seedHint": "用逼真的模拟数据替换当前会话，用于测试。",
+      "quickActions": "快捷操作",
+      "clearSession": "清除会话",
+      "clearSessionDesc": "重置为空状态",
+      "loadedToast": "已加载！",
+      "debugLogging": "调试日志",
+      "debugLoggingHint": "在测试功能时捕获诊断数据。复制日志并粘贴以分享。",
+      "enableLogging": "启用日志",
+      "copyLog": "复制日志（{count} 条记录）",
+      "copyLogDesc": "将完整诊断日志复制到剪贴板",
+      "clearLog": "清除日志",
+      "clearLogDesc": "删除所有日志条目",
+      "copiedFeedback": "已复制！",
+      "copyFailedFeedback": "复制失败",
+      "clearedFeedback": "已清除！",
+      "archivePrompt": "当前会话中有 {count} 次宫缩。",
+      "archiveCurrentAndLoad": "归档当前并加载",
+      "replaceCurrentSession": "替换当前会话",
+      "seeds": {
+        "singleLabel": "1 次宫缩",
+        "singleDesc": "刚开始记录",
+        "earlyLabel": "早期产程",
+        "earlyDesc": "5 次宫缩，不规律",
+        "activeLabel": "活跃产程",
+        "activeDesc": "12 次宫缩，规律",
+        "mixedLabel": "混合 + 间隔",
+        "mixedDesc": "13 次宫缩，2 组",
+        "transitionLabel": "过渡期",
+        "transitionDesc": "22 次宫缩 + 破水"
+      }
+    }
+  },
+  "timer": {
+    "bigButton": {
+      "start": "开始",
+      "stop": "停止",
+      "startN": "开始第 {count} 次"
+    },
+    "timerDisplay": {
+      "contractionLabel": "宫缩",
+      "restLabel": "休息",
+      "pausedLabel": "已暂停",
+      "readyLabel": "准备就绪",
+      "defaultTime": "0:00"
+    },
+    "liveRating": {
+      "pastThePeak": "已过峰值？",
+      "peakMarked": "峰值已标记"
+    },
+    "pauseOverlay": {
+      "tapToResume": "点击继续",
+      "tapToPause": "点击暂停",
+      "resumeTimerAriaLabel": "继续计时",
+      "pauseTimerAriaLabel": "暂停计时"
+    },
+    "intensityPicker": {
+      "prompt": "强度如何？",
+      "mild": "轻微",
+      "moderate": "中等",
+      "strong": "较强",
+      "veryStrong": "很强",
+      "intense": "剧烈",
+      "levelFallback": "级别 {level}"
+    },
+    "locationPicker": {
+      "prompt": "在哪里感觉到的？",
+      "lowerBelly": "下腹部",
+      "lowerBack": "腰部",
+      "allAround": "环绕全周",
+      "backToIntensityAriaLabel": "返回强度选择"
+    },
+    "eventButtons": {
+      "waterBroke": "破水了",
+      "waterBrokeAt": "破水时间 {time}",
+      "editTime": "编辑时间",
+      "undo": "撤销",
+      "remove": "移除",
+      "whenDidItHappen": "什么时候发生的？",
+      "justNow": "刚才",
+      "fiveMinAgo": "约 5 分钟前",
+      "fifteenMinAgo": "约 15 分钟前",
+      "thirtyMinAgo": "约 30 分钟前",
+      "earlier": "更早...",
+      "setCustomTime": "设置自定义时间",
+      "setTime": "设置时间",
+      "setATimeAbove": "请在上方设置时间",
+      "aroundTime": "约 {time}",
+      "moreEvents": "更多事件 ▼",
+      "fewerEvents": "收起事件 ▲",
+      "mucusPlug": "宫颈粘液栓",
+      "mucusPlugAt": "宫颈粘液栓于 {time}",
+      "bloodyShow": "见红",
+      "bloodyShowAt": "见红于 {time}"
+    },
+    "waterBreakQuickAction": {
+      "waterBroke": "破水了",
+      "waterBrokeAt": "破水时间 {time}",
+      "editTimeAriaLabel": "编辑时间",
+      "removeWaterBreakAriaLabel": "移除破水记录",
+      "undoLabel": "撤销",
+      "confirmRemoveAriaLabel": "确认移除",
+      "cancelAriaLabel": "取消",
+      "whenDidItHappen": "什么时候发生的？",
+      "closeAriaLabel": "关闭",
+      "justNow": "刚才",
+      "fiveMinAgo": "约 5 分钟前",
+      "fifteenMinAgo": "约 15 分钟前",
+      "thirtyMinAgo": "约 30 分钟前",
+      "earlier": "更早...",
+      "setCustomTime": "设置自定义时间",
+      "setTime": "设置时间",
+      "setATimeAbove": "请在上方设置时间",
+      "aroundTime": "约 {time}"
+    },
+    "sessionControls": {
+      "undoLast": "撤销上一次",
+      "newSession": "新会话",
+      "archiveAndStartNew": "归档 + 开始新会话"
+    },
+    "untimedEntry": {
+      "logPastContraction": "记录过去的宫缩",
+      "formIntro": "错过了一次？在这里记录。",
+      "whenLabel": "时间",
+      "minutesAgo": "{count} 分钟前",
+      "earlierAriaLabel": "更早",
+      "moreRecentAriaLabel": "更近",
+      "durationLabel": "持续时间",
+      "shorterAriaLabel": "更短",
+      "longerAriaLabel": "更长",
+      "intensityLabel": "强度",
+      "optional": "可选",
+      "locationLabel": "位置",
+      "front": "前方",
+      "back": "后方",
+      "wrap": "环绕",
+      "logContraction": "记录宫缩"
+    },
+    "welcomeState": {
+      "title": "宫缩计时器",
+      "description": "宫缩开始时点击下方按钮。结束时再次点击。",
+      "trackFeature": "跟踪时间和强度",
+      "patternFeature": "观察规律的形成"
+    },
+    "hospitalBanner": {
+      "viewAdvisorAriaLabel": "查看顾问详情"
+    },
+    "heroAction": {
+      "paused": "已暂停",
+      "tapStartPrompt": "宫缩开始时点击开始",
+      "keepTracking": "继续记录...",
+      "stageActions": {
+        "preLabor": "继续正常活动",
+        "early": "休息并补充水分 — 待在家中",
+        "active": "尽快前往医院",
+        "transition": "您应该已经在医院了"
+      },
+      "contractionMessages": {
+        "preLabor": "保持放松...",
+        "early": "慢慢来，放轻松...",
+        "active": "深呼吸...",
+        "transition": "一次一个 — 您可以的"
+      },
+      "defaultContractionMessage": "深呼吸...",
+      "waterBrokeActive": "破水了 + 活跃产程 — 前往医院",
+      "waterBrokeTransition": "您应该已经在医院了",
+      "waterBrokeDefault": "破水了 — 联系您的医生",
+      "detailTemplate": "约 {interval} 分钟间隔 · 约 {duration} 秒平均"
+    },
+    "heroCompactTimer": {
+      "paused": "已暂停",
+      "readyToStart": "准备开始",
+      "contractingPrefix": "宫缩中：{time}",
+      "restPrefix": "休息：{restTime}",
+      "restAndLast": "休息：{restTime} · 上次：{lastTime}"
+    },
+    "quickStats": {
+      "avgDuration": "平均持续",
+      "avgInterval": "平均间隔",
+      "total": "总计",
+      "noDataPlaceholder": "—"
+    },
+    "recentContractions": {
+      "noCompleted": "尚无已完成的宫缩。"
+    },
+    "timerPage": {
+      "sharingBanner": "正在与 {count} 位伙伴共享",
+      "sections": {
+        "quickStats": "快速统计",
+        "recent": "最近",
+        "guidance": "指导"
+      }
+    },
+    "laborStages": {
+      "preLabor": "前驱产程",
+      "early": "早期产程",
+      "active": "活跃产程",
+      "transition": "过渡期"
+    }
+  },
+  "dashboard": {
+    "pageTitle": "仪表盘",
+    "sections": {
+      "summary": "概要",
+      "waveChart": "波形图",
+      "stageProgress": "产程进展",
+      "trendAnalysis": "趋势分析",
+      "patternAssessment": "模式评估"
+    },
+    "emptyState": {
+      "title": "暂无数据",
+      "hint": "开始计时宫缩，即可在此查看模式、波形图和产程分析。"
+    },
+    "summary": {
+      "contractions": "宫缩次数",
+      "avgDuration": "平均持续",
+      "avgInterval": "平均间隔"
+    },
+    "stageBar": {
+      "beenHere": "已在此阶段 {elapsed}",
+      "typical": "典型：{range}",
+      "location": "位置：{location}"
+    },
+    "progression": {
+      "needMore": "需要 4 次以上宫缩才能分析趋势",
+      "trendsTitle": "趋势",
+      "gapBetween": "宫缩间隔：",
+      "eachContraction": "每次宫缩：",
+      "gettingCloser": "越来越近",
+      "spreadingApart": "越来越远",
+      "lastingLonger": "持续更久",
+      "gettingShorter": "持续更短",
+      "stable": "稳定",
+      "criteriaMet": "当前已满足 {rule} 标准",
+      "estimateReach": "按此速度，约 {minutes} 分钟后可达到 {rule}",
+      "disclaimer": "基于最近 {count} 个间隔（本次会话）"
+    },
+    "braxtonHicks": {
+      "panelTitle": "模式评估",
+      "likelyRealLabor": "可能是真正的产程",
+      "likelyPractice": "可能是练习性宫缩",
+      "mixedSignals": "信号混合",
+      "disclaimer": "这是模式估计，不是诊断。"
+    },
+    "waveChart": {
+      "fitButton": "适合",
+      "nowButton": "现在 →",
+      "canvasAriaLabel": "宫缩波形图",
+      "emptyText": "宫缩将显示在此处",
+      "legend": "绿色 = 在 {minutes} 分钟内"
+    }
+  },
+  "history": {
+    "pageTitle": "历史",
+    "emptyState": {
+      "title": "暂无宫缩记录",
+      "hint": "您的宫缩历史将显示在这里。点击每条记录可编辑时间、强度或位置。"
+    },
+    "untimed": "手动记录",
+    "apart": "间隔",
+    "editor": {
+      "editingNumber": "编辑第 {num} 次",
+      "start": "开始",
+      "end": "结束",
+      "duration": "持续时间",
+      "durationPlaceholder": "M:SS",
+      "intensity": "强度",
+      "location": "位置",
+      "front": "前方",
+      "back": "后方",
+      "wrap": "环绕",
+      "confirmDelete": "确认删除"
+    },
+    "events": {
+      "waterBroke": "破水",
+      "mucusPlug": "宫颈粘液栓",
+      "bloodyShow": "见红"
+    }
+  },
+  "hospital": {
+    "pageTitle": "产程顾问",
+    "locationToggle": {
+      "atHome": "在家",
+      "onTheWay": "在路上"
+    },
+    "locationHint": {
+      "enRoute": "已移除路程时间 — 估计从现在开始计算",
+      "uncertain": "路程时间未知 — 使用约 30 分钟的保守估计",
+      "withTravel": "估计中包含 {minutes} 分钟路程"
+    },
+    "sections": {
+      "departureAdvice": "出发建议",
+      "ruleProgress": "5-1-1 规则进度",
+      "waterBreak": "破水",
+      "tips": "提示",
+      "laborGuide": "产程指南"
+    },
+    "badges": {
+      "goNow": "立即出发",
+      "timeToGo": "该出发了"
+    },
+    "range": {
+      "confidence": "{level} 置信度",
+      "yourPattern": "您的模式",
+      "factors": "因素"
+    },
+    "callProvider": "致电医生 ({phone})",
+    "rule511": {
+      "intervalCheck": "≤ {target} 分钟间隔（平均 {actual} 分钟）",
+      "durationCheck": "≥ {target} 分钟时长（平均 {actual} 秒）",
+      "sustainedCheck": "≥ {target} 分钟持续（{actual} 分钟）",
+      "howWeCalculateShow": "计算方式",
+      "howWeCalculateHide": "隐藏",
+      "explainerInterval": "间隔 — 分析窗口内宫缩开始之间的平均时间。当平均值 ≤ {target} 分钟时标记（✓）。",
+      "explainerDuration": "持续时间 — 计时宫缩的平均时长（从开始到停止）。当平均值 ≥ {target} 秒时标记。64 秒的宫缩算作\"超过 1 分钟\"。",
+      "explainerSustained": "持续性 — 该模式已持续多长时间。从您的第一次到最近一次宫缩的时间跨度。当 ≥ {target} 分钟时标记。",
+      "explainerNote": "这些是临床指南（ACOG），不是绝对规则。您的医生可能建议不同的阈值（如 4-1-1 或 3-1-1）。请在设置中调整。"
+    },
+    "waterBreakInfo": {
+      "waterBrokeAgo": "破水已 {elapsed}",
+      "addProviderPhone": "添加医生电话以便快速拨打",
+      "phonePlaceholder": "例如 555-0123",
+      "safetyNote": "注意液体颜色。清澈/淡黄色是正常的。绿色/棕色 → 立即拨打电话。",
+      "statChance": "概率",
+      "statBeforeContractions": "在宫缩开始前先破水",
+      "statWithin12Hours": "12 小时内进入活跃产程",
+      "statWithin24Hours": "24 小时内进入活跃产程",
+      "statReassure": "大多数人在一天内自然开始分娩"
+    },
+    "clinicalReference": {
+      "laborStagesTitle": "产程阶段",
+      "dilationNote": "宫口开大 = 子宫口打开程度（0 厘米 = 关闭，10 厘米 = 全开）",
+      "stageNames": {
+        "preLabor": "前驱产程",
+        "early": "早期",
+        "active": "活跃期",
+        "transition": "过渡期"
+      },
+      "stages": {
+        "preLabor": {
+          "description": "不规律的收紧感，时有时无。还不是真正的产程 — 您的身体正在做准备。",
+          "cervix": "0–3 厘米",
+          "pattern": "不规律，5–30 分钟间隔，< 30 秒",
+          "location": "前方 / 下腹部"
+        },
+        "early": {
+          "description": "宫缩变得更加规律和密集。您仍然可以在宫缩期间说话。",
+          "cervix": "3–6 厘米",
+          "pattern": "5–15 分钟间隔，30–60 秒",
+          "location": "下腹部，可能扩散"
+        },
+        "active": {
+          "description": "强烈、规律的宫缩。需要专注呼吸。大多数人在此阶段前往医院。",
+          "cervix": "6–8 厘米",
+          "pattern": "3–5 分钟间隔，45–75 秒",
+          "location": "从后方环绕至前方"
+        },
+        "transition": {
+          "description": "最强烈但最短的阶段。您可能感到压迫感、恶心和想要用力的冲动。",
+          "cervix": "8–10 厘米",
+          "pattern": "2–3 分钟间隔，60–90 秒",
+          "location": "全方位强烈感受"
+        }
+      },
+      "currentBadge": "当前",
+      "bhVsRealTitle": "假性宫缩与真正产程的区别",
+      "bhIntro": "比较您的症状，帮助区分练习性宫缩和真正的产程。",
+      "bhTag": "假性",
+      "realTag": "真实",
+      "bhCriteria": {
+        "timing": "时间",
+        "pattern": "规律",
+        "restResponse": "休息反应",
+        "location": "位置",
+        "intensity": "强度"
+      },
+      "bhDescriptions": {
+        "timingBH": "时间不规律",
+        "timingReal": "时间规律，越来越近",
+        "patternBH": "间隔不会变短",
+        "patternReal": "无论活动如何都持续出现",
+        "restBH": "运动或改变姿势后停止",
+        "restReal": "休息或运动后不会停止",
+        "locationBH": "主要在前方感觉到",
+        "locationReal": "从后方放射或环绕",
+        "intensityBH": "不会随时间变强",
+        "intensityReal": "逐渐变强"
+      },
+      "warningTitle": "何时应立即联系医生",
+      "warningSigns": {
+        "bleeding": "阴道出血如月经量或更多",
+        "babyMovement": "胎动停止或明显减少",
+        "abdominalPain": "剧烈腹痛且不缓解",
+        "headache": "剧烈头痛伴视力变化",
+        "fever": "体温超过 38°C（100.4°F）",
+        "meconium": "液体呈绿色或棕色（胎粪）"
+      },
+      "sourcesTitle": "资料来源",
+      "disclaimer": "仅为一般性指南。请始终遵循医生的指导。"
+    },
+    "emptyState": {
+      "title": "产程顾问",
+      "hint": "记录至少 3 次宫缩后，即可查看 5-1-1 进度、出发建议和时间估计。"
+    },
+    "advisor": {
+      "headlines": {
+        "keepTracking": "继续记录",
+        "goNow": "立即前往医院",
+        "timeToGo": "该出发了",
+        "startPreparing": "开始准备",
+        "notYet": "还不用",
+        "callProvider": "联系您的医生",
+        "stayComfortable": "保持舒适"
+      },
+      "details": {
+        "notEnoughData": "记录更多宫缩以获取出发建议。",
+        "transition": "检测到过渡期宫缩。您应该已在前往医院的路上。",
+        "waterAndActive": "已破水且宫缩处于活跃模式。请前往医院。",
+        "waterBroken": "已破水。请联系您的医生获取何时出发的指导。",
+        "rule511Met": "宫缩符合 5-1-1 模式。是时候前往医院了。",
+        "estimatedLeaveSoon": "按当前速度，预计约 {minutes} 分钟后达到 5-1-1 模式。考虑尽快出发。",
+        "progressing": "正在向 5-1-1 推进。按当前速度预计约 {minutes} 分钟。",
+        "activeLabor": "检测到活跃产程模式。请与医生保持密切联系。",
+        "earlyLabor": "早期产程 — 宫缩已出现但间隔仍较长。休息并保存体力。",
+        "irregular": "宫缩不规律。继续监测，等待形成稳定模式。"
+      },
+      "factors": {
+        "fewerThan2": "记录的宫缩少于 2 次",
+        "fewerThan3": "记录的宫缩少于 3 次",
+        "intervalApart": "平均间隔 {interval} 分钟",
+        "avgDuration": "平均持续 {duration} 秒",
+        "waterBrokeAgo": "破水已 {hours} 小时",
+        "waterBroken": "已破水",
+        "travelUnknown": "路程时间未知",
+        "travelTime": "{minutes} 分钟路程",
+        "travelUnknownConservative": "路程时间未知 — 使用 30 分钟估计",
+        "travelAccounted": "已包含 {minutes} 分钟路程",
+        "assumedProgression": "假设 {rate} 的进展速率",
+        "rule511Met": "已达到 5-1-1 模式",
+        "rule511Pattern": "检测到 5-1-1 模式",
+        "timeTo511": "约 {minutes} 分钟达到 5-1-1 模式"
+      },
+      "recommendations": {
+        "keepTracking": "继续计时宫缩以形成模式。",
+        "goNow": "立即前往医院。",
+        "shouldBeAtHospital": "您应该已在前往医院的路上。",
+        "headToHospital": "尽快前往医院。",
+        "planToArriveWithin": "计划在 {minutes} 分钟内到达。",
+        "planSoon": "计划尽快出发。",
+        "planWithinRange": "计划在 {range} 内出发。",
+        "estimatedRange": "预计 {range} 达到 5-1-1。",
+        "activeLeaveRange": "考虑在 {range} 内出发。",
+        "activeBagReady": "准备好待产包。活跃产程正在推进。",
+        "earlyStayHome": "留在家中休息。早期产程可能持续很多小时。",
+        "irregularContinue": "继续监测。模式尚不稳定。"
+      },
+      "pattern": {
+        "summary": "平均间隔 {interval} 分钟，持续 {duration} 秒",
+        "notEnoughData": "数据不足，无法进行模式分析"
+      },
+      "trend": {
+        "gettingCloser": "越来越近：{first} 分钟 → {last} 分钟间隔",
+        "spacingOut": "越来越远：{first} 分钟 → {last} 分钟间隔",
+        "steadyPace": "稳定节奏：约 {avg} 分钟间隔"
+      }
+    }
+  },
+  "settings": {
+    "situation": {
+      "title": "您的情况",
+      "firstBabyLabel": "是第一胎吗？",
+      "firstBabyHint": "初产通常时间更长。这会影响时间估计和产程阶段的持续时间范围。",
+      "yesFirstBaby": "是的，第一胎",
+      "noHadOneBefore": "不是，之前生过"
+    },
+    "display": {
+      "title": "显示",
+      "timeFormat": "时间格式",
+      "timeFormat12h": "12 小时制",
+      "timeFormat24h": "24 小时制",
+      "intensityScale": "强度级别",
+      "levels5": "5 级",
+      "levels3": "3 级",
+      "waveChartHeight": "波形图高度",
+      "heightSmall": "小（100px）",
+      "heightMedium": "中（150px）",
+      "heightLarge": "大（200px）",
+      "heightXLarge": "超大（250px）",
+      "heroDisplay": "主显示区",
+      "heroHint": "计时器上方的信息卡片：产程阶段标签、操作建议或紧凑计时器。",
+      "heroStageBadge": "阶段标签",
+      "heroActionCard": "操作卡片",
+      "heroCompactTimer": "紧凑计时器",
+      "showRestSeconds": "以秒显示休息时间",
+      "sessionBreakThreshold": "会话间隔阈值",
+      "sessionBreakHint": "超过此时间的间隔将在波形图和趋势分析中显示为独立的会话。",
+      "breakOff": "关闭",
+      "stageTimerMode": "阶段计时模式",
+      "stageTimerHint": "产程阶段持续时间的计算方式：从最后一次宫缩开始或连续计算。",
+      "stageTimerLastRecorded": "最后记录",
+      "stageTimerCurrentTime": "当前时间"
+    },
+    "behavior": {
+      "title": "行为",
+      "hapticFeedback": "触觉反馈",
+      "postContractionRating": "宫缩后评分",
+      "showIntensityPicker": "显示强度选择器",
+      "showLocationPicker": "显示位置选择器",
+      "peakRating": "宫缩中峰值评分"
+    },
+    "features": {
+      "title": "功能",
+      "waveChart": "波形图",
+      "showTargetLines": "在图表上显示目标线",
+      "showTargetLinesHint": "当宫缩达到您的时间目标时，在波形图上显示彩色参考线。",
+      "trendAnalysis": "趋势分析",
+      "trendAnalysisHint": "对最近的宫缩进行线性回归，检测间隔缩短和持续时间延长的趋势。",
+      "patternAssessment": "模式评估",
+      "patternAssessmentHint": "对 6 个标准（规律性、持续时间趋势、强度、位置、间隔趋势、持续活动）进行加权评分，以区分真正的产程和假性宫缩。",
+      "hospitalAdvisor": "就医顾问",
+      "hospitalAdvisorHint": "根据您的宫缩模式，在顾问页面提供出发时间建议。",
+      "contextualTips": "情境提示",
+      "contextualTipsHint": "在计时器和顾问页面显示适合当前产程阶段的指导卡片。",
+      "waterBreakButton": "破水按钮",
+      "thresholdRuleProgress": "阈值规则进度",
+      "thresholdRuleHint": "在产程顾问页面显示 5-1-1（或自定义）规则进度。",
+      "clinicalReference": "临床参考",
+      "clinicalReferenceHint": "顾问页面上的产程指南：产程阶段、假性宫缩对比和警示信号。"
+    },
+    "advisor": {
+      "title": "顾问",
+      "introDesc": "这三个设置协同工作：详细程度控制顾问显示的信息量。提醒时机决定何时出现\"该出发了\"。路程时间增加缓冲，让您有充足时间出发。",
+      "detailLevel": "顾问详细程度",
+      "detailLevelHint": "控制就医顾问显示的详细程度：时间范围、紧急程度或单行摘要。",
+      "detailDetailed": "详细（范围估计）",
+      "detailUrgency": "仅紧急程度",
+      "detailMinimal": "极简",
+      "travelTime": "路程时间",
+      "travelTimeHint": "到达医院所需的时间。纳入出发时间计算。",
+      "alertTiming": "提醒时机",
+      "alertTimingHint": "保守型更早提醒，宽松型等待更久。影响\"该出发了\"建议出现的时间。",
+      "alertConservative": "保守（早出发）",
+      "alertModerate": "适中",
+      "alertRelaxed": "宽松（再等等）",
+      "providerPhone": "医生电话",
+      "providerPhonePlaceholder": "例如 555-0123"
+    },
+    "threshold": {
+      "title": "阈值规则",
+      "desc": "N-1-1 规则是关于何时去医院的临床指南（ACOG）。标准是 5-1-1：宫缩间隔 5 分钟，持续 1 分钟，坚持 1 小时。您的医生可能建议 3-1-1、4-1-1 或其他变体 — 请在下方调整。",
+      "detailDesc": "每个标准使用分析窗口内最近宫缩的平均值，而非单次宫缩。持续 64 秒的宫缩算作\"超过 1 分钟\"。这些是指南，不是绝对规则 — 请始终遵循医生的建议。",
+      "intervalTarget": "间隔目标",
+      "intervalHint": "宫缩开始之间的平均时间（从开始到开始）。当平均值 ≤ 此值时标记。",
+      "intervalOption": "{mins} 分钟间隔",
+      "durationTarget": "持续时间目标",
+      "durationHint": "宫缩的平均时长（从开始到停止）。当平均值 ≥ 此值时标记。",
+      "durationOption": "{secs} 秒时长",
+      "sustainedPeriod": "持续时段",
+      "sustainedHint": "从第一次到最近一次宫缩的总时间跨度。当 ≥ 此值时标记，确认该模式是持续的，而非一次性的集中出现。"
+    },
+    "advanced": {
+      "title": "高级",
+      "stageThresholdsTitle": "产程阶段阈值",
+      "stageThresholdsDesc": "定义每个产程阶段的宫缩模式。基于 ACOG 指南。最大间隔 = 宫缩之间最长的间隔时间；最短持续 = 最短的宫缩时长。",
+      "maxInterval": "{stage} 最大间隔",
+      "minDuration": "{stage} 最短持续",
+      "bhThresholdsTitle": "模式评估阈值",
+      "bhThresholdsDesc": "微调区分练习性宫缩和真正产程的方式。大多数用户应保持默认值。",
+      "regularityCVLow": "规律性 CV（低）",
+      "regularityCVHigh": "规律性 CV（高）",
+      "realLaborThreshold": "真正产程阈值",
+      "bhThreshold": "假性宫缩阈值",
+      "resetToDefaults": "重置高级设置为默认"
+    },
+    "extras": {
+      "title": "附加功能",
+      "prayers": "祈祷",
+      "prayersHint": "在菜单中显示祈祷标签页。在 Cathedral 和 Shire 主题下始终可见。"
+    }
+  },
+  "sharing": {
+    "sendTitle": "发送",
+    "sendDesc": "分享您的会话数据",
+    "receiveTitle": "接收",
+    "receiveDesc": "导入共享的数据",
+    "liveTitle": "实时共享",
+    "liveExperimentalTag": "（实验性）",
+    "liveDesc": "设备间实时同步",
+    "backButton": "返回",
+    "liveQuickModeDesc": "使用中继服务器找到您的伙伴。跨网络可用。",
+    "yourNameLabel": "您的名字",
+    "yourNamePlaceholder": "妈妈、伙伴等",
+    "joinersCanLabel": "加入者可以",
+    "modeCollaborative": "共同查看和编辑",
+    "modeViewOnly": "仅查看",
+    "passwordLabel": "密码（可选）",
+    "passwordPlaceholder": "添加加密",
+    "passwordHintVisible": "将此口令分享给您的伙伴",
+    "passwordHintHidden": "对会话进行端到端加密",
+    "generatePassphraseAriaLabel": "生成口令",
+    "showPasswordAriaLabel": "显示密码",
+    "hidePasswordAriaLabel": "隐藏密码",
+    "serverOptionsToggle": "服务器选项",
+    "signalingBackendLabel": "信令后端",
+    "signalingBackendDefaultHint": "路由初始握手（已加密）。",
+    "privacyNote": "所有 SDP 数据在离开您的设备前已加密。STUN 仅看到您的 IP。TURN 中继加密数据 — 无法读取内容。",
+    "testSignalingButton": "测试信令",
+    "testSignalingLoading": "测试中...",
+    "testSignalingReachable": "可访问（{latencyMs}ms）",
+    "testSignalingUnreachable": "无法访问 — 请尝试其他后端",
+    "startSharingButton": "开始共享",
+    "joinRoomButton": "加入房间",
+    "scanQrCodeButton": "扫描二维码",
+    "roomCodeLabel": "房间代码",
+    "roomCodePlaceholder": "blue-tiger-42",
+    "connectButton": "连接",
+    "usePrivateConnect": "使用私密连接",
+    "privateConnectTitle": "私密连接",
+    "privateConnectDesc": "通过手动交换邀请代码连接 — 没有中继服务器接触您的数据。",
+    "privateStep1": "一方创建邀请并分享代码",
+    "privateStep2": "另一方接受并发回响应代码",
+    "privateStep3": "交换完成后，即可点对点连接",
+    "connectionLimitationsTitle": "连接限制",
+    "connectionLimitationsText": "没有 TURN 中继服务器时，仅在同一 WiFi 网络上可靠工作。跨网络连接（移动数据、不同 WiFi、企业防火墙）通常会失败，因为 NAT/防火墙规则阻止直接的点对点流量。",
+    "connectionLimitationsAdvice": "要实现可靠的跨网络连接，请使用快速连接配合 Cloudflare Worker 中继 — 免费，设置只需 2 分钟，适用于任何网络。",
+    "createInviteButton": "创建邀请",
+    "acceptInviteButton": "接受邀请",
+    "scanInviteQrButton": "扫描邀请二维码",
+    "inviteCodeLabel": "邀请代码",
+    "inviteCodePlaceholder": "在此粘贴邀请代码...",
+    "hostStep1Label": "第 1 步：将此代码分享给您的伙伴",
+    "hostStep2Label": "第 2 步：输入伙伴的响应代码",
+    "responseCodePlaceholder": "粘贴响应代码...",
+    "guestSendCodeLabel": "将此代码发回给您的伙伴",
+    "waitingForPartnerToEnterCode": "等待伙伴输入代码...",
+    "generatingResponseCode": "正在生成响应代码...",
+    "connectedLabel": "已连接",
+    "privateBadge": "私密",
+    "connectedTo": "至 {roomCode}",
+    "modeLabel": "模式：{mode}",
+    "connectedPeersHeader": "已连接（{count}）",
+    "peerHostSuffix": "（主机）",
+    "stopSharingButton": "停止共享",
+    "disconnectButton": "断开连接",
+    "connectionDetailsToggle": "连接详情",
+    "shareLinkButton": "分享链接",
+    "waitingForPartnerToJoin": "等待伙伴加入...",
+    "copyFeedbackSuccess": "{label} 已复制！",
+    "copyFeedbackFailed": "复制失败",
+    "phaseCreatingOffer": "正在创建安全房间...",
+    "phasePosting": "正在发布房间代码...",
+    "phaseWaitingForPartner": "等待伙伴...",
+    "phasePollingForOffer": "正在查找房间...",
+    "phaseGeneratingAnswer": "正在连接主机...",
+    "phasePostingAnswer": "正在发送响应...",
+    "phaseCompleting": "正在完成握手...",
+    "phaseConnected": "已连接！",
+    "phaseDefault": "连接中...",
+    "scannerHint": "将摄像头对准二维码",
+    "tapToEnlargeHint": "点击放大",
+    "qrPrivateInviteAlt": "私人邀请二维码",
+    "qrResponseCodeAlt": "响应代码二维码",
+    "qrRoomCodeAlt": "房间 {roomCode} 二维码",
+    "qrEnlargedAlt": "二维码（放大）",
+    "qrFullscreenCloseHint": "点击任意位置关闭",
+    "serverOptions": {
+      "workerUrl": "Worker URL",
+      "stunServer": "STUN 服务器",
+      "customStunUrl": "自定义 STUN URL",
+      "turnRelay": "TURN 中继",
+      "turnUrl": "TURN URL",
+      "username": "用户名",
+      "credential": "凭证",
+      "usernamePlaceholder": "TURN 用户名",
+      "credentialPlaceholder": "TURN 凭证",
+      "stunGoogle": "Google（默认）",
+      "stunCloudflare": "Cloudflare",
+      "stunNone": "无（仅 LAN）",
+      "stunCustom": "自定义",
+      "stunGoogleDesc": "免费、可靠。Google 在 STUN 请求期间会看到您的 IP。",
+      "stunCloudflareDesc": "注重隐私的替代方案。Cloudflare 会看到您的 IP。",
+      "stunNoneDesc": "无 STUN 服务器。仅在同一局域网内可用。",
+      "stunCustomDesc": "输入您自己的 STUN 服务器 URL。",
+      "turnOpenRelay": "Open Relay（默认）",
+      "turnCloudflare": "Cloudflare TURN",
+      "turnNone": "无",
+      "turnCustom": "自定义",
+      "turnOpenRelayDesc": "免费公共中继。直接连接失败时中继加密数据。",
+      "turnCloudflareDesc": "需要启用 TURN 的 Cloudflare 账户。",
+      "turnNoneDesc": "无 TURN 中继。仅直接连接。",
+      "turnCustomDesc": "输入您自己的 TURN 服务器详情。"
+    },
+    "diagnostics": {
+      "iceCandidates": "ICE 候选",
+      "hostLocal": "Host（本地）",
+      "stunSrflx": "STUN (srflx)",
+      "turnRelay": "TURN (relay)",
+      "gatherTime": "收集时间",
+      "signaling": "信令",
+      "fallback": "备用",
+      "warning": "警告",
+      "fallbackDetail": "正在使用 ntfy.sh（主服务器不可达）"
+    },
+    "privateTurnHint": {
+      "summary": "已有 TURN 服务器？",
+      "detail": "如果您有自己的 TURN 服务器凭证，请在上方选择「自定义」并输入。当直接点对点连接因严格的 NAT 或防火墙而失败时，TURN 会中继加密数据。"
+    },
+    "snapshot": {
+      "sendTitle": "发送快照",
+      "sendTooltip": "发送您的会话数据的冻结副本。接收方获得一次性快照，而非实时连接。",
+      "sendDesc": "分享您会话的一次性副本。您的伙伴收到的是冻结快照 — 而非实时连接。",
+      "whatToInclude": "包含内容",
+      "alwaysIncludedHint": "会话数据（宫缩、事件）始终包含在内。",
+      "shareSessionButton": "分享会话数据",
+      "copyLinkLabel": "复制链接",
+      "copyLinkDesc": "包含您数据的可分享 URL",
+      "copyDataLabel": "复制数据",
+      "copyDataDesc": "用于粘贴的压缩数据",
+      "qrCodeLabel": "二维码",
+      "qrCodeDesc": "用手机摄像头扫描",
+      "qrCodeTooLarge": "数据过大，无法生成二维码",
+      "qrCodeTooLargeTitle": "会话数据过大，无法生成二维码",
+      "shortCodeLabel": "短代码",
+      "shortCodeDesc": "易于输入的代码（5 分钟过期）",
+      "shortCodeDisabledDesc": "需要中继服务器",
+      "shortCodeDisabledTitle": "在服务器选项中设置中继以启用短代码",
+      "shortCodeResultLabel": "短代码",
+      "shortCodeExpiry": "5 分钟后过期",
+      "qrTapHint": "点击放大",
+      "qrTooLargeError": "会话数据过大，无法生成二维码（{charCount} 字符，最大约 2900）。请使用复制链接或短代码。",
+      "qrGenerationFailed": "二维码生成失败：{message}",
+      "emptyTitle": "暂无会话数据",
+      "emptyDesc": "开始跟踪宫缩，然后回到这里将数据分享给伙伴或其他设备。",
+      "receiveTitle": "接收快照",
+      "receiveIntro": "导入伙伴分享的会话数据或从其他设备导入。",
+      "receiveMethodQr": "用摄像头扫描二维码",
+      "receiveMethodLink": "粘贴伙伴的分享链接",
+      "receiveMethodShortCode": "输入短代码（如使用中继）",
+      "importPlaceholder": "在此粘贴链接、短代码或压缩数据...",
+      "loadingText": "正在加载快照...",
+      "previewHeader": "导入此快照？",
+      "previewContractionsLabel": "宫缩",
+      "previewContractionsValue": "{contractionCount}（{completedCount} 次已完成）",
+      "previewEventsLabel": "事件",
+      "previewTimeRangeLabel": "时间范围",
+      "previewSessionStartedLabel": "会话开始于",
+      "previewSessionDateUnknown": "未知",
+      "previewIncludedSettingsHeader": "包含的设置",
+      "previewArchiveAndImportButton": "归档当前并导入",
+      "previewReplaceButton": "替换当前会话",
+      "previewCurrentSessionHint": "当前会话中有 {count} 次宫缩。",
+      "previewImportCountButton": "导入 {count} 次宫缩",
+      "importErrorUnrecognized": "无法识别为快照链接、代码或数据",
+      "importErrorRelayRequired": "短代码需要中继服务器。请在服务器选项中设置。",
+      "nativeShareTitle": "宫缩计时器数据",
+      "nativeShareText": "查看我的宫缩计时器会话",
+      "pasteFromClipboardAriaLabel": "从剪贴板粘贴"
+    },
+    "deploy": {
+      "guideToggle": "部署您自己的中继（推荐）",
+      "tierBasicBadge": "基础",
+      "tierBasicLabel": "无需设置",
+      "tierBasicDesc": "使用免费公共服务器。在同一 WiFi 网络上可用。跨网络连接可能不稳定。",
+      "tierBasicConfig": "ntfy.sh + Google STUN + Open Relay TURN",
+      "tierAdvancedBadge": "高级",
+      "tierAdvancedLabel": "您自己的私有中继",
+      "tierAdvancedDesc": "适用于任何网络。免费。仅需 2 分钟。无需信用卡。",
+      "step1Title": "部署您的中继",
+      "step1Desc": "您需要一个免费的 GitHub 和 Cloudflare 账户。Cloudflare 会复制中继代码并为您部署。",
+      "step1Button": "一键部署到 Cloudflare",
+      "step2Title": "复制您的 Worker URL",
+      "step2Desc": "部署后，Cloudflare 会显示您的 URL。格式类似 ct-signaling.you.workers.dev。在上方下拉菜单中选择\"我的 Cloudflare Worker\"并粘贴。",
+      "step3Title": "将 URL 分享给您的伙伴",
+      "step3Desc": "您的伙伴在他们的应用中粘贴相同的 URL。只需一人部署 — 双方使用同一个中继。",
+      "tierSelfHostedBadge": "自托管",
+      "tierSelfHostedLabel": "完全控制",
+      "tierSelfHostedDesc": "运行您自己的信令服务器 + TURN 中继。零第三方依赖。"
+    },
+    "categories": {
+      "thresholdsLabel": "时间规则（5-1-1）",
+      "thresholdsDesc": "阈值和产程阶段设置",
+      "providerLabel": "医生电话",
+      "providerDesc": "您的医生号码",
+      "layoutLabel": "屏幕布局",
+      "layoutDesc": "面板顺序和主显示模式",
+      "parityLabel": "分娩史",
+      "parityDesc": "初产或经产",
+      "travelLabel": "路程与距离",
+      "travelDesc": "车程时间、风险等级",
+      "appearanceLabel": "主题与显示",
+      "appearanceDesc": "主题、显示开关"
+    },
+    "cameraErrorGeneric": "摄像头错误：{message}",
+    "cameraErrorHttps": "摄像头需要 HTTPS。此页面不在安全上下文中。",
+    "cameraErrorNotFound": "此设备未找到摄像头。",
+    "cameraErrorPermission": "摄像头权限被拒绝。请检查浏览器设置。",
+    "cameraErrorUnavailable": "此浏览器不支持摄像头 API。",
+    "enterCodeManually": "改为手动输入代码",
+    "enterNameToConnect": "输入您的名字以连接",
+    "nameRequired": "连接需要名字",
+    "receivedInviteBanner": "您收到了一个私人邀请！",
+    "responseCodeLabel": "响应代码",
+    "responseLinkLabel": "响应链接"
+  },
+  "onboarding": {
+    "welcomeTitle": "宫缩计时器",
+    "welcomeDesc": "跟踪宫缩，观察模式，了解何时前往医院。",
+    "welcomePrivacyNote": "所有数据保存在本设备上。无需账户。",
+    "getStartedButton": "开始使用",
+    "skipSetupButton": "跳过设置",
+    "quickSetupTitle": "快速设置",
+    "quickSetupDesc": "两个简单问题，个性化您的体验。",
+    "firstBabyLabel": "这是您的第一胎吗？",
+    "firstBabyYes": "是的，第一胎",
+    "firstBabyNo": "不是，之前生过",
+    "hospitalDistanceLabel": "您的医院有多远？",
+    "travelTimeMinutes": "{mins} 分钟",
+    "travelTimeNotSure": "不确定",
+    "travelTimeUncertainHint": "没关系 — 我们会使用保守估计并给出一个范围。",
+    "providerPhoneLabel": "医生或医院电话（可选）",
+    "providerPhonePlaceholder": "(555) 123-4567",
+    "providerPhoneHint": "需要时从应用中快速拨打。",
+    "readyTitle": "一切就绪",
+    "readyDesc": "宫缩开始时点击大按钮。结束时再次点击。其余的交给应用。",
+    "summaryFirstBaby": "第一胎",
+    "summaryNotFirstBaby": "非第一胎",
+    "summaryTravelTimeNotSure": "路程时间：不确定",
+    "summaryTravelTimeMinutes": "到医院 {travelTime} 分钟",
+    "startTrackingButton": "开始记录"
+  },
+  "clinical": {
+    "bhVsReal": {
+      "bh": {
+        "irregularTiming": "时间不规律",
+        "notCloser": "间隔不会变短",
+        "stopWithMovement": "运动或改变姿势后停止",
+        "frontOnly": "主要在前方感觉到",
+        "notStronger": "不会随时间变强"
+      },
+      "real": {
+        "regularCloser": "时间规律，越来越近",
+        "keepComing": "无论活动如何都持续出现",
+        "noStop": "休息或运动后不会停止",
+        "radiateBack": "从后方放射或环绕",
+        "progressive": "逐渐变强"
+      }
+    },
+    "tips": {
+      "firstContraction": "好的开始！继续计时宫缩，看看是否形成规律。大多数初产从缓慢开始。",
+      "prelaborNormal": "不规律的宫缩是正常的，可能持续数天。如果移动或休息后停止，可能是假性宫缩。",
+      "earlyRest": "初产妈妈的早期产程可能持续 6-12 小时以上。尽量休息，特别是在夜间。",
+      "earlyHydrate": "保持水分充足，吃些清淡食物。您在活跃产程中需要体力。",
+      "earlyActivity": "白天适量走动等轻度活动有助于产程推进。",
+      "earlyTiming": "早期产程中您可能仍在家中。当宫缩达到 5-1-1 模式时前往医院。",
+      "activeEntered": "活跃产程意味着稳定推进。如果还没到医院，现在该去了。",
+      "activeBreathing": "每次宫缩时专注于缓慢深呼吸。鼻吸口呼。",
+      "activeDuration": "初产妈妈的活跃产程通常持续 3-5 小时。您正在真正地推进。",
+      "transitionEntered": "过渡期是最短但最强烈的阶段。您快要完成了。",
+      "transitionNormal": "在过渡期感到不堪重负、恶心或颤抖是正常的。通常持续 30 分钟到 2 小时。",
+      "waterNoteColor": "注意液体的颜色。清澈或淡黄色是正常的。绿色或棕色意味着需要立即联系医生。",
+      "waterCallProvider": "联系您的医生，告知他们您已破水。他们会建议下一步。",
+      "waterStats": "77-95% 的人在破水后 24 小时内进入活跃产程。",
+      "nightSleep": "如果可能的话，尽量在宫缩间歇睡觉。现在休息有助于稍后的活跃产程。",
+      "backLabor": "腰部疼痛可以通过四肢着地的姿势、髋部按压或腰部热敷来缓解。",
+      "safetyCall": "出现以下情况请立即联系医生：大量出血、胎动停止、剧烈头痛伴视力变化或体温超过 38°C。",
+      "patternRegular": "您的宫缩正变得更加规律。这是产程正在推进的好迹象。"
+    }
+  },
+  "shared": {
+    "collapsibleSection": {
+      "openSettingsAriaLabel": "打开设置",
+      "moveUpAriaLabel": "上移",
+      "moveDownAriaLabel": "下移"
+    },
+    "contextualTips": {
+      "dismissTipAriaLabel": "关闭提示"
+    },
+    "toast": {
+      "peerJoined": "{name} 已加入",
+      "partnerDisconnected": "一位伙伴已断开连接"
+    },
+    "storageWarning": {
+      "dismissAriaLabel": "关闭"
+    },
+    "sessionManager": {
+      "newSession": "新会话",
+      "archiveConfirmPrompt": "归档当前会话并重新开始？",
+      "yesStartNew": "是的，开始新会话",
+      "previousSessions": "历史会话",
+      "restore": "恢复",
+      "delete": "删除",
+      "confirmDelete": "确认",
+      "noArchivedSessions": "没有归档的会话。"
+    }
+  },
+  "devotional": {
+    "headingPrayersAndScripture": "祈祷与经文",
+    "headingPatronSaints": "分娩主保圣人",
+    "prayerBadge": "祈祷",
+    "scriptureBadge": "经文",
+    "prayerDotAriaLabel": "祈祷 {index}",
+    "footerLatin": "Pax Domini sit semper vobiscum.",
+    "footerTranslation": "愿主的平安永远与你们同在。",
+    "dedication": "以 ♥ 为 AJR 而作",
+    "saints": {
+      "gerardMajella": {
+        "name": "圣热拉尔·马杰拉",
+        "title": "孕妇主保",
+        "detail": "18世纪赎主会平信徒修士，母亲们祈求他的代祷以求安全分娩和健康的孩子。"
+      },
+      "giannaMolla": {
+        "name": "圣吉安娜·贝雷塔·莫拉",
+        "title": "母亲与未出生婴儿主保",
+        "detail": "意大利医生和母亲，1962年为未出生的孩子献出生命。2004年由教宗若望保禄二世册封圣人。"
+      },
+      "raymondNonnatus": {
+        "name": "圣雷孟·诺纳托",
+        "title": "分娩与助产士主保",
+        "detail": "13世纪圣母赎虏会修士，名为\"non natus\"（未出生），因为他母亲去世后由剖腹产出生。"
+      },
+      "margaretAntioch": {
+        "name": "安提阿的圣玛加利大",
+        "title": "分娩主保",
+        "detail": "早期教会的童贞殉道者，数世纪来被临产妇女祈求。十四救难圣人之一。"
+      },
+      "ourLadyLaLeche": {
+        "name": "哺乳圣母",
+        "title": "哺乳母亲主保",
+        "detail": "对圣母玛利亚作为哺乳母亲的珍贵敬礼，自1615年起在佛罗里达州圣奥古斯丁设有朝圣地。"
+      },
+      "colette": {
+        "name": "圣科莱特",
+        "title": "孕妇与分娩妇女主保",
+        "detail": "14世纪法国方济各嘉勒会修女，以改革修会闻名。据说一名死产婴儿被她的面纱包裹后复活。"
+      },
+      "felicity": {
+        "name": "圣斐理伯",
+        "title": "孕妇主保",
+        "detail": "2世纪妇女，因基督信仰在怀孕期间被监禁并判处死刑。她的处决被推迟到她在狱中分娩之后。"
+      },
+      "elizabeth": {
+        "name": "圣依撒伯尔",
+        "title": "孕妇主保",
+        "detail": "圣母玛利亚的表亲，圣若翰洗者的母亲。被称为\"妇女中蒙受祝福的\"，在年老时因天主的恩宠怀孕生子。"
+      },
+      "anne": {
+        "name": "圣亚纳",
+        "title": "祖母与分娩妇女主保",
+        "detail": "圣母玛利亚的母亲。自早期教会以来，因在晚年怀孕并生下玛利亚而受敬礼。她的名字意为\"恩宠\"。"
+      },
+      "monica": {
+        "name": "圣莫尼加",
+        "title": "母亲主保",
+        "detail": "4世纪河马的圣奥斯定的母亲。在怀孕期间因暴力的丈夫遭受巨大痛苦，但她的信仰和坚持带领儿子归依。"
+      },
+      "zelieMartin": {
+        "name": "圣泽莉·马丁",
+        "title": "母亲与失去孩子的父母主保",
+        "detail": "19世纪法国母亲，九个孩子中失去了四个婴儿。2015年与丈夫路易一同册封圣人。里修的圣德兰的母亲。"
+      },
+      "joseph": {
+        "name": "圣若瑟",
+        "title": "家庭、父亲与普世教会主保",
+        "detail": "耶稣的养父，圣母玛利亚的净配。因对圣家的有力保护被称为\"魔鬼的恐惧\"。善终、工人和普世教会的主保。"
+      }
+    },
+    "prayers": {
+      "stGerard": {
+        "title": "向圣热拉尔祈求安全分娩",
+        "shortLabel": "圣热拉尔",
+        "text": "伟大的圣热拉尔，耶稣基督的忠仆，你温良谦逊救主的完美效法者，天主之母的孝爱之子：在我孩子出生之前、期间和之后，请以你的祝福丰富我。通过你的代祷，愿我经历安全幸福的分娩。愿我的孩子安全来到这个世界，并作为天主的真正子女被抚养长大。阿门。",
+        "attribution": "传统天主教祈祷"
+      },
+      "memorare": {
+        "title": "求圣母经（Memorare）",
+        "shortLabel": "求圣母经",
+        "text": "请记起，至仁慈的圣母玛利亚，从来没有人听说过，有人逃到你的保护之下，恳求你的帮助，寻求你的代祷而被你遗弃。受此信心的鼓舞，我飞奔到你面前，万福之母，童贞圣母中的童贞圣母。我来到你面前，在你面前哀求，罪孽深重而悲伤。圣言之母，请勿轻视我的祈求，而要以你的慈悲垂听并应允我。阿门。",
+        "attribution": "据称出自圣伯尔纳铎"
+      },
+      "motherAndChild": {
+        "title": "为母亲和孩子祈祷",
+        "shortLabel": "母亲与孩子",
+        "text": "主耶稣基督，你曾被怀在圣母玛利亚的腹中，求你怜视这位母亲和她的孩子。赐予她分娩时的力量，痛苦中的勇气，以及新生命中的喜悦。愿孩子安全健康地降生，愿母亲和孩子都安息在你慈爱的保护之下。通过天主之母玛利亚，以及所有圣母和圣人的代祷，我们因你的名求。阿门。",
+        "attribution": "传统天主教祈祷"
+      },
+      "hailMary": {
+        "title": "圣母经",
+        "shortLabel": "圣母经",
+        "text": "万福玛利亚，你充满圣宠，主与你同在，你在妇女中受赞颂，你的亲子耶稣同受赞颂。天主圣母玛利亚，求你现在和我们临终时，为我们罪人祈求天主。阿门。",
+        "attribution": "传统天主教祈祷"
+      },
+      "ourLadyLaLeche": {
+        "title": "向哺乳圣母祈祷",
+        "shortLabel": "哺乳圣母",
+        "text": "可爱的哺乳圣母，圣婴耶稣最慈爱的母亲，我的母亲，我来求你的帮助。我相信天主的大能，我将全部信赖寄托在你身上。请赐予我母性的恩宠。帮助我，亲爱的圣母，在我的渴望中，如果这是天主的圣意让我怀孕，求你为我获得足月怀孕的恩宠。通过你的圣母和她圣子的功德，求你怜悯我们。阿门。",
+        "attribution": "传统——佛罗里达州圣奥古斯丁哺乳圣母朝圣地"
+      },
+      "safeDelivery": {
+        "title": "为安全分娩祈祷",
+        "shortLabel": "安全分娩",
+        "text": "主耶稣，我将我的宝宝和我自己交托在你慈爱的手中。平息我的恐惧，增强我的身体，引导照顾我们的人。愿这次分娩安全，充满你的平安。我信赖你对我们生命的计划。阿门。",
+        "attribution": "当代天主教祈祷"
+      },
+      "stJoseph": {
+        "title": "向圣若瑟——家庭保护者祈祷",
+        "shortLabel": "圣若瑟",
+        "text": "圣若瑟，你的保护是如此伟大，如此有力，在天主宝座前如此迅速，我将我所有的利益和愿望都交托给你。圣若瑟，请以你强大的代祷帮助我，通过你的养子，我们的主耶稣基督，为我获得所有属灵的祝福，使我在今世获得你天上能力的帮助，能够向你献上我的感恩和敬意。圣若瑟，魔鬼的恐惧，为我们和我们的家庭祈祷。以你父亲的关怀守护这位母亲和孩子。阿门。",
+        "attribution": "传统向圣若瑟祈祷"
+      },
+      "psalm139": {
+        "title": "圣咏139:13-16 ——在腹中编织",
+        "shortLabel": "📖 圣咏139",
+        "text": "你造成了我的五脏六腑，你在我母胎中缔结了我。我赞美你，因你创造的奇妙可畏。你的工作何其奇妙！这是我心灵所深知的。我在暗中受造，在母胎中被塑造，我的骨骼你全知晓。那时我的身体虽未形成，你的眼睛已经看到；我未成形的肢体，都早已记录在你的卷册里。",
+        "attribution": "圣咏139:13-16（思高本）"
+      },
+      "isaiah66": {
+        "title": "依撒意亚66:9 ——分娩的应许",
+        "shortLabel": "📖 依撒意亚66:9",
+        "text": "难道我开了母胎，反使她不生产？——上主说；难道我使她生产，反关闭她的胎腹？——你的天主说。",
+        "attribution": "依撒意亚66:9（思高本）"
+      },
+      "jeremiah1": {
+        "title": "耶肋米亚1:5 ——出生前已被认识",
+        "shortLabel": "📖 耶肋米亚1:5",
+        "text": "我还没有在母腹内形成你以前，我已认识了你；在你还没有出离母胎以前，我已祝圣了你。",
+        "attribution": "耶肋米亚1:5（思高本）"
+      },
+      "magnificat": {
+        "title": "圣母赞主曲（Magnificat）",
+        "shortLabel": "📖 圣母赞主曲",
+        "text": "我的灵魂颂扬上主，我的心灵欢跃于我的救主天主，因为他垂顾了他婢女的卑微，今后万世万代都要称我有福；因全能者在我身上行了大事，他的名字是圣的。",
+        "attribution": "路加福音1:46-49 ——圣母赞主曲"
+      }
+    }
+  },
+  "relay": {
+    "responseSent": "响应已发送！",
+    "responseSentDesc": "响应代码已发送至您的共享会话。您可以关闭此标签页。",
+    "closeTab": "关闭标签页"
+  },
+  "swipeHint": "滑动"
+}

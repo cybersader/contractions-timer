@@ -2,6 +2,8 @@ import { describe, it, expect } from 'bun:test';
 import {
 	encodeSessionV2,
 	decodeSessionV2,
+	encodeSettings,
+	decodeSettings,
 	extractSharedSettings,
 	detectIncludedCategories,
 	filterSettingsByCategories,
@@ -514,5 +516,226 @@ describe('filterSettingsByCategories', () => {
 		expect(result.parity).toBe('subsequent');
 		expect(result.theme).toBe('clinical');
 		expect(result.heroMode).toBe('compact-timer');
+	});
+});
+
+// ── pausedAt encoding ───────────────────────────────────────────
+
+describe('pausedAt encoding', () => {
+	it('round-trips pausedAt timestamp', () => {
+		const session = makeSession(3);
+		session.paused = true;
+		session.pausedAt = '2025-02-15T10:15:30.000Z';
+		const compact = encodeSessionV2(session);
+		expect(compact.p).toBe(true);
+		expect(compact.pa).toBeDefined();
+
+		const decoded = decodeSessionV2(compact);
+		expect(decoded.session.paused).toBe(true);
+		expect(decoded.session.pausedAt).toBeDefined();
+		expect(Math.abs(Date.parse(decoded.session.pausedAt!) - Date.parse(session.pausedAt))).toBeLessThanOrEqual(1);
+	});
+
+	it('omits pa when not paused', () => {
+		const session = makeSession(3);
+		session.paused = false;
+		session.pausedAt = null;
+		const compact = encodeSessionV2(session);
+		expect(compact.pa).toBeUndefined();
+		expect(compact.p).toBeUndefined();
+	});
+
+	it('decodes null pausedAt when pa is absent', () => {
+		const session = makeSession(2);
+		const compact = encodeSessionV2(session);
+		const decoded = decodeSessionV2(compact);
+		expect(decoded.session.pausedAt).toBeNull();
+	});
+});
+
+// ── Settings compression ────────────────────────────────────────
+
+describe('settings compression', () => {
+	it('round-trips boolean bitfield', () => {
+		const settings: Partial<ContractionTimerSettings> = {
+			showWaveChart: true,
+			showTimeline: false,
+			showSummaryCards: true,
+			showProgressionInsight: true,
+			showPostRating: false,
+			showIntensityPicker: true,
+			showLocationPicker: true,
+			showRestSeconds: false,
+			showHospitalAdvisor: true,
+			showContextualTips: true,
+			showBraxtonHicksAssessment: false,
+			showClinicalReference: true,
+			showWaterBreakButton: true,
+			showThresholdRule: true,
+			showLiveRating: false,
+			showChartOverlay: false,
+			showPrayers: false,
+			hapticFeedback: true,
+			persistPause: true,
+			enableDebugLog: false,
+		};
+
+		const compressed = encodeSettings(settings);
+		expect(compressed.b).toBeDefined();
+		expect(compressed.bp).toBeDefined();
+
+		const decoded = decodeSettings(compressed);
+		for (const [key, val] of Object.entries(settings)) {
+			expect((decoded as any)[key]).toBe(val);
+		}
+	});
+
+	it('round-trips enum settings', () => {
+		const settings: Partial<ContractionTimerSettings> = {
+			heroMode: 'compact-timer',
+			advisorMode: 'minimal',
+			parity: 'subsequent',
+			timeFormat: '24h',
+			stageTimeBasis: 'current-time',
+			advisorProgressionRate: 'faster',
+		};
+
+		const compressed = encodeSettings(settings);
+		const decoded = decodeSettings(compressed);
+
+		expect(decoded.heroMode).toBe('compact-timer');
+		expect(decoded.advisorMode).toBe('minimal');
+		expect(decoded.parity).toBe('subsequent');
+		expect(decoded.timeFormat).toBe('24h');
+		expect(decoded.stageTimeBasis).toBe('current-time');
+		expect(decoded.advisorProgressionRate).toBe('faster');
+	});
+
+	it('round-trips threshold config', () => {
+		const settings: Partial<ContractionTimerSettings> = {
+			threshold: { intervalMinutes: 4, durationSeconds: 45, sustainedMinutes: 90 },
+		};
+
+		const compressed = encodeSettings(settings);
+		expect(compressed.t).toEqual([4, 45, 90]);
+
+		const decoded = decodeSettings(compressed);
+		expect(decoded.threshold).toEqual(settings.threshold);
+	});
+
+	it('round-trips hospital advisor', () => {
+		const settings: Partial<ContractionTimerSettings> = {
+			hospitalAdvisor: {
+				travelTimeMinutes: 45,
+				travelTimeUncertain: true,
+				riskAppetite: 'conservative',
+				providerPhone: '555-1234',
+			},
+		};
+
+		const compressed = encodeSettings(settings);
+		const decoded = decodeSettings(compressed);
+
+		expect((decoded.hospitalAdvisor as any)?.travelTimeMinutes).toBe(45);
+		expect((decoded.hospitalAdvisor as any)?.travelTimeUncertain).toBe(true);
+		expect((decoded.hospitalAdvisor as any)?.riskAppetite).toBe('conservative');
+		expect((decoded.hospitalAdvisor as any)?.providerPhone).toBe('555-1234');
+	});
+
+	it('round-trips BH thresholds', () => {
+		const settings: Partial<ContractionTimerSettings> = {
+			bhThresholds: {
+				regularityCVLow: 0.2, regularityCVHigh: 0.7,
+				locationRatioHigh: 0.6, locationRatioLow: 0.15,
+				sustainedMinMinutes: 150, sustainedMaxGapMinutes: 25,
+				verdictRealThreshold: 65, verdictBHThreshold: 25,
+			},
+		};
+
+		const compressed = encodeSettings(settings);
+		expect(compressed.bh).toHaveLength(8);
+
+		const decoded = decodeSettings(compressed);
+		expect(decoded.bhThresholds).toEqual(settings.bhThresholds);
+	});
+
+	it('round-trips sharing preferences bitfield', () => {
+		const settings: Partial<ContractionTimerSettings> = {
+			sharingPreferences: {
+				thresholds: true, provider: false, layout: true,
+				parity: true, travel: false, appearance: true,
+			},
+		};
+
+		const compressed = encodeSettings(settings);
+		expect(typeof compressed.sp).toBe('number');
+
+		const decoded = decodeSettings(compressed);
+		expect(decoded.sharingPreferences).toEqual(settings.sharingPreferences);
+	});
+
+	it('compressed settings are much smaller than raw JSON', () => {
+		// Full appearance settings (the bulkiest category)
+		const settings: Partial<ContractionTimerSettings> = {
+			showWaveChart: true, showTimeline: true, showSummaryCards: true,
+			showProgressionInsight: true, showPostRating: true,
+			showIntensityPicker: true, showLocationPicker: true,
+			showRestSeconds: false, showHospitalAdvisor: true,
+			showContextualTips: true, showBraxtonHicksAssessment: true,
+			showClinicalReference: true, showWaterBreakButton: true,
+			showThresholdRule: true, showLiveRating: false,
+			showChartOverlay: false, showPrayers: false,
+			theme: 'clinical', timeFormat: '24h',
+			waveChartHeight: 150, advisorMode: 'range',
+			heroMode: 'action-card',
+		};
+
+		const rawJson = JSON.stringify(settings);
+		const compressedJson = JSON.stringify(encodeSettings(settings));
+
+		console.log(`  Settings raw: ${rawJson.length} chars, compressed: ${compressedJson.length} chars, savings: ${((1 - compressedJson.length / rawJson.length) * 100).toFixed(1)}%`);
+
+		expect(compressedJson.length).toBeLessThan(rawJson.length * 0.5);
+	});
+
+	it('end-to-end: compressed settings produce shorter URLs', () => {
+		const session = makeSession(10);
+		const allPrefs: SharingPreferences = {
+			thresholds: true, provider: true, layout: true,
+			parity: true, travel: true, appearance: true,
+		};
+		const fullSettings = {
+			...DEFAULT_SETTINGS,
+			hospitalAdvisor: { ...DEFAULT_SETTINGS.hospitalAdvisor, providerPhone: '555-9876' },
+		};
+		const shared = extractSharedSettings(fullSettings, allPrefs)!;
+
+		const v2WithSettings = encodeSessionV2(session, shared);
+		const v2Compressed = compressToBase64url(v2WithSettings);
+
+		// Compare to what v0.3.13 would have produced (raw settings under 's' key)
+		const v2Legacy = { ...encodeSessionV2(session), s: shared };
+		delete (v2Legacy as any).sk;
+		const v2LegacyCompressed = compressToBase64url(v2Legacy);
+
+		console.log(`  10 contractions + all settings — legacy: ${v2LegacyCompressed.length} chars, compressed: ${v2Compressed.length} chars, savings: ${((1 - v2Compressed.length / v2LegacyCompressed.length) * 100).toFixed(1)}%`);
+
+		expect(v2Compressed.length).toBeLessThan(v2LegacyCompressed.length);
+	});
+
+	it('handles partial settings (only some booleans present)', () => {
+		const settings: Partial<ContractionTimerSettings> = {
+			showWaveChart: false,
+			showPrayers: true,
+		};
+
+		const compressed = encodeSettings(settings);
+		const decoded = decodeSettings(compressed);
+
+		expect(decoded.showWaveChart).toBe(false);
+		expect(decoded.showPrayers).toBe(true);
+		// Keys NOT in original should NOT be in decoded
+		expect('showTimeline' in decoded).toBe(false);
+		expect('showPostRating' in decoded).toBe(false);
 	});
 });

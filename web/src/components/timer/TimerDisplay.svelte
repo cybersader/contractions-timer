@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { tick, timerPhase } from '../../lib/stores/timer';
 	import { isContractionActive, getElapsedSeconds, getRestSeconds } from '../../lib/labor-logic/calculations';
@@ -8,9 +9,11 @@
 
 	interface Props {
 		paused?: boolean;
+		pausedAt?: string | null;
+		pauseAccumulatedMs?: number;
 		onPauseToggle?: () => void;
 	}
-	let { paused = false, onPauseToggle = () => {} } = $props<Props>();
+	let { paused = false, pausedAt = null, pauseAccumulatedMs = 0, onPauseToggle = () => {} } = $props<Props>();
 
 	let phase = $derived($timerPhase);
 
@@ -23,8 +26,7 @@
 
 	let rest = $derived.by(() => {
 		void $tick;
-		if (paused) return getRestSeconds($session.contractions); // still compute but don't animate
-		return getRestSeconds($session.contractions);
+		return getRestSeconds($session.contractions, pausedAt, pauseAccumulatedMs);
 	});
 
 	let displayTime = $derived(
@@ -37,10 +39,10 @@
 
 	let label = $derived(
 		phase === 'contracting'
-			? 'Contraction'
+			? $_('timer.timerDisplay.contractionLabel')
 			: phase === 'resting'
-				? (paused ? 'Paused' : 'Rest')
-				: 'Ready'
+				? (paused ? $_('timer.timerDisplay.pausedLabel') : $_('timer.timerDisplay.restLabel'))
+				: $_('timer.timerDisplay.readyLabel')
 	);
 </script>
 

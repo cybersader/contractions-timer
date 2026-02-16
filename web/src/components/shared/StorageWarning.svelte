@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { storageError } from '../../lib/storage';
 	import { AlertTriangle, X } from 'lucide-svelte';
+	import { _ } from 'svelte-i18n';
 </script>
 
 {#if $storageError}
 	<div class="storage-toast" role="alert">
 		<span class="toast-icon"><AlertTriangle size={18} /></span>
 		<span class="toast-msg">{$storageError}</span>
-		<button class="toast-close" onclick={() => storageError.set(null)} aria-label="Dismiss">
+		<button class="toast-close" onclick={() => storageError.set(null)} aria-label={$_('shared.storageWarning.dismissAriaLabel')}>
 			<X size={16} />
 		</button>
 	</div>

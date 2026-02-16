@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { timerPhase } from '../../lib/stores/timer';
 	import { isContractionActive } from '../../lib/labor-logic/calculations';
@@ -25,6 +26,10 @@
 				notes: '',
 			}],
 			sessionStartedAt: s.sessionStartedAt ?? now,
+			// Reset pause state for new contraction cycle
+			paused: false,
+			pausedAt: null,
+			pauseAccumulatedMs: 0,
 		}));
 	}
 
@@ -39,6 +44,10 @@
 					? { ...c, end: now }
 					: c
 			),
+			// Reset pause accumulator for new rest period
+			paused: false,
+			pausedAt: null,
+			pauseAccumulatedMs: 0,
 		}));
 	}
 
@@ -59,11 +68,11 @@
 >
 	<span class="big-button-text">
 		{#if phase === 'contracting'}
-			Stop
+			{$_('timer.bigButton.stop')}
 		{:else if phase === 'idle'}
-			Start
+			{$_('timer.bigButton.start')}
 		{:else}
-			Start #{contractionCount + 1}
+			{$_('timer.bigButton.startN', { values: { count: contractionCount + 1 } })}
 		{/if}
 	</span>
 </button>

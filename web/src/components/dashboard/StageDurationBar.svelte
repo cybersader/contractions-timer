@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { getSessionStats, getTimeInCurrentStage } from '../../lib/labor-logic/calculations';
-	import { getLaborStageLabel, formatElapsedApprox, formatDurationRange } from '../../lib/labor-logic/formatters';
+	import { formatElapsedApprox, formatDurationRange } from '../../lib/labor-logic/formatters';
 
 	let stats = $derived(getSessionStats($session.contractions, $settings.threshold, $settings.stageThresholds));
 	let stage = $derived(stats.laborStage);
@@ -16,20 +17,28 @@
 	});
 	let show = $derived(stage && !(range[0] === 0 && range[1] === 0));
 	let progress = $derived(range[1] > 0 ? Math.min(1, minutesInStage / range[1]) : 0);
+
+	const stageLabelKeys: Record<string, string> = {
+		'pre-labor': 'timer.laborStages.preLabor',
+		'early': 'timer.laborStages.early',
+		'active': 'timer.laborStages.active',
+		'transition': 'timer.laborStages.transition',
+	};
+	let stageLabel = $derived(stage ? $_(stageLabelKeys[stage] ?? stage) : '');
 </script>
 
 {#if show && stage}
 	<div class="stage-bar">
 		<div class="stage-header">
-			<span class="stage-label stage--{stage}">{getLaborStageLabel(stage)}</span>
-			<span class="stage-time">You've been here {formatElapsedApprox(minutesInStage)}</span>
+			<span class="stage-label stage--{stage}">{stageLabel}</span>
+			<span class="stage-time">{$_('dashboard.stageBar.beenHere', { values: { elapsed: formatElapsedApprox(minutesInStage) } })}</span>
 		</div>
 		<div class="bar-track">
 			<div class="bar-fill bar-fill--{stage}" style="width: {Math.round(progress * 100)}%"></div>
 		</div>
 		<div class="stage-tip">
-			{#if formatDurationRange(range)}Typical: {formatDurationRange(range)}{/if}
-			{#if config?.location} · Location: {config.location}{/if}
+			{#if formatDurationRange(range)}{$_('dashboard.stageBar.typical', { values: { range: formatDurationRange(range) } })}{/if}
+			{#if config?.location} · {$_('dashboard.stageBar.location', { values: { location: config.location } })}{/if}
 		</div>
 	</div>
 {/if}

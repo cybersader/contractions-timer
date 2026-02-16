@@ -12,37 +12,57 @@ export type TipTrigger =
 
 export interface ClinicalTip {
 	id: string;
-	text: string;
+	textKey: string;
 	category: TipCategory;
 	trigger: TipTrigger;
 }
 
 export const CLINICAL_TIPS: ClinicalTip[] = [
-	{ id: 'first-contraction', text: 'Great start! Keep timing contractions to see if a pattern develops. Most first labors start slowly.', category: 'education', trigger: { type: 'contraction-count', min: 1, max: 2 } },
-	{ id: 'prelabor-normal', text: 'Irregular contractions are normal and can come and go for days. If they stop when you move or rest, it may be Braxton Hicks.', category: 'education', trigger: { type: 'stage', stage: 'pre-labor' } },
-	{ id: 'early-rest', text: 'Early labor can last 6-12+ hours for first-time parents. Try to rest, especially if it is nighttime.', category: 'comfort', trigger: { type: 'stage', stage: 'early' } },
-	{ id: 'early-hydrate', text: 'Stay hydrated and eat light snacks. You will need the energy for active labor.', category: 'comfort', trigger: { type: 'stage', stage: 'early' } },
-	{ id: 'early-activity', text: 'Light activity like walking can help labor progress during the day.', category: 'comfort', trigger: { type: 'stage', stage: 'early' } },
-	{ id: 'early-timing', text: 'You are likely still at home during early labor. Head to the hospital when contractions reach the 5-1-1 pattern.', category: 'timing', trigger: { type: 'stage', stage: 'early' } },
-	{ id: 'active-entered', text: 'Active labor means steady progress. If you are not at the hospital yet, it is time to go.', category: 'action', trigger: { type: 'stage-entered', stage: 'active' } },
-	{ id: 'active-breathing', text: 'Focus on slow, deep breathing through each contraction. In through the nose, out through the mouth.', category: 'comfort', trigger: { type: 'stage', stage: 'active' } },
-	{ id: 'active-duration', text: 'Active labor typically lasts 3-5 hours for first-time parents. You are making real progress.', category: 'education', trigger: { type: 'stage', stage: 'active' } },
-	{ id: 'transition-entered', text: 'Transition is the shortest but most intense phase. You are almost there.', category: 'education', trigger: { type: 'stage-entered', stage: 'transition' } },
-	{ id: 'transition-normal', text: 'Feeling overwhelmed, nauseous, or shaky is normal during transition. It typically lasts 30 minutes to 2 hours.', category: 'comfort', trigger: { type: 'stage', stage: 'transition' } },
-	{ id: 'water-note-color', text: 'Note the color of the fluid. Clear or pale yellow is normal. Green or brown means call your provider immediately.', category: 'safety', trigger: { type: 'event', event: 'water-break' } },
-	{ id: 'water-call-provider', text: 'Contact your provider to let them know your water broke. They will advise on next steps.', category: 'action', trigger: { type: 'event', event: 'water-break' } },
-	{ id: 'water-stats', text: '77-95% of people go into active labor within 24 hours of their water breaking.', category: 'education', trigger: { type: 'event', event: 'water-break' } },
-	{ id: 'night-sleep', text: 'Try to sleep between contractions if possible. Rest now will help you through active labor later.', category: 'comfort', trigger: { type: 'time-of-day', period: 'night' } },
-	{ id: 'back-labor', text: 'Back labor can be eased by hands-and-knees position, hip squeezes, or a warm compress on your lower back.', category: 'comfort', trigger: { type: 'pattern', condition: 'back-labor' } },
-	{ id: 'safety-call', text: 'Call your provider immediately if: heavy bleeding, baby stops moving, severe headache with vision changes, or fever above 100.4\u00B0F.', category: 'safety', trigger: { type: 'contraction-count', min: 1 } },
-	{ id: 'pattern-regular', text: 'Your contractions are becoming more regular. This is a good sign that labor is progressing.', category: 'education', trigger: { type: 'pattern', condition: 'regular' } },
+	{ id: 'first-contraction', textKey: 'clinical.tips.firstContraction', category: 'education', trigger: { type: 'contraction-count', min: 1, max: 2 } },
+	{ id: 'prelabor-normal', textKey: 'clinical.tips.prelaborNormal', category: 'education', trigger: { type: 'stage', stage: 'pre-labor' } },
+	{ id: 'early-rest', textKey: 'clinical.tips.earlyRest', category: 'comfort', trigger: { type: 'stage', stage: 'early' } },
+	{ id: 'early-hydrate', textKey: 'clinical.tips.earlyHydrate', category: 'comfort', trigger: { type: 'stage', stage: 'early' } },
+	{ id: 'early-activity', textKey: 'clinical.tips.earlyActivity', category: 'comfort', trigger: { type: 'stage', stage: 'early' } },
+	{ id: 'early-timing', textKey: 'clinical.tips.earlyTiming', category: 'timing', trigger: { type: 'stage', stage: 'early' } },
+	{ id: 'active-entered', textKey: 'clinical.tips.activeEntered', category: 'action', trigger: { type: 'stage-entered', stage: 'active' } },
+	{ id: 'active-breathing', textKey: 'clinical.tips.activeBreathing', category: 'comfort', trigger: { type: 'stage', stage: 'active' } },
+	{ id: 'active-duration', textKey: 'clinical.tips.activeDuration', category: 'education', trigger: { type: 'stage', stage: 'active' } },
+	{ id: 'transition-entered', textKey: 'clinical.tips.transitionEntered', category: 'education', trigger: { type: 'stage-entered', stage: 'transition' } },
+	{ id: 'transition-normal', textKey: 'clinical.tips.transitionNormal', category: 'comfort', trigger: { type: 'stage', stage: 'transition' } },
+	{ id: 'water-note-color', textKey: 'clinical.tips.waterNoteColor', category: 'safety', trigger: { type: 'event', event: 'water-break' } },
+	{ id: 'water-call-provider', textKey: 'clinical.tips.waterCallProvider', category: 'action', trigger: { type: 'event', event: 'water-break' } },
+	{ id: 'water-stats', textKey: 'clinical.tips.waterStats', category: 'education', trigger: { type: 'event', event: 'water-break' } },
+	{ id: 'night-sleep', textKey: 'clinical.tips.nightSleep', category: 'comfort', trigger: { type: 'time-of-day', period: 'night' } },
+	{ id: 'back-labor', textKey: 'clinical.tips.backLabor', category: 'comfort', trigger: { type: 'pattern', condition: 'back-labor' } },
+	{ id: 'safety-call', textKey: 'clinical.tips.safetyCall', category: 'safety', trigger: { type: 'contraction-count', min: 1 } },
+	{ id: 'pattern-regular', textKey: 'clinical.tips.patternRegular', category: 'education', trigger: { type: 'pattern', condition: 'regular' } },
 ];
 
-export const STAGE_REFERENCE: Record<string, { description: string; cervix: string; contractionPattern: string; location: string }> = {
-	'pre-labor': { description: 'Irregular contractions that may start and stop', cervix: 'Minimal change', contractionPattern: 'Irregular, may stop with rest or movement', location: 'Home' },
-	early: { description: 'Regular contractions establishing a pattern', cervix: '0\u20136 cm dilated', contractionPattern: '30-45s long, 5-30 min apart', location: 'Home' },
-	active: { description: 'Strong, regular contractions with steady progress', cervix: '6\u201310 cm dilated', contractionPattern: '45-60s long, 3-5 min apart', location: 'Hospital' },
-	transition: { description: 'Most intense phase, approaching full dilation', cervix: '8\u201310 cm dilated', contractionPattern: '60-90s long, 1-3 min apart', location: 'Hospital' },
+export const STAGE_REFERENCE: Record<string, { descriptionKey: string; cervixKey: string; patternKey: string; locationKey: string }> = {
+	'pre-labor': {
+		descriptionKey: 'hospital.clinicalReference.stages.preLabor.description',
+		cervixKey: 'hospital.clinicalReference.stages.preLabor.cervix',
+		patternKey: 'hospital.clinicalReference.stages.preLabor.pattern',
+		locationKey: 'hospital.clinicalReference.stages.preLabor.location',
+	},
+	early: {
+		descriptionKey: 'hospital.clinicalReference.stages.early.description',
+		cervixKey: 'hospital.clinicalReference.stages.early.cervix',
+		patternKey: 'hospital.clinicalReference.stages.early.pattern',
+		locationKey: 'hospital.clinicalReference.stages.early.location',
+	},
+	active: {
+		descriptionKey: 'hospital.clinicalReference.stages.active.description',
+		cervixKey: 'hospital.clinicalReference.stages.active.cervix',
+		patternKey: 'hospital.clinicalReference.stages.active.pattern',
+		locationKey: 'hospital.clinicalReference.stages.active.location',
+	},
+	transition: {
+		descriptionKey: 'hospital.clinicalReference.stages.transition.description',
+		cervixKey: 'hospital.clinicalReference.stages.transition.cervix',
+		patternKey: 'hospital.clinicalReference.stages.transition.pattern',
+		locationKey: 'hospital.clinicalReference.stages.transition.location',
+	},
 };
 
 export const WATER_BREAK_STATS = {
@@ -61,8 +81,20 @@ export const CLINICAL_SOURCES: Record<string, { label: string; url: string }> = 
 };
 
 export const BH_VS_REAL = {
-	braxtonHicks: ['Irregular timing', 'Do not get closer together', 'Stop with movement or position change', 'Felt mainly in front', 'Do not get stronger over time'],
-	realLabor: ['Regular timing, getting closer', 'Keep coming regardless of activity', 'Do not stop with rest or movement', 'Radiate from back or wrap around', 'Get progressively stronger'],
+	braxtonHicks: [
+		'clinical.bhVsReal.bh.irregularTiming',
+		'clinical.bhVsReal.bh.notCloser',
+		'clinical.bhVsReal.bh.stopWithMovement',
+		'clinical.bhVsReal.bh.frontOnly',
+		'clinical.bhVsReal.bh.notStronger',
+	],
+	realLabor: [
+		'clinical.bhVsReal.real.regularCloser',
+		'clinical.bhVsReal.real.keepComing',
+		'clinical.bhVsReal.real.noStop',
+		'clinical.bhVsReal.real.radiateBack',
+		'clinical.bhVsReal.real.progressive',
+	],
 };
 
 export function getRelevantTips(

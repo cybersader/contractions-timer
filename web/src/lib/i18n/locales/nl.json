@@ -1,0 +1,1155 @@
+{
+  "common": {
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "back": "Terug",
+    "delete": "Verwijderen",
+    "confirm": "Bevestigen",
+    "none": "Geen",
+    "skip": "Overslaan",
+    "continue": "Doorgaan",
+    "share": "Delen",
+    "import": "Importeren",
+    "copyLink": "Link kopiëren"
+  },
+  "nav": {
+    "timer": "Timer",
+    "dashboard": "Dashboard",
+    "history": "Geschiedenis",
+    "advisor": "Adviseur",
+    "mainNavAriaLabel": "Hoofdnavigatie",
+    "brandTitle": "contractions.app",
+    "goToTimerAriaLabel": "Ga naar timer",
+    "shareSessionAriaLabel": "Sessie delen",
+    "menuAriaLabel": "Menu",
+    "openMenuAriaLabel": "Menu openen",
+    "menu": "Menu"
+  },
+  "menu": {
+    "drawerTitle": "Menu",
+    "closeMenuAriaLabel": "Menu sluiten",
+    "closeAriaLabel": "Sluiten",
+    "backToMenuAriaLabel": "Terug naar menu",
+    "sharingTitle": "Delen",
+    "sharingHintConnected": "Verbonden ({count} apparaten)",
+    "settingsTitle": "Instellingen",
+    "themeTitle": "Thema",
+    "sessionsTitle": "Sessies",
+    "devToolsTitle": "Ontwikkeltools",
+    "prayersTitle": "Gebeden",
+    "aboutTitle": "Over",
+    "items": {
+      "sharing": "Delen",
+      "settings": "Instellingen",
+      "theme": "Thema",
+      "sessions": "Sessies",
+      "exportData": "Gegevens exporteren (JSON)",
+      "importData": "Gegevens importeren",
+      "restartSetup": "Installatie herstarten",
+      "restartSetupHint": "Welkomstassistent opnieuw uitvoeren (gegevens blijven behouden)",
+      "about": "Over",
+      "feedbackAndIssues": "Feedback en problemen",
+      "prayers": "Gebeden",
+      "devTools": "Ontwikkeltools",
+      "clearAllData": "Alle gegevens wissen"
+    },
+    "importError": "Ongeldig bestandsformaat",
+    "clearConfirm": {
+      "prompt": "Alle weeëngegevens verwijderen?",
+      "confirmButton": "Ja, alles wissen",
+      "cancelButton": "Annuleren"
+    },
+    "about": {
+      "appName": "Weeëntimer",
+      "description": "Volg weeën, beoordeel bevallingpatronen en weet wanneer je naar het ziekenhuis moet.",
+      "features": {
+        "liveTimer": "Live timer met golfgrafiek",
+        "rule511": "5-1-1-regel bijhouden",
+        "braxtonHicks": "Braxton Hicks-beoordeling",
+        "hospitalAdvisor": "Vertrekadviseur ziekenhuis",
+        "clinicalReference": "Klinische referentiegids"
+      },
+      "privacyNotice": "Alle gegevens blijven op dit apparaat. Geen accounts, geen servers, geen tracking.",
+      "githubLink": "GitHub",
+      "feedbackLink": "Feedback en problemen"
+    },
+    "theme": {
+      "lightMode": "Licht",
+      "darkMode": "Donker",
+      "uniqueMode": "Uniek",
+      "colorPaletteLabel": "Kleurenpalet",
+      "darkCardStyle": "Donker",
+      "lightCardStyle": "Licht",
+      "paletteNames": {
+        "soft": "Zacht",
+        "clinical": "Klinisch",
+        "warm": "Warm",
+        "ocean": "Oceaan",
+        "forest": "Bos",
+        "sunset": "Zonsondergang",
+        "lavender": "Lavendel",
+        "midnight": "Middernacht",
+        "sky": "Hemel",
+        "blush": "Bloos"
+      },
+      "uniqueModeLabels": {
+        "soft": "Aurora",
+        "clinical": "Terminal",
+        "warm": "Cathedral",
+        "ocean": "Abyss",
+        "forest": "Shire",
+        "sunset": "Retrowave",
+        "lavender": "Frost",
+        "midnight": "Galaxy",
+        "sky": "Dreamscape",
+        "blush": "Sakura"
+      }
+    },
+    "languageSelector": {
+      "changeLanguageAriaLabel": "Taal wijzigen",
+      "closeMenuAriaLabel": "Taalmenu sluiten"
+    },
+    "devtools": {
+      "loadSeedData": "Testgegevens laden",
+      "seedHint": "Huidige sessie vervangen door realistische testgegevens.",
+      "quickActions": "Snelle acties",
+      "clearSession": "Sessie wissen",
+      "clearSessionDesc": "Terugzetten naar lege staat",
+      "loadedToast": "Geladen!",
+      "debugLogging": "Debug-logboek",
+      "debugLoggingHint": "Diagnostische gegevens vastleggen tijdens het testen van functies. Kopieer het logboek en plak het om te delen.",
+      "enableLogging": "Logboek inschakelen",
+      "copyLog": "Logboek kopiëren ({count} items)",
+      "copyLogDesc": "Kopieert het volledige diagnostische logboek naar het klembord",
+      "clearLog": "Logboek wissen",
+      "clearLogDesc": "Alle gelogde items verwijderen",
+      "copiedFeedback": "Gekopieerd!",
+      "copyFailedFeedback": "Kopiëren mislukt",
+      "clearedFeedback": "Gewist!",
+      "archivePrompt": "Je hebt {count, plural, one {# wee} other {# weeën}} in je huidige sessie.",
+      "archiveCurrentAndLoad": "Huidige archiveren en laden",
+      "replaceCurrentSession": "Huidige sessie vervangen",
+      "seeds": {
+        "singleLabel": "1 wee",
+        "singleDesc": "Net begonnen met bijhouden",
+        "earlyLabel": "Vroege bevalling",
+        "earlyDesc": "5 weeën, onregelmatig",
+        "activeLabel": "Actieve bevalling",
+        "activeDesc": "12 weeën, regelmatig",
+        "mixedLabel": "Gemengd + pauze",
+        "mixedDesc": "13 weeën, 2 clusters",
+        "transitionLabel": "Transitie",
+        "transitionDesc": "22 weeën + vliezen gebroken"
+      }
+    }
+  },
+  "timer": {
+    "bigButton": {
+      "start": "Start",
+      "stop": "Stop",
+      "startN": "Start #{count}"
+    },
+    "timerDisplay": {
+      "contractionLabel": "Wee",
+      "restLabel": "Rust",
+      "pausedLabel": "Gepauzeerd",
+      "readyLabel": "Klaar",
+      "defaultTime": "0:00"
+    },
+    "liveRating": {
+      "pastThePeak": "Voorbij de piek?",
+      "peakMarked": "Piek gemarkeerd"
+    },
+    "pauseOverlay": {
+      "tapToResume": "Tik om te hervatten",
+      "tapToPause": "tik om te pauzeren",
+      "resumeTimerAriaLabel": "Timer hervatten",
+      "pauseTimerAriaLabel": "Timer pauzeren"
+    },
+    "intensityPicker": {
+      "prompt": "Hoe sterk was die?",
+      "mild": "Mild",
+      "moderate": "Matig",
+      "strong": "Sterk",
+      "veryStrong": "Zeer sterk",
+      "intense": "Intens",
+      "levelFallback": "Niveau {level}"
+    },
+    "locationPicker": {
+      "prompt": "Waar voelde je het?",
+      "lowerBelly": "Onderbuik",
+      "lowerBack": "Onderrug",
+      "allAround": "Rondom",
+      "backToIntensityAriaLabel": "Terug naar intensiteit"
+    },
+    "eventButtons": {
+      "waterBroke": "Vliezen gebroken",
+      "waterBrokeAt": "Vliezen gebroken om {time}",
+      "editTime": "Tijd bewerken",
+      "undo": "Ongedaan maken",
+      "remove": "Verwijderen",
+      "whenDidItHappen": "Wanneer gebeurde het?",
+      "justNow": "Zojuist",
+      "fiveMinAgo": "~5 min geleden",
+      "fifteenMinAgo": "~15 min geleden",
+      "thirtyMinAgo": "~30 min geleden",
+      "earlier": "Eerder...",
+      "setCustomTime": "Aangepaste tijd instellen",
+      "setTime": "Tijd instellen",
+      "setATimeAbove": "Stel hierboven een tijd in",
+      "aroundTime": "Rond {time}",
+      "moreEvents": "Meer gebeurtenissen ▼",
+      "fewerEvents": "Minder gebeurtenissen ▲",
+      "mucusPlug": "Slijmprop",
+      "mucusPlugAt": "Slijmprop om {time}",
+      "bloodyShow": "Bloederig verlies",
+      "bloodyShowAt": "Bloederig verlies om {time}"
+    },
+    "waterBreakQuickAction": {
+      "waterBroke": "Vliezen gebroken",
+      "waterBrokeAt": "Vliezen gebroken om {time}",
+      "editTimeAriaLabel": "Tijd bewerken",
+      "removeWaterBreakAriaLabel": "Vliezen gebroken verwijderen",
+      "undoLabel": "Ongedaan maken",
+      "confirmRemoveAriaLabel": "Verwijderen bevestigen",
+      "cancelAriaLabel": "Annuleren",
+      "whenDidItHappen": "Wanneer gebeurde het?",
+      "closeAriaLabel": "Sluiten",
+      "justNow": "Zojuist",
+      "fiveMinAgo": "~5 min geleden",
+      "fifteenMinAgo": "~15 min geleden",
+      "thirtyMinAgo": "~30 min geleden",
+      "earlier": "Eerder...",
+      "setCustomTime": "Aangepaste tijd instellen",
+      "setTime": "Tijd instellen",
+      "setATimeAbove": "Stel hierboven een tijd in",
+      "aroundTime": "Rond {time}"
+    },
+    "sessionControls": {
+      "undoLast": "Laatste ongedaan maken",
+      "newSession": "Nieuwe sessie",
+      "archiveAndStartNew": "Archiveren + nieuwe starten"
+    },
+    "untimedEntry": {
+      "logPastContraction": "Eerdere wee registreren",
+      "formIntro": "Eentje gemist? Registreer hier.",
+      "whenLabel": "Wanneer",
+      "minutesAgo": "{count}m geleden",
+      "earlierAriaLabel": "Eerder",
+      "moreRecentAriaLabel": "Recenter",
+      "durationLabel": "Duur",
+      "shorterAriaLabel": "Korter",
+      "longerAriaLabel": "Langer",
+      "intensityLabel": "Intensiteit",
+      "optional": "optioneel",
+      "locationLabel": "Locatie",
+      "front": "Voorkant",
+      "back": "Rug",
+      "wrap": "Omhullend",
+      "logContraction": "Wee registreren"
+    },
+    "welcomeState": {
+      "title": "Weeëntimer",
+      "description": "Tik op de knop hieronder wanneer een wee begint. Tik opnieuw wanneer het stopt.",
+      "trackFeature": "Volg timing en intensiteit",
+      "patternFeature": "Zie patronen ontstaan"
+    },
+    "hospitalBanner": {
+      "viewAdvisorAriaLabel": "Adviseurdetails bekijken"
+    },
+    "heroAction": {
+      "paused": "Gepauzeerd",
+      "tapStartPrompt": "Tik op start wanneer een wee begint",
+      "keepTracking": "Blijf bijhouden...",
+      "stageActions": {
+        "preLabor": "Ga door met normale activiteiten",
+        "early": "Rust en drink voldocht — blijf thuis",
+        "active": "Ga binnenkort naar het ziekenhuis",
+        "transition": "Je zou in het ziekenhuis moeten zijn"
+      },
+      "contractionMessages": {
+        "preLabor": "Blijf ontspannen...",
+        "early": "Rustig aan...",
+        "active": "Adem erdoorheen...",
+        "transition": "Eentje tegelijk — je kunt dit"
+      },
+      "defaultContractionMessage": "Adem erdoorheen...",
+      "waterBrokeActive": "Vliezen gebroken + actieve bevalling — ga naar het ziekenhuis",
+      "waterBrokeTransition": "Je zou in het ziekenhuis moeten zijn",
+      "waterBrokeDefault": "Vliezen gebroken — bel je verloskundige",
+      "detailTemplate": "~{interval} min tussenruimte · ~{duration}s gemiddeld"
+    },
+    "heroCompactTimer": {
+      "paused": "Gepauzeerd",
+      "readyToStart": "Klaar om te starten",
+      "contractingPrefix": "Wee: {time}",
+      "restPrefix": "Rust: {restTime}",
+      "restAndLast": "Rust: {restTime} · Laatste: {lastTime}"
+    },
+    "quickStats": {
+      "avgDuration": "Gem. duur",
+      "avgInterval": "Gem. interval",
+      "total": "Totaal",
+      "noDataPlaceholder": "—"
+    },
+    "recentContractions": {
+      "noCompleted": "Nog geen voltooide weeën."
+    },
+    "timerPage": {
+      "sharingBanner": "Delen met {count, plural, one {# partner} other {# partners}}",
+      "sections": {
+        "quickStats": "Snelle statistieken",
+        "recent": "Recent",
+        "guidance": "Begeleiding"
+      }
+    },
+    "laborStages": {
+      "preLabor": "Voorbevalling",
+      "early": "Vroege bevalling",
+      "active": "Actieve bevalling",
+      "transition": "Transitie"
+    }
+  },
+  "dashboard": {
+    "pageTitle": "Dashboard",
+    "sections": {
+      "summary": "Samenvatting",
+      "waveChart": "Golfgrafiek",
+      "stageProgress": "Fasevoortgang",
+      "trendAnalysis": "Trendanalyse",
+      "patternAssessment": "Patroonbeoordeling"
+    },
+    "emptyState": {
+      "title": "Nog geen gegevens",
+      "hint": "Begin met het timen van weeën om patronen, golfgrafieken en bevallingsfaseanalyse hier te zien."
+    },
+    "summary": {
+      "contractions": "Weeën",
+      "avgDuration": "Gem. duur",
+      "avgInterval": "Gem. interval"
+    },
+    "stageBar": {
+      "beenHere": "Je bent hier al {elapsed}",
+      "typical": "Typisch: {range}",
+      "location": "Locatie: {location}"
+    },
+    "progression": {
+      "needMore": "4+ weeën nodig om trends te analyseren",
+      "trendsTitle": "Trends",
+      "gapBetween": "Tussenruimte:",
+      "eachContraction": "Elke wee:",
+      "gettingCloser": "komen dichterbij",
+      "spreadingApart": "worden verder uit elkaar",
+      "lastingLonger": "duren langer",
+      "gettingShorter": "worden korter",
+      "stable": "stabiel",
+      "criteriaMet": "{rule}-criteria momenteel voldaan",
+      "estimateReach": "In dit tempo kan {rule} bereikt worden in ~{minutes} min",
+      "disclaimer": "Gebaseerd op de laatste {count} interval{count, plural, one {} other {len}} (deze sessie)"
+    },
+    "braxtonHicks": {
+      "panelTitle": "Patroonbeoordeling",
+      "likelyRealLabor": "Waarschijnlijk echte bevalling",
+      "likelyPractice": "Waarschijnlijk oefenweeën",
+      "mixedSignals": "Gemengde signalen",
+      "disclaimer": "Dit is een patroonschatting, geen diagnose."
+    },
+    "waveChart": {
+      "fitButton": "Passend",
+      "nowButton": "Nu →",
+      "canvasAriaLabel": "Weeën golfgrafiek",
+      "emptyText": "Weeën verschijnen hier",
+      "legend": "Groen = binnen {minutes} min"
+    }
+  },
+  "history": {
+    "pageTitle": "Geschiedenis",
+    "emptyState": {
+      "title": "Nog geen weeën",
+      "hint": "Je weeëngeschiedenis verschijnt hier. Tik op elk item om timing, intensiteit of locatie te bewerken."
+    },
+    "untimed": "Niet getimed",
+    "apart": "tussenruimte",
+    "editor": {
+      "editingNumber": "Bewerken #{num}",
+      "start": "Start",
+      "end": "Eind",
+      "duration": "Duur",
+      "durationPlaceholder": "M:SS",
+      "intensity": "Intensiteit",
+      "location": "Locatie",
+      "front": "Voorkant",
+      "back": "Rug",
+      "wrap": "Omhullend",
+      "confirmDelete": "Verwijderen bevestigen"
+    },
+    "events": {
+      "waterBroke": "Vliezen gebroken",
+      "mucusPlug": "Slijmprop",
+      "bloodyShow": "Bloederig verlies"
+    }
+  },
+  "hospital": {
+    "pageTitle": "Bevallingadviseur",
+    "locationToggle": {
+      "atHome": "Thuis",
+      "onTheWay": "Onderweg"
+    },
+    "locationHint": {
+      "enRoute": "Reistijd verwijderd — schattingen tonen tijd vanaf nu",
+      "uncertain": "Reistijd onbekend — conservatieve schatting van ~30 min gebruikt",
+      "withTravel": "{minutes} min reistijd inbegrepen in schattingen"
+    },
+    "sections": {
+      "departureAdvice": "Vertrekadvies",
+      "ruleProgress": "5-1-1-regelvoortgang",
+      "waterBreak": "Vliezen gebroken",
+      "tips": "Tips",
+      "laborGuide": "Bevallingsgids"
+    },
+    "badges": {
+      "goNow": "Ga nu",
+      "timeToGo": "Tijd om te gaan"
+    },
+    "range": {
+      "confidence": "{level} betrouwbaarheid",
+      "yourPattern": "Jouw patroon",
+      "factors": "Factoren"
+    },
+    "callProvider": "Bel verloskundige ({phone})",
+    "rule511": {
+      "intervalCheck": "≤ {target} min tussenruimte (gem. {actual} min)",
+      "durationCheck": "≥ {target} min lang (gem. {actual}s)",
+      "sustainedCheck": "≥ {target} min aangehouden ({actual} min)",
+      "howWeCalculateShow": "Hoe we berekenen",
+      "howWeCalculateHide": "Verbergen",
+      "explainerInterval": "Interval — gemiddelde tijd tussen het begin van weeën binnen het analysevenster. Aangevinkt (✓) wanneer het gemiddelde ≤ {target} min.",
+      "explainerDuration": "Duur — gemiddelde lengte van getimede weeën (start tot stop). Aangevinkt wanneer het gemiddelde ≥ {target}s. Een wee van 64s telt als \"meer dan 1 minuut.\"",
+      "explainerSustained": "Aangehouden — hoe lang het patroon al gaande is. Gemeten als de periode van je eerste tot meest recente wee. Aangevinkt wanneer ≥ {target} min.",
+      "explainerNote": "Dit zijn klinische richtlijnen (ACOG), geen absolute regels. Je verloskundige kan andere drempels aanbevelen (bijv. 4-1-1 of 3-1-1). Pas aan in instellingen."
+    },
+    "waterBreakInfo": {
+      "waterBrokeAgo": "Vliezen gebroken {elapsed} geleden",
+      "addProviderPhone": "Voeg het telefoonnummer van je verloskundige toe voor snelle toegang",
+      "phonePlaceholder": "bijv. 06-12345678",
+      "safetyNote": "Let op de kleur van het vocht. Helder/lichtgeel is normaal. Groen/bruin → bel onmiddellijk.",
+      "statChance": "kans",
+      "statBeforeContractions": "Vliezen breken vóór het begin van weeën",
+      "statWithin12Hours": "Actieve bevalling binnen 12 uur",
+      "statWithin24Hours": "Actieve bevalling binnen 24 uur",
+      "statReassure": "De meeste mensen beginnen binnen een dag vanzelf met de bevalling"
+    },
+    "clinicalReference": {
+      "laborStagesTitle": "Bevallingsfasen",
+      "dilationNote": "Ontsluiting = opening van de baarmoeder (0 cm = gesloten, 10 cm = volledig open)",
+      "stageNames": {
+        "preLabor": "Voorbevalling",
+        "early": "Vroeg",
+        "active": "Actief",
+        "transition": "Transitie"
+      },
+      "stages": {
+        "preLabor": {
+          "description": "Onregelmatige samentrekkingen die komen en gaan. Nog geen echte bevalling — je lichaam warmt op.",
+          "cervix": "0–3 cm",
+          "pattern": "Onregelmatig, 5–30 min tussenruimte, < 30s",
+          "location": "Voorkant / onderbuik"
+        },
+        "early": {
+          "description": "Weeën worden regelmatiger en komen dichter bij elkaar. Je kunt er nog doorheen praten.",
+          "cervix": "3–6 cm",
+          "pattern": "5–15 min tussenruimte, 30–60s",
+          "location": "Onderbuik, kan zich verspreiden"
+        },
+        "active": {
+          "description": "Sterke, regelmatige weeën. Vereist gerichte ademhaling. Dit is wanneer de meeste mensen naar het ziekenhuis gaan.",
+          "cervix": "6–8 cm",
+          "pattern": "3–5 min tussenruimte, 45–75s",
+          "location": "Omhullend van rug naar voorkant"
+        },
+        "transition": {
+          "description": "De meest intense maar kortste fase. Je kunt druk, misselijkheid en een drang om te persen voelen.",
+          "cervix": "8–10 cm",
+          "pattern": "2–3 min tussenruimte, 60–90s",
+          "location": "Intens, rondom"
+        }
+      },
+      "currentBadge": "Huidig",
+      "bhVsRealTitle": "Braxton Hicks vs. echte bevalling",
+      "bhIntro": "Vergelijk je symptomen om oefenweeën van echte bevalling te onderscheiden.",
+      "bhTag": "BH",
+      "realTag": "Echt",
+      "bhCriteria": {
+        "timing": "Timing",
+        "pattern": "Patroon",
+        "restResponse": "Reactie op rust",
+        "location": "Locatie",
+        "intensity": "Intensiteit"
+      },
+      "bhDescriptions": {
+        "timingBH": "Onregelmatige timing",
+        "timingReal": "Regelmatige timing, komen dichterbij",
+        "patternBH": "Komen niet dichterbij",
+        "patternReal": "Blijven komen ongeacht activiteit",
+        "restBH": "Stoppen bij beweging of houdingsverandering",
+        "restReal": "Stoppen niet bij rust of beweging",
+        "locationBH": "Vooral aan de voorkant gevoeld",
+        "locationReal": "Stralen uit vanuit de rug of omhullend",
+        "intensityBH": "Worden niet sterker in de loop van de tijd",
+        "intensityReal": "Worden geleidelijk sterker"
+      },
+      "warningTitle": "Wanneer onmiddellijk je verloskundige bellen",
+      "warningSigns": {
+        "bleeding": "Vaginaal bloedverlies als een menstruatie of meer",
+        "babyMovement": "Baby stopt met bewegen of beweegt veel minder",
+        "abdominalPain": "Ernstige buikpijn die niet vermindert",
+        "headache": "Ernstige hoofdpijn met gezichtsstoornissen",
+        "fever": "Koorts boven 38°C (100,4°F)",
+        "meconium": "Vocht is groen of bruin (meconium)"
+      },
+      "sourcesTitle": "Bronnen",
+      "disclaimer": "Alleen algemene richtlijnen. Volg altijd de instructies van je verloskundige."
+    },
+    "emptyState": {
+      "title": "Bevallingadviseur",
+      "hint": "Registreer minstens 3 weeën om 5-1-1-voortgang, vertrekadvies en tijdschattingen te zien."
+    },
+    "advisor": {
+      "headlines": {
+        "keepTracking": "Blijf bijhouden",
+        "goNow": "Ga nu naar het ziekenhuis",
+        "timeToGo": "Tijd om te gaan",
+        "startPreparing": "Begin met voorbereiden",
+        "notYet": "Nog niet",
+        "callProvider": "Bel je verloskundige",
+        "stayComfortable": "Blijf comfortabel"
+      },
+      "details": {
+        "notEnoughData": "Registreer meer weeën om vertrekadvies te krijgen.",
+        "transition": "Transitiefase-weeën gedetecteerd. Je zou in of onderweg naar het ziekenhuis moeten zijn.",
+        "waterAndActive": "Vliezen zijn gebroken en weeën zijn in het actieve patroon. Ga naar het ziekenhuis.",
+        "waterBroken": "Vliezen zijn gebroken. Neem contact op met je verloskundige voor advies over wanneer te vertrekken.",
+        "rule511Met": "Weeën komen overeen met het 5-1-1-patroon. Tijd om naar het ziekenhuis te gaan.",
+        "estimatedLeaveSoon": "In het huidige tempo wordt het 5-1-1-patroon verwacht over ~{minutes} min. Overweeg binnenkort te vertrekken.",
+        "progressing": "Voortgang richting 5-1-1. Geschat ~{minutes} min in het huidige tempo.",
+        "activeLabor": "Actief bevallingpatroon gedetecteerd. Blijf in nauw contact met je verloskundige.",
+        "earlyLabor": "Vroege bevalling — weeën zijn aanwezig maar nog ver uit elkaar. Rust en bespaar energie.",
+        "irregular": "Weeën zijn onregelmatig. Blijf monitoren op een consistent patroon."
+      },
+      "factors": {
+        "fewerThan2": "Minder dan 2 weeën geregistreerd",
+        "fewerThan3": "Minder dan 3 weeën geregistreerd",
+        "intervalApart": "Gem. {interval} min tussenruimte",
+        "avgDuration": "Gem. {duration}s lang",
+        "waterBrokeAgo": "Vliezen gebroken {hours}u geleden",
+        "waterBroken": "Vliezen zijn gebroken",
+        "travelUnknown": "Reistijd onbekend",
+        "travelTime": "{minutes} min reistijd",
+        "travelUnknownConservative": "Reistijd onbekend — schatting van 30 min gebruikt",
+        "travelAccounted": "{minutes} min reistijd inbegrepen",
+        "assumedProgression": "Aangenomen {rate} voortgangssnelheid",
+        "rule511Met": "5-1-1-patroon bereikt",
+        "rule511Pattern": "5-1-1-patroon gedetecteerd",
+        "timeTo511": "~{minutes} min tot 5-1-1-patroon"
+      },
+      "recommendations": {
+        "keepTracking": "Blijf weeën timen om een patroon op te bouwen.",
+        "goNow": "Ga onmiddellijk naar het ziekenhuis.",
+        "shouldBeAtHospital": "Je zou in of onderweg naar het ziekenhuis moeten zijn.",
+        "headToHospital": "Ga binnenkort naar het ziekenhuis.",
+        "planToArriveWithin": "Plan om binnen {minutes} min aan te komen.",
+        "planSoon": "Plan om binnenkort te vertrekken.",
+        "planWithinRange": "Plan om binnen {range} te vertrekken.",
+        "estimatedRange": "Geschat {range} tot 5-1-1.",
+        "activeLeaveRange": "Overweeg binnen {range} te vertrekken.",
+        "activeBagReady": "Houd je ziekenhuistas klaar. Actieve bevalling vordert.",
+        "earlyStayHome": "Blijf thuis en rust. Vroege bevalling kan vele uren duren.",
+        "irregularContinue": "Blijf monitoren. Het patroon is nog niet consistent."
+      },
+      "pattern": {
+        "summary": "Gem. {interval} min tussenruimte, {duration}s lang",
+        "notEnoughData": "Onvoldoende gegevens voor patroonanalyse"
+      },
+      "trend": {
+        "gettingCloser": "Komen dichterbij: {first} min → {last} min tussenruimte",
+        "spacingOut": "Worden verder uit elkaar: {first} min → {last} min tussenruimte",
+        "steadyPace": "Stabiel tempo: ~{avg} min tussenruimte"
+      }
+    }
+  },
+  "settings": {
+    "situation": {
+      "title": "Jouw situatie",
+      "firstBabyLabel": "Eerste baby?",
+      "firstBabyHint": "Eerste bevallingen duren meestal langer. Dit beïnvloedt tijdschattingen en faseduren.",
+      "yesFirstBaby": "Ja, eerste baby",
+      "noHadOneBefore": "Nee, eerder gehad"
+    },
+    "display": {
+      "title": "Weergave",
+      "timeFormat": "Tijdformaat",
+      "timeFormat12h": "12 uur",
+      "timeFormat24h": "24 uur",
+      "intensityScale": "Intensiteitsschaal",
+      "levels5": "5 niveaus",
+      "levels3": "3 niveaus",
+      "waveChartHeight": "Hoogte golfgrafiek",
+      "heightSmall": "Klein (100px)",
+      "heightMedium": "Middel (150px)",
+      "heightLarge": "Groot (200px)",
+      "heightXLarge": "Extra groot (250px)",
+      "heroDisplay": "Hoofdweergave",
+      "heroHint": "Informatiekaart boven de timer: faselabel, actiesuggestie of compacte timer.",
+      "heroStageBadge": "Faselabel",
+      "heroActionCard": "Actiekaart",
+      "heroCompactTimer": "Compacte timer",
+      "showRestSeconds": "Rust in seconden tonen",
+      "sessionBreakThreshold": "Sessieonderbreking drempel",
+      "sessionBreakHint": "Pauzes langer dan dit worden als aparte sessies getoond in de golfgrafiek en trendanalyse.",
+      "breakOff": "Uit",
+      "stageTimerMode": "Fasetimermodus",
+      "stageTimerHint": "Hoe de faseduur wordt berekend: vanaf de laatste wee of doorlopend.",
+      "stageTimerLastRecorded": "Laatst geregistreerd",
+      "stageTimerCurrentTime": "Huidige tijd"
+    },
+    "behavior": {
+      "title": "Gedrag",
+      "hapticFeedback": "Haptische feedback",
+      "postContractionRating": "Beoordeling na wee",
+      "showIntensityPicker": "Intensiteitskiezer tonen",
+      "showLocationPicker": "Locatiekiezer tonen",
+      "peakRating": "Piekbeoordeling tijdens wee"
+    },
+    "features": {
+      "title": "Functies",
+      "waveChart": "Golfgrafiek",
+      "showTargetLines": "Doellijnen op grafiek tonen",
+      "showTargetLinesHint": "Gekleurde referentielijnen op de golfgrafiek wanneer weeën je tijddoelen bereiken.",
+      "trendAnalysis": "Trendanalyse",
+      "trendAnalysisHint": "Lineaire regressie op recente weeën om kortere intervallen en langere duur te detecteren.",
+      "patternAssessment": "Patroonbeoordeling",
+      "patternAssessmentHint": "Gewogen score van 6 criteria (regelmaat, duurtrend, intensiteit, locatie, intervaltrend, aanhoudende activiteit) om echte bevalling van Braxton Hicks te onderscheiden.",
+      "hospitalAdvisor": "Ziekenhuisadviseur",
+      "hospitalAdvisorHint": "Vertrektijdadvies op de Adviseurpagina gebaseerd op je weeënpatroon.",
+      "contextualTips": "Contextuele tips",
+      "contextualTipsHint": "Fasegerichte begeleidingskaarten op de Timer- en Adviseurpagina's.",
+      "waterBreakButton": "Vliezen gebroken-knop",
+      "thresholdRuleProgress": "Drempelregelvoortgang",
+      "thresholdRuleHint": "5-1-1 (of aangepaste) regelvoortgang tonen op de bevallingadviseurpagina.",
+      "clinicalReference": "Klinische referentie",
+      "clinicalReferenceHint": "Bevallingsgids op de Adviseurpagina: fasen, Braxton Hicks-vergelijking en waarschuwingssignalen."
+    },
+    "advisor": {
+      "title": "Adviseur",
+      "introDesc": "Deze drie instellingen werken samen: Detailniveau bepaalt hoeveel informatie de adviseur toont. Waarschuwingstiming bepaalt wanneer \"tijd om te gaan\" verschijnt. Reistijd voegt buffer toe zodat je op tijd vertrekt.",
+      "detailLevel": "Detailniveau adviseur",
+      "detailLevelHint": "Bepaalt hoeveel detail de ziekenhuisadviseur toont: tijdranges, urgentieniveau of een eenregelige samenvatting.",
+      "detailDetailed": "Gedetailleerd (bereikschattingen)",
+      "detailUrgency": "Alleen urgentie",
+      "detailMinimal": "Minimaal",
+      "travelTime": "Reistijd",
+      "travelTimeHint": "Hoe lang het duurt om je ziekenhuis te bereiken. Meegenomen in vertrektijdberekening.",
+      "alertTiming": "Waarschuwingstiming",
+      "alertTimingHint": "Conservatief waarschuwt eerder, ontspannen wacht langer. Beïnvloedt wanneer je het advies \"tijd om te gaan\" ziet.",
+      "alertConservative": "Conservatief (vroeg vertrekken)",
+      "alertModerate": "Matig",
+      "alertRelaxed": "Ontspannen (langer wachten)",
+      "providerPhone": "Telefoon verloskundige",
+      "providerPhonePlaceholder": "bijv. 06-12345678"
+    },
+    "threshold": {
+      "title": "Drempelregel",
+      "desc": "De N-1-1-regel is een klinische richtlijn (ACOG) voor wanneer naar het ziekenhuis te gaan. Standaard is 5-1-1: weeën 5 minuten uit elkaar, 1 minuut lang, gedurende 1 uur. Je verloskundige kan 3-1-1, 4-1-1 of andere varianten aanbevelen — pas hieronder aan.",
+      "detailDesc": "Elk criterium gebruikt het gemiddelde van recente weeën binnen het analysevenster, niet één enkele wee. Een wee van 64s telt als \"meer dan 1 minuut.\" Dit zijn richtlijnen, geen absolute regels — volg altijd het advies van je verloskundige.",
+      "intervalTarget": "Intervaldoel",
+      "intervalHint": "Gemiddelde tijd tussen het begin van weeën (start tot start). Aangevinkt wanneer het gemiddelde ≤ deze waarde.",
+      "intervalOption": "{mins} min tussenruimte",
+      "durationTarget": "Duurdoel",
+      "durationHint": "Gemiddelde duur van een wee (start tot stop). Aangevinkt wanneer het gemiddelde ≥ deze waarde.",
+      "durationOption": "{secs}s lang",
+      "sustainedPeriod": "Aanhoudende periode",
+      "sustainedHint": "Totale periode van de eerste tot de meest recente wee. Aangevinkt wanneer ≥ deze waarde, ter bevestiging dat het patroon consistent is, niet een eenmalige cluster."
+    },
+    "advanced": {
+      "title": "Geavanceerd",
+      "stageThresholdsTitle": "Fasedrempels",
+      "stageThresholdsDesc": "Definieer weeënpatronen voor elke bevallingsfase. Gebaseerd op ACOG-richtlijnen. Max interval = langste tussenruimte tussen weeën; min duur = kortste weeduur.",
+      "maxInterval": "{stage} max interval",
+      "minDuration": "{stage} min duur",
+      "bhThresholdsTitle": "Patroonbeoordelingsdrempels",
+      "bhThresholdsDesc": "Fijnafstemming van hoe we oefenweeën van echte bevalling onderscheiden. De meeste gebruikers moeten deze op standaard laten staan.",
+      "regularityCVLow": "Regelmaat CV (laag)",
+      "regularityCVHigh": "Regelmaat CV (hoog)",
+      "realLaborThreshold": "Drempel echte bevalling",
+      "bhThreshold": "BH-drempel",
+      "resetToDefaults": "Geavanceerd naar standaard herstellen"
+    },
+    "extras": {
+      "title": "Extra's",
+      "prayers": "Gebeden",
+      "prayersHint": "Toon het tabblad Gebeden in het menu. Altijd zichtbaar bij Cathedral- en Shire-thema's."
+    }
+  },
+  "sharing": {
+    "sendTitle": "Versturen",
+    "sendDesc": "Deel je sessiegegevens",
+    "receiveTitle": "Ontvangen",
+    "receiveDesc": "Gedeelde gegevens importeren",
+    "liveTitle": "Live delen",
+    "liveExperimentalTag": "(EXPERIMENTEEL)",
+    "liveDesc": "Realtime synchronisatie tussen apparaten",
+    "backButton": "Terug",
+    "liveQuickModeDesc": "Gebruikt een relay om je partner te vinden. Werkt op elk netwerk.",
+    "yourNameLabel": "Je naam",
+    "yourNamePlaceholder": "Mama, Partner, enz.",
+    "joinersCanLabel": "Deelnemers kunnen",
+    "modeCollaborative": "Samen bekijken en bewerken",
+    "modeViewOnly": "Alleen bekijken",
+    "passwordLabel": "Wachtwoord (optioneel)",
+    "passwordPlaceholder": "Voegt versleuteling toe",
+    "passwordHintVisible": "Deel deze wachtwoordzin met je partner",
+    "passwordHintHidden": "Versleutelt de sessie end-to-end",
+    "generatePassphraseAriaLabel": "Wachtwoordzin genereren",
+    "showPasswordAriaLabel": "Wachtwoord tonen",
+    "hidePasswordAriaLabel": "Wachtwoord verbergen",
+    "serverOptionsToggle": "Serveropties",
+    "signalingBackendLabel": "Signalering backend",
+    "signalingBackendDefaultHint": "Routeert de initiële handshake (versleuteld).",
+    "privacyNote": "Alle SDP-gegevens worden versleuteld voordat ze je apparaat verlaten. STUN ziet alleen je IP. TURN stuurt versleutelde gegevens door — kan de inhoud niet lezen.",
+    "testSignalingButton": "Signalering testen",
+    "testSignalingLoading": "Testen...",
+    "testSignalingReachable": "Bereikbaar ({latencyMs}ms)",
+    "testSignalingUnreachable": "Onbereikbaar — probeer een andere backend",
+    "startSharingButton": "Start delen",
+    "joinRoomButton": "Kamer betreden",
+    "scanQrCodeButton": "QR-code scannen",
+    "roomCodeLabel": "Kamercode",
+    "roomCodePlaceholder": "blue-tiger-42",
+    "connectButton": "Verbinden",
+    "usePrivateConnect": "Gebruik privéverbinding",
+    "privateConnectTitle": "Privéverbinding",
+    "privateConnectDesc": "Maak verbinding door handmatig uitnodigingscodes uit te wisselen — geen relayserver raakt je gegevens aan.",
+    "privateStep1": "Eén persoon maakt een uitnodiging en deelt de code",
+    "privateStep2": "De ander accepteert en stuurt een antwoordcode terug",
+    "privateStep3": "Na uitwisseling ben je peer-to-peer verbonden",
+    "connectionLimitationsTitle": "Verbindingsbeperkingen",
+    "connectionLimitationsText": "Zonder een TURN-relayserver werkt dit alleen betrouwbaar op hetzelfde WiFi-netwerk. Verbindingen tussen verschillende netwerken (mobiele data, ander WiFi, bedrijfsfirewalls) falen meestal omdat NAT/firewallregels direct peer-to-peer-verkeer blokkeren.",
+    "connectionLimitationsAdvice": "Voor betrouwbare verbindingen tussen netwerken, gebruik Snelle Verbinding met een Cloudflare Worker-relay — het is gratis, duurt 2 minuten om in te stellen en werkt overal.",
+    "createInviteButton": "Uitnodiging maken",
+    "acceptInviteButton": "Uitnodiging accepteren",
+    "scanInviteQrButton": "Uitnodiging-QR scannen",
+    "inviteCodeLabel": "Uitnodigingscode",
+    "inviteCodePlaceholder": "Plak de uitnodigingscode hier...",
+    "hostStep1Label": "Stap 1: Deel dit met je partner",
+    "hostStep2Label": "Stap 2: Voer de antwoordcode van je partner in",
+    "responseCodePlaceholder": "Plak de antwoordcode...",
+    "guestSendCodeLabel": "Stuur deze code terug naar je partner",
+    "waitingForPartnerToEnterCode": "Wachten tot partner code invoert...",
+    "generatingResponseCode": "Antwoordcode genereren...",
+    "connectedLabel": "Verbonden",
+    "privateBadge": "Privé",
+    "connectedTo": "met {roomCode}",
+    "modeLabel": "Modus: {mode}",
+    "connectedPeersHeader": "Verbonden ({count})",
+    "peerHostSuffix": "(host)",
+    "stopSharingButton": "Stop delen",
+    "disconnectButton": "Verbinding verbreken",
+    "connectionDetailsToggle": "Verbindingsdetails",
+    "shareLinkButton": "Link delen",
+    "waitingForPartnerToJoin": "Wachten tot partner deelneemt...",
+    "copyFeedbackSuccess": "{label} gekopieerd!",
+    "copyFeedbackFailed": "Kopiëren mislukt",
+    "phaseCreatingOffer": "Beveiligde kamer aanmaken...",
+    "phasePosting": "Kamercode publiceren...",
+    "phaseWaitingForPartner": "Wachten op partner...",
+    "phasePollingForOffer": "Kamer zoeken...",
+    "phaseGeneratingAnswer": "Verbinden met host...",
+    "phasePostingAnswer": "Antwoord versturen...",
+    "phaseCompleting": "Handshake voltooien...",
+    "phaseConnected": "Verbonden!",
+    "phaseDefault": "Verbinden...",
+    "scannerHint": "Richt camera op QR-code",
+    "tapToEnlargeHint": "Tik om te vergroten",
+    "qrPrivateInviteAlt": "QR-code voor privé-uitnodiging",
+    "qrResponseCodeAlt": "QR-code voor antwoordcode",
+    "qrRoomCodeAlt": "QR-code voor kamer {roomCode}",
+    "qrEnlargedAlt": "QR-code (vergroot)",
+    "qrFullscreenCloseHint": "Tik ergens om te sluiten",
+    "serverOptions": {
+      "workerUrl": "Worker-URL",
+      "stunServer": "STUN-server",
+      "customStunUrl": "Aangepaste STUN-URL",
+      "turnRelay": "TURN-relay",
+      "turnUrl": "TURN-URL",
+      "username": "Gebruikersnaam",
+      "credential": "Wachtwoord",
+      "usernamePlaceholder": "TURN-gebruikersnaam",
+      "credentialPlaceholder": "TURN-wachtwoord",
+      "stunGoogle": "Google (standaard)",
+      "stunCloudflare": "Cloudflare",
+      "stunNone": "Geen (alleen LAN)",
+      "stunCustom": "Aangepast",
+      "stunGoogleDesc": "Gratis en betrouwbaar. Google ziet je IP tijdens het STUN-verzoek.",
+      "stunCloudflareDesc": "Privacygericht alternatief. Cloudflare ziet je IP.",
+      "stunNoneDesc": "Geen STUN-server. Werkt alleen op hetzelfde lokale netwerk.",
+      "stunCustomDesc": "Voer je eigen STUN-server-URL in.",
+      "turnOpenRelay": "Open Relay (standaard)",
+      "turnCloudflare": "Cloudflare TURN",
+      "turnNone": "Geen",
+      "turnCustom": "Aangepast",
+      "turnOpenRelayDesc": "Gratis openbare relay. Stuurt versleutelde gegevens door als directe verbinding mislukt.",
+      "turnCloudflareDesc": "Vereist een Cloudflare-account met TURN ingeschakeld.",
+      "turnNoneDesc": "Geen TURN-relay. Alleen directe verbindingen.",
+      "turnCustomDesc": "Voer je eigen TURN-servergegevens in."
+    },
+    "diagnostics": {
+      "iceCandidates": "ICE-kandidaten",
+      "hostLocal": "Host (lokaal)",
+      "stunSrflx": "STUN (srflx)",
+      "turnRelay": "TURN (relay)",
+      "gatherTime": "Verzameltijd",
+      "signaling": "Signalering",
+      "fallback": "Terugval",
+      "warning": "Waarschuwing",
+      "fallbackDetail": "Gebruikt ntfy.sh (primaire onbereikbaar)"
+    },
+    "privateTurnHint": {
+      "summary": "Heb je al een TURN-server?",
+      "detail": "Als je eigen TURN-servergegevens hebt, selecteer dan 'Aangepast' hierboven en voer ze in. TURN stuurt versleutelde gegevens door wanneer directe peer-to-peer-verbindingen mislukken door restrictieve NAT of firewalls."
+    },
+    "snapshot": {
+      "sendTitle": "Snapshot versturen",
+      "sendTooltip": "Stuurt een bevroren kopie van je sessiegegevens. De ontvanger krijgt een eenmalig snapshot, geen live verbinding.",
+      "sendDesc": "Deel een eenmalige kopie van je sessie. Je partner ontvangt een bevroren snapshot — geen live verbinding.",
+      "whatToInclude": "Wat op te nemen",
+      "alwaysIncludedHint": "Sessiegegevens (weeën, gebeurtenissen) worden altijd meegenomen.",
+      "shareSessionButton": "Sessiegegevens delen",
+      "copyLinkLabel": "Link kopiëren",
+      "copyLinkDesc": "Deelbare URL met je gegevens",
+      "copyDataLabel": "Gegevens kopiëren",
+      "copyDataDesc": "Gecomprimeerde gegevens om te plakken",
+      "qrCodeLabel": "QR-code",
+      "qrCodeDesc": "Scan met telefoon camera",
+      "qrCodeTooLarge": "Te groot voor QR",
+      "qrCodeTooLargeTitle": "Sessiegegevens zijn te groot voor een QR-code",
+      "shortCodeLabel": "Kortcode",
+      "shortCodeDesc": "Makkelijk in te typen code (verloopt na 5 min)",
+      "shortCodeDisabledDesc": "Vereist relayserver",
+      "shortCodeDisabledTitle": "Stel een relay in bij serveropties om kortcodes in te schakelen",
+      "shortCodeResultLabel": "Kortcode",
+      "shortCodeExpiry": "Verloopt over 5 min",
+      "qrTapHint": "Tik om te vergroten",
+      "qrTooLargeError": "Sessiegegevens te groot voor QR-code ({charCount} tekens, max ~2900). Gebruik link kopiëren of kortcode.",
+      "qrGenerationFailed": "QR-generatie mislukt: {message}",
+      "emptyTitle": "Nog geen sessiegegevens",
+      "emptyDesc": "Begin met het bijhouden van weeën, kom dan hier terug om je gegevens te delen met je partner of een ander apparaat.",
+      "receiveTitle": "Snapshot ontvangen",
+      "receiveIntro": "Importeer sessiegegevens gedeeld door je partner of van een ander apparaat.",
+      "receiveMethodQr": "Scan een QR-code met je camera",
+      "receiveMethodLink": "Plak een deellink van je partner",
+      "receiveMethodShortCode": "Voer een kortcode in (bij gebruik van een relay)",
+      "importPlaceholder": "Plak een link, kortcode of gecomprimeerde gegevens hier...",
+      "loadingText": "Snapshot laden...",
+      "previewHeader": "Dit snapshot importeren?",
+      "previewContractionsLabel": "Weeën",
+      "previewContractionsValue": "{contractionCount} ({completedCount} voltooid)",
+      "previewEventsLabel": "Gebeurtenissen",
+      "previewTimeRangeLabel": "Tijdsbereik",
+      "previewSessionStartedLabel": "Sessie gestart",
+      "previewSessionDateUnknown": "Onbekend",
+      "previewIncludedSettingsHeader": "Meegeleverde instellingen",
+      "previewArchiveAndImportButton": "Huidige archiveren en importeren",
+      "previewReplaceButton": "Huidige sessie vervangen",
+      "previewCurrentSessionHint": "Je hebt {count, plural, one {# wee} other {# weeën}} in je huidige sessie.",
+      "previewImportCountButton": "{count} weeën importeren",
+      "importErrorUnrecognized": "Kon niet herkend worden als een snapshotlink, code of gegevens",
+      "importErrorRelayRequired": "Kortcodes vereisen een relayserver. Stel er een in bij serveropties.",
+      "nativeShareTitle": "Weeëntimergegevens",
+      "nativeShareText": "Bekijk mijn weeëntimersessie",
+      "pasteFromClipboardAriaLabel": "Plakken vanuit klembord"
+    },
+    "deploy": {
+      "guideToggle": "Eigen relay opzetten (aanbevolen)",
+      "tierBasicBadge": "Basis",
+      "tierBasicLabel": "Geen installatie nodig",
+      "tierBasicDesc": "Gebruikt gratis openbare servers. Werkt op hetzelfde WiFi-netwerk. Verbindingen tussen netwerken kunnen instabiel zijn.",
+      "tierBasicConfig": "ntfy.sh + Google STUN + Open Relay TURN",
+      "tierAdvancedBadge": "Geavanceerd",
+      "tierAdvancedLabel": "Je eigen privérelay",
+      "tierAdvancedDesc": "Werkt overal. Gratis. Duurt 2 minuten. Geen creditcard nodig.",
+      "step1Title": "Zet je relay op",
+      "step1Desc": "Je hebt een gratis GitHub- en Cloudflare-account nodig. Cloudflare maakt een kopie van de relaycode en zet het voor je op.",
+      "step1Button": "Zet op bij Cloudflare (één klik)",
+      "step2Title": "Kopieer je Worker-URL",
+      "step2Desc": "Na het opzetten toont Cloudflare je URL. Het lijkt op ct-signaling.you.workers.dev. Selecteer \"Mijn Cloudflare Worker\" in het menu hierboven en plak het.",
+      "step3Title": "Deel de URL met je partner",
+      "step3Desc": "Je partner plakt dezelfde URL in hun app. Slechts één persoon hoeft op te zetten — beiden gebruiken dezelfde relay.",
+      "tierSelfHostedBadge": "Zelf gehost",
+      "tierSelfHostedLabel": "Volledige controle",
+      "tierSelfHostedDesc": "Draai je eigen signaleringsserver + TURN-relay. Nul afhankelijkheden van derden."
+    },
+    "categories": {
+      "thresholdsLabel": "Tijdregels (5-1-1)",
+      "thresholdsDesc": "Drempel- en fase-instellingen",
+      "providerLabel": "Telefoon verloskundige",
+      "providerDesc": "Het nummer van je verloskundige",
+      "layoutLabel": "Schermindeling",
+      "layoutDesc": "Paneel volgorde en hoofdmodus",
+      "parityLabel": "Bevallingsgeschiedenis",
+      "parityDesc": "Eerste baby of volgende",
+      "travelLabel": "Reizen en afstand",
+      "travelDesc": "Rijtijd, risiconiveau",
+      "appearanceLabel": "Thema en weergave",
+      "appearanceDesc": "Thema, zichtbaarheidschakelaars"
+    },
+    "cameraErrorGeneric": "Camerafout: {message}",
+    "cameraErrorHttps": "Camera vereist HTTPS. Deze pagina bevindt zich niet in een beveiligde context.",
+    "cameraErrorNotFound": "Geen camera gevonden op dit apparaat.",
+    "cameraErrorPermission": "Cameratoestemming geweigerd. Controleer uw browserinstellingen.",
+    "cameraErrorUnavailable": "Camera API niet beschikbaar in deze browser.",
+    "enterCodeManually": "Voer code handmatig in",
+    "enterNameToConnect": "Voer uw naam in om te verbinden",
+    "nameRequired": "Naam vereist om te verbinden",
+    "receivedInviteBanner": "U heeft een privé-uitnodiging ontvangen!",
+    "responseCodeLabel": "Antwoordcode",
+    "responseLinkLabel": "Antwoordlink"
+  },
+  "onboarding": {
+    "welcomeTitle": "Weeëntimer",
+    "welcomeDesc": "Volg weeën, zie patronen en weet wanneer het tijd is om naar het ziekenhuis te gaan.",
+    "welcomePrivacyNote": "Alle gegevens blijven op dit apparaat. Geen account nodig.",
+    "getStartedButton": "Aan de slag",
+    "skipSetupButton": "Installatie overslaan",
+    "quickSetupTitle": "Snelle installatie",
+    "quickSetupDesc": "Twee snelle vragen om je ervaring te personaliseren.",
+    "firstBabyLabel": "Is dit je eerste baby?",
+    "firstBabyYes": "Ja, eerste",
+    "firstBabyNo": "Nee, eerder gehad",
+    "hospitalDistanceLabel": "Hoe ver is je ziekenhuis?",
+    "travelTimeMinutes": "{mins} min",
+    "travelTimeNotSure": "Weet ik niet",
+    "travelTimeUncertainHint": "Geen probleem — we gebruiken een conservatieve schatting en geven je een bereik.",
+    "providerPhoneLabel": "Telefoon verloskundige of ziekenhuis (optioneel)",
+    "providerPhonePlaceholder": "06-12345678",
+    "providerPhoneHint": "Snel bellen vanuit de app wanneer het zover is.",
+    "readyTitle": "Je bent klaar",
+    "readyDesc": "Tik op de grote knop wanneer een wee begint. Tik opnieuw wanneer het stopt. De app doet de rest.",
+    "summaryFirstBaby": "Eerste baby",
+    "summaryNotFirstBaby": "Niet eerste baby",
+    "summaryTravelTimeNotSure": "Reistijd: weet ik niet",
+    "summaryTravelTimeMinutes": "{travelTime} min naar het ziekenhuis",
+    "startTrackingButton": "Begin met bijhouden"
+  },
+  "clinical": {
+    "bhVsReal": {
+      "bh": {
+        "irregularTiming": "Onregelmatige timing",
+        "notCloser": "Komen niet dichterbij",
+        "stopWithMovement": "Stoppen bij beweging of houdingsverandering",
+        "frontOnly": "Vooral aan de voorkant gevoeld",
+        "notStronger": "Worden niet sterker in de loop van de tijd"
+      },
+      "real": {
+        "regularCloser": "Regelmatige timing, komen dichterbij",
+        "keepComing": "Blijven komen ongeacht activiteit",
+        "noStop": "Stoppen niet bij rust of beweging",
+        "radiateBack": "Stralen uit vanuit de rug of omhullend",
+        "progressive": "Worden geleidelijk sterker"
+      }
+    },
+    "tips": {
+      "firstContraction": "Goed begin! Blijf weeën timen om te zien of er een patroon ontstaat. De meeste eerste bevallingen beginnen langzaam.",
+      "prelaborNormal": "Onregelmatige weeën zijn normaal en kunnen dagen komen en gaan. Als ze stoppen bij beweging of rust, zijn het mogelijk Braxton Hicks.",
+      "earlyRest": "Vroege bevalling kan 6-12+ uur duren bij een eerste kind. Probeer te rusten, vooral als het nacht is.",
+      "earlyHydrate": "Blijf gehydrateerd en eet lichte hapjes. Je hebt de energie nodig voor de actieve bevalling.",
+      "earlyActivity": "Lichte activiteit zoals wandelen kan helpen de bevalling overdag te bevorderen.",
+      "earlyTiming": "Je bent waarschijnlijk nog thuis tijdens de vroege bevalling. Ga naar het ziekenhuis wanneer weeën het 5-1-1-patroon bereiken.",
+      "activeEntered": "Actieve bevalling betekent gestage voortgang. Als je nog niet in het ziekenhuis bent, is het tijd om te gaan.",
+      "activeBreathing": "Concentreer je op langzame, diepe ademhaling tijdens elke wee. Inademen door de neus, uitademen door de mond.",
+      "activeDuration": "Actieve bevalling duurt meestal 3-5 uur bij een eerste kind. Je maakt echte voortgang.",
+      "transitionEntered": "De transitie is de kortste maar meest intense fase. Je bent er bijna.",
+      "transitionNormal": "Je overweldigd, misselijk of trillend voelen is normaal tijdens de transitie. Het duurt meestal 30 minuten tot 2 uur.",
+      "waterNoteColor": "Let op de kleur van het vocht. Helder of lichtgeel is normaal. Groen of bruin betekent onmiddellijk je verloskundige bellen.",
+      "waterCallProvider": "Neem contact op met je verloskundige om te laten weten dat je vliezen gebroken zijn. Ze zullen adviseren over de volgende stappen.",
+      "waterStats": "77-95% van de mensen begint binnen 24 uur na het breken van de vliezen met actieve bevalling.",
+      "nightSleep": "Probeer tussen de weeën door te slapen als het kan. Rust nu helpt je door de actieve bevalling later.",
+      "backLabor": "Rugpijn tijdens de bevalling kan verlicht worden door op handen en knieën te gaan, heupdruk of een warm kompres op je onderrug.",
+      "safetyCall": "Bel onmiddellijk je verloskundige bij: hevig bloedverlies, baby stopt met bewegen, ernstige hoofdpijn met gezichtsstoornissen of koorts boven 38°C.",
+      "patternRegular": "Je weeën worden regelmatiger. Dit is een goed teken dat de bevalling vordert."
+    }
+  },
+  "shared": {
+    "collapsibleSection": {
+      "openSettingsAriaLabel": "Instellingen openen",
+      "moveUpAriaLabel": "Omhoog verplaatsen",
+      "moveDownAriaLabel": "Omlaag verplaatsen"
+    },
+    "contextualTips": {
+      "dismissTipAriaLabel": "Tip sluiten"
+    },
+    "toast": {
+      "peerJoined": "{name} is deelgenomen",
+      "partnerDisconnected": "Een partner is losgekoppeld"
+    },
+    "storageWarning": {
+      "dismissAriaLabel": "Sluiten"
+    },
+    "sessionManager": {
+      "newSession": "Nieuwe sessie",
+      "archiveConfirmPrompt": "Huidige sessie archiveren en opnieuw beginnen?",
+      "yesStartNew": "Ja, nieuwe starten",
+      "previousSessions": "Eerdere sessies",
+      "restore": "Herstellen",
+      "delete": "Verwijderen",
+      "confirmDelete": "Bevestigen",
+      "noArchivedSessions": "Geen gearchiveerde sessies."
+    }
+  },
+  "devotional": {
+    "headingPrayersAndScripture": "Gebeden en Schrift",
+    "headingPatronSaints": "Beschermheiligen van de Bevalling",
+    "prayerBadge": "Gebed",
+    "scriptureBadge": "Schrift",
+    "prayerDotAriaLabel": "Gebed {index}",
+    "footerLatin": "Pax Domini sit semper vobiscum.",
+    "footerTranslation": "De vrede van de Heer zij altijd met u.",
+    "dedication": "Gemaakt met ♥ voor AJR",
+    "saints": {
+      "gerardMajella": {
+        "name": "H. Gerard Majella",
+        "title": "Beschermheilige van aanstaande moeders",
+        "detail": "Een 18e-eeuwse Redemptoristenbroeder wiens voorspraak door moeders wordt gevraagd voor een veilige bevalling en gezonde kinderen."
+      },
+      "giannaMolla": {
+        "name": "H. Gianna Beretta Molla",
+        "title": "Beschermheilige van moeders en ongeboren kinderen",
+        "detail": "Een Italiaanse arts en moeder die haar leven opofferde voor haar ongeboren kind in 1962. Heilig verklaard door paus Johannes Paulus II in 2004."
+      },
+      "raymondNonnatus": {
+        "name": "H. Raymundus Nonnatus",
+        "title": "Beschermheilige van bevalling en vroedvrouwen",
+        "detail": "Een 13e-eeuwse Mercedariër monnik genaamd \"non natus\" (niet geboren) omdat hij door keizersnede werd geboren na de dood van zijn moeder."
+      },
+      "margaretAntioch": {
+        "name": "H. Margaretha van Antiochië",
+        "title": "Beschermheilige van bevalling",
+        "detail": "Een maagd-martelares van de vroege kerk, al eeuwenlang aangeroepen door vrouwen in barensnood. Een van de Veertien Noodhelpers."
+      },
+      "ourLadyLaLeche": {
+        "name": "Onze-Lieve-Vrouw van de Melk",
+        "title": "Beschermheilige van zogende moeders",
+        "detail": "Een geliefde devotie tot de Heilige Maagd Maria die haar eert als zogende moeder, met een heiligdom in Sint-Augustinus, Florida sinds 1615."
+      },
+      "colette": {
+        "name": "H. Coleta",
+        "title": "Beschermheilige van zwangere vrouwen en vrouwen in barensnood",
+        "detail": "Een 14e-eeuwse Franse Clarissen non bekend om het hervormen van haar orde. Een doodgeboren kind zou na in haar sluier gewikkeld te zijn tot leven zijn gekomen."
+      },
+      "felicity": {
+        "name": "H. Felicitas",
+        "title": "Beschermheilige van aanstaande moeders",
+        "detail": "Een 2e-eeuwse vrouw gevangengezet en ter dood veroordeeld vanwege haar christelijk geloof terwijl ze zwanger was. Haar executie werd uitgesteld tot na de bevalling in de gevangenis."
+      },
+      "elizabeth": {
+        "name": "H. Elizabeth",
+        "title": "Beschermheilige van aanstaande moeders",
+        "detail": "Nicht van de Heilige Maagd Maria en moeder van Johannes de Doper. Genoemd \"gezegend onder de vrouwen\", ze werd op hoge leeftijd zwanger door de genade van God."
+      },
+      "anne": {
+        "name": "H. Anna",
+        "title": "Beschermheilige van grootmoeders en vrouwen in barensnood",
+        "detail": "Moeder van de Heilige Maagd Maria. Vereerd sinds de vroege kerk voor het op latere leeftijd ontvangen en baren van Maria. Haar naam betekent \"genade\"."
+      },
+      "monica": {
+        "name": "H. Monica",
+        "title": "Beschermheilige van moeders",
+        "detail": "Een 4e-eeuwse moeder van de H. Augustinus van Hippo. Ze doorstond grote ontberingen tijdens de zwangerschap met een gewelddadige echtgenoot, maar haar geloof en doorzettingsvermogen leidden haar zoon tot bekering."
+      },
+      "zelieMartin": {
+        "name": "H. Zélie Martin",
+        "title": "Beschermheilige van moeders en rouwende ouders",
+        "detail": "Een 19e-eeuwse Franse moeder die vier van haar negen kinderen in hun kindertijd verloor. Heilig verklaard in 2015 samen met haar echtgenoot Louis. Moeder van de H. Theresia van Lisieux."
+      },
+      "joseph": {
+        "name": "H. Jozef",
+        "title": "Beschermheilige van gezinnen, vaders en de Universele Kerk",
+        "detail": "De pleegvader van Jezus en bruidegom van de Heilige Maagd Maria. Bekend als \"Schrik der Demonen\" vanwege zijn krachtige bescherming over de Heilige Familie. Beschermheilige van een goede dood, arbeiders en de universele Kerk."
+      }
+    },
+    "prayers": {
+      "stGerard": {
+        "title": "Gebed tot H. Gerard voor een Veilige Bevalling",
+        "shortLabel": "H. Gerard",
+        "text": "O grote heilige Gerard, geliefde dienaar van Jezus Christus, volmaakte navolger van uw zachtmoedige en nederige Verlosser, en toegewijde zoon van de Moeder Gods: verrijk mij met uw zegen voor, tijdens en na de geboorte van mijn kind. Door uw voorspraak moge ik een veilige en gelukkige bevalling ervaren. Moge mijn kind veilig ter wereld komen en worden opgevoed als een waar kind van God. Amen.",
+        "attribution": "Traditioneel Katholiek Gebed"
+      },
+      "memorare": {
+        "title": "Memorare",
+        "shortLabel": "Memorare",
+        "text": "Gedenk, o allerbarmhartigste Maagd Maria, dat het nooit gehoord is, dat iemand die tot u zijn toevlucht nam, uw bijstand inriep of uw voorspraak afsmeekte, door u zou verlaten zijn. Bezield met dit vertrouwen, neem ook ik mijn toevlucht tot u, o Maagd der maagden, mijn Moeder. Tot u kom ik, voor u sta ik, zondig en treurend. O Moeder van het Woord, versmaad mijn bede niet, maar verhoor mij genadiglijk en verhoort mij. Amen.",
+        "attribution": "Toegeschreven aan H. Bernardus van Clairvaux"
+      },
+      "motherAndChild": {
+        "title": "Gebed voor Moeder en Kind",
+        "shortLabel": "Moeder en Kind",
+        "text": "Heer Jezus Christus, die gedragen werd in de schoot van de Heilige Maagd Maria, zie neer met barmhartigheid op deze moeder en haar kind. Schenk haar kracht in de bevalling, moed in de pijn en vreugde in nieuw leven. Moge het kind veilig en gezond geboren worden, en mogen zowel moeder als kind rusten onder uw liefdevolle bescherming. Door de voorspraak van Maria, Moeder van God, en alle heilige moeders en heiligen, vragen wij dit in uw naam. Amen.",
+        "attribution": "Traditioneel Katholiek Gebed"
+      },
+      "hailMary": {
+        "title": "Wees Gegroet",
+        "shortLabel": "Wees Gegroet",
+        "text": "Wees gegroet, Maria, vol van genade, de Heer is met u. Gij zijt de gezegende onder de vrouwen en gezegend is Jezus, de vrucht van uw schoot. Heilige Maria, Moeder van God, bid voor ons zondaars, nu en in het uur van onze dood. Amen.",
+        "attribution": "Traditioneel Katholiek Gebed"
+      },
+      "ourLadyLaLeche": {
+        "title": "Gebed tot Onze-Lieve-Vrouw van de Melk",
+        "shortLabel": "O.L.V. van de Melk",
+        "text": "Lieflijke Vrouwe van de Melk, meest liefdevolle Moeder van het Kindje Jezus en mijn moeder, ik kom uw hulp vragen. Ik geloof in Gods macht en stel al mijn vertrouwen in u. Schenk mij de genade van het moederschap. Sta mij bij, lieve Vrouwe, in dit mijn verlangen, en als het de Heilige Wil van God is dat ik zwanger word, verkrijg voor mij de genade om mijn kind vol te dragen. Door de voorspraak van uw Heilige Moeder en de verdiensten van haar goddelijke Zoon, heb medelijden met ons. Amen.",
+        "attribution": "Traditioneel — Heiligdom van O.L.V. van de Melk, Sint-Augustinus, FL"
+      },
+      "safeDelivery": {
+        "title": "Gebed voor een Veilige Bevalling",
+        "shortLabel": "Veilige Bevalling",
+        "text": "Heer Jezus, ik leg mijn baby en mijzelf in uw liefdevolle handen. Kalmeer mijn angsten, versterk mijn lichaam en leid degenen die voor ons zorgen. Moge deze geboorte veilig zijn en vervuld van uw vrede. Ik vertrouw op uw plan voor ons leven. Amen.",
+        "attribution": "Hedendaags Katholiek Gebed"
+      },
+      "stJoseph": {
+        "title": "Gebed tot H. Jozef, Beschermer van Gezinnen",
+        "shortLabel": "H. Jozef",
+        "text": "O heilige Jozef, wiens bescherming zo groot, zo sterk, zo snel is voor de troon van God, leg ik al mijn belangen en verlangens in u. O heilige Jozef, sta mij bij met uw krachtige voorspraak en verkrijg voor mij alle geestelijke zegeningen door uw pleegzoon, Jezus Christus onze Heer, opdat ik, hier op aarde de weldaad van uw hemelse macht ontvangend, mijn dankbaarheid en hulde mag aanbieden. O heilige Jozef, Schrik der Demonen, bid voor ons en voor onze familie. Bewaakt deze moeder en dit kind met uw vaderlijke zorg. Amen.",
+        "attribution": "Traditioneel Katholiek Gebed tot H. Jozef"
+      },
+      "psalm139": {
+        "title": "Psalm 139:13-16 — Geweven in de Schoot",
+        "shortLabel": "📖 Psalm 139",
+        "text": "Want Gij hebt mijn nieren geschapen, Gij hebt mij geweven in de schoot mijner moeder. Ik loof U, omdat ik op ontzagwekkende wijze wonderbaar gemaakt ben; wonderbaar zijn Uw werken, en mijn ziel weet het zeer wel. Mijn gebeente was voor U niet verborgen, toen ik in het verborgene gemaakt werd, kunstig geweven in de diepten der aarde. Uw ogen zagen mij, toen ik nog een klomp was, en in Uw boek waren zij allen geschreven, de dagen die geformeerd zouden worden, toen nog geen van die er was.",
+        "attribution": "Psalm 139:13-16 (Statenvertaling)"
+      },
+      "isaiah66": {
+        "title": "Jesaja 66:9 — Belofte van Bevalling",
+        "shortLabel": "📖 Jesaja 66:9",
+        "text": "Zou Ik de moederschoot openen en niet laten baren? zegt de HEERE; zou Ik, Die doe baren, toesluiten? zegt uw God.",
+        "attribution": "Jesaja 66:9 (Statenvertaling)"
+      },
+      "jeremiah1": {
+        "title": "Jeremia 1:5 — Gekend vóór de Geboorte",
+        "shortLabel": "📖 Jeremia 1:5",
+        "text": "Eer Ik u in de moederschoot formeerde, heb Ik u gekend, en eer u uit de baarmoeder voortkwaamt, heb Ik u geheiligd.",
+        "attribution": "Jeremia 1:5 (Statenvertaling)"
+      },
+      "magnificat": {
+        "title": "Magnificat (Lofzang van Maria)",
+        "shortLabel": "📖 Magnificat",
+        "text": "Mijn ziel prijst de Heer, mijn geest vindt vreugde in God, mijn Redder, want Hij heeft oog gehad voor de nederigheid van zijn dienares. Ja, van nu af zullen alle geslachten mij zalig prijzen, omdat de Machtige grote dingen aan mij heeft gedaan. Heilig is zijn naam.",
+        "attribution": "Lucas 1:46-49 — Het Magnificat"
+      }
+    }
+  },
+  "relay": {
+    "responseSent": "Antwoord verstuurd!",
+    "responseSentDesc": "De antwoordcode is verstuurd naar je deelsessie. Je kunt dit tabblad sluiten.",
+    "closeTab": "Tabblad sluiten"
+  },
+  "swipeHint": "veeg"
+}

@@ -1,0 +1,1155 @@
+{
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "close": "Schlie\u00dfen",
+    "back": "Zur\u00fcck",
+    "delete": "L\u00f6schen",
+    "confirm": "Best\u00e4tigen",
+    "none": "Keine",
+    "skip": "\u00dcberspringen",
+    "continue": "Weiter",
+    "share": "Teilen",
+    "import": "Importieren",
+    "copyLink": "Link kopieren"
+  },
+  "nav": {
+    "timer": "Timer",
+    "dashboard": "\u00dcbersicht",
+    "history": "Verlauf",
+    "advisor": "Berater",
+    "mainNavAriaLabel": "Hauptnavigation",
+    "brandTitle": "contractions.app",
+    "goToTimerAriaLabel": "Zum Timer",
+    "shareSessionAriaLabel": "Sitzung teilen",
+    "menuAriaLabel": "Men\u00fc",
+    "openMenuAriaLabel": "Men\u00fc \u00f6ffnen",
+    "menu": "Men\u00fc"
+  },
+  "menu": {
+    "drawerTitle": "Men\u00fc",
+    "closeMenuAriaLabel": "Men\u00fc schlie\u00dfen",
+    "closeAriaLabel": "Schlie\u00dfen",
+    "backToMenuAriaLabel": "Zur\u00fcck zum Men\u00fc",
+    "sharingTitle": "Teilen",
+    "sharingHintConnected": "Verbunden ({count} Ger\u00e4te)",
+    "settingsTitle": "Einstellungen",
+    "themeTitle": "Design",
+    "sessionsTitle": "Sitzungen",
+    "devToolsTitle": "Entwicklertools",
+    "prayersTitle": "Gebete",
+    "aboutTitle": "\u00dcber",
+    "items": {
+      "sharing": "Teilen",
+      "settings": "Einstellungen",
+      "theme": "Design",
+      "sessions": "Sitzungen",
+      "exportData": "Daten exportieren (JSON)",
+      "importData": "Daten importieren",
+      "restartSetup": "Einrichtung neu starten",
+      "restartSetupHint": "Willkommensassistenten erneut ausf\u00fchren (Daten bleiben erhalten)",
+      "about": "\u00dcber",
+      "feedbackAndIssues": "Feedback & Probleme",
+      "prayers": "Gebete",
+      "devTools": "Entwicklertools",
+      "clearAllData": "Alle Daten l\u00f6schen"
+    },
+    "importError": "Ung\u00fcltiges Dateiformat",
+    "clearConfirm": {
+      "prompt": "Alle Wehendaten l\u00f6schen?",
+      "confirmButton": "Ja, alles l\u00f6schen",
+      "cancelButton": "Abbrechen"
+    },
+    "about": {
+      "appName": "Wehentimer",
+      "description": "Wehen verfolgen, Geburtsmuster erkennen und wissen, wann es Zeit f\u00fcr das Krankenhaus ist.",
+      "features": {
+        "liveTimer": "Live-Timer mit Wellendiagramm",
+        "rule511": "5-1-1-Regel-Verfolgung",
+        "braxtonHicks": "Braxton-Hicks-Bewertung",
+        "hospitalAdvisor": "Krankenhaus-Abfahrtsberater",
+        "clinicalReference": "Klinischer Leitfaden"
+      },
+      "privacyNotice": "Alle Daten bleiben auf diesem Ger\u00e4t. Keine Konten, keine Server, kein Tracking.",
+      "githubLink": "GitHub",
+      "feedbackLink": "Feedback & Probleme"
+    },
+    "theme": {
+      "lightMode": "Hell",
+      "darkMode": "Dunkel",
+      "uniqueMode": "Besonders",
+      "colorPaletteLabel": "Farbpalette",
+      "darkCardStyle": "Dunkel",
+      "lightCardStyle": "Hell",
+      "paletteNames": {
+        "soft": "Sanft",
+        "clinical": "Klinisch",
+        "warm": "Warm",
+        "ocean": "Ozean",
+        "forest": "Wald",
+        "sunset": "Sonnenuntergang",
+        "lavender": "Lavendel",
+        "midnight": "Mitternacht",
+        "sky": "Himmel",
+        "blush": "Ros\u00e9"
+      },
+      "uniqueModeLabels": {
+        "soft": "Aurora",
+        "clinical": "Terminal",
+        "warm": "Cathedral",
+        "ocean": "Abyss",
+        "forest": "Shire",
+        "sunset": "Retrowave",
+        "lavender": "Frost",
+        "midnight": "Galaxy",
+        "sky": "Dreamscape",
+        "blush": "Sakura"
+      }
+    },
+    "languageSelector": {
+      "changeLanguageAriaLabel": "Sprache ändern",
+      "closeMenuAriaLabel": "Sprachmenü schließen"
+    },
+    "devtools": {
+      "loadSeedData": "Testdaten laden",
+      "seedHint": "Aktuelle Sitzung durch realistische Testdaten ersetzen.",
+      "quickActions": "Schnellaktionen",
+      "clearSession": "Sitzung leeren",
+      "clearSessionDesc": "Auf leeren Zustand zur\u00fccksetzen",
+      "loadedToast": "Geladen!",
+      "debugLogging": "Debug-Protokollierung",
+      "debugLoggingHint": "Diagnosedaten beim Testen erfassen. Protokoll kopieren und zum Teilen einf\u00fcgen.",
+      "enableLogging": "Protokollierung aktivieren",
+      "copyLog": "Protokoll kopieren ({count} Eintr\u00e4ge)",
+      "copyLogDesc": "Vollst\u00e4ndiges Diagnoseprotokoll in die Zwischenablage kopieren",
+      "clearLog": "Protokoll leeren",
+      "clearLogDesc": "Alle protokollierten Eintr\u00e4ge entfernen",
+      "copiedFeedback": "Kopiert!",
+      "copyFailedFeedback": "Kopieren fehlgeschlagen",
+      "clearedFeedback": "Geleert!",
+      "archivePrompt": "Sie haben {count, plural, one {# Wehe} other {# Wehen}} in der aktuellen Sitzung.",
+      "archiveCurrentAndLoad": "Aktuelle archivieren & laden",
+      "replaceCurrentSession": "Aktuelle Sitzung ersetzen",
+      "seeds": {
+        "singleLabel": "1 Wehe",
+        "singleDesc": "Gerade angefangen",
+        "earlyLabel": "Fr\u00fche Wehen",
+        "earlyDesc": "5 Wehen, unregelm\u00e4\u00dfig",
+        "activeLabel": "Aktive Wehen",
+        "activeDesc": "12 Wehen, regelm\u00e4\u00dfig",
+        "mixedLabel": "Gemischt + Pause",
+        "mixedDesc": "13 Wehen, 2 Gruppen",
+        "transitionLabel": "\u00dcbergang",
+        "transitionDesc": "22 Wehen + Blasensprung"
+      }
+    }
+  },
+  "timer": {
+    "bigButton": {
+      "start": "Start",
+      "stop": "Stopp",
+      "startN": "Start #{count}"
+    },
+    "timerDisplay": {
+      "contractionLabel": "Wehe",
+      "restLabel": "Pause",
+      "pausedLabel": "Pausiert",
+      "readyLabel": "Bereit",
+      "defaultTime": "0:00"
+    },
+    "liveRating": {
+      "pastThePeak": "\u00dcber den H\u00f6hepunkt?",
+      "peakMarked": "H\u00f6hepunkt markiert"
+    },
+    "pauseOverlay": {
+      "tapToResume": "Tippen zum Fortsetzen",
+      "tapToPause": "Tippen zum Pausieren",
+      "resumeTimerAriaLabel": "Timer fortsetzen",
+      "pauseTimerAriaLabel": "Timer pausieren"
+    },
+    "intensityPicker": {
+      "prompt": "Wie stark war sie?",
+      "mild": "Leicht",
+      "moderate": "M\u00e4\u00dfig",
+      "strong": "Stark",
+      "veryStrong": "Sehr stark",
+      "intense": "Intensiv",
+      "levelFallback": "Stufe {level}"
+    },
+    "locationPicker": {
+      "prompt": "Wo haben Sie sie gesp\u00fcrt?",
+      "lowerBelly": "Unterbauch",
+      "lowerBack": "Unterer R\u00fccken",
+      "allAround": "Rundum",
+      "backToIntensityAriaLabel": "Zur\u00fcck zur Intensit\u00e4t"
+    },
+    "eventButtons": {
+      "waterBroke": "Blasensprung",
+      "waterBrokeAt": "Blasensprung um {time}",
+      "editTime": "Zeit bearbeiten",
+      "undo": "R\u00fcckg\u00e4ngig",
+      "remove": "Entfernen",
+      "whenDidItHappen": "Wann war es?",
+      "justNow": "Gerade eben",
+      "fiveMinAgo": "~5 Min. her",
+      "fifteenMinAgo": "~15 Min. her",
+      "thirtyMinAgo": "~30 Min. her",
+      "earlier": "Fr\u00fcher\u2026",
+      "setCustomTime": "Eigene Zeit eingeben",
+      "setTime": "Zeit setzen",
+      "setATimeAbove": "Oben eine Zeit eingeben",
+      "aroundTime": "Etwa {time}",
+      "moreEvents": "Mehr Ereignisse \u25BC",
+      "fewerEvents": "Weniger Ereignisse \u25B2",
+      "mucusPlug": "Schleimpfropf",
+      "mucusPlugAt": "Schleimpfropf um {time}",
+      "bloodyShow": "Zeichnungsblutung",
+      "bloodyShowAt": "Zeichnungsblutung um {time}"
+    },
+    "waterBreakQuickAction": {
+      "waterBroke": "Blasensprung",
+      "waterBrokeAt": "Blasensprung um {time}",
+      "editTimeAriaLabel": "Zeit bearbeiten",
+      "removeWaterBreakAriaLabel": "Blasensprung entfernen",
+      "undoLabel": "R\u00fcckg\u00e4ngig",
+      "confirmRemoveAriaLabel": "Entfernen best\u00e4tigen",
+      "cancelAriaLabel": "Abbrechen",
+      "whenDidItHappen": "Wann war es?",
+      "closeAriaLabel": "Schlie\u00dfen",
+      "justNow": "Gerade eben",
+      "fiveMinAgo": "~5 Min. her",
+      "fifteenMinAgo": "~15 Min. her",
+      "thirtyMinAgo": "~30 Min. her",
+      "earlier": "Fr\u00fcher\u2026",
+      "setCustomTime": "Eigene Zeit eingeben",
+      "setTime": "Zeit setzen",
+      "setATimeAbove": "Oben eine Zeit eingeben",
+      "aroundTime": "Etwa {time}"
+    },
+    "sessionControls": {
+      "undoLast": "Letzte r\u00fcckg\u00e4ngig",
+      "newSession": "Neue Sitzung",
+      "archiveAndStartNew": "Archivieren + neue starten"
+    },
+    "untimedEntry": {
+      "logPastContraction": "Vergangene Wehe erfassen",
+      "formIntro": "Eine verpasst? Hier nachtragen.",
+      "whenLabel": "Wann",
+      "minutesAgo": "vor {count} Min.",
+      "earlierAriaLabel": "Fr\u00fcher",
+      "moreRecentAriaLabel": "K\u00fcrzlicher",
+      "durationLabel": "Dauer",
+      "shorterAriaLabel": "K\u00fcrzer",
+      "longerAriaLabel": "L\u00e4nger",
+      "intensityLabel": "Intensit\u00e4t",
+      "optional": "optional",
+      "locationLabel": "Position",
+      "front": "Vorne",
+      "back": "R\u00fccken",
+      "wrap": "Rundherum",
+      "logContraction": "Wehe erfassen"
+    },
+    "welcomeState": {
+      "title": "Wehentimer",
+      "description": "Tippen Sie auf die Taste, wenn eine Wehe beginnt. Tippen Sie erneut, wenn sie endet.",
+      "trackFeature": "Zeit und Intensit\u00e4t erfassen",
+      "patternFeature": "Muster erkennen"
+    },
+    "hospitalBanner": {
+      "viewAdvisorAriaLabel": "Beraterdetails anzeigen"
+    },
+    "heroAction": {
+      "paused": "Pausiert",
+      "tapStartPrompt": "Tippen Sie Start, wenn eine Wehe beginnt",
+      "keepTracking": "Weiter erfassen\u2026",
+      "stageActions": {
+        "preLabor": "Normale Aktivit\u00e4ten fortsetzen",
+        "early": "Ausruhen und trinken \u2014 zu Hause bleiben",
+        "active": "Bald ins Krankenhaus fahren",
+        "transition": "Sie sollten im Krankenhaus sein"
+      },
+      "contractionMessages": {
+        "preLabor": "Bleiben Sie entspannt\u2026",
+        "early": "Sch\u00f6n ruhig\u2026",
+        "active": "Durchatmen\u2026",
+        "transition": "Eins nach dem anderen \u2014 Sie schaffen das"
+      },
+      "defaultContractionMessage": "Durchatmen\u2026",
+      "waterBrokeActive": "Blasensprung + aktive Wehen \u2014 ins Krankenhaus fahren",
+      "waterBrokeTransition": "Sie sollten im Krankenhaus sein",
+      "waterBrokeDefault": "Blasensprung \u2014 Arzt/\u00c4rztin anrufen",
+      "detailTemplate": "~{interval} Min. Abstand \u00B7 ~{duration}s Durchschnitt"
+    },
+    "heroCompactTimer": {
+      "paused": "Pausiert",
+      "readyToStart": "Bereit zum Starten",
+      "contractingPrefix": "Wehe: {time}",
+      "restPrefix": "Pause: {restTime}",
+      "restAndLast": "Pause: {restTime} \u00B7 Letzte: {lastTime}"
+    },
+    "quickStats": {
+      "avgDuration": "\u00d8 Dauer",
+      "avgInterval": "\u00d8 Abstand",
+      "total": "Gesamt",
+      "noDataPlaceholder": "\u2014"
+    },
+    "recentContractions": {
+      "noCompleted": "Noch keine abgeschlossenen Wehen."
+    },
+    "timerPage": {
+      "sharingBanner": "Teilen mit {count, plural, one {# Partner} other {# Partnern}}",
+      "sections": {
+        "quickStats": "Kurzstatistik",
+        "recent": "Letzte",
+        "guidance": "Hinweise"
+      }
+    },
+    "laborStages": {
+      "preLabor": "Vor-Wehen",
+      "early": "Fr\u00fche Wehen",
+      "active": "Aktive Wehen",
+      "transition": "\u00dcbergangsphase"
+    }
+  },
+  "dashboard": {
+    "pageTitle": "\u00dcbersicht",
+    "sections": {
+      "summary": "Zusammenfassung",
+      "waveChart": "Wellendiagramm",
+      "stageProgress": "Phasenfortschritt",
+      "trendAnalysis": "Trendanalyse",
+      "patternAssessment": "Musterbewertung"
+    },
+    "emptyState": {
+      "title": "Noch keine Daten",
+      "hint": "Beginnen Sie mit der Zeitnahme, um Muster, Wellendiagramme und die Wehenanalyse hier zu sehen."
+    },
+    "summary": {
+      "contractions": "Wehen",
+      "avgDuration": "\u00d8 Dauer",
+      "avgInterval": "\u00d8 Abstand"
+    },
+    "stageBar": {
+      "beenHere": "Sie sind seit {elapsed} in dieser Phase",
+      "typical": "Typisch: {range}",
+      "location": "Position: {location}"
+    },
+    "progression": {
+      "needMore": "Mindestens 4 Wehen f\u00fcr Trendanalyse n\u00f6tig",
+      "trendsTitle": "Trends",
+      "gapBetween": "Abstand zwischen:",
+      "eachContraction": "Jede Wehe:",
+      "gettingCloser": "werden k\u00fcrzer",
+      "spreadingApart": "werden l\u00e4nger",
+      "lastingLonger": "dauern l\u00e4nger",
+      "gettingShorter": "dauern k\u00fcrzer",
+      "stable": "stabil",
+      "criteriaMet": "{rule}-Kriterien derzeit erf\u00fcllt",
+      "estimateReach": "Bei diesem Tempo wird {rule} in ~{minutes} Min. erreicht",
+      "disclaimer": "Basierend auf den letzten {count} Abst\u00e4nden (diese Sitzung)"
+    },
+    "braxtonHicks": {
+      "panelTitle": "Musterbewertung",
+      "likelyRealLabor": "Wahrscheinlich echte Wehen",
+      "likelyPractice": "Wahrscheinlich \u00dcbungswehen",
+      "mixedSignals": "Gemischte Anzeichen",
+      "disclaimer": "Dies ist eine Mustersch\u00e4tzung, keine Diagnose."
+    },
+    "waveChart": {
+      "fitButton": "Anpassen",
+      "nowButton": "Jetzt \u2192",
+      "canvasAriaLabel": "Wehen-Wellendiagramm",
+      "emptyText": "Wehen werden hier angezeigt",
+      "legend": "Gr\u00fcn = innerhalb von {minutes} Min."
+    }
+  },
+  "history": {
+    "pageTitle": "Verlauf",
+    "emptyState": {
+      "title": "Noch keine Wehen",
+      "hint": "Ihr Wehenverlauf wird hier angezeigt. Tippen Sie auf einen Eintrag, um Zeit, Intensit\u00e4t oder Position zu bearbeiten."
+    },
+    "untimed": "Manuell",
+    "apart": "Abstand",
+    "editor": {
+      "editingNumber": "Bearbeite #{num}",
+      "start": "Start",
+      "end": "Ende",
+      "duration": "Dauer",
+      "durationPlaceholder": "M:SS",
+      "intensity": "Intensit\u00e4t",
+      "location": "Position",
+      "front": "Vorne",
+      "back": "R\u00fccken",
+      "wrap": "Rundherum",
+      "confirmDelete": "L\u00f6schen best\u00e4tigen"
+    },
+    "events": {
+      "waterBroke": "Blasensprung",
+      "mucusPlug": "Schleimpfropf",
+      "bloodyShow": "Zeichnungsblutung"
+    }
+  },
+  "hospital": {
+    "pageTitle": "Geburtsberater",
+    "locationToggle": {
+      "atHome": "Zu Hause",
+      "onTheWay": "Unterwegs"
+    },
+    "locationHint": {
+      "enRoute": "Fahrtzeit entfernt \u2014 Sch\u00e4tzungen ab jetzt",
+      "uncertain": "Fahrtzeit unbekannt \u2014 konservative Sch\u00e4tzung von ~30 Min.",
+      "withTravel": "{minutes} Min. Fahrtzeit in Sch\u00e4tzungen enthalten"
+    },
+    "sections": {
+      "departureAdvice": "Abfahrtsempfehlung",
+      "ruleProgress": "5-1-1-Regel-Fortschritt",
+      "waterBreak": "Blasensprung",
+      "tips": "Tipps",
+      "laborGuide": "Geburts-Leitfaden"
+    },
+    "badges": {
+      "goNow": "Jetzt los",
+      "timeToGo": "Zeit zu fahren"
+    },
+    "range": {
+      "confidence": "{level} Konfidenz",
+      "yourPattern": "Ihr Muster",
+      "factors": "Faktoren"
+    },
+    "callProvider": "Arzt anrufen ({phone})",
+    "rule511": {
+      "intervalCheck": "\u2264 {target} Min. Abstand (\u00d8 {actual} Min.)",
+      "durationCheck": "\u2265 {target} Min. Dauer (\u00d8 {actual}s)",
+      "sustainedCheck": "\u2265 {target} Min. anhaltend ({actual} Min.)",
+      "howWeCalculateShow": "So berechnen wir",
+      "howWeCalculateHide": "Ausblenden",
+      "explainerInterval": "Abstand \u2014 durchschnittliche Zeit zwischen Wehenbeginnen im Analysefenster. Erf\u00fcllt (\u2713) wenn Durchschnitt \u2264 {target} Min.",
+      "explainerDuration": "Dauer \u2014 durchschnittliche Wehenl\u00e4nge (Start bis Stopp). Erf\u00fcllt wenn Durchschnitt \u2265 {target}s. Eine 64s-Wehe z\u00e4hlt als \u201e\u00fcber 1 Minute\u201c.",
+      "explainerSustained": "Anhalten \u2014 wie lange das Muster anh\u00e4lt. Gemessen von der ersten bis zur letzten Wehe. Erf\u00fcllt wenn \u2265 {target} Min.",
+      "explainerNote": "Dies sind klinische Leitlinien (ACOG), keine festen Regeln. Ihr Arzt kann andere Schwellenwerte empfehlen (z.\u202fB. 4-1-1 oder 3-1-1). In den Einstellungen anpassbar."
+    },
+    "waterBreakInfo": {
+      "waterBrokeAgo": "Blasensprung vor {elapsed}",
+      "addProviderPhone": "Arztnummer f\u00fcr Schnellanruf hinzuf\u00fcgen",
+      "phonePlaceholder": "z.B. 0171-1234567",
+      "safetyNote": "Farbe der Fl\u00fcssigkeit beachten. Klar/hellgelb ist normal. Gr\u00fcn/braun \u2192 sofort anrufen.",
+      "statChance": "Wahrscheinlichkeit",
+      "statBeforeContractions": "Blasensprung vor Wehenbeginn",
+      "statWithin12Hours": "Aktive Wehen innerhalb von 12 Stunden",
+      "statWithin24Hours": "Aktive Wehen innerhalb von 24 Stunden",
+      "statReassure": "Die meisten beginnen innerhalb eines Tages mit den Wehen"
+    },
+    "clinicalReference": {
+      "laborStagesTitle": "Geburtsphasen",
+      "dilationNote": "Muttermunderweiterung = \u00d6ffnung der Geb\u00e4rmutter (0 cm = geschlossen, 10 cm = vollst\u00e4ndig ge\u00f6ffnet)",
+      "stageNames": {
+        "preLabor": "Vor-Wehen",
+        "early": "Fr\u00fch",
+        "active": "Aktiv",
+        "transition": "\u00dcbergang"
+      },
+      "stages": {
+        "preLabor": {
+          "description": "Unregelm\u00e4\u00dfige Kontraktionen, die kommen und gehen. Noch keine echten Wehen \u2014 Ihr K\u00f6rper bereitet sich vor.",
+          "cervix": "0\u20133 cm",
+          "pattern": "Unregelm\u00e4\u00dfig, 5\u201330 Min. Abstand, < 30s",
+          "location": "Vorne / Unterbauch"
+        },
+        "early": {
+          "description": "Wehen werden regelm\u00e4\u00dfiger und r\u00fccken n\u00e4her zusammen. Sie k\u00f6nnen noch w\u00e4hrenddessen sprechen.",
+          "cervix": "3\u20136 cm",
+          "pattern": "5\u201315 Min. Abstand, 30\u201360s",
+          "location": "Unterbauch, kann sich ausbreiten"
+        },
+        "active": {
+          "description": "Starke, regelm\u00e4\u00dfige Wehen. Erfordert konzentriertes Atmen. Jetzt fahren die meisten ins Krankenhaus.",
+          "cervix": "6\u20138 cm",
+          "pattern": "3\u20135 Min. Abstand, 45\u201375s",
+          "location": "Vom R\u00fccken nach vorne umfassend"
+        },
+        "transition": {
+          "description": "Die intensivste, aber k\u00fcrzeste Phase. Sie k\u00f6nnen Druck, \u00dcbelkeit und Pressdrang sp\u00fcren.",
+          "cervix": "8\u201310 cm",
+          "pattern": "2\u20133 Min. Abstand, 60\u201390s",
+          "location": "Intensiv, rundherum"
+        }
+      },
+      "currentBadge": "Aktuell",
+      "bhVsRealTitle": "Braxton-Hicks vs. echte Wehen",
+      "bhIntro": "Vergleichen Sie Ihre Symptome, um \u00dcbungswehen von echten Wehen zu unterscheiden.",
+      "bhTag": "BH",
+      "realTag": "Echt",
+      "bhCriteria": {
+        "timing": "Zeitpunkt",
+        "pattern": "Muster",
+        "restResponse": "Reaktion auf Ruhe",
+        "location": "Position",
+        "intensity": "Intensit\u00e4t"
+      },
+      "bhDescriptions": {
+        "timingBH": "Unregelm\u00e4\u00dfiges Timing",
+        "timingReal": "Regelm\u00e4\u00dfig, werden h\u00e4ufiger",
+        "patternBH": "Werden nicht h\u00e4ufiger",
+        "patternReal": "Kommen unabh\u00e4ngig von Aktivit\u00e4t",
+        "restBH": "H\u00f6ren bei Bewegung oder Lagewechsel auf",
+        "restReal": "H\u00f6ren nicht bei Ruhe oder Bewegung auf",
+        "locationBH": "Haupts\u00e4chlich vorne sp\u00fcrbar",
+        "locationReal": "Strahlen vom R\u00fccken aus oder umfassen den Bauch",
+        "intensityBH": "Werden nicht st\u00e4rker",
+        "intensityReal": "Werden zunehmend st\u00e4rker"
+      },
+      "warningTitle": "Wann Sie sofort Ihren Arzt anrufen sollten",
+      "warningSigns": {
+        "bleeding": "Vaginale Blutung wie eine Periode oder st\u00e4rker",
+        "babyMovement": "Baby bewegt sich nicht mehr oder deutlich weniger",
+        "abdominalPain": "Starke Bauchschmerzen, die nicht nachlassen",
+        "headache": "Starke Kopfschmerzen mit Sehst\u00f6rungen",
+        "fever": "Fieber \u00fcber 38\u00b0C (100,4\u00b0F)",
+        "meconium": "Fl\u00fcssigkeit ist gr\u00fcn oder braun (Mekonium)"
+      },
+      "sourcesTitle": "Quellen",
+      "disclaimer": "Nur allgemeine Leitlinien. Befolgen Sie immer die Anweisungen Ihres Arztes."
+    },
+    "advisor": {
+      "headlines": {
+        "keepTracking": "Weiter erfassen",
+        "goNow": "Jetzt ins Krankenhaus",
+        "timeToGo": "Zeit zu fahren",
+        "startPreparing": "Vorbereitung starten",
+        "notYet": "Noch nicht",
+        "callProvider": "Arzt anrufen",
+        "stayComfortable": "Machen Sie es sich bequem"
+      },
+      "details": {
+        "notEnoughData": "Erfassen Sie weitere Wehen, um Abfahrtsempfehlungen zu erhalten.",
+        "transition": "\u00dcbergangsphase-Wehen erkannt. Sie sollten im Krankenhaus sein oder sich auf den Weg machen.",
+        "waterAndActive": "Blasensprung und aktives Wehenmuster. Fahren Sie ins Krankenhaus.",
+        "waterBroken": "Blasensprung. Kontaktieren Sie Ihren Arzt f\u00fcr Anweisungen.",
+        "rule511Met": "Wehen entsprechen dem 5-1-1-Muster. Zeit, ins Krankenhaus zu fahren.",
+        "estimatedLeaveSoon": "Bei aktuellem Tempo wird das 5-1-1-Muster in ~{minutes} Min. erwartet. Erw\u00e4gen Sie, bald loszufahren.",
+        "progressing": "Fortschritt Richtung 5-1-1. Gesch\u00e4tzt ~{minutes} Min. bei aktuellem Tempo.",
+        "activeLabor": "Aktives Wehenmuster erkannt. Bleiben Sie in engem Kontakt mit Ihrem Arzt.",
+        "earlyLabor": "Fr\u00fche Wehen \u2014 Wehen sind vorhanden, aber noch weit auseinander. Ruhen Sie sich aus und sparen Sie Energie.",
+        "irregular": "Wehen sind unregelm\u00e4\u00dfig. Beobachten Sie weiter auf ein gleichm\u00e4\u00dfiges Muster."
+      },
+      "factors": {
+        "fewerThan2": "Weniger als 2 Wehen erfasst",
+        "fewerThan3": "Weniger als 3 Wehen erfasst",
+        "intervalApart": "\u00d8 {interval} Min. Abstand",
+        "avgDuration": "\u00d8 {duration}s Dauer",
+        "waterBrokeAgo": "Blasensprung vor {hours}h",
+        "waterBroken": "Blasensprung",
+        "travelUnknown": "Fahrtzeit unbekannt",
+        "travelTime": "{minutes} Min. Fahrtzeit",
+        "travelUnknownConservative": "Fahrtzeit unbekannt \u2014 Sch\u00e4tzung von 30 Min.",
+        "travelAccounted": "{minutes} Min. Fahrtzeit ber\u00fccksichtigt",
+        "assumedProgression": "Angenommene {rate} Progressionsrate",
+        "rule511Met": "5-1-1-Muster erf\u00fcllt",
+        "rule511Pattern": "5-1-1-Muster erkannt",
+        "timeTo511": "~{minutes} Min. bis 5-1-1-Muster"
+      },
+      "recommendations": {
+        "keepTracking": "Erfassen Sie weiter Wehen, um ein Muster zu erkennen.",
+        "goNow": "Fahren Sie sofort ins Krankenhaus.",
+        "shouldBeAtHospital": "Sie sollten im Krankenhaus sein oder sich auf den Weg machen.",
+        "headToHospital": "Fahren Sie bald ins Krankenhaus.",
+        "planToArriveWithin": "Planen Sie, innerhalb von {minutes} Min. anzukommen.",
+        "planSoon": "Planen Sie, bald loszufahren.",
+        "planWithinRange": "Planen Sie, innerhalb von {range} loszufahren.",
+        "estimatedRange": "Gesch\u00e4tzt {range} bis 5-1-1.",
+        "activeLeaveRange": "Erw\u00e4gen Sie, innerhalb von {range} loszufahren.",
+        "activeBagReady": "Halten Sie Ihre Tasche bereit. Aktive Wehen schreiten voran.",
+        "earlyStayHome": "Bleiben Sie zu Hause und ruhen Sie sich aus. Fr\u00fche Wehen k\u00f6nnen viele Stunden dauern.",
+        "irregularContinue": "Beobachten Sie weiter. Das Muster ist noch nicht gleichm\u00e4\u00dfig."
+      },
+      "pattern": {
+        "summary": "\u00d8 {interval} Min. Abstand, {duration}s Dauer",
+        "notEnoughData": "Nicht gen\u00fcgend Daten f\u00fcr Musteranalyse"
+      },
+      "trend": {
+        "gettingCloser": "Werden k\u00fcrzer: {first} Min. \u2192 {last} Min. Abstand",
+        "spacingOut": "Werden l\u00e4nger: {first} Min. \u2192 {last} Min. Abstand",
+        "steadyPace": "Gleichm\u00e4\u00dfig: ~{avg} Min. Abstand"
+      }
+    },
+    "emptyState": {
+      "title": "Geburtsberater",
+      "hint": "Erfassen Sie mindestens 3 Wehen, um den 5-1-1-Fortschritt, Abfahrtsempfehlungen und Zeitsch\u00e4tzungen zu sehen."
+    }
+  },
+  "settings": {
+    "situation": {
+      "title": "Ihre Situation",
+      "firstBabyLabel": "Erstes Baby?",
+      "firstBabyHint": "Erste Geburten dauern in der Regel l\u00e4nger. Dies beeinflusst Zeitsch\u00e4tzungen und Phasendauern.",
+      "yesFirstBaby": "Ja, erstes Baby",
+      "noHadOneBefore": "Nein, hatte schon eins"
+    },
+    "display": {
+      "title": "Anzeige",
+      "timeFormat": "Zeitformat",
+      "timeFormat12h": "12 Stunden",
+      "timeFormat24h": "24 Stunden",
+      "intensityScale": "Intensit\u00e4tsskala",
+      "levels5": "5 Stufen",
+      "levels3": "3 Stufen",
+      "waveChartHeight": "Wellendiagramm-H\u00f6he",
+      "heightSmall": "Klein (100px)",
+      "heightMedium": "Mittel (150px)",
+      "heightLarge": "Gro\u00df (200px)",
+      "heightXLarge": "Sehr gro\u00df (250px)",
+      "heroDisplay": "Hero-Anzeige",
+      "heroHint": "Infokarte \u00fcber dem Timer: Phasenlabel, Handlungsvorschlag oder kompakte Zeitanzeige.",
+      "heroStageBadge": "Phasen-Badge",
+      "heroActionCard": "Aktionskarte",
+      "heroCompactTimer": "Kompakter Timer",
+      "showRestSeconds": "Pause in Sekunden anzeigen",
+      "sessionBreakThreshold": "Sitzungspausen-Schwelle",
+      "sessionBreakHint": "L\u00fccken l\u00e4nger als dieser Wert werden im Wellendiagramm und der Trendanalyse als separate Sitzungen angezeigt.",
+      "breakOff": "Aus",
+      "stageTimerMode": "Phasen-Timer-Modus",
+      "stageTimerHint": "Wie die Phasendauer berechnet wird: ab letzter Wehe oder fortlaufend.",
+      "stageTimerLastRecorded": "Letzte erfasste",
+      "stageTimerCurrentTime": "Aktuelle Zeit"
+    },
+    "behavior": {
+      "title": "Verhalten",
+      "hapticFeedback": "Haptisches Feedback",
+      "postContractionRating": "Nachbewertung",
+      "showIntensityPicker": "Intensit\u00e4tsauswahl anzeigen",
+      "showLocationPicker": "Positionsauswahl anzeigen",
+      "peakRating": "H\u00f6hepunkt-Markierung w\u00e4hrend der Wehe"
+    },
+    "features": {
+      "title": "Funktionen",
+      "waveChart": "Wellendiagramm",
+      "showTargetLines": "Ziellinien im Diagramm anzeigen",
+      "showTargetLinesHint": "Farbige Referenzlinien im Wellendiagramm, wenn Wehen Ihre Zeitvorgaben erreichen.",
+      "trendAnalysis": "Trendanalyse",
+      "trendAnalysisHint": "Lineare Regression der letzten Wehen zur Erkennung k\u00fcrzer werdender Abst\u00e4nde und l\u00e4ngerer Dauer.",
+      "patternAssessment": "Musterbewertung",
+      "patternAssessmentHint": "Gewichtete Bewertung von 6 Kriterien (Regelm\u00e4\u00dfigkeit, Dauertrend, Intensit\u00e4t, Position, Abstandstrend, Aktivit\u00e4tsdauer) zur Unterscheidung von echten Wehen und Braxton-Hicks.",
+      "hospitalAdvisor": "Krankenhaus-Berater",
+      "hospitalAdvisorHint": "Abfahrtsempfehlungen auf der Berater-Seite basierend auf Ihrem Wehenmuster.",
+      "contextualTips": "Kontextbezogene Tipps",
+      "contextualTipsHint": "Phasengerechte Hinweiskarten auf der Timer- und Berater-Seite.",
+      "waterBreakButton": "Blasensprung-Taste",
+      "thresholdRuleProgress": "Schwellenwert-Fortschritt",
+      "thresholdRuleHint": "5-1-1 (oder benutzerdefinierte) Regel-Fortschritt auf der Berater-Seite anzeigen.",
+      "clinicalReference": "Klinischer Leitfaden",
+      "clinicalReferenceHint": "Geburts-Leitfaden auf der Berater-Seite: Phasen, Braxton-Hicks-Vergleich und Warnsignale."
+    },
+    "advisor": {
+      "title": "Berater",
+      "introDesc": "Diese drei Einstellungen wirken zusammen: Detailgrad bestimmt, wie viel der Berater anzeigt. Alarm-Timing verschiebt, wann \u201eZeit zu fahren\u201c erscheint. Fahrtzeit erm\u00f6glicht rechtzeitige Abfahrt.",
+      "detailLevel": "Berater-Detailgrad",
+      "detailLevelHint": "Bestimmt, wie viel Detail der Berater anzeigt: Zeitbereiche, Dringlichkeit oder einzeilige Zusammenfassung.",
+      "detailDetailed": "Detailliert (Zeitbereiche)",
+      "detailUrgency": "Nur Dringlichkeit",
+      "detailMinimal": "Minimal",
+      "travelTime": "Fahrtzeit",
+      "travelTimeHint": "Wie lange Sie zum Krankenhaus brauchen. Wird in die Abfahrtszeit einberechnet.",
+      "alertTiming": "Alarm-Timing",
+      "alertTimingHint": "Konservativ warnt fr\u00fcher, entspannt wartet l\u00e4nger. Beeinflusst, wann \u201eZeit zu fahren\u201c angezeigt wird.",
+      "alertConservative": "Konservativ (fr\u00fch losfahren)",
+      "alertModerate": "Moderat",
+      "alertRelaxed": "Entspannt (l\u00e4nger warten)",
+      "providerPhone": "Arzt-Telefonnummer",
+      "providerPhonePlaceholder": "z.B. 0171-1234567"
+    },
+    "threshold": {
+      "title": "Schwellenwert-Regel",
+      "desc": "Die N-1-1-Regel ist eine klinische Empfehlung (ACOG), wann man ins Krankenhaus fahren sollte. Standard ist 5-1-1: Wehen alle 5 Minuten, 1 Minute lang, \u00fcber 1 Stunde. Ihr Arzt empfiehlt m\u00f6glicherweise 3-1-1, 4-1-1 oder andere Varianten \u2014 unten anpassbar.",
+      "detailDesc": "Jedes Kriterium verwendet den Durchschnitt der letzten Wehen im Analysefenster, nicht eine einzelne Wehe. Eine 64s-Wehe z\u00e4hlt als \u201e\u00fcber 1 Minute\u201c. Dies sind Leitlinien, keine festen Regeln \u2014 befolgen Sie immer den Rat Ihres Arztes.",
+      "intervalTarget": "Abstandsziel",
+      "intervalHint": "Durchschnittliche Zeit zwischen Wehenbeginnen (Start-zu-Start). Erf\u00fcllt wenn Durchschnitt \u2264 diesem Wert.",
+      "intervalOption": "{mins} Min. Abstand",
+      "durationTarget": "Dauerziel",
+      "durationHint": "Durchschnittliche Wehenl\u00e4nge (Start bis Stopp). Erf\u00fcllt wenn Durchschnitt \u2265 diesem Wert.",
+      "durationOption": "{secs}s Dauer",
+      "sustainedPeriod": "Anhaltedauer",
+      "sustainedHint": "Gesamtspanne von der ersten bis zur letzten Wehe. Erf\u00fcllt wenn \u2265 diesem Wert, was best\u00e4tigt, dass das Muster konsistent ist."
+    },
+    "advanced": {
+      "title": "Erweitert",
+      "stageThresholdsTitle": "Phasen-Schwellenwerte",
+      "stageThresholdsDesc": "Wehenmuster f\u00fcr jede Geburtsphase definieren. Basierend auf ACOG-Leitlinien. Max. Abstand = l\u00e4ngste Pause zwischen Wehen; Min. Dauer = k\u00fcrzeste Wehenl\u00e4nge.",
+      "maxInterval": "{stage} max. Abstand",
+      "minDuration": "{stage} min. Dauer",
+      "bhThresholdsTitle": "Musterbewertung-Schwellenwerte",
+      "bhThresholdsDesc": "Feineinstellung der Unterscheidung zwischen \u00dcbungswehen und echten Wehen. Die meisten Benutzer sollten die Standardwerte beibehalten.",
+      "regularityCVLow": "Regelm\u00e4\u00dfigkeit CV (niedrig)",
+      "regularityCVHigh": "Regelm\u00e4\u00dfigkeit CV (hoch)",
+      "realLaborThreshold": "Schwelle echte Wehen",
+      "bhThreshold": "BH-Schwelle",
+      "resetToDefaults": "Erweiterte Einstellungen zur\u00fccksetzen"
+    },
+    "extras": {
+      "title": "Extras",
+      "prayers": "Gebete",
+      "prayersHint": "Gebete-Tab im Men\u00fc anzeigen. Immer sichtbar bei Cathedral- und Shire-Designs."
+    }
+  },
+  "sharing": {
+    "sendTitle": "Senden",
+    "sendDesc": "Sitzungsdaten teilen",
+    "receiveTitle": "Empfangen",
+    "receiveDesc": "Geteilte Daten importieren",
+    "liveTitle": "Live teilen",
+    "liveExperimentalTag": "(EXPERIMENTELL)",
+    "liveDesc": "Echtzeit-Synchronisation zwischen Ger\u00e4ten",
+    "backButton": "Zur\u00fcck",
+    "liveQuickModeDesc": "Verwendet einen Relay-Server f\u00fcr die Verbindung. Funktioniert \u00fcber jedes Netzwerk.",
+    "yourNameLabel": "Ihr Name",
+    "yourNamePlaceholder": "Mama, Partner etc.",
+    "joinersCanLabel": "Beitretende k\u00f6nnen",
+    "modeCollaborative": "Gemeinsam ansehen und bearbeiten",
+    "modeViewOnly": "Nur ansehen",
+    "passwordLabel": "Passwort (optional)",
+    "passwordPlaceholder": "Erm\u00f6glicht Verschl\u00fcsselung",
+    "passwordHintVisible": "Teilen Sie diese Passphrase mit Ihrem Partner",
+    "passwordHintHidden": "Verschl\u00fcsselt die Sitzung Ende-zu-Ende",
+    "generatePassphraseAriaLabel": "Passphrase generieren",
+    "showPasswordAriaLabel": "Passwort anzeigen",
+    "hidePasswordAriaLabel": "Passwort verbergen",
+    "serverOptionsToggle": "Serveroptionen",
+    "signalingBackendLabel": "Signaling-Backend",
+    "signalingBackendDefaultHint": "Leitet den initialen Handshake weiter (verschl\u00fcsselt).",
+    "privacyNote": "Alle SDP-Daten werden vor dem Versand verschl\u00fcsselt. STUN sieht nur Ihre IP. TURN leitet verschl\u00fcsselte Daten weiter \u2014 kann Inhalte nicht lesen.",
+    "testSignalingButton": "Signaling testen",
+    "testSignalingLoading": "Teste\u2026",
+    "testSignalingReachable": "Erreichbar ({latencyMs}ms)",
+    "testSignalingUnreachable": "Nicht erreichbar \u2014 anderes Backend probieren",
+    "startSharingButton": "Teilen starten",
+    "joinRoomButton": "Raum beitreten",
+    "scanQrCodeButton": "QR-Code scannen",
+    "roomCodeLabel": "Raumcode",
+    "roomCodePlaceholder": "blauer-tiger-42",
+    "connectButton": "Verbinden",
+    "usePrivateConnect": "Stattdessen private Verbindung nutzen",
+    "privateConnectTitle": "Private Verbindung",
+    "privateConnectDesc": "Verbindung durch manuellen Austausch von Einladungscodes \u2014 kein Relay-Server ber\u00fchrt Ihre Daten.",
+    "privateStep1": "Eine Person erstellt eine Einladung und teilt den Code",
+    "privateStep2": "Die andere Person akzeptiert und sendet einen Antwortcode zur\u00fcck",
+    "privateStep3": "Nach dem Austausch sind Sie direkt verbunden",
+    "connectionLimitationsTitle": "Verbindungsbeschr\u00e4nkungen",
+    "connectionLimitationsText": "Ohne TURN-Relay funktioniert dies nur zuverl\u00e4ssig im selben WLAN. Verbindungen \u00fcber verschiedene Netzwerke (Mobilfunk, verschiedene WLANs, Firmen-Firewalls) schlagen meist fehl, da NAT-/Firewall-Regeln direkte Peer-to-Peer-Verbindungen blockieren.",
+    "connectionLimitationsAdvice": "F\u00fcr zuverl\u00e4ssige netzwerk\u00fcbergreifende Verbindungen nutzen Sie Quick Connect mit einem Cloudflare Worker Relay \u2014 kostenlos, in 2 Minuten eingerichtet und funktioniert \u00fcberall.",
+    "createInviteButton": "Einladung erstellen",
+    "acceptInviteButton": "Einladung annehmen",
+    "scanInviteQrButton": "Einladungs-QR scannen",
+    "inviteCodeLabel": "Einladungscode",
+    "inviteCodePlaceholder": "Einladungscode hier einf\u00fcgen\u2026",
+    "hostStep1Label": "Schritt 1: Teilen Sie dies mit Ihrem Partner",
+    "hostStep2Label": "Schritt 2: Antwortcode des Partners eingeben",
+    "responseCodePlaceholder": "Antwortcode hier einf\u00fcgen\u2026",
+    "guestSendCodeLabel": "Senden Sie diesen Code an Ihren Partner zur\u00fcck",
+    "waitingForPartnerToEnterCode": "Warte auf Codeeingabe des Partners\u2026",
+    "generatingResponseCode": "Antwortcode wird generiert\u2026",
+    "connectedLabel": "Verbunden",
+    "privateBadge": "Privat",
+    "connectedTo": "mit {roomCode}",
+    "modeLabel": "Modus: {mode}",
+    "connectedPeersHeader": "Verbunden ({count})",
+    "peerHostSuffix": "(Host)",
+    "stopSharingButton": "Teilen beenden",
+    "disconnectButton": "Trennen",
+    "connectionDetailsToggle": "Verbindungsdetails",
+    "shareLinkButton": "Link teilen",
+    "waitingForPartnerToJoin": "Warte auf Beitritt des Partners\u2026",
+    "copyFeedbackSuccess": "{label} kopiert!",
+    "copyFeedbackFailed": "Kopieren fehlgeschlagen",
+    "phaseCreatingOffer": "Sicherer Raum wird erstellt\u2026",
+    "phasePosting": "Raumcode wird ver\u00f6ffentlicht\u2026",
+    "phaseWaitingForPartner": "Warte auf Partner\u2026",
+    "phasePollingForOffer": "Raum wird gesucht\u2026",
+    "phaseGeneratingAnswer": "Verbinde mit Host\u2026",
+    "phasePostingAnswer": "Antwort wird gesendet\u2026",
+    "phaseCompleting": "Handshake wird abgeschlossen\u2026",
+    "phaseConnected": "Verbunden!",
+    "phaseDefault": "Verbinde\u2026",
+    "scannerHint": "Kamera auf QR-Code richten",
+    "tapToEnlargeHint": "Tippen zum Vergr\u00f6\u00dfern",
+    "qrPrivateInviteAlt": "QR-Code f\u00fcr private Einladung",
+    "qrResponseCodeAlt": "QR-Code f\u00fcr Antwortcode",
+    "qrRoomCodeAlt": "QR-Code f\u00fcr Raum {roomCode}",
+    "qrEnlargedAlt": "QR-Code (vergr\u00f6\u00dfert)",
+    "qrFullscreenCloseHint": "Tippen zum Schlie\u00dfen",
+    "serverOptions": {
+      "workerUrl": "Worker-URL",
+      "stunServer": "STUN-Server",
+      "customStunUrl": "Eigene STUN-URL",
+      "turnRelay": "TURN-Relay",
+      "turnUrl": "TURN-URL",
+      "username": "Benutzername",
+      "credential": "Zugangsdaten",
+      "usernamePlaceholder": "TURN-Benutzername",
+      "credentialPlaceholder": "TURN-Zugangsdaten",
+      "stunGoogle": "Google (Standard)",
+      "stunCloudflare": "Cloudflare",
+      "stunNone": "Kein (nur LAN)",
+      "stunCustom": "Benutzerdefiniert",
+      "stunGoogleDesc": "Kostenlos, zuverl\u00e4ssig. Google sieht Ihre IP w\u00e4hrend der STUN-Anfrage.",
+      "stunCloudflareDesc": "Datenschutzorientierte Alternative. Cloudflare sieht Ihre IP.",
+      "stunNoneDesc": "Kein STUN-Server. Funktioniert nur im selben lokalen Netzwerk.",
+      "stunCustomDesc": "Geben Sie Ihre eigene STUN-Server-URL ein.",
+      "turnOpenRelay": "Open Relay (Standard)",
+      "turnCloudflare": "Cloudflare TURN",
+      "turnNone": "Kein",
+      "turnCustom": "Benutzerdefiniert",
+      "turnOpenRelayDesc": "Kostenloses \u00f6ffentliches Relay. Leitet verschl\u00fcsselte Daten weiter, wenn Direktverbindung fehlschl\u00e4gt.",
+      "turnCloudflareDesc": "Erfordert ein Cloudflare-Konto mit aktiviertem TURN.",
+      "turnNoneDesc": "Kein TURN-Relay. Nur Direktverbindungen.",
+      "turnCustomDesc": "Geben Sie Ihre eigenen TURN-Server-Details ein."
+    },
+    "diagnostics": {
+      "iceCandidates": "ICE-Kandidaten",
+      "hostLocal": "Host (lokal)",
+      "stunSrflx": "STUN (srflx)",
+      "turnRelay": "TURN (Relay)",
+      "gatherTime": "Sammelzeit",
+      "signaling": "Signaling",
+      "fallback": "Fallback",
+      "warning": "Warnung",
+      "fallbackDetail": "Nutze ntfy.sh (Prim\u00e4rserver nicht erreichbar)"
+    },
+    "privateTurnHint": {
+      "summary": "Haben Sie bereits einen TURN-Server?",
+      "detail": "Wenn Sie eigene TURN-Server-Zugangsdaten haben, w\u00e4hlen Sie oben \u201eBenutzerdefiniert\u201c und geben Sie diese ein. TURN leitet verschl\u00fcsselte Daten weiter, wenn direkte Peer-to-Peer-Verbindungen aufgrund restriktiver NAT- oder Firewall-Regeln fehlschlagen."
+    },
+    "cameraErrorHttps": "Kamera erfordert HTTPS. Diese Seite befindet sich nicht in einem sicheren Kontext.",
+    "cameraErrorUnavailable": "Kamera-API in diesem Browser nicht verf\u00fcgbar.",
+    "cameraErrorPermission": "Kamerazugriff verweigert. \u00dcberpr\u00fcfen Sie Ihre Browsereinstellungen.",
+    "cameraErrorNotFound": "Keine Kamera auf diesem Ger\u00e4t gefunden.",
+    "cameraErrorGeneric": "Kamerafehler: {message}",
+    "responseCodeLabel": "Antwortcode",
+    "responseLinkLabel": "Antwortlink",
+    "receivedInviteBanner": "Sie haben eine private Einladung erhalten!",
+    "enterNameToConnect": "Name eingeben zum Verbinden",
+    "nameRequired": "Name zum Verbinden erforderlich",
+    "enterCodeManually": "Stattdessen Code manuell eingeben",
+    "snapshot": {
+      "sendTitle": "Momentaufnahme senden",
+      "sendTooltip": "Sendet eine eingefrorene Kopie Ihrer Sitzungsdaten. Der Empf\u00e4nger erh\u00e4lt einen einmaligen Schnappschuss, keine Live-Verbindung.",
+      "sendDesc": "Teilen Sie eine einmalige Kopie Ihrer Sitzung. Ihr Partner erh\u00e4lt einen Schnappschuss \u2014 keine Live-Verbindung.",
+      "whatToInclude": "Was einschlie\u00dfen",
+      "alwaysIncludedHint": "Sitzungsdaten (Wehen, Ereignisse) sind immer enthalten.",
+      "shareSessionButton": "Sitzungsdaten teilen",
+      "copyLinkLabel": "Link kopieren",
+      "copyLinkDesc": "Teilbare URL mit Ihren Daten",
+      "copyDataLabel": "Daten kopieren",
+      "copyDataDesc": "Komprimierte Daten zum Einf\u00fcgen",
+      "qrCodeLabel": "QR-Code",
+      "qrCodeDesc": "Mit Handykamera scannen",
+      "qrCodeTooLarge": "Zu gro\u00df f\u00fcr QR",
+      "qrCodeTooLargeTitle": "Sitzungsdaten sind zu gro\u00df f\u00fcr einen QR-Code",
+      "shortCodeLabel": "Kurzcode",
+      "shortCodeDesc": "Einfach einzutippender Code (5 Min. g\u00fcltig)",
+      "shortCodeDisabledDesc": "Ben\u00f6tigt Relay-Server",
+      "shortCodeDisabledTitle": "Richten Sie einen Relay unter Serveroptionen ein, um Kurzcodes zu aktivieren",
+      "shortCodeResultLabel": "Kurzcode",
+      "shortCodeExpiry": "L\u00e4uft in 5 Min. ab",
+      "qrTapHint": "Tippen zum Vergr\u00f6\u00dfern",
+      "qrTooLargeError": "Sitzungsdaten zu gro\u00df f\u00fcr QR-Code ({charCount} Zeichen, max. ~2900). Nutzen Sie stattdessen Link kopieren oder Kurzcode.",
+      "qrGenerationFailed": "QR-Erzeugung fehlgeschlagen: {message}",
+      "emptyTitle": "Noch keine Sitzungsdaten",
+      "emptyDesc": "Beginnen Sie mit der Wehenerfassung, dann kommen Sie hierher zur\u00fcck, um Ihre Daten mit Ihrem Partner oder einem anderen Ger\u00e4t zu teilen.",
+      "receiveTitle": "Momentaufnahme empfangen",
+      "receiveIntro": "Sitzungsdaten importieren, die Ihr Partner oder ein anderes Ger\u00e4t geteilt hat.",
+      "receiveMethodQr": "QR-Code mit der Kamera scannen",
+      "receiveMethodLink": "Teilen-Link vom Partner einf\u00fcgen",
+      "receiveMethodShortCode": "Kurzcode eingeben (bei Relay-Nutzung)",
+      "importPlaceholder": "Link, Kurzcode oder komprimierte Daten hier einf\u00fcgen\u2026",
+      "loadingText": "Momentaufnahme wird geladen\u2026",
+      "previewHeader": "Diese Momentaufnahme importieren?",
+      "previewContractionsLabel": "Wehen",
+      "previewContractionsValue": "{contractionCount} ({completedCount} abgeschlossen)",
+      "previewEventsLabel": "Ereignisse",
+      "previewTimeRangeLabel": "Zeitraum",
+      "previewSessionStartedLabel": "Sitzung gestartet",
+      "previewSessionDateUnknown": "Unbekannt",
+      "previewIncludedSettingsHeader": "Enthaltene Einstellungen",
+      "previewArchiveAndImportButton": "Aktuelle archivieren & importieren",
+      "previewReplaceButton": "Aktuelle Sitzung ersetzen",
+      "previewCurrentSessionHint": "Sie haben {count, plural, one {# Wehe} other {# Wehen}} in der aktuellen Sitzung.",
+      "previewImportCountButton": "{count} Wehen importieren",
+      "importErrorUnrecognized": "Konnte nicht als Momentaufnahme-Link, -Code oder -Daten erkannt werden",
+      "importErrorRelayRequired": "Kurzcodes erfordern einen Relay-Server. Richten Sie einen unter Serveroptionen ein.",
+      "nativeShareTitle": "Wehentimer-Daten",
+      "nativeShareText": "Meine Wehentimer-Sitzung ansehen",
+      "pasteFromClipboardAriaLabel": "Aus Zwischenablage einf\u00fcgen"
+    },
+    "deploy": {
+      "guideToggle": "Eigenen Relay einrichten (empfohlen)",
+      "tierBasicBadge": "Basis",
+      "tierBasicLabel": "Keine Einrichtung n\u00f6tig",
+      "tierBasicDesc": "Nutzt kostenlose \u00f6ffentliche Server. Funktioniert im selben WLAN. Netzwerk\u00fcbergreifend m\u00f6glicherweise unzuverl\u00e4ssig.",
+      "tierBasicConfig": "ntfy.sh + Google STUN + Open Relay TURN",
+      "tierAdvancedBadge": "Erweitert",
+      "tierAdvancedLabel": "Eigener privater Relay",
+      "tierAdvancedDesc": "Funktioniert \u00fcberall. Kostenlos. Dauert 2 Minuten. Keine Kreditkarte n\u00f6tig.",
+      "step1Title": "Relay einrichten",
+      "step1Desc": "Sie ben\u00f6tigen ein kostenloses GitHub- und Cloudflare-Konto. Cloudflare erstellt eine Kopie des Relay-Codes und stellt ihn bereit.",
+      "step1Button": "Auf Cloudflare bereitstellen (ein Klick)",
+      "step2Title": "Worker-URL kopieren",
+      "step2Desc": "Nach der Bereitstellung zeigt Cloudflare Ihre URL an. Sie sieht aus wie ct-signaling.sie.workers.dev. W\u00e4hlen Sie oben \u201eMein Cloudflare Worker\u201c und f\u00fcgen Sie sie ein.",
+      "step3Title": "URL mit Partner teilen",
+      "step3Desc": "Ihr Partner f\u00fcgt dieselbe URL in seine App ein. Nur eine Person muss bereitstellen \u2014 beide nutzen denselben Relay.",
+      "tierSelfHostedBadge": "Selbst gehostet",
+      "tierSelfHostedLabel": "Volle Kontrolle",
+      "tierSelfHostedDesc": "Eigenen Signaling-Server + TURN-Relay betreiben. Keine Drittanbieter-Abh\u00e4ngigkeiten."
+    },
+    "categories": {
+      "thresholdsLabel": "Zeitregeln (5-1-1)",
+      "thresholdsDesc": "Schwellenwert- und Phasen-Einstellungen",
+      "providerLabel": "Arzt-Telefonnummer",
+      "providerDesc": "Telefonnummer Ihres Arztes",
+      "layoutLabel": "Bildschirm-Layout",
+      "layoutDesc": "Anordnung und Hero-Modus",
+      "parityLabel": "Geburtsvorgeschichte",
+      "parityDesc": "Erstes oder weiteres Baby",
+      "travelLabel": "Fahrt & Entfernung",
+      "travelDesc": "Fahrtzeit, Risikoeinsch\u00e4tzung",
+      "appearanceLabel": "Design & Anzeige",
+      "appearanceDesc": "Design, Sichtbarkeits-Optionen"
+    }
+  },
+  "onboarding": {
+    "welcomeTitle": "Wehentimer",
+    "welcomeDesc": "Wehen verfolgen, Muster erkennen und wissen, wann es Zeit f\u00fcrs Krankenhaus ist.",
+    "welcomePrivacyNote": "Alle Daten bleiben auf diesem Ger\u00e4t. Kein Konto n\u00f6tig.",
+    "getStartedButton": "Los geht's",
+    "skipSetupButton": "Einrichtung \u00fcberspringen",
+    "quickSetupTitle": "Schnelleinrichtung",
+    "quickSetupDesc": "Zwei kurze Fragen f\u00fcr eine personalisierte Erfahrung.",
+    "firstBabyLabel": "Ist es Ihr erstes Baby?",
+    "firstBabyYes": "Ja, erstes",
+    "firstBabyNo": "Nein, hatte schon eins",
+    "hospitalDistanceLabel": "Wie weit ist Ihr Krankenhaus?",
+    "travelTimeMinutes": "{mins} Min.",
+    "travelTimeNotSure": "Nicht sicher",
+    "travelTimeUncertainHint": "Kein Problem \u2014 wir verwenden eine konservative Sch\u00e4tzung und zeigen einen Bereich an.",
+    "providerPhoneLabel": "Arzt- oder Krankenhaus-Telefon (optional)",
+    "providerPhonePlaceholder": "(0171) 123-4567",
+    "providerPhoneHint": "Schnellwahl aus der App, wenn es Zeit ist anzurufen.",
+    "readyTitle": "Alles bereit",
+    "readyDesc": "Tippen Sie die gro\u00dfe Taste, wenn eine Wehe beginnt. Tippen Sie erneut, wenn sie endet. Die App erledigt den Rest.",
+    "summaryFirstBaby": "Erstes Baby",
+    "summaryNotFirstBaby": "Nicht erstes Baby",
+    "summaryTravelTimeNotSure": "Fahrtzeit: nicht sicher",
+    "summaryTravelTimeMinutes": "{travelTime} Min. zum Krankenhaus",
+    "startTrackingButton": "Erfassung starten"
+  },
+  "clinical": {
+    "bhVsReal": {
+      "bh": {
+        "irregularTiming": "Unregelm\u00e4\u00dfiges Timing",
+        "notCloser": "Werden nicht h\u00e4ufiger",
+        "stopWithMovement": "H\u00f6ren bei Bewegung oder Lagewechsel auf",
+        "frontOnly": "Haupts\u00e4chlich vorne sp\u00fcrbar",
+        "notStronger": "Werden nicht st\u00e4rker"
+      },
+      "real": {
+        "regularCloser": "Regelm\u00e4\u00dfiges Timing, werden h\u00e4ufiger",
+        "keepComing": "Kommen unabh\u00e4ngig von Aktivit\u00e4t",
+        "noStop": "H\u00f6ren nicht bei Ruhe oder Bewegung auf",
+        "radiateBack": "Strahlen vom R\u00fccken aus oder umfassen den Bauch",
+        "progressive": "Werden zunehmend st\u00e4rker"
+      }
+    },
+    "tips": {
+      "firstContraction": "Guter Anfang! Erfassen Sie weiter, um zu sehen, ob sich ein Muster entwickelt. Die meisten ersten Geburten beginnen langsam.",
+      "prelaborNormal": "Unregelm\u00e4\u00dfige Wehen sind normal und k\u00f6nnen tagelang kommen und gehen. Wenn sie bei Bewegung oder Ruhe aufh\u00f6ren, k\u00f6nnten es Braxton-Hicks-Wehen sein.",
+      "earlyRest": "Fr\u00fche Wehen k\u00f6nnen bei Erstgeb\u00e4renden 6\u201312+ Stunden dauern. Versuchen Sie sich auszuruhen, besonders nachts.",
+      "earlyHydrate": "Bleiben Sie hydratisiert und essen Sie leichte Snacks. Sie brauchen die Energie f\u00fcr die aktive Phase.",
+      "earlyActivity": "Leichte Aktivit\u00e4t wie Spazierengehen kann tags\u00fcber den Geburtsfortschritt f\u00f6rdern.",
+      "earlyTiming": "In der fr\u00fchen Phase sind Sie wahrscheinlich noch zu Hause. Fahren Sie ins Krankenhaus, wenn die Wehen das 5-1-1-Muster erreichen.",
+      "activeEntered": "Aktive Wehen bedeuten stetigen Fortschritt. Falls Sie noch nicht im Krankenhaus sind, wird es Zeit zu fahren.",
+      "activeBreathing": "Konzentrieren Sie sich auf langsames, tiefes Atmen bei jeder Wehe. Durch die Nase ein, durch den Mund aus.",
+      "activeDuration": "Aktive Wehen dauern bei Erstgeb\u00e4renden typischerweise 3\u20135 Stunden. Sie machen echte Fortschritte.",
+      "transitionEntered": "Die \u00dcbergangsphase ist die k\u00fcrzeste, aber intensivste Phase. Sie haben es fast geschafft.",
+      "transitionNormal": "\u00dcbelkeit, Zittern oder \u00dcberforderung in der \u00dcbergangsphase sind normal. Sie dauert typischerweise 30 Minuten bis 2 Stunden.",
+      "waterNoteColor": "Achten Sie auf die Farbe der Fl\u00fcssigkeit. Klar oder hellgelb ist normal. Gr\u00fcn oder braun bedeutet: sofort den Arzt anrufen.",
+      "waterCallProvider": "Informieren Sie Ihren Arzt \u00fcber den Blasensprung. Er wird Sie \u00fcber die n\u00e4chsten Schritte beraten.",
+      "waterStats": "77\u201395 % der Frauen kommen innerhalb von 24 Stunden nach dem Blasensprung in die aktive Wehenphase.",
+      "nightSleep": "Versuchen Sie zwischen den Wehen zu schlafen. Ruhe jetzt hilft Ihnen sp\u00e4ter in der aktiven Phase.",
+      "backLabor": "R\u00fcckenwehen k\u00f6nnen durch Vierf\u00fc\u00dflerstand, H\u00fcftpressen oder eine warme Kompresse auf dem unteren R\u00fccken gelindert werden.",
+      "safetyCall": "Rufen Sie sofort Ihren Arzt an bei: starker Blutung, Bewegungsstopp des Babys, starken Kopfschmerzen mit Sehst\u00f6rungen oder Fieber \u00fcber 38\u00b0C.",
+      "patternRegular": "Ihre Wehen werden regelm\u00e4\u00dfiger. Das ist ein gutes Zeichen, dass die Geburt voranschreitet."
+    }
+  },
+  "shared": {
+    "collapsibleSection": {
+      "openSettingsAriaLabel": "Einstellungen \u00f6ffnen",
+      "moveUpAriaLabel": "Nach oben",
+      "moveDownAriaLabel": "Nach unten"
+    },
+    "contextualTips": {
+      "dismissTipAriaLabel": "Tipp schlie\u00dfen"
+    },
+    "toast": {
+      "peerJoined": "{name} ist beigetreten",
+      "partnerDisconnected": "Ein Partner hat die Verbindung getrennt"
+    },
+    "storageWarning": {
+      "dismissAriaLabel": "Schlie\u00dfen"
+    },
+    "sessionManager": {
+      "newSession": "Neue Sitzung",
+      "archiveConfirmPrompt": "Aktuelle Sitzung archivieren und neu beginnen?",
+      "yesStartNew": "Ja, neue starten",
+      "previousSessions": "Fr\u00fchere Sitzungen",
+      "restore": "Wiederherstellen",
+      "delete": "L\u00f6schen",
+      "confirmDelete": "Best\u00e4tigen",
+      "noArchivedSessions": "Keine archivierten Sitzungen."
+    }
+  },
+  "devotional": {
+    "headingPrayersAndScripture": "Gebete & Heilige Schrift",
+    "headingPatronSaints": "Schutzheilige der Geburt",
+    "prayerBadge": "Gebet",
+    "scriptureBadge": "Schriftstelle",
+    "prayerDotAriaLabel": "Gebet {index}",
+    "footerLatin": "Pax Domini sit semper vobiscum.",
+    "footerTranslation": "Der Friede des Herrn sei allezeit mit euch.",
+    "dedication": "Made with \u2665 for AJR",
+    "saints": {
+      "gerardMajella": {
+        "name": "Hl. Gerhard Majella",
+        "title": "Schutzpatron werdender M\u00fctter",
+        "detail": "Ein Redemptoristen-Laienbruder des 18. Jahrhunderts, dessen F\u00fcrbitte von M\u00fcttern f\u00fcr eine sichere Entbindung und gesunde Kinder erbeten wird."
+      },
+      "giannaMolla": {
+        "name": "Hl. Gianna Beretta Molla",
+        "title": "Schutzpatronin der M\u00fctter & ungeborenen Kinder",
+        "detail": "Eine italienische \u00c4rztin und Mutter, die 1962 ihr Leben f\u00fcr ihr ungeborenes Kind opferte. Von Papst Johannes Paul II. im Jahr 2004 heiliggesprochen."
+      },
+      "raymondNonnatus": {
+        "name": "Hl. Raimund Nonnatus",
+        "title": "Schutzpatron der Geburt & Hebammen",
+        "detail": "Ein Mercedarier-Ordensmann des 13. Jahrhunderts, genannt \u201enon natus\u201c (nicht geboren), weil er per Kaiserschnitt nach dem Tod seiner Mutter zur Welt kam."
+      },
+      "margaretAntioch": {
+        "name": "Hl. Margareta von Antiochien",
+        "title": "Schutzpatronin der Geburt",
+        "detail": "Eine jungfr\u00e4uliche M\u00e4rtyrerin der fr\u00fchen Kirche, die seit Jahrhunderten von Frauen in den Wehen angerufen wird. Eine der Vierzehn Nothelfer."
+      },
+      "ourLadyLaLeche": {
+        "name": "Unsere Liebe Frau von La Leche",
+        "title": "Schutzpatronin stillender M\u00fctter",
+        "detail": "Eine beliebte Andacht zur Heiligen Jungfrau Maria, die sie als stillende Mutter ehrt, mit einem Schrein in St. Augustine, Florida seit 1615."
+      },
+      "colette": {
+        "name": "Hl. Koletta",
+        "title": "Schutzpatronin schwangerer Frauen & Frauen in den Wehen",
+        "detail": "Eine franz\u00f6sische Klarissin des 14. Jahrhunderts, bekannt f\u00fcr die Reform ihres Ordens. Ein totgeborenes Kind soll wiederbelebt worden sein, nachdem sie es in ihren Schleier h\u00fcllte."
+      },
+      "felicity": {
+        "name": "Hl. Felizitas",
+        "title": "Schutzpatronin werdender M\u00fctter",
+        "detail": "Eine Frau des 2. Jahrhunderts, die wegen ihres christlichen Glaubens eingekerkert und zum Tode verurteilt wurde, w\u00e4hrend sie schwanger war. Ihre Hinrichtung wurde aufgeschoben, bis sie im Gef\u00e4ngnis gebar."
+      },
+      "elizabeth": {
+        "name": "Hl. Elisabeth",
+        "title": "Schutzpatronin werdender M\u00fctter",
+        "detail": "Cousine der Heiligen Jungfrau Maria und Mutter des Hl. Johannes des T\u00e4ufers. \u201eGesegnet unter den Frauen\u201c genannt, empfing sie ihren Sohn im Alter durch die Gnade Gottes."
+      },
+      "anne": {
+        "name": "Hl. Anna",
+        "title": "Schutzpatronin der Gro\u00dfm\u00fctter & Frauen in den Wehen",
+        "detail": "Mutter der Heiligen Jungfrau Maria. Seit der fr\u00fchen Kirche verehrt, weil sie Maria in fortgeschrittenem Alter empfing und gebar. Ihr Name bedeutet \u201eGnade\u201c."
+      },
+      "monica": {
+        "name": "Hl. Monika",
+        "title": "Schutzpatronin der M\u00fctter",
+        "detail": "Eine Mutter des 4. Jahrhunderts des Hl. Augustinus von Hippo. Sie ertrug w\u00e4hrend ihrer Schwangerschaft gro\u00dfe Schwierigkeiten mit einem gewaltt\u00e4tigen Ehemann, doch ihr Glaube und ihre Ausdauer f\u00fchrten ihren Sohn zur Bekehrung."
+      },
+      "zelieMartin": {
+        "name": "Hl. Z\u00e9lie Martin",
+        "title": "Schutzpatronin der M\u00fctter & trauernden Eltern",
+        "detail": "Eine franz\u00f6sische Mutter des 19. Jahrhunderts, die vier ihrer neun Kinder im Kleinkindalter verlor. 2015 zusammen mit ihrem Ehemann Louis heiliggesprochen. Mutter der Hl. Th\u00e9r\u00e8se von Lisieux."
+      },
+      "joseph": {
+        "name": "Hl. Josef",
+        "title": "Schutzpatron der Familien, V\u00e4ter & der Universalkirche",
+        "detail": "Der Pflegevater Jesu und Br\u00e4utigam der Heiligen Jungfrau Maria. Bekannt als \u201eSchrecken der D\u00e4monen\u201c wegen seines m\u00e4chtigen Schutzes \u00fcber die Heilige Familie. Schutzpatron eines gl\u00fccklichen Todes, der Arbeiter und der Universalkirche."
+      }
+    },
+    "prayers": {
+      "stGerard": {
+        "title": "Gebet zum Hl. Gerhard f\u00fcr eine sichere Entbindung",
+        "shortLabel": "Hl. Gerhard",
+        "text": "O gro\u00dfer heiliger Gerhard, geliebter Diener Jesu Christi, vollkommener Nachahmer deines sanften und demutigen Erl\u00f6sers und hingebungsvolles Kind der Mutter Gottes: bereichere mich mit deinem Segen vor, w\u00e4hrend und nach der Geburt meines Kindes. Durch deine F\u00fcrbitte m\u00f6ge ich eine sichere und gl\u00fcckliche Entbindung erfahren. M\u00f6ge mein Kind sicher in diese Welt gebracht werden und als wahres Kind Gottes aufwachsen. Amen.",
+        "attribution": "Traditionelles katholisches Gebet"
+      },
+      "memorare": {
+        "title": "Memorare",
+        "shortLabel": "Memorare",
+        "text": "Gedenke, o g\u00fctigste Jungfrau Maria, es ist noch nie geh\u00f6rt worden, dass jemand, der zu dir seine Zuflucht nahm, deine Hilfe anrief oder um deine F\u00fcrbitte flehte, von dir verlassen worden sei. Von solchem Vertrauen beseelt, nehme ich meine Zuflucht zu dir, o Jungfrau der Jungfrauen, meine Mutter. Zu dir komme ich, vor dir stehe ich, s\u00fcndig und traurig. O Mutter des ewigen Wortes, verschm\u00e4he nicht meine Bitten, sondern h\u00f6re mich gn\u00e4dig und erh\u00f6re mich. Amen.",
+        "attribution": "Dem Hl. Bernhard von Clairvaux zugeschrieben"
+      },
+      "motherAndChild": {
+        "title": "Gebet f\u00fcr Mutter und Kind",
+        "shortLabel": "Mutter & Kind",
+        "text": "Herr Jesus Christus, der du im Scho\u00dfe der Heiligen Jungfrau Maria getragen wurdest, schaue mit Barmherzigkeit auf diese Mutter und ihr Kind. Gib ihr Kraft in den Wehen, Mut im Schmerz und Freude im neuen Leben. M\u00f6ge das Kind in Sicherheit und Gesundheit geboren werden, und m\u00f6gen sowohl Mutter als auch Kind unter deinem liebevollen Schutz ruhen. Durch die F\u00fcrbitte Mariens, der Mutter Gottes, und aller heiligen M\u00fctter und Heiligen bitten wir dies in deinem Namen. Amen.",
+        "attribution": "Traditionelles katholisches Gebet"
+      },
+      "hailMary": {
+        "title": "Gegr\u00fc\u00dfet seist du, Maria",
+        "shortLabel": "Ave Maria",
+        "text": "Gegr\u00fc\u00dfet seist du, Maria, voll der Gnade, der Herr ist mit dir. Du bist gebenedeit unter den Frauen, und gebenedeit ist die Frucht deines Leibes, Jesus. Heilige Maria, Mutter Gottes, bitte f\u00fcr uns S\u00fcnder, jetzt und in der Stunde unseres Todes. Amen.",
+        "attribution": "Traditionelles katholisches Gebet"
+      },
+      "ourLadyLaLeche": {
+        "title": "Gebet zu Unserer Lieben Frau von La Leche",
+        "shortLabel": "Unsere Liebe Frau von La Leche",
+        "text": "Liebliche Frau von La Leche, liebevollste Mutter des Jesuskindes und meine Mutter, ich komme, um deine Hilfe zu erbitten. Ich glaube an Gottes Macht und setze all mein Vertrauen auf dich. Gew\u00e4hre mir die Gnade der Mutterschaft. Stehe mir bei, liebe Frau, in diesem meinem Sehnen, und wenn es der Heilige Wille Gottes f\u00fcr mich ist zu empfangen, erwirke mir die Gnade, mein Kind bis zur Geburt zu tragen. Durch die F\u00fcrbitte deiner Heiligen Mutter und die Verdienste ihres g\u00f6ttlichen Sohnes, erbarme dich unser. Amen.",
+        "attribution": "Traditionell — Schrein Unserer Lieben Frau von La Leche, St. Augustine, FL"
+      },
+      "safeDelivery": {
+        "title": "Gebet f\u00fcr eine sichere Entbindung",
+        "shortLabel": "Sichere Entbindung",
+        "text": "Herr Jesus, ich lege mein Baby und mich selbst in deine liebenden H\u00e4nde. Beruhige meine \u00c4ngste, st\u00e4rke meinen K\u00f6rper und leite jene, die f\u00fcr uns sorgen. M\u00f6ge diese Geburt sicher sein und erf\u00fcllt von deinem Frieden. Ich vertraue auf deinen Plan f\u00fcr unser Leben. Amen.",
+        "attribution": "Zeitgen\u00f6ssisches katholisches Gebet"
+      },
+      "stJoseph": {
+        "title": "Gebet zum Hl. Josef, Besch\u00fctzer der Familien",
+        "shortLabel": "Hl. Josef",
+        "text": "O heiliger Josef, dessen Schutz so gro\u00df, so stark, so schnell vor dem Throne Gottes ist, lege ich in dich all meine Interessen und W\u00fcnsche. O heiliger Josef, stehe mir bei durch deine m\u00e4chtige F\u00fcrbitte und erwirke mir alle geistlichen Segnungen durch deinen Pflegesohn, Jesus Christus, unseren Herrn, so dass ich, nachdem ich hier auf Erden deine himmlische Macht in Anspruch genommen habe, meinen Dank und meine Huldigung darbringen kann. O heiliger Josef, Schrecken der D\u00e4monen, bete f\u00fcr uns und f\u00fcr unsere Familie. Bewache diese Mutter und dieses Kind mit deiner v\u00e4terlichen F\u00fcrsorge. Amen.",
+        "attribution": "Traditionelles katholisches Gebet zum Hl. Josef"
+      },
+      "psalm139": {
+        "title": "Psalm 139,13\u201316 \u2014 Zusammengewoben",
+        "shortLabel": "\ud83d\udcd6 Psalm 139",
+        "text": "Denn du hast mein Innerstes geschaffen, mich gewoben im Scho\u00df meiner Mutter. Ich danke dir, dass ich so staunenswert und wunderbar gestaltet bin. Ich wei\u00df es genau: Wunderbar sind deine Werke. Dir waren meine Glieder nicht verborgen, als ich gemacht wurde im Verborgenen, gewirkt in den Tiefen der Erde. Deine Augen sahen mich schon als ungeformten Keim; in deinem Buch sind sie alle verzeichnet: die Tage, die schon geformt waren, als noch keiner von ihnen da war.",
+        "attribution": "Psalm 139,13\u201316 (Einheits\u00fcbersetzung)"
+      },
+      "isaiah66": {
+        "title": "Jesaja 66,9 \u2014 Verhei\u00dfung der Geburt",
+        "shortLabel": "\ud83d\udcd6 Jesaja 66,9",
+        "text": "Sollte ich das Kind dem Durchbruch nahe bringen und nicht geb\u00e4ren lassen?, spricht der HERR. Sollte ich, der geb\u00e4ren l\u00e4sst, den Mutterschlo\u00df verschlie\u00dfen?, spricht dein Gott.",
+        "attribution": "Jesaja 66,9 (Einheits\u00fcbersetzung)"
+      },
+      "jeremiah1": {
+        "title": "Jeremia 1,5 \u2014 Vor der Geburt gekannt",
+        "shortLabel": "\ud83d\udcd6 Jeremia 1,5",
+        "text": "Noch ehe ich dich im Mutterleib formte, habe ich dich ausersehen, noch ehe du aus dem Mutterschlo\u00df hervorkamst, habe ich dich geheiligt.",
+        "attribution": "Jeremia 1,5 (Einheits\u00fcbersetzung)"
+      },
+      "magnificat": {
+        "title": "Magnificat (Lobgesang Mariens)",
+        "shortLabel": "\ud83d\udcd6 Magnificat",
+        "text": "Meine Seele preist die Gr\u00f6\u00dfe des Herrn, und mein Geist jubelt \u00fcber Gott, meinen Retter. Denn auf die Niedrigkeit seiner Magd hat er geschaut. Siehe, von nun an preisen mich selig alle Geschlechter. Denn der M\u00e4chtige hat Gro\u00dfes an mir getan und sein Name ist heilig.",
+        "attribution": "Lukas 1,46\u201349 \u2014 Das Magnificat (Einheits\u00fcbersetzung)"
+      }
+    }
+  },
+  "relay": {
+    "responseSent": "Antwort gesendet!",
+    "responseSentDesc": "Der Antwortcode wurde an Ihre Teilen-Sitzung gesendet. Sie k\u00f6nnen diesen Tab schlie\u00dfen.",
+    "closeTab": "Tab schlie\u00dfen"
+  },
+  "swipeHint": "Wischen"
+}

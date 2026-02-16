@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import type { DepartureUrgency } from '../../lib/labor-logic/hospitalAdvisor';
 	import { AlertTriangle, ArrowRight, Clock, ChevronRight } from 'lucide-svelte';
 
@@ -12,7 +13,7 @@
 </script>
 
 {#if urgency !== 'not-yet'}
-	<button class="hospital-banner" data-urgency={urgency} onclick={onNavigate} aria-label="View advisor details">
+	<button class="hospital-banner" data-urgency={urgency} onclick={onNavigate} aria-label={$_('timer.hospitalBanner.viewAdvisorAriaLabel')}>
 		<div class="banner-icon">
 			{#if urgency === 'go-now'}
 				<AlertTriangle size={20} />

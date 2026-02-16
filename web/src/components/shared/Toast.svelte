@@ -2,6 +2,7 @@
 	import { peerState } from '../../lib/stores/p2p';
 	import type { PeerInfo } from '../../lib/p2p/quick-connect';
 	import { Wifi, WifiOff } from 'lucide-svelte';
+	import { _ } from 'svelte-i18n';
 
 	interface ToastMessage {
 		id: number;
@@ -30,13 +31,13 @@
 			// Check for new peers
 			for (const peer of peers) {
 				if (!lastPeerIds.has(peer.id)) {
-					addToast(`${peer.name} joined`, 'join');
+					addToast($_('shared.toast.peerJoined', { values: { name: peer.name } }), 'join');
 				}
 			}
 			// Check for left peers
 			for (const id of lastPeerIds) {
 				if (!currentIds.has(id)) {
-					addToast('A partner disconnected', 'leave');
+					addToast($_('shared.toast.partnerDisconnected'), 'leave');
 				}
 			}
 		}

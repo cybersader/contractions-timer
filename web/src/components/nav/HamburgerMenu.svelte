@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { EMPTY_SESSION, DEFAULT_SETTINGS } from '../../lib/labor-logic/types';
@@ -13,6 +14,7 @@
 	import { APP_VERSION } from '../../lib/version';
 	import SharingPanel from '../sharing/SharingPanel.svelte';
 	import DevotionalCard from '../timer/DevotionalCard.svelte';
+	import LanguageSelector from './LanguageSelector.svelte';
 
 	interface Props {
 		open: boolean;
@@ -126,7 +128,7 @@
 				window.location.reload();
 			} catch (e) {
 				dlog('data', 'Import failed', { error: String(e) }, { level: 'error', src: 'HamburgerMenu' });
-				importError = 'Invalid file format';
+				importError = $_('menu.importError');
 				setTimeout(() => importError = '', 3000);
 			}
 		};
@@ -175,51 +177,52 @@
 
 {#if open}
 	<!-- Backdrop -->
-	<button class="backdrop" onclick={handleClose} aria-label="Close menu"></button>
+	<button class="backdrop" onclick={handleClose} aria-label={$_('menu.closeMenuAriaLabel')}></button>
 
 	<!-- Drawer -->
 	<div class="drawer" class:drawer-open={open}>
 		<!-- Drawer header -->
 		<div class="drawer-header">
 			{#if activeTab === 'menu'}
-				<span class="drawer-title">Menu</span>
+				<span class="drawer-title">{$_('menu.drawerTitle')}</span>
 			{:else if activeTab === 'sharing'}
-				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label="Back to menu">
+				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label={$_('menu.backToMenuAriaLabel')}>
 					<ChevronLeft size={20} />
 				</button>
-				<span class="drawer-title">Sharing</span>
+				<span class="drawer-title">{$_('menu.sharingTitle')}</span>
 			{:else if activeTab === 'settings'}
-				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label="Back to menu">
+				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label={$_('menu.backToMenuAriaLabel')}>
 					<ChevronLeft size={20} />
 				</button>
-				<span class="drawer-title">Settings</span>
+				<span class="drawer-title">{$_('menu.settingsTitle')}</span>
 			{:else if activeTab === 'theme'}
-				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label="Back to menu">
+				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label={$_('menu.backToMenuAriaLabel')}>
 					<ChevronLeft size={20} />
 				</button>
-				<span class="drawer-title">Theme</span>
+				<span class="drawer-title">{$_('menu.themeTitle')}</span>
 			{:else if activeTab === 'sessions'}
-				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label="Back to menu">
+				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label={$_('menu.backToMenuAriaLabel')}>
 					<ChevronLeft size={20} />
 				</button>
-				<span class="drawer-title">Sessions</span>
+				<span class="drawer-title">{$_('menu.sessionsTitle')}</span>
 			{:else if activeTab === 'devtools'}
-				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label="Back to menu">
+				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label={$_('menu.backToMenuAriaLabel')}>
 					<ChevronLeft size={20} />
 				</button>
-				<span class="drawer-title">Dev tools</span>
+				<span class="drawer-title">{$_('menu.devToolsTitle')}</span>
 			{:else if activeTab === 'devotional'}
-				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label="Back to menu">
+				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label={$_('menu.backToMenuAriaLabel')}>
 					<ChevronLeft size={20} />
 				</button>
-				<span class="drawer-title">Prayers</span>
+				<span class="drawer-title">{$_('menu.prayersTitle')}</span>
 			{:else}
-				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label="Back to menu">
+				<button class="drawer-back" onclick={() => activeTab = 'menu'} aria-label={$_('menu.backToMenuAriaLabel')}>
 					<ChevronLeft size={20} />
 				</button>
-				<span class="drawer-title">About</span>
+				<span class="drawer-title">{$_('menu.aboutTitle')}</span>
 			{/if}
-			<button class="drawer-close" onclick={handleClose} aria-label="Close">
+			<LanguageSelector />
+			<button class="drawer-close" onclick={handleClose} aria-label={$_('menu.closeAriaLabel')}>
 				<X size={20} />
 			</button>
 		</div>
@@ -231,31 +234,31 @@
 					<button class="menu-item" onclick={() => activeTab = 'sharing'}>
 						<Share2 size={20} />
 						<div class="menu-item-text">
-							<span>Sharing</span>
+							<span>{$_('menu.items.sharing')}</span>
 							{#if $isP2PActive}
-								<span class="menu-item-hint">Connected ({$peerCount} peers)</span>
+								<span class="menu-item-hint">{$_('menu.sharingHintConnected', { values: { count: $peerCount } })}</span>
 							{/if}
 						</div>
 					</button>
 					<button class="menu-item" onclick={() => activeTab = 'settings'}>
 						<Settings size={20} />
-						<span>Settings</span>
+						<span>{$_('menu.items.settings')}</span>
 					</button>
 					<button class="menu-item" onclick={() => activeTab = 'theme'}>
 						<Palette size={20} />
-						<span>Theme</span>
+						<span>{$_('menu.items.theme')}</span>
 					</button>
 					<button class="menu-item" onclick={() => activeTab = 'sessions'}>
 						<Archive size={20} />
-						<span>Sessions</span>
+						<span>{$_('menu.items.sessions')}</span>
 					</button>
 					<button class="menu-item" onclick={handleExport}>
 						<Download size={20} />
-						<span>Export data (JSON)</span>
+						<span>{$_('menu.items.exportData')}</span>
 					</button>
 					<button class="menu-item" onclick={handleImport}>
 						<Upload size={20} />
-						<span>Import data</span>
+						<span>{$_('menu.items.importData')}</span>
 					</button>
 					{#if importError}
 						<div class="import-error">{importError}</div>
@@ -267,28 +270,28 @@
 						<button class="menu-item" onclick={() => { handleClose(); onRestartOnboarding(); }}>
 							<RotateCcw size={20} />
 							<div class="menu-item-text">
-								<span>Restart setup</span>
-								<span class="menu-item-hint">Re-run the welcome wizard (data is kept)</span>
+								<span>{$_('menu.items.restartSetup')}</span>
+								<span class="menu-item-hint">{$_('menu.items.restartSetupHint')}</span>
 							</div>
 						</button>
 					{/if}
 					<button class="menu-item" onclick={() => activeTab = 'about'}>
 						<Info size={20} />
-						<span>About</span>
+						<span>{$_('menu.items.about')}</span>
 					</button>
 					<a href="https://github.com/cybersader/obsidian-contractions-timer/issues/new/choose" target="_blank" rel="noopener" class="menu-item menu-item--link">
 						<Bug size={20} />
-						<span>Feedback & issues</span>
+						<span>{$_('menu.items.feedbackAndIssues')}</span>
 					</a>
 					{#if showDevotional}
 						<button class="menu-item menu-item--devotional" onclick={() => activeTab = 'devotional'}>
 							<span class="devotional-menu-icon">&#128591;</span>
-							<span>Prayers</span>
+							<span>{$_('menu.items.prayers')}</span>
 						</button>
 					{/if}
 					<button class="menu-item" onclick={() => activeTab = 'devtools'}>
 						<FlaskConical size={20} />
-						<span>Dev tools</span>
+						<span>{$_('menu.items.devTools')}</span>
 					</button>
 
 					<div class="menu-divider"></div>
@@ -296,16 +299,16 @@
 					<!-- Danger zone -->
 					{#if showClearConfirm}
 						<div class="clear-confirm">
-							<p class="clear-text">Delete all contraction data?</p>
+							<p class="clear-text">{$_('menu.clearConfirm.prompt')}</p>
 							<div class="clear-buttons">
-								<button class="btn-danger" onclick={handleClear}>Yes, clear everything</button>
-								<button class="btn-cancel" onclick={() => showClearConfirm = false}>Cancel</button>
+								<button class="btn-danger" onclick={handleClear}>{$_('menu.clearConfirm.confirmButton')}</button>
+								<button class="btn-cancel" onclick={() => showClearConfirm = false}>{$_('menu.clearConfirm.cancelButton')}</button>
 							</div>
 						</div>
 					{:else}
 						<button class="menu-item menu-item--danger" onclick={handleClear}>
 							<Trash2 size={20} />
-							<span>Clear all data</span>
+							<span>{$_('menu.items.clearAllData')}</span>
 						</button>
 					{/if}
 				</div>
@@ -329,7 +332,7 @@
 							onclick={() => applyTheme(`${currentPalette}-light`)}
 						>
 							<Sun size={16} />
-							Light
+							{$_('menu.theme.lightMode')}
 						</button>
 						<button
 							class="mode-btn"
@@ -337,7 +340,7 @@
 							onclick={() => applyTheme(`${currentPalette}-dark`)}
 						>
 							<Moon size={16} />
-							Dark
+							{$_('menu.theme.darkMode')}
 						</button>
 						<button
 							class="mode-btn"
@@ -345,12 +348,12 @@
 							onclick={() => applyTheme(`${currentPalette}-mid`)}
 						>
 							<Blend size={16} />
-							Unique
+							{$_('menu.theme.uniqueMode')}
 						</button>
 					</div>
 
 					<!-- Palette selection -->
-					<div class="palette-label">Color palette</div>
+					<div class="palette-label">{$_('menu.theme.colorPaletteLabel')}</div>
 					<div class="palette-grid">
 						{#each PALETTES as palette}
 							{@const preview = PALETTE_PREVIEWS[palette]}
@@ -377,7 +380,7 @@
 											onclick={() => applyCardStyle('dark')}
 										>
 											<div class="subtheme-dot" style="background: {palette === 'warm' ? 'rgba(30, 20, 10, 0.9)' : 'rgba(14, 26, 14, 0.9)'};"></div>
-											<span>Dark</span>
+											<span>{$_('menu.theme.darkCardStyle')}</span>
 										</button>
 										<button
 											class="subtheme-chip"
@@ -385,7 +388,7 @@
 											onclick={() => applyCardStyle('light')}
 										>
 											<div class="subtheme-dot" style="background: {palette === 'warm' ? 'rgba(252, 246, 228, 0.95)' : 'rgba(245, 240, 225, 0.95)'};"></div>
-											<span>Light</span>
+											<span>{$_('menu.theme.lightCardStyle')}</span>
 										</button>
 									</div>
 								{/if}
@@ -397,8 +400,8 @@
 			{:else if activeTab === 'devtools'}
 				<div class="devtools-panel">
 					<div class="devtools-section">
-						<div class="devtools-label">Load seed data</div>
-						<p class="devtools-hint">Replace current session with realistic mock data for testing.</p>
+						<div class="devtools-label">{$_('menu.devtools.loadSeedData')}</div>
+						<p class="devtools-hint">{$_('menu.devtools.seedHint')}</p>
 						<div class="devtools-grid">
 							{#each SEED_SCENARIOS as scenario}
 								<button
@@ -406,8 +409,8 @@
 									class:devtools-seed-active={seedLoaded === scenario.id}
 									onclick={() => handleSeedClick(scenario.id, scenario.fn)}
 								>
-									<span class="devtools-seed-label">{scenario.label}</span>
-									<span class="devtools-seed-desc">{scenario.description}</span>
+									<span class="devtools-seed-label">{$_(`menu.devtools.seeds.${scenario.id}Label`)}</span>
+									<span class="devtools-seed-desc">{$_(`menu.devtools.seeds.${scenario.id}Desc`)}</span>
 								</button>
 							{/each}
 						</div>
@@ -415,22 +418,22 @@
 
 					{#if pendingSeedId && pendingSeedFn}
 						<div class="devtools-archive-prompt">
-							<p class="devtools-archive-text">You have {$session.contractions.length} contraction{$session.contractions.length === 1 ? '' : 's'} in your current session.</p>
+							<p class="devtools-archive-text">{$_('menu.devtools.archivePrompt', { values: { count: $session.contractions.length } })}</p>
 							<button class="btn-archive" onclick={() => loadSeed(pendingSeedId!, pendingSeedFn!, true)}>
 								<Archive size={16} />
-								Archive current & load
+								{$_('menu.devtools.archiveCurrentAndLoad')}
 							</button>
 							<button class="btn-replace" onclick={() => loadSeed(pendingSeedId!, pendingSeedFn!, false)}>
-								Replace current session
+								{$_('menu.devtools.replaceCurrentSession')}
 							</button>
 							<button class="btn-cancel-seed" onclick={() => { pendingSeedId = null; pendingSeedFn = null; }}>
-								Cancel
+								{$_('common.cancel')}
 							</button>
 						</div>
 					{/if}
 
 					<div class="devtools-section">
-						<div class="devtools-label">Quick actions</div>
+						<div class="devtools-label">{$_('menu.devtools.quickActions')}</div>
 						<button
 							class="devtools-seed-btn"
 							onclick={() => {
@@ -439,19 +442,19 @@
 								setTimeout(() => seedLoaded = '', 2000);
 							}}
 						>
-							<span class="devtools-seed-label">Clear session</span>
-							<span class="devtools-seed-desc">Reset to empty state</span>
+							<span class="devtools-seed-label">{$_('menu.devtools.clearSession')}</span>
+							<span class="devtools-seed-desc">{$_('menu.devtools.clearSessionDesc')}</span>
 						</button>
 					</div>
 					{#if seedLoaded}
-						<div class="devtools-toast">Loaded!</div>
+						<div class="devtools-toast">{$_('menu.devtools.loadedToast')}</div>
 					{/if}
 
 					<div class="devtools-section">
-						<div class="devtools-label">Debug logging</div>
-						<p class="devtools-hint">Capture diagnostic data while testing features. Copy the log and paste it to share.</p>
+						<div class="devtools-label">{$_('menu.devtools.debugLogging')}</div>
+						<p class="devtools-hint">{$_('menu.devtools.debugLoggingHint')}</p>
 						<label class="devtools-toggle-row">
-							<span class="devtools-toggle-label">Enable logging</span>
+							<span class="devtools-toggle-label">{$_('menu.devtools.enableLogging')}</span>
 							<input type="checkbox" class="devtools-toggle" checked={$debugEnabled} onchange={(e) => debugEnabled.set(e.currentTarget.checked)} />
 						</label>
 						{#if $debugEnabled}
@@ -462,22 +465,22 @@
 										const dump = dlogDump();
 										try {
 											await navigator.clipboard.writeText(dump);
-											logCopyFeedback = 'Copied!';
+											logCopyFeedback = $_('menu.devtools.copiedFeedback');
 										} catch {
-											logCopyFeedback = 'Copy failed';
+											logCopyFeedback = $_('menu.devtools.copyFailedFeedback');
 										}
 										setTimeout(() => logCopyFeedback = '', 2000);
 									}}
 								>
-									<span class="devtools-seed-label">Copy log ({dlogCount()} entries)</span>
-									<span class="devtools-seed-desc">Copies full diagnostic log to clipboard</span>
+									<span class="devtools-seed-label">{$_('menu.devtools.copyLog', { values: { count: dlogCount() } })}</span>
+									<span class="devtools-seed-desc">{$_('menu.devtools.copyLogDesc')}</span>
 								</button>
 								<button
 									class="devtools-seed-btn"
-									onclick={() => { dlogClear(); logCopyFeedback = 'Cleared!'; setTimeout(() => logCopyFeedback = '', 2000); }}
+									onclick={() => { dlogClear(); logCopyFeedback = $_('menu.devtools.clearedFeedback'); setTimeout(() => logCopyFeedback = '', 2000); }}
 								>
-									<span class="devtools-seed-label">Clear log</span>
-									<span class="devtools-seed-desc">Remove all logged entries</span>
+									<span class="devtools-seed-label">{$_('menu.devtools.clearLog')}</span>
+									<span class="devtools-seed-desc">{$_('menu.devtools.clearLogDesc')}</span>
 								</button>
 							</div>
 							{#if logCopyFeedback}
@@ -496,25 +499,25 @@
 					<div class="about-app-icon">
 						<Clock size={28} />
 					</div>
-					<h3 class="about-name">Contraction Timer</h3>
+					<h3 class="about-name">{$_('menu.about.appName')}</h3>
 					<p class="about-version">v{APP_VERSION}</p>
-					<p class="about-desc">Track contractions, assess labor patterns, know when to go to the hospital.</p>
+					<p class="about-desc">{$_('menu.about.description')}</p>
 					<div class="about-features">
-						<div class="about-feature">Live timer with wave chart</div>
-						<div class="about-feature">5-1-1 rule tracking</div>
-						<div class="about-feature">Braxton Hicks assessment</div>
-						<div class="about-feature">Hospital departure advisor</div>
-						<div class="about-feature">Clinical reference guide</div>
+						<div class="about-feature">{$_('menu.about.features.liveTimer')}</div>
+						<div class="about-feature">{$_('menu.about.features.rule511')}</div>
+						<div class="about-feature">{$_('menu.about.features.braxtonHicks')}</div>
+						<div class="about-feature">{$_('menu.about.features.hospitalAdvisor')}</div>
+						<div class="about-feature">{$_('menu.about.features.clinicalReference')}</div>
 					</div>
 					<div class="about-privacy">
-						<p>All data stays on this device. No accounts, no servers, no tracking.</p>
+						<p>{$_('menu.about.privacyNotice')}</p>
 					</div>
 					<div class="about-links">
 						<a href="https://github.com/cybersader/obsidian-contractions-timer" target="_blank" rel="noopener" class="about-link">
-							GitHub
+							{$_('menu.about.githubLink')}
 						</a>
 						<a href="https://github.com/cybersader/obsidian-contractions-timer/issues/new/choose" target="_blank" rel="noopener" class="about-link">
-							Feedback & issues
+							{$_('menu.about.feedbackLink')}
 						</a>
 					</div>
 				</div>

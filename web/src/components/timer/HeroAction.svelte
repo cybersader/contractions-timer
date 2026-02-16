@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import type { TimerPhase } from '../../lib/stores/timer';
 	import type { LaborStage } from '../../lib/labor-logic/types';
 	import { ChevronRight } from 'lucide-svelte';
@@ -19,33 +20,35 @@
 		(laborStage === 'active' || laborStage === 'transition' || waterBroke)
 	);
 
-	const STAGE_ACTIONS: Record<string, string> = {
-		'pre-labor': 'Continue normal activities',
-		early: 'Rest and hydrate — stay home',
-		active: 'Head to hospital soon',
-		transition: 'You should be at the hospital',
+	const STAGE_ACTION_KEYS: Record<string, string> = {
+		'pre-labor': 'timer.heroAction.stageActions.preLabor',
+		early: 'timer.heroAction.stageActions.early',
+		active: 'timer.heroAction.stageActions.active',
+		transition: 'timer.heroAction.stageActions.transition',
 	};
 
-	const CONTRACTION_MESSAGES: Record<string, string> = {
-		'pre-labor': 'Stay relaxed...',
-		early: 'Nice and easy...',
-		active: 'Breathe through it...',
-		transition: "One at a time — you've got this",
+	const CONTRACTION_MESSAGE_KEYS: Record<string, string> = {
+		'pre-labor': 'timer.heroAction.contractionMessages.preLabor',
+		early: 'timer.heroAction.contractionMessages.early',
+		active: 'timer.heroAction.contractionMessages.active',
+		transition: 'timer.heroAction.contractionMessages.transition',
 	};
 
 	let actionText = $derived.by(() => {
-		if (paused) return 'Paused';
-		if (phase === 'idle') return 'Tap start when a contraction begins';
+		if (paused) return $_('timer.heroAction.paused');
+		if (phase === 'idle') return $_('timer.heroAction.tapStartPrompt');
 		if (phase === 'contracting') {
-			return CONTRACTION_MESSAGES[laborStage ?? ''] ?? 'Breathe through it...';
+			const key = CONTRACTION_MESSAGE_KEYS[laborStage ?? ''];
+			return key ? $_(key) : $_('timer.heroAction.defaultContractionMessage');
 		}
 		// Resting phase
 		if (waterBroke) {
-			if (laborStage === 'active') return 'Water broke + active labor — head to hospital';
-			if (laborStage === 'transition') return 'You should be at the hospital';
-			return 'Water broke — call your provider';
+			if (laborStage === 'active') return $_('timer.heroAction.waterBrokeActive');
+			if (laborStage === 'transition') return $_('timer.heroAction.waterBrokeTransition');
+			return $_('timer.heroAction.waterBrokeDefault');
 		}
-		return STAGE_ACTIONS[laborStage ?? ''] ?? 'Keep tracking...';
+		const key = STAGE_ACTION_KEYS[laborStage ?? ''];
+		return key ? $_(key) : $_('timer.heroAction.keepTracking');
 	});
 
 	let stageClass = $derived(
@@ -57,7 +60,7 @@
 
 	let detail = $derived(
 		avgIntervalMin > 0
-			? `~${avgIntervalMin.toFixed(0)} min apart · ~${Math.round(avgDurationSec)}s avg`
+			? $_('timer.heroAction.detailTemplate', { values: { interval: avgIntervalMin.toFixed(0), duration: Math.round(avgDurationSec).toString() } })
 			: ''
 	);
 </script>

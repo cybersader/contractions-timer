@@ -18,6 +18,7 @@
 	import { Copy, Link, Hash, QrCode, Download, Loader2, Camera, Info, ClipboardPaste, Archive, Share2, ChevronRight, Settings2, ChevronDown, ChevronUp } from 'lucide-svelte';
 	import jsQR from 'jsqr';
 	import { dlog } from '../../lib/debug-log';
+	import { _ } from 'svelte-i18n';
 
 	interface Props {
 		/** Called when user imports a snapshot, with the decompressed session data */
@@ -163,7 +164,7 @@
 		try {
 			const code = await ensureCompressed();
 			if (!isQRCompatible(code)) {
-				qrError = `Session data too large for QR code (${code.length + 40} chars, max ~2900). Use copy link or short code instead.`;
+				qrError = $_('sharing.snapshot.qrTooLargeError', { values: { charCount: code.length + 40 } });
 				return;
 			}
 			const url = generateSnapshotUrl(code);
@@ -171,7 +172,7 @@
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
 			console.error('[SnapshotShare] handleQrCode failed:', msg);
-			qrError = `QR generation failed: ${msg}`;
+			qrError = $_('sharing.snapshot.qrGenerationFailed', { values: { message: msg } });
 		} finally {
 			activeShareMethod = null;
 		}
@@ -185,8 +186,8 @@
 			const code = await ensureCompressed();
 			const url = generateSnapshotUrl(code);
 			await navigator.share({
-				title: 'Contraction timer data',
-				text: 'View my contraction timer session',
+				title: $_('sharing.snapshot.nativeShareTitle'),
+				text: $_('sharing.snapshot.nativeShareText'),
 				url,
 			});
 		} catch (e) {
@@ -212,14 +213,14 @@
 		try {
 			const parsed = extractSnapshotCode(raw);
 			if (!parsed) {
-				throw new Error('Could not recognize this as a snapshot link, code, or data');
+				throw new Error($_('sharing.snapshot.importErrorUnrecognized'));
 			}
 
 			let dataCode: string;
 
 			if (parsed.type === 'shortcode') {
 				if (!hasRelay) {
-					throw new Error('Short codes require a relay server. Set one up in server options.');
+					throw new Error($_('sharing.snapshot.importErrorRelayRequired'));
 				}
 				dataCode = await getSnapshotFromRelay(parsed.code, relayUrl);
 			} else {
@@ -343,8 +344,8 @@
 			if (!navigator.mediaDevices?.getUserMedia) {
 				throw new Error(
 					window.isSecureContext === false
-						? 'Camera requires HTTPS. This page is not in a secure context.'
-						: 'Camera API not available in this browser.'
+						? $_('sharing.cameraErrorHttps')
+						: $_('sharing.cameraErrorUnavailable')
 				);
 			}
 
@@ -466,10 +467,10 @@
 			const msg = e instanceof Error ? e.message : String(e);
 			console.error('[SnapshotShare] Camera access failed:', msg);
 			scanError = msg.includes('Permission') || msg.includes('NotAllowed')
-				? 'Camera permission denied. Check your browser settings.'
+				? $_('sharing.cameraErrorPermission')
 				: msg.includes('NotFound') || msg.includes('DevicesNotFound')
-				? 'No camera found on this device.'
-				: `Camera error: ${msg}`;
+				? $_('sharing.cameraErrorNotFound')
+				: $_('sharing.cameraErrorGeneric', { values: { message: msg } });
 			scanning = false;
 			if (scanStream) { scanStream.getTracks().forEach(t => t.stop()); scanStream = null; }
 		}
@@ -487,10 +488,10 @@
 	async function copyToClipboard(text: string, label: string) {
 		try {
 			await navigator.clipboard.writeText(text);
-			copyFeedback = `${label} copied!`;
+			copyFeedback = $_('sharing.copyFeedbackSuccess', { values: { label } });
 			setTimeout(() => copyFeedback = '', 2000);
 		} catch {
-			copyFeedback = 'Failed to copy';
+			copyFeedback = $_('sharing.copyFeedbackFailed');
 			setTimeout(() => copyFeedback = '', 2000);
 		}
 	}
@@ -516,18 +517,18 @@
 		<div class="snapshot-section">
 			{#if mode === 'both'}
 				<div class="section-header">
-					<h3 class="section-title">Send a snapshot</h3>
-					<span class="section-info" title="Sends a frozen copy of your session data. The recipient gets a one-time snapshot, not a live connection.">
+					<h3 class="section-title">{$_('sharing.snapshot.sendTitle')}</h3>
+					<span class="section-info" title={$_('sharing.snapshot.sendTooltip')}>
 						<Info size={14} />
 					</span>
 				</div>
 			{/if}
-			<p class="section-desc">Share a one-time copy of your session. Your partner gets a frozen snapshot — not a live connection.</p>
+			<p class="section-desc">{$_('sharing.snapshot.sendDesc')}</p>
 
 			<!-- What to include (sharing preferences) -->
 			<button class="share-options-toggle" onclick={() => showShareOptions = !showShareOptions}>
 				<Settings2 size={14} />
-				<span>What to include</span>
+				<span>{$_('sharing.snapshot.whatToInclude')}</span>
 				{#if showShareOptions}
 					<ChevronUp size={14} />
 				{:else}
@@ -537,12 +538,12 @@
 
 			{#if showShareOptions}
 				<div class="share-options">
-					<p class="share-options-hint">Session data (contractions, events) is always included.</p>
+					<p class="share-options-hint">{$_('sharing.snapshot.alwaysIncludedHint')}</p>
 					{#each Object.entries(SHARING_CATEGORY_LABELS) as [cat, meta]}
 						<div class="share-option-row">
 							<div class="share-option-info">
-								<span class="share-option-label">{meta.label}</span>
-								<span class="share-option-desc">{meta.desc}</span>
+								<span class="share-option-label">{$_(`sharing.categories.${cat}Label`)}</span>
+								<span class="share-option-desc">{$_(`sharing.categories.${cat}Desc`)}</span>
 							</div>
 							<label class="toggle">
 								<input type="checkbox" bind:checked={sharePrefs[cat as SharingCategory]} />
@@ -557,7 +558,7 @@
 			{#if canNativeShare}
 				<button class="share-primary-btn" onclick={handleNativeShare}>
 					<Share2 size={20} />
-					<span>Share session data</span>
+					<span>{$_('sharing.snapshot.shareSessionButton')}</span>
 				</button>
 			{/if}
 
@@ -576,8 +577,8 @@
 						{/if}
 					</span>
 					<span class="share-method-text">
-						<span class="share-method-label">Copy link</span>
-						<span class="share-method-desc">Shareable URL with your data</span>
+						<span class="share-method-label">{$_('sharing.snapshot.copyLinkLabel')}</span>
+						<span class="share-method-desc">{$_('sharing.snapshot.copyLinkDesc')}</span>
 					</span>
 					<ChevronRight size={14} class="share-method-arrow" />
 				</button>
@@ -596,19 +597,19 @@
 						{/if}
 					</span>
 					<span class="share-method-text">
-						<span class="share-method-label">Copy data</span>
-						<span class="share-method-desc">Compressed data for pasting</span>
+						<span class="share-method-label">{$_('sharing.snapshot.copyDataLabel')}</span>
+						<span class="share-method-desc">{$_('sharing.snapshot.copyDataDesc')}</span>
 					</span>
 					<ChevronRight size={14} class="share-method-arrow" />
 				</button>
 
 				<!-- QR code -->
 				{#if compressedCode && !qrAvailable}
-					<button class="share-method-row share-method-disabled" disabled title="Session data is too large for a QR code">
+					<button class="share-method-row share-method-disabled" disabled title={$_('sharing.snapshot.qrCodeTooLargeTitle')}>
 						<span class="share-method-icon"><QrCode size={18} /></span>
 						<span class="share-method-text">
-							<span class="share-method-label">QR code</span>
-							<span class="share-method-desc">Too large for QR</span>
+							<span class="share-method-label">{$_('sharing.snapshot.qrCodeLabel')}</span>
+							<span class="share-method-desc">{$_('sharing.snapshot.qrCodeTooLarge')}</span>
 						</span>
 					</button>
 				{:else}
@@ -625,8 +626,8 @@
 							{/if}
 						</span>
 						<span class="share-method-text">
-							<span class="share-method-label">QR code</span>
-							<span class="share-method-desc">Scan with a phone camera</span>
+							<span class="share-method-label">{$_('sharing.snapshot.qrCodeLabel')}</span>
+							<span class="share-method-desc">{$_('sharing.snapshot.qrCodeDesc')}</span>
 						</span>
 						<ChevronRight size={14} class="share-method-arrow" />
 					</button>
@@ -647,17 +648,17 @@
 							{/if}
 						</span>
 						<span class="share-method-text">
-							<span class="share-method-label">Short code</span>
-							<span class="share-method-desc">Easy-to-type code (5 min expiry)</span>
+							<span class="share-method-label">{$_('sharing.snapshot.shortCodeLabel')}</span>
+							<span class="share-method-desc">{$_('sharing.snapshot.shortCodeDesc')}</span>
 						</span>
 						<ChevronRight size={14} class="share-method-arrow" />
 					</button>
 				{:else}
-					<button class="share-method-row share-method-disabled" disabled title="Set up a relay in server options to enable short codes">
+					<button class="share-method-row share-method-disabled" disabled title={$_('sharing.snapshot.shortCodeDisabledTitle')}>
 						<span class="share-method-icon"><Hash size={18} /></span>
 						<span class="share-method-text">
-							<span class="share-method-label">Short code</span>
-							<span class="share-method-desc">Requires relay server</span>
+							<span class="share-method-label">{$_('sharing.snapshot.shortCodeLabel')}</span>
+							<span class="share-method-desc">{$_('sharing.snapshot.shortCodeDisabledDesc')}</span>
 						</span>
 					</button>
 				{/if}
@@ -667,12 +668,12 @@
 			{#if shortCode}
 				<div class="result-card">
 					<div class="result-header">
-						<span class="result-label">Short code</span>
-						<span class="result-expiry">Expires in 5 min</span>
+						<span class="result-label">{$_('sharing.snapshot.shortCodeResultLabel')}</span>
+						<span class="result-expiry">{$_('sharing.snapshot.shortCodeExpiry')}</span>
 					</div>
 					<div class="code-row">
 						<code class="code-value code-lg">{shortCode}</code>
-						<button class="icon-btn" onclick={() => copyToClipboard(shortCode, 'Short code')} aria-label="Copy short code">
+						<button class="icon-btn" onclick={() => copyToClipboard(shortCode, $_('sharing.snapshot.shortCodeLabel'))} aria-label={$_('sharing.copyFeedbackSuccess', { values: { label: $_('sharing.snapshot.shortCodeLabel') } })}>
 							<Copy size={16} />
 						</button>
 					</div>
@@ -686,10 +687,10 @@
 			<!-- QR code result -->
 			{#if qrDataUrl}
 				<div class="qr-result">
-					<button class="qr-container" onclick={() => fullscreenQr = qrDataUrl} aria-label="Tap to enlarge QR code">
+					<button class="qr-container" onclick={() => fullscreenQr = qrDataUrl} aria-label={$_('sharing.tapToEnlargeHint')}>
 						<img src={qrDataUrl} alt="QR code for snapshot" class="qr-image" />
 					</button>
-					<p class="qr-hint">Tap to enlarge</p>
+					<p class="qr-hint">{$_('sharing.snapshot.qrTapHint')}</p>
 				</div>
 			{/if}
 
@@ -705,8 +706,8 @@
 	{:else if showSend}
 		<div class="empty-state-card">
 			<QrCode size={28} />
-			<p class="empty-state-title">No session data yet</p>
-			<p class="empty-state-desc">Start tracking contractions, then come back here to share your data with your partner or another device.</p>
+			<p class="empty-state-title">{$_('sharing.snapshot.emptyTitle')}</p>
+			<p class="empty-state-desc">{$_('sharing.snapshot.emptyDesc')}</p>
 		</div>
 	{/if}
 
@@ -719,18 +720,18 @@
 	{#if showReceive}
 	<div class="snapshot-section">
 		{#if mode === 'both'}
-			<h3 class="section-title">Receive a snapshot</h3>
+			<h3 class="section-title">{$_('sharing.snapshot.receiveTitle')}</h3>
 		{/if}
 
 		{#if mode === 'receive'}
-			<p class="receive-intro">Import session data shared by your partner or from another device.</p>
+			<p class="receive-intro">{$_('sharing.snapshot.receiveIntro')}</p>
 		{/if}
 
 		{#if importState === 'idle' || importState === 'error'}
 			{#if !scanning}
 				<button class="btn-scan-qr" onclick={startQRScan}>
 					<Camera size={18} />
-					Scan QR code
+					{$_('sharing.scanQrCodeButton')}
 				</button>
 			{/if}
 
@@ -744,9 +745,9 @@
 					<canvas bind:this={scanCanvasEl} class="scan-canvas"></canvas>
 					<div class="scan-overlay">
 						<div class="scan-frame"></div>
-						<p class="scan-hint">Point camera at QR code</p>
+						<p class="scan-hint">{$_('sharing.scannerHint')}</p>
 					</div>
-					<button class="scan-close-btn" onclick={stopQRScan} aria-label="Close scanner">
+					<button class="scan-close-btn" onclick={stopQRScan} aria-label={$_('common.close')}>
 						&times;
 					</button>
 				</div>
@@ -755,15 +756,15 @@
 			<div class="receive-methods">
 				<div class="receive-method">
 					<Camera size={14} />
-					<span>Scan a QR code with your camera</span>
+					<span>{$_('sharing.snapshot.receiveMethodQr')}</span>
 				</div>
 				<div class="receive-method">
 					<Link size={14} />
-					<span>Paste a share link from your partner</span>
+					<span>{$_('sharing.snapshot.receiveMethodLink')}</span>
 				</div>
 				<div class="receive-method">
 					<Hash size={14} />
-					<span>Enter a short code (if using a relay)</span>
+					<span>{$_('sharing.snapshot.receiveMethodShortCode')}</span>
 				</div>
 			</div>
 
@@ -771,12 +772,12 @@
 				<div class="import-textarea-wrap">
 					<textarea
 						class="import-textarea"
-						placeholder="Paste a link, short code, or compressed data here..."
+						placeholder={$_('sharing.snapshot.importPlaceholder')}
 						rows={3}
 						bind:value={importInput}
 						onkeydown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleImport(); } }}
 					></textarea>
-					<button class="paste-btn" onclick={handlePasteFromClipboard} aria-label="Paste from clipboard" title="Paste from clipboard">
+					<button class="paste-btn" onclick={handlePasteFromClipboard} aria-label={$_('sharing.snapshot.pasteFromClipboardAriaLabel')} title={$_('sharing.snapshot.pasteFromClipboardAriaLabel')}>
 						<ClipboardPaste size={16} />
 					</button>
 				</div>
@@ -786,7 +787,7 @@
 					disabled={!importInput.trim()}
 				>
 					<Download size={16} />
-					Import
+					{$_('common.import')}
 				</button>
 			</div>
 
@@ -797,43 +798,43 @@
 		{:else if importState === 'loading'}
 			<div class="import-loading">
 				<div class="connecting-spinner"></div>
-				<p class="loading-text">Loading snapshot...</p>
+				<p class="loading-text">{$_('sharing.snapshot.loadingText')}</p>
 			</div>
 
 		{:else if importState === 'preview' && importPreview}
 			<div class="preview-card">
-				<div class="preview-header">Import this snapshot?</div>
+				<div class="preview-header">{$_('sharing.snapshot.previewHeader')}</div>
 				<div class="preview-details">
 					<div class="preview-row">
-						<span class="preview-label">Contractions</span>
-						<span class="preview-value">{importPreview.contractionCount} ({importPreview.completedCount} completed)</span>
+						<span class="preview-label">{$_('sharing.snapshot.previewContractionsLabel')}</span>
+						<span class="preview-value">{$_('sharing.snapshot.previewContractionsValue', { values: { contractionCount: importPreview.contractionCount, completedCount: importPreview.completedCount } })}</span>
 					</div>
 					{#if importPreview.eventCount > 0}
 						<div class="preview-row">
-							<span class="preview-label">Events</span>
+							<span class="preview-label">{$_('sharing.snapshot.previewEventsLabel')}</span>
 							<span class="preview-value">{importPreview.eventCount}</span>
 						</div>
 					{/if}
 					{#if importPreview.timeRange}
 						<div class="preview-row">
-							<span class="preview-label">Time range</span>
+							<span class="preview-label">{$_('sharing.snapshot.previewTimeRangeLabel')}</span>
 							<span class="preview-value">{importPreview.timeRange}</span>
 						</div>
 					{/if}
 					{#if importPreview.sessionStarted}
 						<div class="preview-row">
-							<span class="preview-label">Session started</span>
+							<span class="preview-label">{$_('sharing.snapshot.previewSessionStartedLabel')}</span>
 							<span class="preview-value">{formatSessionDate(importPreview.sessionStarted)}</span>
 						</div>
 					{/if}
 
 					{#if importSharedSettings && importPreview.includedCategories.length > 0}
 						<div class="preview-divider"></div>
-						<div class="preview-section-header">Included settings</div>
+						<div class="preview-section-header">{$_('sharing.snapshot.previewIncludedSettingsHeader')}</div>
 						{#each importPreview.includedCategories as cat}
 							<label class="preview-category-row">
 								<input type="checkbox" bind:checked={importCategories[cat]} />
-								<span class="preview-category-label">{SHARING_CATEGORY_LABELS[cat].label}</span>
+								<span class="preview-category-label">{$_(`sharing.categories.${cat}Label`)}</span>
 							</label>
 						{/each}
 					{/if}
@@ -842,19 +843,19 @@
 					{#if hasContractions}
 						<button class="btn-primary preview-confirm" onclick={() => handleConfirmImport(true)}>
 							<Archive size={16} />
-							Archive current & import
+							{$_('sharing.snapshot.previewArchiveAndImportButton')}
 						</button>
 						<button class="btn-secondary preview-replace" onclick={() => handleConfirmImport(false)}>
-							Replace current session
+							{$_('sharing.snapshot.previewReplaceButton')}
 						</button>
-						<p class="preview-hint">You have {$session.contractions.length} contraction{$session.contractions.length === 1 ? '' : 's'} in your current session.</p>
+						<p class="preview-hint">{$_('sharing.snapshot.previewCurrentSessionHint', { values: { count: $session.contractions.length } })}</p>
 					{:else}
 						<button class="btn-primary preview-confirm" onclick={() => handleConfirmImport(false)}>
-							Import {importPreview.contractionCount} contractions
+							{$_('sharing.snapshot.previewImportCountButton', { values: { count: importPreview.contractionCount } })}
 						</button>
 					{/if}
 					<button class="btn-text" onclick={handleCancelImport}>
-						Cancel
+						{$_('common.cancel')}
 					</button>
 				</div>
 			</div>
@@ -863,11 +864,11 @@
 	{/if}
 
 	{#if fullscreenQr}
-		<button class="qr-fullscreen" onclick={() => fullscreenQr = ''} aria-label="Close enlarged QR code">
+		<button class="qr-fullscreen" onclick={() => fullscreenQr = ''} aria-label={$_('sharing.qrFullscreenCloseHint')}>
 			<div class="qr-fullscreen-card">
 				<img src={fullscreenQr} alt="QR code (enlarged)" class="qr-fullscreen-img" />
 			</div>
-			<p class="qr-fullscreen-hint">Tap anywhere to close</p>
+			<p class="qr-fullscreen-hint">{$_('sharing.qrFullscreenCloseHint')}</p>
 		</button>
 	{/if}
 </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { Timer, Activity, HeartPulse } from 'lucide-svelte';
 </script>
 
@@ -6,16 +7,16 @@
 	<div class="welcome-icon">
 		<HeartPulse size={32} />
 	</div>
-	<h2 class="welcome-title">Contraction Timer</h2>
-	<p class="welcome-desc">Tap the button below when a contraction starts. Tap again when it ends.</p>
+	<h2 class="welcome-title">{$_('timer.welcomeState.title')}</h2>
+	<p class="welcome-desc">{$_('timer.welcomeState.description')}</p>
 	<div class="welcome-features">
 		<div class="feature">
 			<Timer size={16} />
-			<span>Track timing and intensity</span>
+			<span>{$_('timer.welcomeState.trackFeature')}</span>
 		</div>
 		<div class="feature">
 			<Activity size={16} />
-			<span>See patterns emerge</span>
+			<span>{$_('timer.welcomeState.patternFeature')}</span>
 		</div>
 	</div>
 </div>

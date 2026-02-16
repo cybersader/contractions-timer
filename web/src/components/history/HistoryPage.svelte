@@ -1,8 +1,22 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { session } from '../../lib/stores/session';
 	import { settings } from '../../lib/stores/settings';
 	import { List } from 'lucide-svelte';
-	import { formatTime, formatDuration, formatDurationShort, formatInterval, getIntensityLabel, getLocationLabel, generateId, formatTimeShort, toTimeInputValue, applyTimeInput, parseDuration } from '../../lib/labor-logic/formatters';
+	import { formatTime, formatDuration, formatDurationShort, formatInterval, generateId, formatTimeShort, toTimeInputValue, applyTimeInput, parseDuration } from '../../lib/labor-logic/formatters';
+
+	const INTENSITY_KEYS: Record<number, string> = {
+		1: 'timer.intensityPicker.mild',
+		2: 'timer.intensityPicker.moderate',
+		3: 'timer.intensityPicker.strong',
+		4: 'timer.intensityPicker.veryStrong',
+		5: 'timer.intensityPicker.intense',
+	};
+	const LOCATION_KEYS: Record<string, string> = {
+		front: 'timer.locationPicker.lowerBelly',
+		back: 'timer.locationPicker.lowerBack',
+		wrapping: 'timer.locationPicker.allAround',
+	};
 	import { getDurationSeconds, getIntervalMinutes } from '../../lib/labor-logic/calculations';
 	import { haptic } from '../../lib/haptic';
 	import type { Contraction } from '../../lib/labor-logic/types';
@@ -90,15 +104,15 @@
 </script>
 
 <div class="page">
-	<h2 class="page-title">History</h2>
+	<h2 class="page-title">{$_('history.pageTitle')}</h2>
 
 	{#if reversed.length === 0}
 		<div class="empty-state">
 			<div class="empty-state-icon">
 				<List size={24} aria-hidden="true" />
 			</div>
-			<p class="empty-state-title">No contractions yet</p>
-			<p class="empty-state-hint">Your contraction history will appear here. Tap each entry to edit timing, intensity, or location.</p>
+			<p class="empty-state-title">{$_('history.emptyState.title')}</p>
+			<p class="empty-state-hint">{$_('history.emptyState.hint')}</p>
 		</div>
 	{:else}
 		<div class="history-list">
@@ -113,13 +127,17 @@
 					const nt = nextC ? new Date(nextC.start).getTime() : Infinity;
 					return et >= ct && et < nt;
 				}) as event}
-					<div class="event-row event--{event.type}">
-						<span class="event-icon">
+					<div class="event-card event-card--{event.type}">
+						<div class="event-card-icon">
 							{event.type === 'water-break' ? '💧' : event.type === 'mucus-plug' ? '🔴' : event.type === 'bloody-show' ? '🩸' : '📌'}
-						</span>
-						<span class="event-text">
-							{event.type === 'water-break' ? 'Water broke' : event.type === 'mucus-plug' ? 'Mucus plug' : event.type === 'bloody-show' ? 'Bloody show' : event.type} at {formatTime(event.timestamp)}
-						</span>
+						</div>
+						<div class="event-card-body">
+							<div class="event-card-title">
+								{event.type === 'water-break' ? $_('history.events.waterBroke') : event.type === 'mucus-plug' ? $_('history.events.mucusPlug') : event.type === 'bloody-show' ? $_('history.events.bloodyShow') : event.type}
+							</div>
+							<div class="event-card-time">{formatTime(event.timestamp)}</div>
+							{#if event.notes}<div class="event-card-notes">{event.notes}</div>{/if}
+						</div>
 					</div>
 				{/each}
 
@@ -127,26 +145,26 @@
 					<!-- Inline editor -->
 					<div class="editor-card">
 						<div class="editor-header">
-							<span>Editing #{idx + 1}</span>
+							<span>{$_('history.editor.editingNumber', { values: { num: idx + 1 } })}</span>
 						</div>
 						<div class="editor-time-row">
 							<div class="editor-field">
-								<span class="editor-label">Start</span>
+								<span class="editor-label">{$_('history.editor.start')}</span>
 								<input type="time" class="editor-time-input" bind:value={editStartTime} />
 							</div>
 							{#if c.end}
 								<div class="editor-field">
-									<span class="editor-label">End</span>
+									<span class="editor-label">{$_('history.editor.end')}</span>
 									<input type="time" class="editor-time-input" bind:value={editEndTime} onchange={syncDurationFromEnd} />
 								</div>
 								<div class="editor-field">
-									<span class="editor-label">Duration</span>
-									<input type="text" class="editor-duration-input" bind:value={editDuration} placeholder="M:SS" onchange={syncEndFromDuration} />
+									<span class="editor-label">{$_('history.editor.duration')}</span>
+									<input type="text" class="editor-duration-input" bind:value={editDuration} placeholder={$_('history.editor.durationPlaceholder')} onchange={syncEndFromDuration} />
 								</div>
 							{/if}
 						</div>
 						<div class="editor-section">
-							<span class="editor-label">Intensity</span>
+							<span class="editor-label">{$_('history.editor.intensity')}</span>
 							<div class="editor-pills">
 								{#each [1, 2, 3, 4, 5] as level}
 									<button
@@ -159,14 +177,14 @@
 									</button>
 								{/each}
 								<button class="editor-pill" class:selected={editIntensity === null} onclick={() => editIntensity = null}>
-									None
+									{$_('common.none')}
 								</button>
 							</div>
 						</div>
 						<div class="editor-section">
-							<span class="editor-label">Location</span>
+							<span class="editor-label">{$_('history.editor.location')}</span>
 							<div class="editor-pills">
-								{#each [['front', 'Front'], ['back', 'Back'], ['wrapping', 'Wrap']] as [val, label]}
+								{#each [['front', $_('history.editor.front')], ['back', $_('history.editor.back')], ['wrapping', $_('history.editor.wrap')]] as [val, label]}
 									<button
 										class="editor-pill"
 										class:selected={editLocation === val}
@@ -176,17 +194,17 @@
 									</button>
 								{/each}
 								<button class="editor-pill" class:selected={editLocation === null} onclick={() => editLocation = null}>
-									None
+									{$_('common.none')}
 								</button>
 							</div>
 						</div>
 						<div class="editor-actions">
-							<button class="editor-btn editor-btn--save" onclick={saveEdit}>Save</button>
-							<button class="editor-btn" onclick={cancelEdit}>Cancel</button>
+							<button class="editor-btn editor-btn--save" onclick={saveEdit}>{$_('common.save')}</button>
+							<button class="editor-btn" onclick={cancelEdit}>{$_('common.cancel')}</button>
 							{#if confirmDelete}
-								<button class="editor-btn editor-btn--delete-confirm" onclick={() => deleteContraction(c.id)}>Confirm delete</button>
+								<button class="editor-btn editor-btn--delete-confirm" onclick={() => deleteContraction(c.id)}>{$_('history.editor.confirmDelete')}</button>
 							{:else}
-								<button class="editor-btn editor-btn--delete" onclick={() => confirmDelete = true}>Delete</button>
+								<button class="editor-btn editor-btn--delete" onclick={() => confirmDelete = true}>{$_('common.delete')}</button>
 							{/if}
 						</div>
 					</div>
@@ -198,23 +216,23 @@
 							<div class="item-time">{formatTime(c.start)}</div>
 							<div class="item-meta">
 								{#if c.untimed}
-									<span>Untimed</span>
+									<span>{$_('history.untimed')}</span>
 								{:else}
 									<span>{formatDurationShort(getDurationSeconds(c))}</span>
 								{/if}
 								{#if idx > 0}
 									<span class="sep">&middot;</span>
-									<span>{formatInterval(getIntervalMinutes(c, completed[idx - 1]))} apart</span>
+									<span>{formatInterval(getIntervalMinutes(c, completed[idx - 1]))} {$_('history.apart')}</span>
 								{/if}
 							</div>
 						</div>
 						<div class="item-rating">
 							{#if c.intensity}
 								<span class="intensity-dot" style="background: var(--color-intensity-{c.intensity})"></span>
-								<span class="intensity-label">{getIntensityLabel(c.intensity)}</span>
+								<span class="intensity-label">{$_(INTENSITY_KEYS[c.intensity] || 'timer.intensityPicker.levelFallback', { values: { level: c.intensity } })}</span>
 							{/if}
 							{#if c.location}
-								<span class="location-label">{getLocationLabel(c.location)}</span>
+								<span class="location-label">{$_(LOCATION_KEYS[c.location] || c.location)}</span>
 							{/if}
 						</div>
 					</button>
@@ -246,10 +264,28 @@
 	.intensity-dot { width: 6px; height: 6px; border-radius: var(--radius-full); }
 	.intensity-label, .location-label { font-size: var(--text-xs); }
 
-	/* Event rows */
-	.event-row { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); font-size: var(--text-sm); color: var(--text-muted); }
-	.event--water-break { color: var(--water); }
-	.event-icon { font-size: var(--text-base); }
+	/* Event cards */
+	.event-card {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		padding: var(--space-3);
+		background: var(--bg-card);
+		border-radius: var(--radius-md);
+		border-left: 3px solid var(--border);
+	}
+	.event-card--water-break {
+		border-left-color: var(--danger);
+		background: var(--danger-muted);
+	}
+	.event-card--mucus-plug { border-left-color: var(--warning); }
+	.event-card--bloody-show { border-left-color: var(--danger); }
+	.event-card-icon { font-size: var(--text-lg); flex-shrink: 0; }
+	.event-card-body { flex: 1; min-width: 0; }
+	.event-card-title { font-size: var(--text-base); font-weight: 600; color: var(--text-primary); }
+	.event-card--water-break .event-card-title { color: var(--danger); }
+	.event-card-time { font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-1); }
+	.event-card-notes { font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-1); }
 
 	/* Editor */
 	.editor-card { background: var(--accent-muted); border: 1px solid var(--accent-muted); border-radius: var(--radius-md); padding: var(--space-3); }

@@ -12,9 +12,10 @@ export function getDurationSeconds(contraction: Contraction): number {
 	return Math.max(0, (end - start) / 1000);
 }
 
-export function getElapsedSeconds(contraction: Contraction): number {
+export function getElapsedSeconds(contraction: Contraction, frozenAt?: string | null): number {
 	const start = new Date(contraction.start).getTime();
-	return Math.max(0, (Date.now() - start) / 1000);
+	const now = frozenAt ? new Date(frozenAt).getTime() : Date.now();
+	return Math.max(0, (now - start) / 1000);
 }
 
 export function getIntervalMinutes(current: Contraction, previous: Contraction): number {
@@ -23,12 +24,13 @@ export function getIntervalMinutes(current: Contraction, previous: Contraction):
 	return Math.max(0, (currentStart - previousStart) / 60000);
 }
 
-export function getRestSeconds(contractions: Contraction[]): number {
+export function getRestSeconds(contractions: Contraction[], frozenAt?: string | null, pauseOffsetMs = 0): number {
 	const completed = contractions.filter(c => c.end !== null);
 	if (completed.length === 0) return 0;
 	const last = completed[completed.length - 1];
 	if (!last.end) return 0;
-	return Math.max(0, (Date.now() - new Date(last.end).getTime()) / 1000);
+	const now = frozenAt ? new Date(frozenAt).getTime() : Date.now();
+	return Math.max(0, (now - new Date(last.end).getTime() - pauseOffsetMs) / 1000);
 }
 
 export function getSessionStats(

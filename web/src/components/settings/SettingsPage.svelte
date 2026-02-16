@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import { tick } from 'svelte';
 	import { settings } from '../../lib/stores/settings';
 	import { DEFAULT_SETTINGS } from '../../lib/labor-logic/types';
@@ -38,56 +39,56 @@
 
 <div class="settings-content">
 	<!-- Your situation -->
-	<div class="section-title" id="settings-situation">Your situation</div>
+	<div class="section-title" id="settings-situation">{$_('settings.situation.title')}</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-parity" class="setting-label">First baby?</label>
-			<span class="setting-hint">First labors typically last longer. This affects time estimates and stage duration ranges.</span>
+			<label for="setting-parity" class="setting-label">{$_('settings.situation.firstBabyLabel')}</label>
+			<span class="setting-hint">{$_('settings.situation.firstBabyHint')}</span>
 		</div>
 		<select id="setting-parity" class="setting-select" bind:value={$settings.parity}>
-			<option value="first-baby">Yes, first baby</option>
-			<option value="subsequent">No, had one before</option>
+			<option value="first-baby">{$_('settings.situation.yesFirstBaby')}</option>
+			<option value="subsequent">{$_('settings.situation.noHadOneBefore')}</option>
 		</select>
 	</div>
 
 	<!-- Display -->
-	<div class="section-title" id="settings-display">Display</div>
+	<div class="section-title" id="settings-display">{$_('settings.display.title')}</div>
 	<div class="setting-row">
-		<label for="setting-time-format" class="setting-label">Time format</label>
+		<label for="setting-time-format" class="setting-label">{$_('settings.display.timeFormat')}</label>
 		<select id="setting-time-format" class="setting-select" bind:value={$settings.timeFormat}>
-			<option value="12h">12 hour</option>
-			<option value="24h">24 hour</option>
+			<option value="12h">{$_('settings.display.timeFormat12h')}</option>
+			<option value="24h">{$_('settings.display.timeFormat24h')}</option>
 		</select>
 	</div>
 	<div class="setting-row">
-		<label for="setting-intensity" class="setting-label">Intensity scale</label>
+		<label for="setting-intensity" class="setting-label">{$_('settings.display.intensityScale')}</label>
 		<select id="setting-intensity" class="setting-select" bind:value={$settings.intensityScale}>
-			<option value={5}>5 levels</option>
-			<option value={3}>3 levels</option>
+			<option value={5}>{$_('settings.display.levels5')}</option>
+			<option value={3}>{$_('settings.display.levels3')}</option>
 		</select>
 	</div>
 	<div class="setting-row">
-		<label for="setting-chart-height" class="setting-label">Wave chart height</label>
+		<label for="setting-chart-height" class="setting-label">{$_('settings.display.waveChartHeight')}</label>
 		<select id="setting-chart-height" class="setting-select" bind:value={$settings.waveChartHeight}>
-			<option value={100}>Small (100px)</option>
-			<option value={150}>Medium (150px)</option>
-			<option value={200}>Large (200px)</option>
-			<option value={250}>Extra large (250px)</option>
+			<option value={100}>{$_('settings.display.heightSmall')}</option>
+			<option value={150}>{$_('settings.display.heightMedium')}</option>
+			<option value={200}>{$_('settings.display.heightLarge')}</option>
+			<option value={250}>{$_('settings.display.heightXLarge')}</option>
 		</select>
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-hero" class="setting-label">Hero display</label>
-			<span class="setting-hint">Info card above the timer: stage label, action suggestion, or compact elapsed time.</span>
+			<label for="setting-hero" class="setting-label">{$_('settings.display.heroDisplay')}</label>
+			<span class="setting-hint">{$_('settings.display.heroHint')}</span>
 		</div>
 		<select id="setting-hero" class="setting-select" bind:value={$settings.heroMode}>
-			<option value="stage-badge">Stage badge</option>
-			<option value="action-card">Action card</option>
-			<option value="compact-timer">Compact timer</option>
+			<option value="stage-badge">{$_('settings.display.heroStageBadge')}</option>
+			<option value="action-card">{$_('settings.display.heroActionCard')}</option>
+			<option value="compact-timer">{$_('settings.display.heroCompactTimer')}</option>
 		</select>
 	</div>
 	<div class="setting-row">
-		<span id="label-rest-seconds" class="setting-label">Show rest in seconds</span>
+		<span id="label-rest-seconds" class="setting-label">{$_('settings.display.showRestSeconds')}</span>
 		<label class="toggle" aria-labelledby="label-rest-seconds">
 			<input type="checkbox" bind:checked={$settings.showRestSeconds} />
 			<span class="toggle-slider"></span>
@@ -95,11 +96,11 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-gap" class="setting-label">Session break threshold</label>
-			<span class="setting-hint">Gaps longer than this are shown as separate sessions in the wave chart and trend analysis.</span>
+			<label for="setting-gap" class="setting-label">{$_('settings.display.sessionBreakThreshold')}</label>
+			<span class="setting-hint">{$_('settings.display.sessionBreakHint')}</span>
 		</div>
 		<select id="setting-gap" class="setting-select" bind:value={$settings.chartGapThresholdMin}>
-			<option value={0}>Off</option>
+			<option value={0}>{$_('settings.display.breakOff')}</option>
 			<option value={15}>15 min</option>
 			<option value={30}>30 min</option>
 			<option value={60}>1 hour</option>
@@ -108,47 +109,47 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-stage-basis" class="setting-label">Stage timer mode</label>
-			<span class="setting-hint">How stage duration is calculated: from last contraction or continuously.</span>
+			<label for="setting-stage-basis" class="setting-label">{$_('settings.display.stageTimerMode')}</label>
+			<span class="setting-hint">{$_('settings.display.stageTimerHint')}</span>
 		</div>
 		<select id="setting-stage-basis" class="setting-select" bind:value={$settings.stageTimeBasis}>
-			<option value="last-recorded">Last recorded</option>
-			<option value="current-time">Current time</option>
+			<option value="last-recorded">{$_('settings.display.stageTimerLastRecorded')}</option>
+			<option value="current-time">{$_('settings.display.stageTimerCurrentTime')}</option>
 		</select>
 	</div>
 
 	<!-- Behavior -->
-	<div class="section-title" id="settings-behavior">Behavior</div>
+	<div class="section-title" id="settings-behavior">{$_('settings.behavior.title')}</div>
 	<div class="setting-row">
-		<span id="label-haptic" class="setting-label">Haptic feedback</span>
+		<span id="label-haptic" class="setting-label">{$_('settings.behavior.hapticFeedback')}</span>
 		<label class="toggle" aria-labelledby="label-haptic">
 			<input type="checkbox" bind:checked={$settings.hapticFeedback} />
 			<span class="toggle-slider"></span>
 		</label>
 	</div>
 	<div class="setting-row">
-		<span id="label-post-rating" class="setting-label">Post-contraction rating</span>
+		<span id="label-post-rating" class="setting-label">{$_('settings.behavior.postContractionRating')}</span>
 		<label class="toggle" aria-labelledby="label-post-rating">
 			<input type="checkbox" bind:checked={$settings.showPostRating} />
 			<span class="toggle-slider"></span>
 		</label>
 	</div>
 	<div class="setting-row">
-		<span id="label-intensity-picker" class="setting-label">Show intensity picker</span>
+		<span id="label-intensity-picker" class="setting-label">{$_('settings.behavior.showIntensityPicker')}</span>
 		<label class="toggle" aria-labelledby="label-intensity-picker">
 			<input type="checkbox" bind:checked={$settings.showIntensityPicker} />
 			<span class="toggle-slider"></span>
 		</label>
 	</div>
 	<div class="setting-row">
-		<span id="label-location-picker" class="setting-label">Show location picker</span>
+		<span id="label-location-picker" class="setting-label">{$_('settings.behavior.showLocationPicker')}</span>
 		<label class="toggle" aria-labelledby="label-location-picker">
 			<input type="checkbox" bind:checked={$settings.showLocationPicker} />
 			<span class="toggle-slider"></span>
 		</label>
 	</div>
 	<div class="setting-row">
-		<span id="label-live-rating" class="setting-label">Peak rating during contraction</span>
+		<span id="label-live-rating" class="setting-label">{$_('settings.behavior.peakRating')}</span>
 		<label class="toggle" aria-labelledby="label-live-rating">
 			<input type="checkbox" bind:checked={$settings.showLiveRating} />
 			<span class="toggle-slider"></span>
@@ -156,9 +157,9 @@
 	</div>
 
 	<!-- Features -->
-	<div class="section-title" id="settings-features">Features</div>
+	<div class="section-title" id="settings-features">{$_('settings.features.title')}</div>
 	<div class="setting-row">
-		<span id="label-wave-chart" class="setting-label">Wave chart</span>
+		<span id="label-wave-chart" class="setting-label">{$_('settings.features.waveChart')}</span>
 		<label class="toggle" aria-labelledby="label-wave-chart">
 			<input type="checkbox" bind:checked={$settings.showWaveChart} />
 			<span class="toggle-slider"></span>
@@ -166,8 +167,8 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<span id="label-chart-overlay" class="setting-label">Show target lines on chart</span>
-			<span class="setting-hint">Colored reference lines on the wave chart when contractions hit your timing targets.</span>
+			<span id="label-chart-overlay" class="setting-label">{$_('settings.features.showTargetLines')}</span>
+			<span class="setting-hint">{$_('settings.features.showTargetLinesHint')}</span>
 		</div>
 		<label class="toggle" aria-labelledby="label-chart-overlay">
 			<input type="checkbox" bind:checked={$settings.showChartOverlay} />
@@ -176,8 +177,8 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<span id="label-trend" class="setting-label">Trend analysis</span>
-			<span class="setting-hint">Linear regression on recent contractions to detect shortening intervals and longer durations.</span>
+			<span id="label-trend" class="setting-label">{$_('settings.features.trendAnalysis')}</span>
+			<span class="setting-hint">{$_('settings.features.trendAnalysisHint')}</span>
 		</div>
 		<label class="toggle" aria-labelledby="label-trend">
 			<input type="checkbox" bind:checked={$settings.showProgressionInsight} />
@@ -186,8 +187,8 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<span id="label-bh" class="setting-label">Pattern assessment</span>
-			<span class="setting-hint">Weighted scoring of 6 criteria (regularity, duration trend, intensity, location, interval trend, sustained activity) to distinguish real labor from Braxton Hicks.</span>
+			<span id="label-bh" class="setting-label">{$_('settings.features.patternAssessment')}</span>
+			<span class="setting-hint">{$_('settings.features.patternAssessmentHint')}</span>
 		</div>
 		<label class="toggle" aria-labelledby="label-bh">
 			<input type="checkbox" bind:checked={$settings.showBraxtonHicksAssessment} />
@@ -196,8 +197,8 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<span id="label-advisor" class="setting-label">Hospital advisor</span>
-			<span class="setting-hint">Departure timing advice on the Advisor page based on your contraction pattern.</span>
+			<span id="label-advisor" class="setting-label">{$_('settings.features.hospitalAdvisor')}</span>
+			<span class="setting-hint">{$_('settings.features.hospitalAdvisorHint')}</span>
 		</div>
 		<label class="toggle" aria-labelledby="label-advisor">
 			<input type="checkbox" bind:checked={$settings.showHospitalAdvisor} />
@@ -206,8 +207,8 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<span id="label-tips" class="setting-label">Contextual tips</span>
-			<span class="setting-hint">Stage-appropriate guidance cards on the Timer and Advisor pages.</span>
+			<span id="label-tips" class="setting-label">{$_('settings.features.contextualTips')}</span>
+			<span class="setting-hint">{$_('settings.features.contextualTipsHint')}</span>
 		</div>
 		<label class="toggle" aria-labelledby="label-tips">
 			<input type="checkbox" bind:checked={$settings.showContextualTips} />
@@ -215,7 +216,7 @@
 		</label>
 	</div>
 	<div class="setting-row">
-		<span id="label-water-btn" class="setting-label">Water break button</span>
+		<span id="label-water-btn" class="setting-label">{$_('settings.features.waterBreakButton')}</span>
 		<label class="toggle" aria-labelledby="label-water-btn">
 			<input type="checkbox" bind:checked={$settings.showWaterBreakButton} />
 			<span class="toggle-slider"></span>
@@ -223,8 +224,8 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<span id="label-threshold-rule" class="setting-label">Threshold rule progress</span>
-			<span class="setting-hint">Show 5-1-1 (or custom) rule progress on the labor advisor page.</span>
+			<span id="label-threshold-rule" class="setting-label">{$_('settings.features.thresholdRuleProgress')}</span>
+			<span class="setting-hint">{$_('settings.features.thresholdRuleHint')}</span>
 		</div>
 		<label class="toggle" aria-labelledby="label-threshold-rule">
 			<input type="checkbox" bind:checked={$settings.showThresholdRule} />
@@ -233,8 +234,8 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<span id="label-clinical" class="setting-label">Clinical reference</span>
-			<span class="setting-hint">Labor guide on the Advisor page: stages, Braxton Hicks comparison, and warning signs.</span>
+			<span id="label-clinical" class="setting-label">{$_('settings.features.clinicalReference')}</span>
+			<span class="setting-hint">{$_('settings.features.clinicalReferenceHint')}</span>
 		</div>
 		<label class="toggle" aria-labelledby="label-clinical">
 			<input type="checkbox" bind:checked={$settings.showClinicalReference} />
@@ -243,23 +244,23 @@
 	</div>
 
 	<!-- Advisor -->
-	<div class="section-title" id="settings-advisor">Advisor</div>
-	<p class="section-desc">These three settings work together: <strong>Detail level</strong> controls how much info the advisor shows. <strong>Alert timing</strong> shifts when "time to go" appears. <strong>Travel time</strong> adds buffer so you leave with time to spare.</p>
+	<div class="section-title" id="settings-advisor">{$_('settings.advisor.title')}</div>
+	<p class="section-desc">{@html $_('settings.advisor.introDesc')}</p>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-advisor-style" class="setting-label">Advisor detail level</label>
-			<span class="setting-hint">Controls how much detail the hospital advisor shows: time ranges, urgency level, or a single-line summary.</span>
+			<label for="setting-advisor-style" class="setting-label">{$_('settings.advisor.detailLevel')}</label>
+			<span class="setting-hint">{$_('settings.advisor.detailLevelHint')}</span>
 		</div>
 		<select id="setting-advisor-style" class="setting-select" bind:value={$settings.advisorMode}>
-			<option value="range">Detailed (range estimates)</option>
-			<option value="urgency">Urgency only</option>
-			<option value="minimal">Minimal</option>
+			<option value="range">{$_('settings.advisor.detailDetailed')}</option>
+			<option value="urgency">{$_('settings.advisor.detailUrgency')}</option>
+			<option value="minimal">{$_('settings.advisor.detailMinimal')}</option>
 		</select>
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-travel" class="setting-label">Travel time</label>
-			<span class="setting-hint">How long it takes to reach your hospital. Factored into departure timing.</span>
+			<label for="setting-travel" class="setting-label">{$_('settings.advisor.travelTime')}</label>
+			<span class="setting-hint">{$_('settings.advisor.travelTimeHint')}</span>
 		</div>
 		<select id="setting-travel" class="setting-select" bind:value={$settings.hospitalAdvisor.travelTimeMinutes}>
 			{#each [5, 10, 15, 20, 25, 30, 45, 60, 90, 120] as mins}
@@ -269,56 +270,56 @@
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-risk" class="setting-label">Alert timing</label>
-			<span class="setting-hint">Conservative alerts you earlier, relaxed waits longer. Affects when you see "time to go" advice.</span>
+			<label for="setting-risk" class="setting-label">{$_('settings.advisor.alertTiming')}</label>
+			<span class="setting-hint">{$_('settings.advisor.alertTimingHint')}</span>
 		</div>
 		<select id="setting-risk" class="setting-select" bind:value={$settings.hospitalAdvisor.riskAppetite}>
-			<option value="conservative">Conservative (go early)</option>
-			<option value="moderate">Moderate</option>
-			<option value="relaxed">Relaxed (wait longer)</option>
+			<option value="conservative">{$_('settings.advisor.alertConservative')}</option>
+			<option value="moderate">{$_('settings.advisor.alertModerate')}</option>
+			<option value="relaxed">{$_('settings.advisor.alertRelaxed')}</option>
 		</select>
 	</div>
 	<div class="setting-row">
-		<label for="setting-phone" class="setting-label">Provider phone</label>
+		<label for="setting-phone" class="setting-label">{$_('settings.advisor.providerPhone')}</label>
 		<input
 			id="setting-phone"
 			type="tel"
 			class="setting-input"
-			placeholder="e.g. 555-0123"
+			placeholder={$_('settings.advisor.providerPhonePlaceholder')}
 			bind:value={$settings.hospitalAdvisor.providerPhone}
 		/>
 	</div>
 
 	<!-- Threshold rule -->
-	<div class="section-title" id="settings-threshold">Threshold rule</div>
-	<p class="section-desc">The N-1-1 rule is clinical guidance (ACOG) for when to head to the hospital. Standard is 5-1-1: contractions 5 minutes apart, 1 minute long, for 1 hour. Your provider may recommend 3-1-1, 4-1-1, or other variations — adjust below.</p>
-	<p class="section-desc section-desc--muted">Each criterion uses the <strong>average</strong> of recent contractions within the analysis window, not a single contraction. A contraction lasting 64s counts as "over 1 minute." These are guidelines, not absolute rules — always follow your provider's advice.</p>
+	<div class="section-title" id="settings-threshold">{$_('settings.threshold.title')}</div>
+	<p class="section-desc">{$_('settings.threshold.desc')}</p>
+	<p class="section-desc section-desc--muted">{@html $_('settings.threshold.detailDesc')}</p>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-interval" class="setting-label">Interval target</label>
-			<span class="setting-hint">Average time between contraction starts (start-to-start). Checked when average ≤ this value.</span>
+			<label for="setting-interval" class="setting-label">{$_('settings.threshold.intervalTarget')}</label>
+			<span class="setting-hint">{$_('settings.threshold.intervalHint')}</span>
 		</div>
 		<select id="setting-interval" class="setting-select" bind:value={$settings.threshold.intervalMinutes}>
 			{#each [3, 4, 5, 6, 7, 8, 10] as mins}
-				<option value={mins}>{mins} min apart</option>
+				<option value={mins}>{$_('settings.threshold.intervalOption', { values: { mins } })}</option>
 			{/each}
 		</select>
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-duration" class="setting-label">Duration target</label>
-			<span class="setting-hint">Average contraction length (start to stop). Checked when average ≥ this value.</span>
+			<label for="setting-duration" class="setting-label">{$_('settings.threshold.durationTarget')}</label>
+			<span class="setting-hint">{$_('settings.threshold.durationHint')}</span>
 		</div>
 		<select id="setting-duration" class="setting-select" bind:value={$settings.threshold.durationSeconds}>
 			{#each [30, 45, 60, 75, 90, 120] as secs}
-				<option value={secs}>{secs}s long</option>
+				<option value={secs}>{$_('settings.threshold.durationOption', { values: { secs } })}</option>
 			{/each}
 		</select>
 	</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<label for="setting-sustained" class="setting-label">Sustained period</label>
-			<span class="setting-hint">Total span from first to most recent contraction. Checked when ≥ this value, confirming the pattern is consistent, not a one-off cluster.</span>
+			<label for="setting-sustained" class="setting-label">{$_('settings.threshold.sustainedPeriod')}</label>
+			<span class="setting-hint">{$_('settings.threshold.sustainedHint')}</span>
 		</div>
 		<select id="setting-sustained" class="setting-select" bind:value={$settings.threshold.sustainedMinutes}>
 			{#each [30, 45, 60, 90, 120] as mins}
@@ -330,18 +331,18 @@
 	<!-- Advanced -->
 	<div class="section-title" id="settings-advanced">
 		<button class="section-toggle" onclick={() => showAdvanced = !showAdvanced}>
-			Advanced {showAdvanced ? '▾' : '▸'}
+			{$_('settings.advanced.title')} {showAdvanced ? '▾' : '▸'}
 		</button>
 	</div>
 
 	{#if showAdvanced}
 		<!-- Per-stage thresholds -->
-		<div class="subsection-label">Stage thresholds</div>
-		<p class="section-desc">Define contraction patterns for each labor stage. Based on ACOG guidelines. Max interval = longest gap between contractions; min duration = shortest contraction length.</p>
+		<div class="subsection-label">{$_('settings.advanced.stageThresholdsTitle')}</div>
+		<p class="section-desc">{$_('settings.advanced.stageThresholdsDesc')}</p>
 		{#each ['early', 'active', 'transition'] as stage}
 			{#if $settings.stageThresholds[stage]}
 				<div class="sub-row">
-					<span class="sub-label">{stage[0].toUpperCase() + stage.slice(1)} max interval</span>
+					<span class="sub-label">{$_('settings.advanced.maxInterval', { values: { stage: stage[0].toUpperCase() + stage.slice(1) } })}</span>
 					<select class="setting-select" bind:value={$settings.stageThresholds[stage].maxIntervalMin}>
 						{#each [3, 4, 5, 7, 10, 15, 20] as v}
 							<option value={v}>{v} min</option>
@@ -349,7 +350,7 @@
 					</select>
 				</div>
 				<div class="sub-row">
-					<span class="sub-label">{stage[0].toUpperCase() + stage.slice(1)} min duration</span>
+					<span class="sub-label">{$_('settings.advanced.minDuration', { values: { stage: stage[0].toUpperCase() + stage.slice(1) } })}</span>
 					<select class="setting-select" bind:value={$settings.stageThresholds[stage].minDurationSec}>
 						{#each [20, 30, 45, 60, 75, 90] as v}
 							<option value={v}>{v}s</option>
@@ -360,35 +361,35 @@
 		{/each}
 
 		<!-- BH thresholds -->
-		<div class="subsection-label">Pattern assessment thresholds</div>
-		<p class="section-desc">Fine-tune how we distinguish practice contractions from real labor. Most users should leave these at defaults.</p>
+		<div class="subsection-label">{$_('settings.advanced.bhThresholdsTitle')}</div>
+		<p class="section-desc">{$_('settings.advanced.bhThresholdsDesc')}</p>
 		<div class="sub-row" title="Lower = more regular pattern. Typical real labor is under 0.25.">
-			<span class="sub-label">Regularity CV (low)</span>
+			<span class="sub-label">{$_('settings.advanced.regularityCVLow')}</span>
 			<input type="number" class="setting-input setting-input--narrow" step="0.05" min="0" max="1" bind:value={$settings.bhThresholds.regularityCVLow} />
 		</div>
 		<div class="sub-row">
-			<span class="sub-label">Regularity CV (high)</span>
+			<span class="sub-label">{$_('settings.advanced.regularityCVHigh')}</span>
 			<input type="number" class="setting-input setting-input--narrow" step="0.05" min="0" max="1" bind:value={$settings.bhThresholds.regularityCVHigh} />
 		</div>
 		<div class="sub-row">
-			<span class="sub-label">Real labor threshold</span>
+			<span class="sub-label">{$_('settings.advanced.realLaborThreshold')}</span>
 			<input type="number" class="setting-input setting-input--narrow" step="5" min="0" max="100" bind:value={$settings.bhThresholds.verdictRealThreshold} />
 		</div>
 		<div class="sub-row">
-			<span class="sub-label">BH threshold</span>
+			<span class="sub-label">{$_('settings.advanced.bhThreshold')}</span>
 			<input type="number" class="setting-input setting-input--narrow" step="5" min="0" max="100" bind:value={$settings.bhThresholds.verdictBHThreshold} />
 		</div>
 
 		<!-- Reset -->
-		<button class="reset-btn" onclick={resetAdvanced}>Reset advanced to defaults</button>
+		<button class="reset-btn" onclick={resetAdvanced}>{$_('settings.advanced.resetToDefaults')}</button>
 	{/if}
 
 	<!-- Extras -->
-	<div class="section-title" id="settings-extras">Extras</div>
+	<div class="section-title" id="settings-extras">{$_('settings.extras.title')}</div>
 	<div class="setting-row">
 		<div class="setting-label-group">
-			<span id="label-prayers" class="setting-label">Prayers</span>
-			<span class="setting-hint">Show the Prayers tab in the menu. Always visible on Cathedral and Shire themes.</span>
+			<span id="label-prayers" class="setting-label">{$_('settings.extras.prayers')}</span>
+			<span class="setting-hint">{$_('settings.extras.prayersHint')}</span>
 		</div>
 		<label class="toggle" aria-labelledby="label-prayers">
 			<input type="checkbox" bind:checked={$settings.showPrayers} />
