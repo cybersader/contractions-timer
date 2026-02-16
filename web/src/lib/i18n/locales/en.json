@@ -584,7 +584,13 @@
       "firstBabyLabel": "First baby?",
       "firstBabyHint": "First labors typically last longer. This affects time estimates and stage duration ranges.",
       "yesFirstBaby": "Yes, first baby",
-      "noHadOneBefore": "No, had one before"
+      "noHadOneBefore": "No, had one before",
+      "providerPhone": "Provider phone",
+      "providerPhoneHint": "Your doctor or midwife's number for quick access during labor.",
+      "providerPhonePlaceholder": "e.g. 555-0123",
+      "travelTime": "Travel time to hospital",
+      "travelTimeHint": "How long to reach your hospital. Affects departure timing advice.",
+      "travelTimeNotSure": "Not sure"
     },
     "display": {
       "title": "Display",
@@ -1008,7 +1014,10 @@
       "restore": "Restore",
       "delete": "Delete",
       "confirmDelete": "Confirm",
-      "noArchivedSessions": "No archived sessions."
+      "noArchivedSessions": "No archived sessions.",
+      "clearSession": "Clear current session",
+      "clearSessionConfirm": "This will delete all contractions and events without archiving. Your settings will be kept. Continue?",
+      "clearSessionYes": "Yes, clear"
     }
   },
   "devotional": {

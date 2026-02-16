@@ -584,7 +584,13 @@
       "firstBabyLabel": "是第一胎吗？",
       "firstBabyHint": "初产通常时间更长。这会影响时间估计和产程阶段的持续时间范围。",
       "yesFirstBaby": "是的，第一胎",
-      "noHadOneBefore": "不是，之前生过"
+      "noHadOneBefore": "不是，之前生过",
+      "providerPhone": "医生电话",
+      "providerPhoneHint": "您的医生或助产士的电话号码，方便分娩时快速联系。",
+      "providerPhonePlaceholder": "例如 555-0123",
+      "travelTime": "到医院的车程",
+      "travelTimeHint": "到达医院需要多长时间。影响出发时间建议。",
+      "travelTimeNotSure": "不确定"
     },
     "display": {
       "title": "显示",
@@ -1008,7 +1014,10 @@
       "restore": "恢复",
       "delete": "删除",
       "confirmDelete": "确认",
-      "noArchivedSessions": "没有归档的会话。"
+      "noArchivedSessions": "没有归档的会话。",
+      "clearSession": "清除当前会话",
+      "clearSessionConfirm": "这将删除所有宫缩和事件，不会归档。您的设置将被保留。继续吗？",
+      "clearSessionYes": "是的，清除"
     }
   },
   "devotional": {

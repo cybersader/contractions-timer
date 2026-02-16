@@ -106,6 +106,12 @@ export function clearAllData(): void {
 	localStorage.removeItem('ct-dismissed-tips');
 }
 
+export function clearSessionOnly(): void {
+	dlog('storage', 'Clearing session only (preserving settings)', undefined, { level: 'warn', src: 'storage' });
+	localStorage.removeItem(SESSION_KEY);
+	localStorage.removeItem('ct-dismissed-tips');
+}
+
 export function exportData(): string {
 	const session = loadSession();
 	const settings = loadSettings();

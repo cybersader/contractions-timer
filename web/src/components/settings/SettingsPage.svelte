@@ -50,6 +50,39 @@
 			<option value="subsequent">{$_('settings.situation.noHadOneBefore')}</option>
 		</select>
 	</div>
+	<div class="setting-row">
+		<div class="setting-label-group">
+			<label for="setting-situation-phone" class="setting-label">{$_('settings.situation.providerPhone')}</label>
+			<span class="setting-hint">{$_('settings.situation.providerPhoneHint')}</span>
+		</div>
+		<input
+			id="setting-situation-phone"
+			type="tel"
+			class="setting-input"
+			placeholder={$_('settings.situation.providerPhonePlaceholder')}
+			bind:value={$settings.hospitalAdvisor.providerPhone}
+		/>
+	</div>
+	<div class="setting-row">
+		<div class="setting-label-group">
+			<label for="setting-situation-travel" class="setting-label">{$_('settings.situation.travelTime')}</label>
+			<span class="setting-hint">{$_('settings.situation.travelTimeHint')}</span>
+		</div>
+		<select id="setting-situation-travel" class="setting-select" onchange={(e) => {
+			const val = (e.target as HTMLSelectElement).value;
+			if (val === 'unsure') {
+				$settings.hospitalAdvisor.travelTimeUncertain = true;
+			} else {
+				$settings.hospitalAdvisor.travelTimeUncertain = false;
+				$settings.hospitalAdvisor.travelTimeMinutes = Number(val);
+			}
+		}} value={$settings.hospitalAdvisor.travelTimeUncertain ? 'unsure' : $settings.hospitalAdvisor.travelTimeMinutes}>
+			<option value="unsure">{$_('settings.situation.travelTimeNotSure')}</option>
+			{#each [5, 10, 15, 20, 25, 30, 45, 60, 90, 120] as mins}
+				<option value={mins}>{mins} min</option>
+			{/each}
+		</select>
+	</div>
 
 	<!-- Display -->
 	<div class="section-title" id="settings-display">{$_('settings.display.title')}</div>
@@ -262,7 +295,16 @@
 			<label for="setting-travel" class="setting-label">{$_('settings.advisor.travelTime')}</label>
 			<span class="setting-hint">{$_('settings.advisor.travelTimeHint')}</span>
 		</div>
-		<select id="setting-travel" class="setting-select" bind:value={$settings.hospitalAdvisor.travelTimeMinutes}>
+		<select id="setting-travel" class="setting-select" onchange={(e) => {
+			const val = (e.target as HTMLSelectElement).value;
+			if (val === 'unsure') {
+				$settings.hospitalAdvisor.travelTimeUncertain = true;
+			} else {
+				$settings.hospitalAdvisor.travelTimeUncertain = false;
+				$settings.hospitalAdvisor.travelTimeMinutes = Number(val);
+			}
+		}} value={$settings.hospitalAdvisor.travelTimeUncertain ? 'unsure' : $settings.hospitalAdvisor.travelTimeMinutes}>
+			<option value="unsure">{$_('settings.situation.travelTimeNotSure')}</option>
 			{#each [5, 10, 15, 20, 25, 30, 45, 60, 90, 120] as mins}
 				<option value={mins}>{mins} min</option>
 			{/each}

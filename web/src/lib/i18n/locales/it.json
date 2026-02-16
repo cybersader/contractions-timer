@@ -584,7 +584,13 @@
       "firstBabyLabel": "Primo bambino?",
       "firstBabyHint": "I primi parti durano tipicamente di più. Questo influenza le stime temporali e le durate delle fasi.",
       "yesFirstBaby": "Sì, primo bambino",
-      "noHadOneBefore": "No, ne ho avuto uno prima"
+      "noHadOneBefore": "No, ne ho avuto uno prima",
+      "providerPhone": "Telefono del medico",
+      "providerPhoneHint": "Il numero del tuo medico o ostetrica per un accesso rapido durante il travaglio.",
+      "providerPhonePlaceholder": "es. 555-0123",
+      "travelTime": "Tempo di viaggio fino all'ospedale",
+      "travelTimeHint": "Quanto tempo per raggiungere l'ospedale. Influenza il consiglio sull'orario di partenza.",
+      "travelTimeNotSure": "Non sono sicura"
     },
     "display": {
       "title": "Visualizzazione",
@@ -1008,7 +1014,10 @@
       "restore": "Ripristina",
       "delete": "Elimina",
       "confirmDelete": "Conferma",
-      "noArchivedSessions": "Nessuna sessione archiviata."
+      "noArchivedSessions": "Nessuna sessione archiviata.",
+      "clearSession": "Cancella sessione attuale",
+      "clearSessionConfirm": "Questo eliminerà tutte le contrazioni e gli eventi senza archiviare. Le tue impostazioni verranno mantenute. Continuare?",
+      "clearSessionYes": "Sì, cancella"
     }
   },
   "devotional": {

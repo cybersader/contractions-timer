@@ -584,7 +584,13 @@
       "firstBabyLabel": "Premier b\u00e9b\u00e9\u00a0?",
       "firstBabyHint": "Les premiers accouchements durent g\u00e9n\u00e9ralement plus longtemps. Cela affecte les estimations de temps et les dur\u00e9es typiques des stades.",
       "yesFirstBaby": "Oui, premier b\u00e9b\u00e9",
-      "noHadOneBefore": "Non, j\u2019ai d\u00e9j\u00e0 accouche\u0301"
+      "noHadOneBefore": "Non, j\u2019ai d\u00e9j\u00e0 accouche\u0301",
+      "providerPhone": "T\u00e9l\u00e9phone du prestataire",
+      "providerPhoneHint": "Le num\u00e9ro de votre m\u00e9decin ou sage-femme pour un acc\u00e8s rapide pendant le travail.",
+      "providerPhonePlaceholder": "ex. 555-0123",
+      "travelTime": "Temps de trajet jusqu\u2019\u00e0 l\u2019h\u00f4pital",
+      "travelTimeHint": "Combien de temps pour atteindre votre h\u00f4pital. Affecte les conseils d\u2019heure de d\u00e9part.",
+      "travelTimeNotSure": "Pas s\u00fbre"
     },
     "display": {
       "title": "Affichage",
@@ -1008,7 +1014,10 @@
       "restore": "Restaurer",
       "delete": "Supprimer",
       "confirmDelete": "Confirmer",
-      "noArchivedSessions": "Aucune session archiv\u00e9e."
+      "noArchivedSessions": "Aucune session archiv\u00e9e.",
+      "clearSession": "Effacer la session en cours",
+      "clearSessionConfirm": "Cela supprimera toutes les contractions et \u00e9v\u00e9nements sans archiver. Vos r\u00e9glages seront conserv\u00e9s. Continuer\u00a0?",
+      "clearSessionYes": "Oui, effacer"
     }
   },
   "devotional": {

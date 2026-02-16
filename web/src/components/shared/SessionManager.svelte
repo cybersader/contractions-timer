@@ -3,13 +3,14 @@
 	import { settings } from '../../lib/stores/settings';
 	import { EMPTY_SESSION, DEFAULT_SETTINGS } from '../../lib/labor-logic/types';
 	import { listArchives, restoreArchive, deleteArchive, newSession, type ArchiveEntry } from '../../lib/sessionArchive';
-	import { saveSession } from '../../lib/storage';
-	import { Plus } from 'lucide-svelte';
+	import { saveSession, clearSessionOnly } from '../../lib/storage';
+	import { Plus, Trash2 } from 'lucide-svelte';
 	import { _ } from '../../lib/i18n/index';
 
 	let archives = $state<ArchiveEntry[]>(listArchives());
 	let confirmDeleteKey = $state<string | null>(null);
 	let confirmNew = $state(false);
+	let confirmClear = $state(false);
 
 	function handleNewSession() {
 		if (!confirmNew) { confirmNew = true; return; }
@@ -21,6 +22,13 @@
 		confirmNew = false;
 		// Let the store subscription settle before refreshing archives
 		queueMicrotask(() => { archives = listArchives(); });
+	}
+
+	function handleClearSession() {
+		if (!confirmClear) { confirmClear = true; return; }
+		clearSessionOnly();
+		session.set({ ...EMPTY_SESSION, layout: [...EMPTY_SESSION.layout] });
+		confirmClear = false;
 	}
 
 	function handleRestore(key: string) {
@@ -52,6 +60,21 @@
 				<div class="sm-confirm-btns">
 					<button class="sm-btn sm-btn--yes" onclick={handleNewSession}>{$_('shared.sessionManager.yesStartNew')}</button>
 					<button class="sm-btn sm-btn--no" onclick={() => confirmNew = false}>{$_('common.cancel')}</button>
+				</div>
+			</div>
+		{/if}
+
+		{#if !confirmClear}
+			<button class="sm-clear-btn" onclick={handleClearSession}>
+				<Trash2 size={16} />
+				{$_('shared.sessionManager.clearSession')}
+			</button>
+		{:else}
+			<div class="sm-confirm sm-confirm--danger">
+				<span class="sm-confirm-text">{$_('shared.sessionManager.clearSessionConfirm')}</span>
+				<div class="sm-confirm-btns">
+					<button class="sm-btn sm-btn--danger" onclick={handleClearSession}>{$_('shared.sessionManager.clearSessionYes')}</button>
+					<button class="sm-btn sm-btn--no" onclick={() => confirmClear = false}>{$_('common.cancel')}</button>
 				</div>
 			</div>
 		{/if}
@@ -105,6 +128,33 @@
 		font-size: var(--text-base);
 		font-weight: 600;
 		cursor: pointer;
+	}
+
+	.sm-clear-btn {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-2);
+		padding: var(--space-2) var(--space-3);
+		margin-top: var(--space-2);
+		border-radius: var(--radius-md);
+		border: 1px solid var(--border);
+		background: transparent;
+		color: var(--text-muted);
+		font-size: var(--text-sm);
+		cursor: pointer;
+	}
+
+	.sm-confirm--danger {
+		border-color: var(--danger-muted);
+	}
+
+	.sm-btn--danger {
+		background: var(--danger-muted);
+		border-color: var(--danger);
+		color: var(--danger);
+		font-weight: 600;
 	}
 
 	.sm-confirm {

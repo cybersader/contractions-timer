@@ -584,7 +584,13 @@
       "firstBabyLabel": "Eerste baby?",
       "firstBabyHint": "Eerste bevallingen duren meestal langer. Dit beïnvloedt tijdschattingen en faseduren.",
       "yesFirstBaby": "Ja, eerste baby",
-      "noHadOneBefore": "Nee, eerder gehad"
+      "noHadOneBefore": "Nee, eerder gehad",
+      "providerPhone": "Telefoon zorgverlener",
+      "providerPhoneHint": "Het nummer van je arts of verloskundige voor snelle toegang tijdens de bevalling.",
+      "providerPhonePlaceholder": "bijv. 555-0123",
+      "travelTime": "Reistijd naar het ziekenhuis",
+      "travelTimeHint": "Hoe lang je erover doet om het ziekenhuis te bereiken. Beïnvloedt het vertrekadvies.",
+      "travelTimeNotSure": "Weet ik niet"
     },
     "display": {
       "title": "Weergave",
@@ -1008,7 +1014,10 @@
       "restore": "Herstellen",
       "delete": "Verwijderen",
       "confirmDelete": "Bevestigen",
-      "noArchivedSessions": "Geen gearchiveerde sessies."
+      "noArchivedSessions": "Geen gearchiveerde sessies.",
+      "clearSession": "Huidige sessie wissen",
+      "clearSessionConfirm": "Dit verwijdert alle weeën en gebeurtenissen zonder te archiveren. Je instellingen blijven bewaard. Doorgaan?",
+      "clearSessionYes": "Ja, wissen"
     }
   },
   "devotional": {

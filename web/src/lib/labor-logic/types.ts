@@ -326,7 +326,7 @@ export const DEFAULT_SETTINGS: ContractionTimerSettings = {
 	stageThresholds: { ...DEFAULT_STAGE_THRESHOLDS },
 	hospitalAdvisor: {
 		travelTimeMinutes: 30,
-		travelTimeUncertain: false,
+		travelTimeUncertain: true,
 		riskAppetite: 'moderate',
 		providerPhone: '',
 	},

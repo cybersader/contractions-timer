@@ -584,7 +584,13 @@
       "firstBabyLabel": "Erstes Baby?",
       "firstBabyHint": "Erste Geburten dauern in der Regel l\u00e4nger. Dies beeinflusst Zeitsch\u00e4tzungen und Phasendauern.",
       "yesFirstBaby": "Ja, erstes Baby",
-      "noHadOneBefore": "Nein, hatte schon eins"
+      "noHadOneBefore": "Nein, hatte schon eins",
+      "providerPhone": "Telefon des Arztes",
+      "providerPhoneHint": "Die Nummer Ihres Arztes oder Ihrer Hebamme für schnellen Zugriff während der Wehen.",
+      "providerPhonePlaceholder": "z.B. 555-0123",
+      "travelTime": "Fahrzeit zum Krankenhaus",
+      "travelTimeHint": "Wie lange Sie zum Krankenhaus brauchen. Beeinflusst den Abfahrtszeitpunkt.",
+      "travelTimeNotSure": "Nicht sicher"
     },
     "display": {
       "title": "Anzeige",
@@ -1008,7 +1014,10 @@
       "restore": "Wiederherstellen",
       "delete": "L\u00f6schen",
       "confirmDelete": "Best\u00e4tigen",
-      "noArchivedSessions": "Keine archivierten Sitzungen."
+      "noArchivedSessions": "Keine archivierten Sitzungen.",
+      "clearSession": "Aktuelle Sitzung löschen",
+      "clearSessionConfirm": "Dies löscht alle Wehen und Ereignisse ohne Archivierung. Ihre Einstellungen bleiben erhalten. Fortfahren?",
+      "clearSessionYes": "Ja, löschen"
     }
   },
   "devotional": {

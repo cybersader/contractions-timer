@@ -94,9 +94,14 @@
 			spaceBetween: 0,
 			slidesPerView: 1,
 			allowTouchMove: true,
-			speed: 300,
+			speed: 400,
+			followFinger: true,
+			threshold: 5,
 			resistance: true,
-			resistanceRatio: 0.85,
+			resistanceRatio: 0.3,
+			longSwipesRatio: 0.25,
+			longSwipesMs: 300,
+			shortSwipes: true,
 		});
 
 		swiperInstance.on('slideChange', () => {

@@ -584,7 +584,13 @@
       "firstBabyLabel": "¿Primer bebé?",
       "firstBabyHint": "Los primeros partos suelen durar más. Esto afecta las estimaciones de tiempo y los rangos de duración por etapa.",
       "yesFirstBaby": "Sí, primer bebé",
-      "noHadOneBefore": "No, ya tuve uno antes"
+      "noHadOneBefore": "No, ya tuve uno antes",
+      "providerPhone": "Teléfono del médico",
+      "providerPhoneHint": "El número de tu doctor o partera para acceso rápido durante el parto.",
+      "providerPhonePlaceholder": "ej. 555-0123",
+      "travelTime": "Tiempo de viaje al hospital",
+      "travelTimeHint": "Cuánto tardas en llegar a tu hospital. Afecta el consejo de hora de salida.",
+      "travelTimeNotSure": "No estoy segura"
     },
     "display": {
       "title": "Pantalla",
@@ -1008,7 +1014,10 @@
       "restore": "Restaurar",
       "delete": "Eliminar",
       "confirmDelete": "Confirmar",
-      "noArchivedSessions": "No hay sesiones archivadas."
+      "noArchivedSessions": "No hay sesiones archivadas.",
+      "clearSession": "Borrar sesión actual",
+      "clearSessionConfirm": "Esto eliminará todas las contracciones y eventos sin archivar. Tus ajustes se conservarán. ¿Continuar?",
+      "clearSessionYes": "Sí, borrar"
     }
   },
   "devotional": {
