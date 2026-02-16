@@ -94,7 +94,9 @@
 			spaceBetween: 0,
 			slidesPerView: 1,
 			allowTouchMove: true,
-			cssMode: true,
+			speed: 300,
+			resistance: true,
+			resistanceRatio: 0.85,
 		});
 
 		swiperInstance.on('slideChange', () => {
