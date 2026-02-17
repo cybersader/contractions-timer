@@ -265,8 +265,8 @@
       "stageActions": {
         "preLabor": "Continue normal activities",
         "early": "Rest and hydrate. Stay home",
-        "active": "Call provider and/or head to hospital soon",
-        "transition": "Call provider and/or head to hospital"
+        "active": "Call provider or go to the hospital soon",
+        "transition": "Call provider or go to the hospital"
       },
       "contractionMessages": {
         "preLabor": "Stay relaxed...",
@@ -344,8 +344,8 @@
       "lastingLonger": "lasting longer",
       "gettingShorter": "getting shorter",
       "stable": "stable",
-      "criteriaMet": "{rule} criteria currently met",
-      "estimateReach": "At this pace, may reach {rule} in ~{minutes} min",
+      "criteriaMet": "Active labor pattern criteria currently met",
+      "estimateReach": "At this pace, may reach active labor pattern in ~{minutes} min",
       "disclaimer": "Based on last {count} interval{count, plural, one {} other {s}} (this session)"
     },
     "braxtonHicks": {
@@ -414,7 +414,7 @@
       "laborGuide": "Labor guide"
     },
     "badges": {
-      "goNow": "Call and/or go now",
+      "goNow": "Call or go now",
       "timeToGo": "Time to call or go"
     },
     "range": {
@@ -523,7 +523,7 @@
     "advisor": {
       "headlines": {
         "keepTracking": "Keep tracking",
-        "goNow": "Call your provider and/or go now",
+        "goNow": "Call your provider or go to the hospital now",
         "timeToGo": "Time to call or go",
         "startPreparing": "Start preparing",
         "notYet": "Not yet",
@@ -533,11 +533,11 @@
       "details": {
         "notEnoughData": "Record more contractions to get departure advice.",
         "transition": "Transition-phase contractions detected. Call your provider. You should be heading to the hospital.",
-        "waterAndActive": "Water has broken and contractions are in the active pattern. Call your provider and/or head to the hospital.",
+        "waterAndActive": "Water has broken and contractions are in the active pattern. Call your provider or go to the hospital.",
         "waterBroken": "Water has broken. Contact your provider for guidance on when to head in.",
-        "rule511Met": "Contractions match your timing threshold. Call your provider and/or head to the hospital.",
+        "rule511Met": "Contractions match your timing threshold. Call your provider or go to the hospital.",
         "estimatedLeaveSoon": "At current pace, active labor pattern expected in ~{minutes} min. Plan to be at the hospital soon.",
-        "progressing": "Progressing toward active labor pattern. Estimated ~{minutes} min at current pace.",
+        "progressing": "Progressing toward active labor pattern. Estimated ~{minutes} min at current pace. Call your provider or go to the hospital.",
         "activeLabor": "Active labor pattern detected. Stay in close contact with your provider.",
         "earlyLabor": "Early labor. Contractions are present but still spaced out. Rest and conserve energy.",
         "irregular": "Contractions are irregular. Continue monitoring for a consistent pattern."
@@ -559,13 +559,13 @@
       },
       "recommendations": {
         "keepTracking": "Keep timing contractions to build a pattern.",
-        "goNow": "Call your provider and/or head to the hospital.",
+        "goNow": "Call your provider or go to the hospital.",
         "shouldBeAtHospital": "Call your provider. You should be heading to the hospital.",
-        "headToHospital": "Call your provider and/or head to the hospital soon.",
+        "headToHospital": "Call your provider or go to the hospital soon.",
         "planToArriveWithin": "Plan to arrive within {minutes} min.",
         "planSoon": "Plan to be at the hospital soon.",
         "planWithinRange": "Plan to be at the hospital within {range}.",
-        "estimatedRange": "Estimated {range} until active labor pattern.",
+        "estimatedRange": "Estimated {range} until active labor pattern. Call your provider or go to the hospital.",
         "activeLeaveRange": "Plan to be at the hospital within {range}.",
         "activeBagReady": "Have your bag ready. Active labor is progressing.",
         "earlyStayHome": "Stay home and rest. Early labor can last many hours.",

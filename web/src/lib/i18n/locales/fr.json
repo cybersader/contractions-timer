@@ -265,8 +265,8 @@
       "stageActions": {
         "preLabor": "Poursuivez vos activit\u00e9s normales",
         "early": "Reposez-vous et hydratez-vous. Restez \u00e0 la maison",
-        "active": "Appelez le m\u00e9decin et/ou partez bient\u00f4t",
-        "transition": "Appelez le m\u00e9decin et/ou partez \u00e0 l\u2019h\u00f4pital"
+        "active": "Appelez le m\u00e9decin ou aller \u00e0 l\u2019h\u00f4pital bient\u00f4t",
+        "transition": "Appelez le m\u00e9decin ou aller \u00e0 l\u2019h\u00f4pital"
       },
       "contractionMessages": {
         "preLabor": "Restez d\u00e9tendue...",
@@ -344,8 +344,8 @@
       "lastingLonger": "durent plus longtemps",
       "gettingShorter": "raccourcissent",
       "stable": "stables",
-      "criteriaMet": "Crit\u00e8res {rule} actuellement remplis",
-      "estimateReach": "\u00c0 ce rythme, pourrait atteindre {rule} dans ~{minutes} min",
+      "criteriaMet": "Crit\u00e8res de travail actif actuellement remplis",
+      "estimateReach": "\u00c0 ce rythme, pourrait atteindre travail actif dans ~{minutes} min",
       "disclaimer": "Bas\u00e9 sur les {count} dernier{count, plural, one {} other {s}} intervalle{count, plural, one {} other {s}} (cette session)"
     },
     "waveChart": {
@@ -414,7 +414,7 @@
       "laborGuide": "Guide du travail"
     },
     "badges": {
-      "goNow": "Appelez et/ou partez",
+      "goNow": "Appelez ou y aller",
       "timeToGo": "Appelez ou partez"
     },
     "range": {
@@ -523,7 +523,7 @@
     "advisor": {
       "headlines": {
         "keepTracking": "Continuez le suivi",
-        "goNow": "Appelez votre m\u00e9decin et/ou partez maintenant",
+        "goNow": "Appelez votre m\u00e9decin ou aller \u00e0 l\u2019h\u00f4pital maintenant",
         "timeToGo": "Appelez ou partez",
         "startPreparing": "Commencez \u00e0 vous pr\u00e9parer",
         "notYet": "Pas encore",
@@ -533,11 +533,11 @@
       "details": {
         "notEnoughData": "Enregistrez plus de contractions pour obtenir des conseils de d\u00e9part.",
         "transition": "Contractions de phase de transition d\u00e9tect\u00e9es. Appelez votre m\u00e9decin. Vous devriez vous rendre \u00e0 l\u2019h\u00f4pital.",
-        "waterAndActive": "La poche des eaux s\u2019est rompue et les contractions sont actives. Appelez votre m\u00e9decin et/ou partez \u00e0 l\u2019h\u00f4pital.",
+        "waterAndActive": "La poche des eaux s\u2019est rompue et les contractions sont actives. Appelez votre m\u00e9decin ou aller \u00e0 l\u2019h\u00f4pital.",
         "waterBroken": "Perte des eaux. Contactez votre m\u00e9decin pour savoir quand partir.",
-        "rule511Met": "Les contractions correspondent au seuil de temps. Appelez votre m\u00e9decin et/ou partez \u00e0 l\u2019h\u00f4pital.",
+        "rule511Met": "Les contractions correspondent au seuil de temps. Appelez votre m\u00e9decin ou aller \u00e0 l\u2019h\u00f4pital.",
         "estimatedLeaveSoon": "Au rythme actuel, le sch\u00e9ma de travail actif est attendu dans ~{minutes} min. Pr\u00e9voyez d'\u00eatre \u00e0 l'h\u00f4pital bient\u00f4t.",
-        "progressing": "Progression vers le sch\u00e9ma de travail actif. Estim\u00e9 ~{minutes} min au rythme actuel.",
+        "progressing": "Progression vers le sch\u00e9ma de travail actif. Estim\u00e9 ~{minutes} min au rythme actuel. Appelez votre m\u00e9decin ou allez \u00e0 l\u2019h\u00f4pital.",
         "activeLabor": "Sch\u00e9ma de travail actif d\u00e9tect\u00e9. Restez en contact \u00e9troit avec votre m\u00e9decin.",
         "earlyLabor": "D\u00e9but de travail. Les contractions sont pr\u00e9sentes mais encore espac\u00e9es. Reposez-vous et conservez votre \u00e9nergie.",
         "irregular": "Les contractions sont irr\u00e9guli\u00e8res. Continuez \u00e0 surveiller pour d\u00e9tecter un sch\u00e9ma r\u00e9gulier."
@@ -559,13 +559,13 @@
       },
       "recommendations": {
         "keepTracking": "Continuez \u00e0 chronom\u00e9trer les contractions pour \u00e9tablir un sch\u00e9ma.",
-        "goNow": "Appelez votre m\u00e9decin et/ou partez \u00e0 l\u2019h\u00f4pital.",
+        "goNow": "Appelez votre m\u00e9decin ou aller \u00e0 l\u2019h\u00f4pital.",
         "shouldBeAtHospital": "Appelez votre m\u00e9decin. Vous devriez vous rendre \u00e0 l\u2019h\u00f4pital.",
-        "headToHospital": "Appelez votre m\u00e9decin et/ou partez bient\u00f4t \u00e0 l\u2019h\u00f4pital.",
+        "headToHospital": "Appelez votre m\u00e9decin ou aller \u00e0 l\u2019h\u00f4pital bient\u00f4t.",
         "planToArriveWithin": "Pr\u00e9voyez d\u2019arriver dans {minutes} min.",
         "planSoon": "Pr\u00e9voyez d'\u00eatre \u00e0 l'h\u00f4pital bient\u00f4t.",
         "planWithinRange": "Pr\u00e9voyez d'\u00eatre \u00e0 l'h\u00f4pital dans {range}.",
-        "estimatedRange": "Estim\u00e9 {range} avant le sch\u00e9ma de travail actif.",
+        "estimatedRange": "Estim\u00e9 {range} avant le sch\u00e9ma de travail actif. Appelez votre m\u00e9decin ou allez \u00e0 l\u2019h\u00f4pital.",
         "activeLeaveRange": "Pr\u00e9voyez d'\u00eatre \u00e0 l'h\u00f4pital dans {range}.",
         "activeBagReady": "Pr\u00e9parez votre valise. Le travail actif progresse.",
         "earlyStayHome": "Restez \u00e0 la maison et reposez-vous. Le d\u00e9but du travail peut durer de nombreuses heures.",

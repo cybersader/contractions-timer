@@ -265,8 +265,8 @@
       "stageActions": {
         "preLabor": "Continue suas atividades normais",
         "early": "Descanse e hidrate-se. Fique em casa",
-        "active": "Ligue para o m\u00e9dico e/ou v\u00e1 ao hospital em breve",
-        "transition": "Ligue para o m\u00e9dico e/ou v\u00e1 ao hospital"
+        "active": "Ligue para o m\u00e9dico ou ir ao hospital em breve",
+        "transition": "Ligue para o m\u00e9dico ou ir ao hospital"
       },
       "contractionMessages": {
         "preLabor": "Fique relaxada...",
@@ -344,8 +344,8 @@
       "lastingLonger": "durando mais",
       "gettingShorter": "ficando mais curtas",
       "stable": "estável",
-      "criteriaMet": "Critérios {rule} atualmente atendidos",
-      "estimateReach": "Neste ritmo, pode atingir {rule} em ~{minutes} min",
+      "criteriaMet": "Critérios do padrão de trabalho de parto ativo atualmente atendidos",
+      "estimateReach": "Neste ritmo, pode atingir padrão de trabalho de parto ativo em ~{minutes} min",
       "disclaimer": "Baseado nos últimos {count} intervalo{count, plural, one {} other {s}} (esta sessão)"
     },
     "braxtonHicks": {
@@ -414,7 +414,7 @@
       "laborGuide": "Guia de trabalho de parto"
     },
     "badges": {
-      "goNow": "Ligue e/ou v\u00e1 agora",
+      "goNow": "Ligue ou ir agora",
       "timeToGo": "Hora de ligar ou ir"
     },
     "range": {
@@ -523,7 +523,7 @@
     "advisor": {
       "headlines": {
         "keepTracking": "Continue acompanhando",
-        "goNow": "Ligue para seu m\u00e9dico e/ou v\u00e1 agora",
+        "goNow": "Ligue para seu m\u00e9dico ou ir ao hospital agora",
         "timeToGo": "Hora de ligar ou ir",
         "startPreparing": "Comece a se preparar",
         "notYet": "Ainda não",
@@ -533,11 +533,11 @@
       "details": {
         "notEnoughData": "Registre mais contrações para obter conselho de partida.",
         "transition": "Contra\u00e7\u00f5es de fase de transi\u00e7\u00e3o detectadas. Ligue para seu m\u00e9dico. Voc\u00ea deveria estar indo ao hospital.",
-        "waterAndActive": "A bolsa rompeu e as contra\u00e7\u00f5es est\u00e3o em padr\u00e3o ativo. Ligue para seu m\u00e9dico e/ou v\u00e1 ao hospital.",
+        "waterAndActive": "A bolsa rompeu e as contra\u00e7\u00f5es est\u00e3o em padr\u00e3o ativo. Ligue para seu m\u00e9dico ou ir ao hospital.",
         "waterBroken": "A bolsa rompeu. Entre em contato com seu médico para orientação sobre quando ir.",
-        "rule511Met": "Limiar de tempo atingido. Ligue para seu m\u00e9dico e/ou v\u00e1 ao hospital.",
+        "rule511Met": "Limiar de tempo atingido. Ligue para seu m\u00e9dico ou ir ao hospital.",
         "estimatedLeaveSoon": "No ritmo atual, padrão de trabalho de parto ativo esperado em ~{minutes} min. Planeje estar no hospital em breve.",
-        "progressing": "Progredindo em direção ao padrão de trabalho de parto ativo. Estimativa de ~{minutes} min no ritmo atual.",
+        "progressing": "Progredindo em direção ao padrão de trabalho de parto ativo. Estimativa de ~{minutes} min no ritmo atual. Ligue para seu médico ou vá ao hospital.",
         "activeLabor": "Padrão de trabalho de parto ativo detectado. Mantenha contato próximo com seu médico.",
         "earlyLabor": "Trabalho de parto inicial. Contrações presentes mas ainda espaçadas. Descanse e conserve energia.",
         "irregular": "Contrações irregulares. Continue monitorando para um padrão consistente."
@@ -559,13 +559,13 @@
       },
       "recommendations": {
         "keepTracking": "Continue cronometrando as contrações para formar um padrão.",
-        "goNow": "Ligue para seu m\u00e9dico e/ou v\u00e1 ao hospital.",
+        "goNow": "Ligue para seu m\u00e9dico ou ir ao hospital.",
         "shouldBeAtHospital": "Ligue para seu m\u00e9dico. Voc\u00ea deveria estar indo ao hospital.",
-        "headToHospital": "Ligue para seu m\u00e9dico e/ou v\u00e1 ao hospital em breve.",
+        "headToHospital": "Ligue para seu m\u00e9dico ou ir ao hospital em breve.",
         "planToArriveWithin": "Planeje chegar em {minutes} min.",
         "planSoon": "Planeje estar no hospital em breve.",
         "planWithinRange": "Planeje estar no hospital em {range}.",
-        "estimatedRange": "Estimativa de {range} até o padrão de trabalho de parto ativo.",
+        "estimatedRange": "Estimativa de {range} até o padrão de trabalho de parto ativo. Ligue para seu médico ou vá ao hospital.",
         "activeLeaveRange": "Planeje estar no hospital em {range}.",
         "activeBagReady": "Tenha sua bolsa pronta. O trabalho de parto ativo está progredindo.",
         "earlyStayHome": "Fique em casa e descanse. O trabalho de parto inicial pode durar muitas horas.",

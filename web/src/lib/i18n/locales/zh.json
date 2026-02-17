@@ -265,8 +265,8 @@
       "stageActions": {
         "preLabor": "继续正常活动",
         "early": "休息并补充水分。待在家中",
-        "active": "打电话给医生和/或尽快去医院",
-        "transition": "打电话给医生和/或去医院"
+        "active": "打电话给医生或去医院",
+        "transition": "打电话给医生或去医院"
       },
       "contractionMessages": {
         "preLabor": "保持放松...",
@@ -344,8 +344,8 @@
       "lastingLonger": "持续更久",
       "gettingShorter": "持续更短",
       "stable": "稳定",
-      "criteriaMet": "当前已满足 {rule} 标准",
-      "estimateReach": "按此速度，约 {minutes} 分钟后可达到 {rule}",
+      "criteriaMet": "活跃产程模式标准目前已满足",
+      "estimateReach": "按此速度，约 {minutes} 分钟后可达到活跃产程模式",
       "disclaimer": "基于最近 {count} 个间隔（本次会话）"
     },
     "braxtonHicks": {
@@ -414,7 +414,7 @@
       "laborGuide": "产程指南"
     },
     "badges": {
-      "goNow": "打电话和/或立即出发",
+      "goNow": "打电话或现在去",
       "timeToGo": "是时候打电话或出发"
     },
     "range": {
@@ -523,7 +523,7 @@
     "advisor": {
       "headlines": {
         "keepTracking": "继续记录",
-        "goNow": "打电话给医生和/或立即出发",
+        "goNow": "打电话给医生或现在去医院",
         "timeToGo": "是时候打电话或出发",
         "startPreparing": "开始准备",
         "notYet": "还不用",
@@ -533,11 +533,11 @@
       "details": {
         "notEnoughData": "记录更多宫缩以获取出发建议。",
         "transition": "检测到过渡期宫缩。请打电话给医生。您应该前往医院。",
-        "waterAndActive": "羊水已破且宫缩处于活跃模式。请打电话给医生和/或前往医院。",
+        "waterAndActive": "羊水已破且宫缩处于活跃模式。请打电话给医生或去医院。",
         "waterBroken": "已破水。请联系您的医生获取何时出发的指导。",
-        "rule511Met": "宫缩符合时间阈值。请打电话给医生和/或前往医院。",
+        "rule511Met": "宫缩符合时间阈值。请打电话给医生或去医院。",
         "estimatedLeaveSoon": "按当前速度，预计约 {minutes} 分钟后达到活跃产程模式。请计划尽快到达医院。",
-        "progressing": "正在向活跃产程模式推进。按当前速度预计约 {minutes} 分钟。",
+        "progressing": "正在向活跃产程模式推进。按当前速度预计约 {minutes} 分钟。请打电话给医生或去医院。",
         "activeLabor": "检测到活跃产程模式。请与医生保持密切联系。",
         "earlyLabor": "早期产程。宫缩已出现但间隔仍较长。休息并保存体力。",
         "irregular": "宫缩不规律。继续监测，等待形成稳定模式。"
@@ -559,13 +559,13 @@
       },
       "recommendations": {
         "keepTracking": "继续计时宫缩以形成模式。",
-        "goNow": "请打电话给医生和/或前往医院。",
+        "goNow": "请打电话给医生或去医院。",
         "shouldBeAtHospital": "请打电话给医生。您应该前往医院。",
-        "headToHospital": "请打电话给医生和/或尽快前往医院。",
+        "headToHospital": "请打电话给医生或尽快去医院。",
         "planToArriveWithin": "计划在 {minutes} 分钟内到达。",
         "planSoon": "请计划尽快到达医院。",
         "planWithinRange": "请计划在 {range} 内到达医院。",
-        "estimatedRange": "预计 {range} 达到活跃产程模式。",
+        "estimatedRange": "预计 {range} 达到活跃产程模式。请打电话给医生或去医院。",
         "activeLeaveRange": "请计划在 {range} 内到达医院。",
         "activeBagReady": "准备好待产包。活跃产程正在推进。",
         "earlyStayHome": "留在家中休息。早期产程可能持续很多小时。",

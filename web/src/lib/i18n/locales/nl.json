@@ -265,8 +265,8 @@
       "stageActions": {
         "preLabor": "Ga door met normale activiteiten",
         "early": "Rust en drink voldoende. Blijf thuis",
-        "active": "Bel de arts en/of ga snel naar het ziekenhuis",
-        "transition": "Bel de arts en/of ga naar het ziekenhuis"
+        "active": "Bel de arts of naar het ziekenhuis gaan binnenkort",
+        "transition": "Bel de arts of naar het ziekenhuis gaan"
       },
       "contractionMessages": {
         "preLabor": "Blijf ontspannen...",
@@ -344,8 +344,8 @@
       "lastingLonger": "duren langer",
       "gettingShorter": "worden korter",
       "stable": "stabiel",
-      "criteriaMet": "{rule}-criteria momenteel voldaan",
-      "estimateReach": "In dit tempo kan {rule} bereikt worden in ~{minutes} min",
+      "criteriaMet": "Actief bevallingpatroon criteria momenteel voldaan",
+      "estimateReach": "In dit tempo kan actief bevallingpatroon bereikt worden in ~{minutes} min",
       "disclaimer": "Gebaseerd op de laatste {count} interval{count, plural, one {} other {len}} (deze sessie)"
     },
     "braxtonHicks": {
@@ -414,7 +414,7 @@
       "laborGuide": "Bevallingsgids"
     },
     "badges": {
-      "goNow": "Bel en/of ga nu",
+      "goNow": "Bel of nu gaan",
       "timeToGo": "Bel of vertrek"
     },
     "range": {
@@ -523,7 +523,7 @@
     "advisor": {
       "headlines": {
         "keepTracking": "Blijf bijhouden",
-        "goNow": "Bel uw arts en/of ga nu",
+        "goNow": "Bel uw arts of nu naar het ziekenhuis gaan",
         "timeToGo": "Bel of vertrek",
         "startPreparing": "Begin met voorbereiden",
         "notYet": "Nog niet",
@@ -533,11 +533,11 @@
       "details": {
         "notEnoughData": "Registreer meer weeën om vertrekadvies te krijgen.",
         "transition": "Overgangsfase-weeën gedetecteerd. Bel uw arts. U zou naar het ziekenhuis moeten gaan.",
-        "waterAndActive": "De vliezen zijn gebroken en de weeën zijn in actief patroon. Bel uw arts en/of ga naar het ziekenhuis.",
+        "waterAndActive": "De vliezen zijn gebroken en de weeën zijn in actief patroon. Bel uw arts of naar het ziekenhuis gaan.",
         "waterBroken": "Vliezen zijn gebroken. Neem contact op met je verloskundige voor advies over wanneer te vertrekken.",
-        "rule511Met": "De weeën voldoen aan de tijddrempel. Bel uw arts en/of ga naar het ziekenhuis.",
+        "rule511Met": "De weeën voldoen aan de tijddrempel. Bel uw arts of naar het ziekenhuis gaan.",
         "estimatedLeaveSoon": "In het huidige tempo wordt het actieve bevallingpatroon verwacht over ~{minutes} min. Plan om binnenkort in het ziekenhuis te zijn.",
-        "progressing": "Voortgang richting actief bevallingpatroon. Geschat ~{minutes} min in het huidige tempo.",
+        "progressing": "Voortgang richting actief bevallingpatroon. Geschat ~{minutes} min in het huidige tempo. Bel uw arts of ga naar het ziekenhuis.",
         "activeLabor": "Actief bevallingpatroon gedetecteerd. Blijf in nauw contact met je verloskundige.",
         "earlyLabor": "Vroege bevalling. Weeën zijn aanwezig maar nog ver uit elkaar. Rust en bespaar energie.",
         "irregular": "Weeën zijn onregelmatig. Blijf monitoren op een consistent patroon."
@@ -559,13 +559,13 @@
       },
       "recommendations": {
         "keepTracking": "Blijf weeën timen om een patroon op te bouwen.",
-        "goNow": "Bel uw arts en/of ga naar het ziekenhuis.",
+        "goNow": "Bel uw arts of naar het ziekenhuis gaan.",
         "shouldBeAtHospital": "Bel uw arts. U zou naar het ziekenhuis moeten gaan.",
-        "headToHospital": "Bel uw arts en/of ga snel naar het ziekenhuis.",
+        "headToHospital": "Bel uw arts of naar het ziekenhuis gaan binnenkort.",
         "planToArriveWithin": "Plan om binnen {minutes} min aan te komen.",
         "planSoon": "Plan om binnenkort in het ziekenhuis te zijn.",
         "planWithinRange": "Plan om binnen {range} in het ziekenhuis te zijn.",
-        "estimatedRange": "Geschat {range} tot actief bevallingpatroon.",
+        "estimatedRange": "Geschat {range} tot actief bevallingpatroon. Bel uw arts of ga naar het ziekenhuis.",
         "activeLeaveRange": "Plan om binnen {range} in het ziekenhuis te zijn.",
         "activeBagReady": "Houd je ziekenhuistas klaar. Actieve bevalling vordert.",
         "earlyStayHome": "Blijf thuis en rust. Vroege bevalling kan vele uren duren.",

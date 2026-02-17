@@ -265,8 +265,8 @@
       "stageActions": {
         "preLabor": "Continua le attività normali",
         "early": "Riposa e idratati. Resta a casa",
-        "active": "Chiama il medico e/o vai in ospedale presto",
-        "transition": "Chiama il medico e/o vai in ospedale"
+        "active": "Chiama il medico o andare in ospedale presto",
+        "transition": "Chiama il medico o andare in ospedale"
       },
       "contractionMessages": {
         "preLabor": "Resta rilassata...",
@@ -344,8 +344,8 @@
       "lastingLonger": "durano di più",
       "gettingShorter": "si accorciano",
       "stable": "stabile",
-      "criteriaMet": "Criteri {rule} attualmente soddisfatti",
-      "estimateReach": "A questo ritmo, potrebbe raggiungere {rule} in ~{minutes} min",
+      "criteriaMet": "Criteri del pattern di travaglio attivo attualmente soddisfatti",
+      "estimateReach": "A questo ritmo, potrebbe raggiungere pattern di travaglio attivo in ~{minutes} min",
       "disclaimer": "Basato sugli ultimi {count} intervall{count, plural, one {o} other {i}} (questa sessione)"
     },
     "braxtonHicks": {
@@ -414,7 +414,7 @@
       "laborGuide": "Guida al travaglio"
     },
     "badges": {
-      "goNow": "Chiama e/o vai ora",
+      "goNow": "Chiama o andare ora",
       "timeToGo": "Chiama o parti"
     },
     "range": {
@@ -519,7 +519,7 @@
     "advisor": {
       "headlines": {
         "keepTracking": "Continua a monitorare",
-        "goNow": "Chiama il tuo medico e/o vai ora",
+        "goNow": "Chiama il tuo medico o andare in ospedale ora",
         "timeToGo": "Chiama o parti",
         "startPreparing": "Inizia a prepararti",
         "notYet": "Non ancora",
@@ -529,11 +529,11 @@
       "details": {
         "notEnoughData": "Registra altre contrazioni per ricevere consigli sulla partenza.",
         "transition": "Contrazioni della fase di transizione rilevate. Chiama il tuo medico. Dovresti andare in ospedale.",
-        "waterAndActive": "Le acque si sono rotte e le contrazioni sono in fase attiva. Chiama il tuo medico e/o vai in ospedale.",
+        "waterAndActive": "Le acque si sono rotte e le contrazioni sono in fase attiva. Chiama il tuo medico o andare in ospedale.",
         "waterBroken": "Le acque si sono rotte. Contatta il tuo medico per indicazioni su quando partire.",
-        "rule511Met": "Le contrazioni corrispondono alla soglia temporale. Chiama il tuo medico e/o vai in ospedale.",
+        "rule511Met": "Le contrazioni corrispondono alla soglia temporale. Chiama il tuo medico o andare in ospedale.",
         "estimatedLeaveSoon": "Al ritmo attuale, il pattern di travaglio attivo è previsto in ~{minutes} min. Pianifica di essere in ospedale presto.",
-        "progressing": "Progressione verso il pattern di travaglio attivo. Stimati ~{minutes} min al ritmo attuale.",
+        "progressing": "Progressione verso il pattern di travaglio attivo. Stimati ~{minutes} min al ritmo attuale. Chiama il tuo medico o vai in ospedale.",
         "activeLabor": "Pattern di travaglio attivo rilevato. Resta in stretto contatto con il tuo medico.",
         "earlyLabor": "Travaglio iniziale. Le contrazioni sono presenti ma ancora distanziate. Riposa e conserva energia.",
         "irregular": "Le contrazioni sono irregolari. Continua a monitorare per un pattern costante."
@@ -555,13 +555,13 @@
       },
       "recommendations": {
         "keepTracking": "Continua a cronometrare le contrazioni per individuare un pattern.",
-        "goNow": "Chiama il tuo medico e/o vai in ospedale.",
+        "goNow": "Chiama il tuo medico o andare in ospedale.",
         "shouldBeAtHospital": "Chiama il tuo medico. Dovresti andare in ospedale.",
-        "headToHospital": "Chiama il tuo medico e/o vai in ospedale presto.",
+        "headToHospital": "Chiama il tuo medico o andare in ospedale presto.",
         "planToArriveWithin": "Pianifica di arrivare entro {minutes} min.",
         "planSoon": "Pianifica di essere in ospedale presto.",
         "planWithinRange": "Pianifica di essere in ospedale entro {range}.",
-        "estimatedRange": "Stimati {range} al pattern di travaglio attivo.",
+        "estimatedRange": "Stimati {range} al pattern di travaglio attivo. Chiama il tuo medico o vai in ospedale.",
         "activeLeaveRange": "Pianifica di essere in ospedale entro {range}.",
         "activeBagReady": "Tieni la borsa pronta. Il travaglio attivo sta progredendo.",
         "earlyStayHome": "Resta a casa e riposa. Il travaglio iniziale pu\u00f2 durare molte ore.",

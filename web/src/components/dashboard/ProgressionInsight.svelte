@@ -56,9 +56,9 @@
 		{#if estimate !== null}
 			<div class="estimate">
 				{#if estimate === 0}
-					{$_('dashboard.progression.criteriaMet', { values: { rule: `${thresholdVal.intervalMinutes}-1-1` } })}
+					{$_('dashboard.progression.criteriaMet')}
 				{:else}
-					{$_('dashboard.progression.estimateReach', { values: { rule: `${thresholdVal.intervalMinutes}-1-1`, minutes: estimate } })}
+					{$_('dashboard.progression.estimateReach', { values: { minutes: estimate } })}
 				{/if}
 			</div>
 			<div class="disclaimer">{$_('dashboard.progression.disclaimer', { values: { count: intervals.length } })}</div>

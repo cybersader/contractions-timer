@@ -265,8 +265,8 @@
       "stageActions": {
         "preLabor": "Normale Aktivit\u00e4ten fortsetzen",
         "early": "Ausruhen und trinken. Zu Hause bleiben",
-        "active": "Arzt anrufen und/oder bald ins Krankenhaus",
-        "transition": "Arzt anrufen und/oder ins Krankenhaus fahren"
+        "active": "Anbieter anrufen oder ins Krankenhaus fahren bald",
+        "transition": "Anbieter anrufen oder ins Krankenhaus fahren bald"
       },
       "contractionMessages": {
         "preLabor": "Bleiben Sie entspannt\u2026",
@@ -344,8 +344,8 @@
       "lastingLonger": "dauern l\u00e4nger",
       "gettingShorter": "dauern k\u00fcrzer",
       "stable": "stabil",
-      "criteriaMet": "{rule}-Kriterien derzeit erf\u00fcllt",
-      "estimateReach": "Bei diesem Tempo wird {rule} in ~{minutes} Min. erreicht",
+      "criteriaMet": "Aktives Wehenmuster-Kriterien derzeit erf\u00fcllt",
+      "estimateReach": "Bei diesem Tempo wird aktives Wehenmuster in ~{minutes} Min. erreicht",
       "disclaimer": "Basierend auf den letzten {count} Abst\u00e4nden (diese Sitzung)"
     },
     "braxtonHicks": {
@@ -414,7 +414,7 @@
       "laborGuide": "Geburts-Leitfaden"
     },
     "badges": {
-      "goNow": "Anrufen und/oder losfahren",
+      "goNow": "Anrufen oder jetzt gehen",
       "timeToGo": "Anrufen oder losfahren"
     },
     "range": {
@@ -519,7 +519,7 @@
     "advisor": {
       "headlines": {
         "keepTracking": "Weiter erfassen",
-        "goNow": "Rufen Sie Ihren Arzt an und/oder fahren Sie jetzt los",
+        "goNow": "Rufen Sie Ihren Arzt an oder fahren Sie jetzt los",
         "timeToGo": "Anrufen oder losfahren",
         "startPreparing": "Vorbereitung starten",
         "notYet": "Noch nicht",
@@ -529,11 +529,11 @@
       "details": {
         "notEnoughData": "Erfassen Sie weitere Wehen, um Abfahrtsempfehlungen zu erhalten.",
         "transition": "\u00dcbergangsphase-Wehen erkannt. Rufen Sie Ihren Arzt an. Sie sollten ins Krankenhaus fahren.",
-        "waterAndActive": "Fruchtblase geplatzt und aktives Wehenmuster. Rufen Sie Ihren Arzt an und/oder fahren Sie ins Krankenhaus.",
+        "waterAndActive": "Fruchtblase geplatzt und aktives Wehenmuster. Rufen Sie Ihren Arzt an oder fahren Sie ins Krankenhaus.",
         "waterBroken": "Blasensprung. Kontaktieren Sie Ihren Arzt f\u00fcr Anweisungen.",
-        "rule511Met": "Die Wehen entsprechen dem Zeitschwellenwert. Rufen Sie Ihren Arzt an und/oder fahren Sie ins Krankenhaus.",
+        "rule511Met": "Die Wehen entsprechen dem Zeitschwellenwert. Rufen Sie Ihren Arzt an oder fahren Sie ins Krankenhaus.",
         "estimatedLeaveSoon": "Bei aktuellem Tempo wird das aktive Wehenmuster in ~{minutes} Min. erwartet. Planen Sie, bald im Krankenhaus zu sein.",
-        "progressing": "Fortschritt Richtung aktives Wehenmuster. Gesch\u00e4tzt ~{minutes} Min. bei aktuellem Tempo.",
+        "progressing": "Fortschritt Richtung aktives Wehenmuster. Gesch\u00e4tzt ~{minutes} Min. bei aktuellem Tempo. Rufen Sie Ihren Arzt an oder fahren Sie ins Krankenhaus.",
         "activeLabor": "Aktives Wehenmuster erkannt. Bleiben Sie in engem Kontakt mit Ihrem Arzt.",
         "earlyLabor": "Fr\u00fche Wehen. Wehen sind vorhanden, aber noch weit auseinander. Ruhen Sie sich aus und sparen Sie Energie.",
         "irregular": "Wehen sind unregelm\u00e4\u00dfig. Beobachten Sie weiter auf ein gleichm\u00e4\u00dfiges Muster."
@@ -555,13 +555,13 @@
       },
       "recommendations": {
         "keepTracking": "Erfassen Sie weiter Wehen, um ein Muster zu erkennen.",
-        "goNow": "Rufen Sie Ihren Arzt an und/oder fahren Sie ins Krankenhaus.",
+        "goNow": "Rufen Sie Ihren Arzt an oder fahren Sie ins Krankenhaus.",
         "shouldBeAtHospital": "Rufen Sie Ihren Arzt an. Sie sollten ins Krankenhaus fahren.",
-        "headToHospital": "Rufen Sie Ihren Arzt an und/oder fahren Sie bald ins Krankenhaus.",
+        "headToHospital": "Rufen Sie Ihren Arzt an oder fahren Sie ins Krankenhaus bald.",
         "planToArriveWithin": "Planen Sie, innerhalb von {minutes} Min. anzukommen.",
         "planSoon": "Planen Sie, bald im Krankenhaus zu sein.",
         "planWithinRange": "Planen Sie, innerhalb von {range} im Krankenhaus zu sein.",
-        "estimatedRange": "Gesch\u00e4tzt {range} bis aktives Wehenmuster.",
+        "estimatedRange": "Gesch\u00e4tzt {range} bis aktives Wehenmuster. Rufen Sie Ihren Arzt an oder fahren Sie ins Krankenhaus.",
         "activeLeaveRange": "Planen Sie, innerhalb von {range} im Krankenhaus zu sein.",
         "activeBagReady": "Halten Sie Ihre Tasche bereit. Aktive Wehen schreiten voran.",
         "earlyStayHome": "Bleiben Sie zu Hause und ruhen Sie sich aus. Fr\u00fche Wehen k\u00f6nnen viele Stunden dauern.",
