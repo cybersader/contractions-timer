@@ -264,20 +264,20 @@
       "keepTracking": "Blijf bijhouden...",
       "stageActions": {
         "preLabor": "Ga door met normale activiteiten",
-        "early": "Rust en drink voldocht — blijf thuis",
-        "active": "Ga binnenkort naar het ziekenhuis",
-        "transition": "Je zou in het ziekenhuis moeten zijn"
+        "early": "Rust en drink voldoende. Blijf thuis",
+        "active": "Bel de arts en/of ga snel naar het ziekenhuis",
+        "transition": "Bel de arts en/of ga naar het ziekenhuis"
       },
       "contractionMessages": {
         "preLabor": "Blijf ontspannen...",
         "early": "Rustig aan...",
         "active": "Adem erdoorheen...",
-        "transition": "Eentje tegelijk — je kunt dit"
+        "transition": "Eentje tegelijk, je kunt dit"
       },
       "defaultContractionMessage": "Adem erdoorheen...",
-      "waterBrokeActive": "Vliezen gebroken + actieve bevalling — ga naar het ziekenhuis",
+      "waterBrokeActive": "Vliezen gebroken + actieve bevalling. Ga naar het ziekenhuis",
       "waterBrokeTransition": "Je zou in het ziekenhuis moeten zijn",
-      "waterBrokeDefault": "Vliezen gebroken — bel je verloskundige",
+      "waterBrokeDefault": "Vliezen gebroken. Bel je verloskundige",
       "detailTemplate": "~{interval} min tussenruimte · ~{duration}s gemiddeld"
     },
     "heroCompactTimer": {
@@ -332,7 +332,7 @@
     "stageBar": {
       "beenHere": "Je bent hier al {elapsed}",
       "typical": "Typisch: {range}",
-      "location": "Locatie: {location}"
+      "location": "Normaal in: {location}"
     },
     "progression": {
       "needMore": "4+ weeën nodig om trends te analyseren",
@@ -388,6 +388,11 @@
       "waterBroke": "Vliezen gebroken",
       "mucusPlug": "Slijmprop",
       "bloodyShow": "Bloederig verlies"
+    },
+    "eventEditor": {
+      "time": "Tijd",
+      "notes": "Notities",
+      "notesPlaceholder": "Optionele notities"
     }
   },
   "hospital": {
@@ -397,20 +402,20 @@
       "onTheWay": "Onderweg"
     },
     "locationHint": {
-      "enRoute": "Reistijd verwijderd — schattingen tonen tijd vanaf nu",
-      "uncertain": "Reistijd onbekend — conservatieve schatting van ~30 min gebruikt",
+      "enRoute": "Reistijd verwijderd. Schattingen tonen tijd vanaf nu",
+      "uncertain": "Reistijd onbekend. Plan om binnen het weergegeven bereik op het ziekenhuis aan te komen",
       "withTravel": "{minutes} min reistijd inbegrepen in schattingen"
     },
     "sections": {
-      "departureAdvice": "Vertrekadvies",
-      "ruleProgress": "5-1-1-regelvoortgang",
+      "departureAdvice": "Ziekenhuistiming",
+      "ruleProgress": "Tijdregelvoortgang",
       "waterBreak": "Vliezen gebroken",
       "tips": "Tips",
       "laborGuide": "Bevallingsgids"
     },
     "badges": {
-      "goNow": "Ga nu",
-      "timeToGo": "Tijd om te gaan"
+      "goNow": "Bel en/of ga nu",
+      "timeToGo": "Bel of vertrek"
     },
     "range": {
       "confidence": "{level} betrouwbaarheid",
@@ -513,13 +518,13 @@
     },
     "emptyState": {
       "title": "Bevallingadviseur",
-      "hint": "Registreer minstens 3 weeën om 5-1-1-voortgang, vertrekadvies en tijdschattingen te zien."
+      "hint": "Registreer minstens 3 weeën om tijdvoortgang, vertrekadvies en tijdschattingen te zien."
     },
     "advisor": {
       "headlines": {
         "keepTracking": "Blijf bijhouden",
-        "goNow": "Ga nu naar het ziekenhuis",
-        "timeToGo": "Tijd om te gaan",
+        "goNow": "Bel uw arts en/of ga nu",
+        "timeToGo": "Bel of vertrek",
         "startPreparing": "Begin met voorbereiden",
         "notYet": "Nog niet",
         "callProvider": "Bel je verloskundige",
@@ -527,14 +532,14 @@
       },
       "details": {
         "notEnoughData": "Registreer meer weeën om vertrekadvies te krijgen.",
-        "transition": "Transitiefase-weeën gedetecteerd. Je zou in of onderweg naar het ziekenhuis moeten zijn.",
-        "waterAndActive": "Vliezen zijn gebroken en weeën zijn in het actieve patroon. Ga naar het ziekenhuis.",
+        "transition": "Overgangsfase-weeën gedetecteerd. Bel uw arts. U zou naar het ziekenhuis moeten gaan.",
+        "waterAndActive": "De vliezen zijn gebroken en de weeën zijn in actief patroon. Bel uw arts en/of ga naar het ziekenhuis.",
         "waterBroken": "Vliezen zijn gebroken. Neem contact op met je verloskundige voor advies over wanneer te vertrekken.",
-        "rule511Met": "Weeën komen overeen met het 5-1-1-patroon. Tijd om naar het ziekenhuis te gaan.",
-        "estimatedLeaveSoon": "In het huidige tempo wordt het 5-1-1-patroon verwacht over ~{minutes} min. Overweeg binnenkort te vertrekken.",
-        "progressing": "Voortgang richting 5-1-1. Geschat ~{minutes} min in het huidige tempo.",
+        "rule511Met": "De weeën voldoen aan de tijddrempel. Bel uw arts en/of ga naar het ziekenhuis.",
+        "estimatedLeaveSoon": "In het huidige tempo wordt het actieve bevallingpatroon verwacht over ~{minutes} min. Plan om binnenkort in het ziekenhuis te zijn.",
+        "progressing": "Voortgang richting actief bevallingpatroon. Geschat ~{minutes} min in het huidige tempo.",
         "activeLabor": "Actief bevallingpatroon gedetecteerd. Blijf in nauw contact met je verloskundige.",
-        "earlyLabor": "Vroege bevalling — weeën zijn aanwezig maar nog ver uit elkaar. Rust en bespaar energie.",
+        "earlyLabor": "Vroege bevalling. Weeën zijn aanwezig maar nog ver uit elkaar. Rust en bespaar energie.",
         "irregular": "Weeën zijn onregelmatig. Blijf monitoren op een consistent patroon."
       },
       "factors": {
@@ -544,25 +549,24 @@
         "avgDuration": "Gem. {duration}s lang",
         "waterBrokeAgo": "Vliezen gebroken {hours}u geleden",
         "waterBroken": "Vliezen zijn gebroken",
-        "travelUnknown": "Reistijd onbekend",
         "travelTime": "{minutes} min reistijd",
-        "travelUnknownConservative": "Reistijd onbekend — schatting van 30 min gebruikt",
+        "travelUnknownAddOwn": "Reistijd onbekend. Voeg je reistijd toe aan deze schattingen",
         "travelAccounted": "{minutes} min reistijd inbegrepen",
         "assumedProgression": "Aangenomen {rate} voortgangssnelheid",
-        "rule511Met": "5-1-1-patroon bereikt",
-        "rule511Pattern": "5-1-1-patroon gedetecteerd",
-        "timeTo511": "~{minutes} min tot 5-1-1-patroon"
+        "rule511Met": "Tijddrempel bereikt",
+        "rule511Pattern": "Tijddrempel gedetecteerd",
+        "timeTo511": "~{minutes} min tot actief bevallingpatroon"
       },
       "recommendations": {
         "keepTracking": "Blijf weeën timen om een patroon op te bouwen.",
-        "goNow": "Ga onmiddellijk naar het ziekenhuis.",
-        "shouldBeAtHospital": "Je zou in of onderweg naar het ziekenhuis moeten zijn.",
-        "headToHospital": "Ga binnenkort naar het ziekenhuis.",
+        "goNow": "Bel uw arts en/of ga naar het ziekenhuis.",
+        "shouldBeAtHospital": "Bel uw arts. U zou naar het ziekenhuis moeten gaan.",
+        "headToHospital": "Bel uw arts en/of ga snel naar het ziekenhuis.",
         "planToArriveWithin": "Plan om binnen {minutes} min aan te komen.",
-        "planSoon": "Plan om binnenkort te vertrekken.",
-        "planWithinRange": "Plan om binnen {range} te vertrekken.",
-        "estimatedRange": "Geschat {range} tot 5-1-1.",
-        "activeLeaveRange": "Overweeg binnen {range} te vertrekken.",
+        "planSoon": "Plan om binnenkort in het ziekenhuis te zijn.",
+        "planWithinRange": "Plan om binnen {range} in het ziekenhuis te zijn.",
+        "estimatedRange": "Geschat {range} tot actief bevallingpatroon.",
+        "activeLeaveRange": "Plan om binnen {range} in het ziekenhuis te zijn.",
         "activeBagReady": "Houd je ziekenhuistas klaar. Actieve bevalling vordert.",
         "earlyStayHome": "Blijf thuis en rust. Vroege bevalling kan vele uren duren.",
         "irregularContinue": "Blijf monitoren. Het patroon is nog niet consistent."
@@ -940,7 +944,7 @@
     "hospitalDistanceLabel": "Hoe ver is je ziekenhuis?",
     "travelTimeMinutes": "{mins} min",
     "travelTimeNotSure": "Weet ik niet",
-    "travelTimeUncertainHint": "Geen probleem — we gebruiken een conservatieve schatting en geven je een bereik.",
+    "travelTimeUncertainHint": "Geen probleem. We laten je zien wanneer je moet plannen om op het ziekenhuis aan te komen. Voeg je eigen reistijd toe.",
     "providerPhoneLabel": "Telefoon verloskundige of ziekenhuis (optioneel)",
     "providerPhonePlaceholder": "06-12345678",
     "providerPhoneHint": "Snel bellen vanuit de app wanneer het zover is.",
@@ -975,7 +979,7 @@
       "earlyRest": "Vroege bevalling kan 6-12+ uur duren bij een eerste kind. Probeer te rusten, vooral als het nacht is.",
       "earlyHydrate": "Blijf gehydrateerd en eet lichte hapjes. Je hebt de energie nodig voor de actieve bevalling.",
       "earlyActivity": "Lichte activiteit zoals wandelen kan helpen de bevalling overdag te bevorderen.",
-      "earlyTiming": "Je bent waarschijnlijk nog thuis tijdens de vroege bevalling. Ga naar het ziekenhuis wanneer weeën het 5-1-1-patroon bereiken.",
+      "earlyTiming": "Je bent waarschijnlijk nog thuis tijdens de vroege bevalling. Ga naar het ziekenhuis wanneer weeën de tijddrempel bereiken.",
       "activeEntered": "Actieve bevalling betekent gestage voortgang. Als je nog niet in het ziekenhuis bent, is het tijd om te gaan.",
       "activeBreathing": "Concentreer je op langzame, diepe ademhaling tijdens elke wee. Inademen door de neus, uitademen door de mond.",
       "activeDuration": "Actieve bevalling duurt meestal 3-5 uur bij een eerste kind. Je maakt echte voortgang.",

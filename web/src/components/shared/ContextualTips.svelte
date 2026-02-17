@@ -67,8 +67,10 @@
 		padding: var(--space-3) var(--space-3); border-radius: var(--radius-md);
 		background: var(--bg-card); border: 1px solid var(--border);
 	}
-	.tip[data-category="safety"] { border-color: var(--warning-muted); }
+	.tip[data-category="safety"] { border-color: var(--warning); background: var(--warning-muted); }
+	.tip[data-category="safety"] .tip-icon { color: var(--warning); }
 	.tip[data-category="action"] { border-color: var(--accent-muted); }
+	.tip[data-category="action"] .tip-icon { color: var(--accent); }
 	.tip-icon { flex-shrink: 0; display: flex; align-items: center; color: var(--text-muted); }
 	.tip-text { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.4; flex: 1; }
 	.tip-dismiss { background: none; border: none; color: var(--text-faint); cursor: pointer; padding: 0 var(--space-1); flex-shrink: 0; min-width: var(--space-5); min-height: var(--space-5); display: flex; align-items: center; justify-content: center; }

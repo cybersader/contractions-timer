@@ -62,19 +62,27 @@
 </script>
 
 {#if needsRating && lastCompleted}
-	{#if lastCompleted.intensity === null && $settings.showIntensityPicker}
-		<IntensityPicker
-			value={lastCompleted.intensity}
-			onSelect={setIntensity}
-			onSkip={dismiss}
-		/>
-	{/if}
-	{#if lastCompleted.location === null && $settings.showLocationPicker && (lastCompleted.intensity !== null || !$settings.showIntensityPicker)}
-		<LocationPicker
-			value={lastCompleted.location}
-			onSelect={setLocation}
-			onSkip={dismiss}
-			onBack={$settings.showIntensityPicker ? clearIntensity : undefined}
-		/>
-	{/if}
+	<div class="post-rating">
+		{#if lastCompleted.intensity === null && $settings.showIntensityPicker}
+			<IntensityPicker
+				value={lastCompleted.intensity}
+				onSelect={setIntensity}
+				onSkip={dismiss}
+			/>
+		{/if}
+		{#if lastCompleted.location === null && $settings.showLocationPicker && (lastCompleted.intensity !== null || !$settings.showIntensityPicker)}
+			<LocationPicker
+				value={lastCompleted.location}
+				onSelect={setLocation}
+				onSkip={dismiss}
+				onBack={$settings.showIntensityPicker ? clearIntensity : undefined}
+			/>
+		{/if}
+	</div>
 {/if}
+
+<style>
+	.post-rating {
+		margin-top: var(--space-3);
+	}
+</style>

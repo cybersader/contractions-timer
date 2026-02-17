@@ -264,20 +264,20 @@
       "keepTracking": "Keep tracking...",
       "stageActions": {
         "preLabor": "Continue normal activities",
-        "early": "Rest and hydrate \u2014 stay home",
-        "active": "Head to hospital soon",
-        "transition": "You should be at the hospital"
+        "early": "Rest and hydrate. Stay home",
+        "active": "Call provider and/or head to hospital soon",
+        "transition": "Call provider and/or head to hospital"
       },
       "contractionMessages": {
         "preLabor": "Stay relaxed...",
         "early": "Nice and easy...",
         "active": "Breathe through it...",
-        "transition": "One at a time \u2014 you've got this"
+        "transition": "One at a time, you've got this"
       },
       "defaultContractionMessage": "Breathe through it...",
-      "waterBrokeActive": "Water broke + active labor \u2014 head to hospital",
+      "waterBrokeActive": "Water broke + active labor. Head to hospital",
       "waterBrokeTransition": "You should be at the hospital",
-      "waterBrokeDefault": "Water broke \u2014 call your provider",
+      "waterBrokeDefault": "Water broke. Call your provider",
       "detailTemplate": "~{interval} min apart \u00B7 ~{duration}s avg"
     },
     "heroCompactTimer": {
@@ -332,7 +332,7 @@
     "stageBar": {
       "beenHere": "You've been here {elapsed}",
       "typical": "Typical: {range}",
-      "location": "Location: {location}"
+      "location": "Typically at: {location}"
     },
     "progression": {
       "needMore": "Need 4+ contractions to analyze trends",
@@ -388,6 +388,11 @@
       "waterBroke": "Water broke",
       "mucusPlug": "Mucus plug",
       "bloodyShow": "Bloody show"
+    },
+    "eventEditor": {
+      "time": "Time",
+      "notes": "Notes",
+      "notesPlaceholder": "Optional notes"
     }
   },
   "hospital": {
@@ -397,20 +402,20 @@
       "onTheWay": "On the way"
     },
     "locationHint": {
-      "enRoute": "Travel time removed \u2014 estimates show time from now",
-      "uncertain": "Travel time unknown \u2014 using ~30 min conservative estimate",
+      "enRoute": "Travel time removed. Estimates show time from now",
+      "uncertain": "Travel time unknown. Plan to arrive at hospital within the range shown",
       "withTravel": "{minutes} min travel time included in estimates"
     },
     "sections": {
-      "departureAdvice": "Departure advice",
-      "ruleProgress": "5-1-1 rule progress",
+      "departureAdvice": "Hospital timing",
+      "ruleProgress": "Timing rule progress",
       "waterBreak": "Water break",
       "tips": "Tips",
       "laborGuide": "Labor guide"
     },
     "badges": {
-      "goNow": "Go now",
-      "timeToGo": "Time to go"
+      "goNow": "Call and/or go now",
+      "timeToGo": "Time to call or go"
     },
     "range": {
       "confidence": "{level} confidence",
@@ -513,13 +518,13 @@
     },
     "emptyState": {
       "title": "Labor advisor",
-      "hint": "Record at least 3 contractions to see 5-1-1 progress, departure advice, and time estimates."
+      "hint": "Record at least 3 contractions to see timing progress, departure advice, and time estimates."
     },
     "advisor": {
       "headlines": {
         "keepTracking": "Keep tracking",
-        "goNow": "Go to the hospital now",
-        "timeToGo": "Time to go",
+        "goNow": "Call your provider and/or go now",
+        "timeToGo": "Time to call or go",
         "startPreparing": "Start preparing",
         "notYet": "Not yet",
         "callProvider": "Call your provider",
@@ -527,14 +532,14 @@
       },
       "details": {
         "notEnoughData": "Record more contractions to get departure advice.",
-        "transition": "Transition-phase contractions detected. You should be at or heading to the hospital.",
-        "waterAndActive": "Water has broken and contractions are in the active pattern. Head to the hospital.",
+        "transition": "Transition-phase contractions detected. Call your provider. You should be heading to the hospital.",
+        "waterAndActive": "Water has broken and contractions are in the active pattern. Call your provider and/or head to the hospital.",
         "waterBroken": "Water has broken. Contact your provider for guidance on when to head in.",
-        "rule511Met": "Contractions match the 5-1-1 pattern. Time to head to the hospital.",
-        "estimatedLeaveSoon": "At current pace, 5-1-1 pattern expected in ~{minutes} min. Consider leaving soon.",
-        "progressing": "Progressing toward 5-1-1. Estimated ~{minutes} min at current pace.",
+        "rule511Met": "Contractions match your timing threshold. Call your provider and/or head to the hospital.",
+        "estimatedLeaveSoon": "At current pace, active labor pattern expected in ~{minutes} min. Plan to be at the hospital soon.",
+        "progressing": "Progressing toward active labor pattern. Estimated ~{minutes} min at current pace.",
         "activeLabor": "Active labor pattern detected. Stay in close contact with your provider.",
-        "earlyLabor": "Early labor \u2014 contractions are present but still spaced out. Rest and conserve energy.",
+        "earlyLabor": "Early labor. Contractions are present but still spaced out. Rest and conserve energy.",
         "irregular": "Contractions are irregular. Continue monitoring for a consistent pattern."
       },
       "factors": {
@@ -544,25 +549,24 @@
         "avgDuration": "Avg {duration}s long",
         "waterBrokeAgo": "Water broke {hours}h ago",
         "waterBroken": "Water has broken",
-        "travelUnknown": "Travel time unknown",
+        "travelUnknownAddOwn": "Travel time unknown. Add your travel time to these estimates",
         "travelTime": "{minutes} min travel time",
-        "travelUnknownConservative": "Travel time unknown \u2014 using 30 min estimate",
         "travelAccounted": "{minutes} min travel time included",
         "assumedProgression": "Assumed {rate} progression rate",
-        "rule511Met": "5-1-1 pattern met",
-        "rule511Pattern": "5-1-1 pattern detected",
-        "timeTo511": "~{minutes} min to 5-1-1 pattern"
+        "rule511Met": "Timing threshold met",
+        "rule511Pattern": "Timing threshold detected",
+        "timeTo511": "~{minutes} min to active labor pattern"
       },
       "recommendations": {
         "keepTracking": "Keep timing contractions to build a pattern.",
-        "goNow": "Head to the hospital immediately.",
-        "shouldBeAtHospital": "You should be at or heading to the hospital.",
-        "headToHospital": "Head to the hospital soon.",
+        "goNow": "Call your provider and/or head to the hospital.",
+        "shouldBeAtHospital": "Call your provider. You should be heading to the hospital.",
+        "headToHospital": "Call your provider and/or head to the hospital soon.",
         "planToArriveWithin": "Plan to arrive within {minutes} min.",
-        "planSoon": "Plan to leave soon.",
-        "planWithinRange": "Plan to leave within {range}.",
-        "estimatedRange": "Estimated {range} until 5-1-1.",
-        "activeLeaveRange": "Consider leaving within {range}.",
+        "planSoon": "Plan to be at the hospital soon.",
+        "planWithinRange": "Plan to be at the hospital within {range}.",
+        "estimatedRange": "Estimated {range} until active labor pattern.",
+        "activeLeaveRange": "Plan to be at the hospital within {range}.",
         "activeBagReady": "Have your bag ready. Active labor is progressing.",
         "earlyStayHome": "Stay home and rest. Early labor can last many hours.",
         "irregularContinue": "Continue monitoring. Pattern is not yet consistent."
@@ -940,7 +944,7 @@
     "hospitalDistanceLabel": "How far is your hospital?",
     "travelTimeMinutes": "{mins} min",
     "travelTimeNotSure": "Not sure",
-    "travelTimeUncertainHint": "No problem \u2014 we'll use a conservative estimate and give you a range.",
+    "travelTimeUncertainHint": "No problem. We'll show you when to plan to be at the hospital. Add your own travel time.",
     "providerPhoneLabel": "Provider or hospital phone (optional)",
     "providerPhonePlaceholder": "(555) 123-4567",
     "providerPhoneHint": "Quick-dial from the app when it's time to call.",
@@ -975,7 +979,7 @@
       "earlyRest": "Early labor can last 6-12+ hours for first-time parents. Try to rest, especially if it is nighttime.",
       "earlyHydrate": "Stay hydrated and eat light snacks. You will need the energy for active labor.",
       "earlyActivity": "Light activity like walking can help labor progress during the day.",
-      "earlyTiming": "You are likely still at home during early labor. Head to the hospital when contractions reach the 5-1-1 pattern.",
+      "earlyTiming": "You are likely still at home during early labor. Head to the hospital when contractions reach your timing threshold.",
       "activeEntered": "Active labor means steady progress. If you are not at the hospital yet, it is time to go.",
       "activeBreathing": "Focus on slow, deep breathing through each contraction. In through the nose, out through the mouth.",
       "activeDuration": "Active labor typically lasts 3-5 hours for first-time parents. You are making real progress.",

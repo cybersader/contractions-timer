@@ -59,10 +59,10 @@ test.describe('Visual smoke tests', () => {
 		await page.screenshot({ path: 'test-results/04-history.png', fullPage: true });
 	});
 
-	test('Hospital tab', async ({ page }) => {
-		await page.getByRole('tab', { name: 'Hospital' }).click();
+	test('Advisor tab', async ({ page }) => {
+		await page.getByRole('tab', { name: 'Advisor' }).click();
 		await page.waitForTimeout(500);
-		await page.screenshot({ path: 'test-results/05-hospital.png', fullPage: true });
+		await page.screenshot({ path: 'test-results/05-advisor.png', fullPage: true });
 	});
 
 	test('Hamburger menu', async ({ page }) => {
@@ -261,10 +261,10 @@ test.describe('Desktop layout (1280px)', () => {
 		await page.screenshot({ path: 'test-results/desktop-03-history.png', fullPage: true });
 	});
 
-	test('Desktop - Hospital', async ({ page }) => {
-		await page.getByRole('tab', { name: 'Hospital' }).click();
+	test('Desktop - Advisor', async ({ page }) => {
+		await page.getByRole('tab', { name: 'Advisor' }).click();
 		await page.waitForTimeout(500);
-		await page.screenshot({ path: 'test-results/desktop-04-hospital.png', fullPage: true });
+		await page.screenshot({ path: 'test-results/desktop-04-advisor.png', fullPage: true });
 	});
 
 	test('Desktop - Tier 3 with data', async ({ page }) => {

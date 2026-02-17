@@ -46,8 +46,8 @@ export function getRangeEstimate(
 	const hasWaterBreak = events.some(e => e.type === 'water-break');
 	const factors: I18nMessage[] = [];
 	const mult = RATE_MULTIPLIERS[progressionRate];
-	// Use conservative 30 min default when travel time is uncertain
-	const effectiveTravel = config.travelTimeUncertain ? 30 : config.travelTimeMinutes;
+	// When travel time is uncertain, don't assume — show arrival range and let user add travel
+	const effectiveTravel = config.travelTimeUncertain ? 0 : config.travelTimeMinutes;
 
 	let confidence: RangeEstimate['confidence'] = 'low';
 	if (completed.length >= 10) confidence = 'high';
@@ -77,7 +77,7 @@ export function getRangeEstimate(
 
 	if (hasWaterBreak) factors.push({ key: 'hospital.advisor.factors.waterBroken' });
 	if (config.travelTimeUncertain) {
-		factors.push({ key: 'hospital.advisor.factors.travelUnknownConservative' });
+		factors.push({ key: 'hospital.advisor.factors.travelUnknownAddOwn' });
 	} else if (config.travelTimeMinutes > 0) {
 		factors.push({ key: 'hospital.advisor.factors.travelAccounted', values: { minutes: config.travelTimeMinutes } });
 	}
@@ -196,7 +196,7 @@ export function getDepartureAdvice(
 ): DepartureAdvice {
 	const completed = contractions.filter(c => c.end !== null);
 	const hasWaterBreak = events.some(e => e.type === 'water-break');
-	const effectiveTravelMinutes = config.travelTimeUncertain ? 30 : config.travelTimeMinutes;
+	const effectiveTravelMinutes = config.travelTimeUncertain ? 0 : config.travelTimeMinutes;
 	const { riskAppetite } = config;
 	const stage = stats.laborStage;
 	const factors: I18nMessage[] = [];
@@ -221,7 +221,7 @@ export function getDepartureAdvice(
 		}
 	}
 	if (config.travelTimeUncertain) {
-		factors.push({ key: 'hospital.advisor.factors.travelUnknown' });
+		factors.push({ key: 'hospital.advisor.factors.travelUnknownAddOwn' });
 	} else {
 		factors.push({ key: 'hospital.advisor.factors.travelTime', values: { minutes: effectiveTravelMinutes } });
 	}

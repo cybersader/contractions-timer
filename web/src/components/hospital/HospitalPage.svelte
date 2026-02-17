@@ -159,26 +159,28 @@
 <div class="page">
 	<h2 class="page-title">{$_('hospital.pageTitle')}</h2>
 
-	<!-- Location toggle -->
-	<div class="location-toggle">
-		<button class="location-pill" class:active={!enRoute} onclick={() => enRoute = false}>
-			<MapPin size={14} aria-hidden="true" />
-			{$_('hospital.locationToggle.atHome')}
-		</button>
-		<button class="location-pill" class:active={enRoute} onclick={() => enRoute = true}>
-			<Car size={14} aria-hidden="true" />
-			{$_('hospital.locationToggle.onTheWay')}
-		</button>
-	</div>
-	<p class="location-hint">
-		{#if enRoute}
-			{$_('hospital.locationHint.enRoute')}
-		{:else if $settings.hospitalAdvisor.travelTimeUncertain}
-			{$_('hospital.locationHint.uncertain')}
-		{:else}
-			{$_('hospital.locationHint.withTravel', { values: { minutes: $settings.hospitalAdvisor.travelTimeMinutes } })}
-		{/if}
-	</p>
+	<!-- Location toggle (hidden when travel time is uncertain) -->
+	{#if !$settings.hospitalAdvisor.travelTimeUncertain}
+		<div class="location-toggle">
+			<button class="location-pill" class:active={!enRoute} onclick={() => enRoute = false}>
+				<MapPin size={14} aria-hidden="true" />
+				{$_('hospital.locationToggle.atHome')}
+			</button>
+			<button class="location-pill" class:active={enRoute} onclick={() => enRoute = true}>
+				<Car size={14} aria-hidden="true" />
+				{$_('hospital.locationToggle.onTheWay')}
+			</button>
+		</div>
+		<p class="location-hint">
+			{#if enRoute}
+				{$_('hospital.locationHint.enRoute')}
+			{:else}
+				{$_('hospital.locationHint.withTravel', { values: { minutes: $settings.hospitalAdvisor.travelTimeMinutes } })}
+			{/if}
+		</p>
+	{:else}
+		<p class="location-hint">{$_('hospital.locationHint.uncertain')}</p>
+	{/if}
 
 	{#each orderedSections as sec, i (sec.id)}
 		<CollapsibleSection

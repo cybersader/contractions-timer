@@ -203,11 +203,24 @@ export function estimateStage(
 		? intervals.reduce((a, b) => a + b, 0) / intervals.length
 		: Infinity;
 
+	// Minimum sustained time (minutes) before allowing escalation to higher stages.
+	// Only applied when there are enough contractions to judge (6+).
+	// Prevents a short burst of close contractions from showing "Transition" prematurely.
+	const MIN_SUSTAINED: Record<string, number> = { transition: 20, active: 30 };
+
+	// Compute sustained span from all completed contractions
+	const firstStart = completed.length > 0 ? new Date(completed[0].start).getTime() : 0;
+	const lastStart = new Date(completed[completed.length - 1].start).getTime();
+	const sustainedMin = (lastStart - firstStart) / 60000;
+
 	const stageOrder: LaborStage[] = ['transition', 'active', 'early', 'pre-labor'];
 	for (const stage of stageOrder) {
 		const config = stageThresholds[stage];
 		if (!config) continue;
 		if (avgInt <= config.maxIntervalMin && avgDur >= config.minDurationSec) {
+			// Check minimum sustained time for higher stages (only with 6+ contractions)
+			const minSustained = MIN_SUSTAINED[stage];
+			if (minSustained && completed.length >= 6 && sustainedMin < minSustained) continue;
 			return stage;
 		}
 	}

@@ -264,20 +264,20 @@
       "keepTracking": "Continua a monitorare...",
       "stageActions": {
         "preLabor": "Continua le attività normali",
-        "early": "Riposa e idratati — resta a casa",
-        "active": "Vai in ospedale presto",
-        "transition": "Dovresti essere in ospedale"
+        "early": "Riposa e idratati. Resta a casa",
+        "active": "Chiama il medico e/o vai in ospedale presto",
+        "transition": "Chiama il medico e/o vai in ospedale"
       },
       "contractionMessages": {
         "preLabor": "Resta rilassata...",
         "early": "Piano e con calma...",
         "active": "Respira profondamente...",
-        "transition": "Una alla volta — ce la fai"
+        "transition": "Una alla volta, ce la fai"
       },
       "defaultContractionMessage": "Respira profondamente...",
-      "waterBrokeActive": "Rottura acque + travaglio attivo — vai in ospedale",
+      "waterBrokeActive": "Rottura acque + travaglio attivo. Vai in ospedale",
       "waterBrokeTransition": "Dovresti essere in ospedale",
-      "waterBrokeDefault": "Rottura acque — chiama il tuo medico",
+      "waterBrokeDefault": "Rottura acque. Chiama il tuo medico",
       "detailTemplate": "~{interval} min di intervallo · ~{duration}s in media"
     },
     "heroCompactTimer": {
@@ -332,7 +332,7 @@
     "stageBar": {
       "beenHere": "Sei qui da {elapsed}",
       "typical": "Tipico: {range}",
-      "location": "Posizione: {location}"
+      "location": "Di solito in: {location}"
     },
     "progression": {
       "needMore": "Servono 4+ contrazioni per analizzare le tendenze",
@@ -388,6 +388,11 @@
       "waterBroke": "Rottura acque",
       "mucusPlug": "Tappo mucoso",
       "bloodyShow": "Perdite ematiche"
+    },
+    "eventEditor": {
+      "time": "Ora",
+      "notes": "Note",
+      "notesPlaceholder": "Note facoltative"
     }
   },
   "hospital": {
@@ -397,20 +402,20 @@
       "onTheWay": "In viaggio"
     },
     "locationHint": {
-      "enRoute": "Tempo di viaggio rimosso — le stime partono da adesso",
-      "uncertain": "Tempo di viaggio sconosciuto — stima conservativa di ~30 min",
+      "enRoute": "Tempo di viaggio rimosso. Le stime partono da adesso",
+      "uncertain": "Tempo di viaggio sconosciuto. Pianifica di arrivare all'ospedale entro l'intervallo mostrato",
       "withTravel": "{minutes} min di viaggio inclusi nelle stime"
     },
     "sections": {
-      "departureAdvice": "Consiglio di partenza",
-      "ruleProgress": "Progresso regola 5-1-1",
+      "departureAdvice": "Tempistica ospedale",
+      "ruleProgress": "Progresso regola temporale",
       "waterBreak": "Rottura acque",
       "tips": "Consigli",
       "laborGuide": "Guida al travaglio"
     },
     "badges": {
-      "goNow": "Vai ora",
-      "timeToGo": "È ora di andare"
+      "goNow": "Chiama e/o vai ora",
+      "timeToGo": "Chiama o parti"
     },
     "range": {
       "confidence": "Affidabilità {level}",
@@ -514,8 +519,8 @@
     "advisor": {
       "headlines": {
         "keepTracking": "Continua a monitorare",
-        "goNow": "Vai in ospedale ora",
-        "timeToGo": "\u00c8 ora di andare",
+        "goNow": "Chiama il tuo medico e/o vai ora",
+        "timeToGo": "Chiama o parti",
         "startPreparing": "Inizia a prepararti",
         "notYet": "Non ancora",
         "callProvider": "Chiama il medico",
@@ -523,14 +528,14 @@
       },
       "details": {
         "notEnoughData": "Registra altre contrazioni per ricevere consigli sulla partenza.",
-        "transition": "Contrazioni della fase di transizione rilevate. Dovresti essere in ospedale o in viaggio.",
-        "waterAndActive": "Le acque si sono rotte e le contrazioni seguono un pattern attivo. Vai in ospedale.",
+        "transition": "Contrazioni della fase di transizione rilevate. Chiama il tuo medico. Dovresti andare in ospedale.",
+        "waterAndActive": "Le acque si sono rotte e le contrazioni sono in fase attiva. Chiama il tuo medico e/o vai in ospedale.",
         "waterBroken": "Le acque si sono rotte. Contatta il tuo medico per indicazioni su quando partire.",
-        "rule511Met": "Le contrazioni corrispondono al pattern 5-1-1. \u00c8 ora di andare in ospedale.",
-        "estimatedLeaveSoon": "Al ritmo attuale, il pattern 5-1-1 \u00e8 previsto in ~{minutes} min. Considera di partire presto.",
-        "progressing": "Progressione verso 5-1-1. Stimati ~{minutes} min al ritmo attuale.",
+        "rule511Met": "Le contrazioni corrispondono alla soglia temporale. Chiama il tuo medico e/o vai in ospedale.",
+        "estimatedLeaveSoon": "Al ritmo attuale, il pattern di travaglio attivo è previsto in ~{minutes} min. Pianifica di essere in ospedale presto.",
+        "progressing": "Progressione verso il pattern di travaglio attivo. Stimati ~{minutes} min al ritmo attuale.",
         "activeLabor": "Pattern di travaglio attivo rilevato. Resta in stretto contatto con il tuo medico.",
-        "earlyLabor": "Travaglio iniziale \u2014 le contrazioni sono presenti ma ancora distanziate. Riposa e conserva energia.",
+        "earlyLabor": "Travaglio iniziale. Le contrazioni sono presenti ma ancora distanziate. Riposa e conserva energia.",
         "irregular": "Le contrazioni sono irregolari. Continua a monitorare per un pattern costante."
       },
       "factors": {
@@ -540,25 +545,24 @@
         "avgDuration": "Media {duration}s di durata",
         "waterBrokeAgo": "Acque rotte {hours}h fa",
         "waterBroken": "Acque rotte",
-        "travelUnknown": "Tempo di viaggio sconosciuto",
         "travelTime": "{minutes} min di viaggio",
-        "travelUnknownConservative": "Tempo di viaggio sconosciuto \u2014 stima di 30 min",
+        "travelUnknownAddOwn": "Tempo di viaggio sconosciuto. Aggiungi il tuo tempo di viaggio a queste stime",
         "travelAccounted": "{minutes} min di viaggio inclusi",
         "assumedProgression": "Tasso di progressione {rate} assunto",
-        "rule511Met": "Pattern 5-1-1 raggiunto",
-        "rule511Pattern": "Pattern 5-1-1 rilevato",
-        "timeTo511": "~{minutes} min al pattern 5-1-1"
+        "rule511Met": "Soglia temporale raggiunta",
+        "rule511Pattern": "Soglia temporale rilevata",
+        "timeTo511": "~{minutes} min al pattern di travaglio attivo"
       },
       "recommendations": {
         "keepTracking": "Continua a cronometrare le contrazioni per individuare un pattern.",
-        "goNow": "Vai in ospedale immediatamente.",
-        "shouldBeAtHospital": "Dovresti essere in ospedale o in viaggio.",
-        "headToHospital": "Vai in ospedale presto.",
+        "goNow": "Chiama il tuo medico e/o vai in ospedale.",
+        "shouldBeAtHospital": "Chiama il tuo medico. Dovresti andare in ospedale.",
+        "headToHospital": "Chiama il tuo medico e/o vai in ospedale presto.",
         "planToArriveWithin": "Pianifica di arrivare entro {minutes} min.",
-        "planSoon": "Pianifica di partire presto.",
-        "planWithinRange": "Pianifica di partire entro {range}.",
-        "estimatedRange": "Stimati {range} al 5-1-1.",
-        "activeLeaveRange": "Considera di partire entro {range}.",
+        "planSoon": "Pianifica di essere in ospedale presto.",
+        "planWithinRange": "Pianifica di essere in ospedale entro {range}.",
+        "estimatedRange": "Stimati {range} al pattern di travaglio attivo.",
+        "activeLeaveRange": "Pianifica di essere in ospedale entro {range}.",
         "activeBagReady": "Tieni la borsa pronta. Il travaglio attivo sta progredendo.",
         "earlyStayHome": "Resta a casa e riposa. Il travaglio iniziale pu\u00f2 durare molte ore.",
         "irregularContinue": "Continua a monitorare. Il pattern non \u00e8 ancora costante."
@@ -575,7 +579,7 @@
     },
     "emptyState": {
       "title": "Consulente travaglio",
-      "hint": "Registra almeno 3 contrazioni per vedere il progresso 5-1-1, consigli di partenza e stime temporali."
+      "hint": "Registra almeno 3 contrazioni per vedere il progresso temporale, consigli di partenza e stime temporali."
     }
   },
   "settings": {
@@ -940,7 +944,7 @@
     "hospitalDistanceLabel": "Quanto dista il tuo ospedale?",
     "travelTimeMinutes": "{mins} min",
     "travelTimeNotSure": "Non sono sicura",
-    "travelTimeUncertainHint": "Nessun problema — useremo una stima conservativa e ti daremo un intervallo.",
+    "travelTimeUncertainHint": "Nessun problema. Ti mostreremo quando pianificare di essere in ospedale. Aggiungi il tuo tempo di viaggio.",
     "providerPhoneLabel": "Telefono del medico o ospedale (opzionale)",
     "providerPhonePlaceholder": "(555) 123-4567",
     "providerPhoneHint": "Chiamata rapida dall'app quando è ora di chiamare.",
@@ -975,7 +979,7 @@
       "earlyRest": "Il travaglio iniziale può durare 6-12+ ore per le mamme alla prima esperienza. Cerca di riposare, soprattutto se è notte.",
       "earlyHydrate": "Resta idratata e mangia spuntini leggeri. Avrai bisogno dell'energia per il travaglio attivo.",
       "earlyActivity": "Attività leggera come camminare può aiutare il travaglio a progredire durante il giorno.",
-      "earlyTiming": "Probabilmente sei ancora a casa durante il travaglio iniziale. Vai in ospedale quando le contrazioni raggiungono il pattern 5-1-1.",
+      "earlyTiming": "Probabilmente sei ancora a casa durante il travaglio iniziale. Vai in ospedale quando le contrazioni raggiungono la soglia temporale.",
       "activeEntered": "Il travaglio attivo significa progresso costante. Se non sei ancora in ospedale, è ora di andare.",
       "activeBreathing": "Concentrati sulla respirazione lenta e profonda durante ogni contrazione. Inspira dal naso, espira dalla bocca.",
       "activeDuration": "Il travaglio attivo dura tipicamente 3-5 ore per le mamme alla prima esperienza. Stai facendo progressi reali.",

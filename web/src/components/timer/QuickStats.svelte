@@ -9,12 +9,12 @@
 
 <div class="quick-stats">
 	<div class="stat-card">
-		<div class="stat-value">{stats.avgDurationSec > 0 ? `${Math.round(stats.avgDurationSec)}s` : $_('timer.quickStats.noDataPlaceholder')}</div>
-		<div class="stat-label">{$_('timer.quickStats.avgDuration')}</div>
-	</div>
-	<div class="stat-card">
 		<div class="stat-value">{stats.avgIntervalMin > 0 ? `${stats.avgIntervalMin.toFixed(1)}m` : $_('timer.quickStats.noDataPlaceholder')}</div>
 		<div class="stat-label">{$_('timer.quickStats.avgInterval')}</div>
+	</div>
+	<div class="stat-card">
+		<div class="stat-value">{stats.avgDurationSec > 0 ? `${Math.round(stats.avgDurationSec)}s` : $_('timer.quickStats.noDataPlaceholder')}</div>
+		<div class="stat-label">{$_('timer.quickStats.avgDuration')}</div>
 	</div>
 	<div class="stat-card">
 		<div class="stat-value">{stats.totalContractions}</div>

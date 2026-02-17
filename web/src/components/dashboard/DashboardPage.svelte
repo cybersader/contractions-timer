@@ -16,7 +16,7 @@
 
 	// Section ordering
 	const STORAGE_KEY = 'ct-dashboard-sections';
-	const DEFAULT_ORDER = ['summary', 'wave-chart', 'stage-progress', 'trend-analysis', 'pattern-assessment'];
+	const DEFAULT_ORDER = ['stage-progress', 'wave-chart', 'summary', 'trend-analysis', 'pattern-assessment'];
 
 	let sectionOrder = $state<string[]>(
 		(() => {
@@ -50,8 +50,8 @@
 		{ id: 'summary', title: $_('dashboard.sections.summary'), defaultExpanded: true, visible: true },
 		{ id: 'wave-chart', title: $_('dashboard.sections.waveChart'), defaultExpanded: true, visible: $settings.showWaveChart },
 		{ id: 'stage-progress', title: $_('dashboard.sections.stageProgress'), defaultExpanded: true, visible: true, hasSettings: true, settingsSection: 'advanced' },
-		{ id: 'trend-analysis', title: $_('dashboard.sections.trendAnalysis'), defaultExpanded: false, visible: $settings.showProgressionInsight, hasSettings: true, settingsSection: 'features' },
-		{ id: 'pattern-assessment', title: $_('dashboard.sections.patternAssessment'), defaultExpanded: false, visible: $settings.showBraxtonHicksAssessment, hasSettings: true, settingsSection: 'features' },
+		{ id: 'trend-analysis', title: $_('dashboard.sections.trendAnalysis'), defaultExpanded: true, visible: $settings.showProgressionInsight, hasSettings: true, settingsSection: 'features' },
+		{ id: 'pattern-assessment', title: $_('dashboard.sections.patternAssessment'), defaultExpanded: true, visible: $settings.showBraxtonHicksAssessment, hasSettings: true, settingsSection: 'features' },
 	]);
 
 	let orderedSections = $derived(

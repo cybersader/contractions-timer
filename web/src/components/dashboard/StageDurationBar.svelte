@@ -4,6 +4,7 @@
 	import { settings } from '../../lib/stores/settings';
 	import { getSessionStats, getTimeInCurrentStage } from '../../lib/labor-logic/calculations';
 	import { formatElapsedApprox, formatDurationRange } from '../../lib/labor-logic/formatters';
+	import { tabRequest } from '../../lib/stores/navigation';
 
 	let stats = $derived(getSessionStats($session.contractions, $settings.threshold, $settings.stageThresholds));
 	let stage = $derived(stats.laborStage);
@@ -38,7 +39,14 @@
 		</div>
 		<div class="stage-tip">
 			{#if formatDurationRange(range)}{$_('dashboard.stageBar.typical', { values: { range: formatDurationRange(range) } })}{/if}
-			{#if config?.location} · {$_('dashboard.stageBar.location', { values: { location: config.location } })}{/if}
+			{#if config?.location}
+				{' · '}
+				{#if stage === 'active' || stage === 'transition'}
+					<button class="stage-link" onclick={() => tabRequest.set(3)}>{$_('dashboard.stageBar.location', { values: { location: config.location } })}</button>
+				{:else}
+					{$_('dashboard.stageBar.location', { values: { location: config.location } })}
+				{/if}
+			{/if}
 		</div>
 	</div>
 {/if}
@@ -95,5 +103,14 @@
 		font-size: var(--text-xs);
 		color: var(--text-faint);
 		margin-top: var(--space-2);
+	}
+
+	.stage-link {
+		all: unset;
+		color: var(--accent);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		cursor: pointer;
+		font: inherit;
 	}
 </style>

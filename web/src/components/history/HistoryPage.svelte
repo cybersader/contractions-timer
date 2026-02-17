@@ -33,8 +33,15 @@
 	let editDuration = $state('');
 	let confirmDelete = $state(false);
 
+	// Event editing state
+	let editingEventId: string | null = $state(null);
+	let editEventTime = $state('');
+	let editEventNotes = $state('');
+	let confirmDeleteEvent = $state(false);
+
 	function startEdit(c: Contraction) {
 		if ($settings.hapticFeedback) haptic(20);
+		editingEventId = null; // close any open event editor
 		editingId = c.id;
 		editIntensity = c.intensity;
 		editLocation = c.location;
@@ -101,6 +108,40 @@
 		});
 		editingId = null;
 	}
+
+	// Event editing
+	function startEditEvent(event: { id: string; timestamp: string; notes?: string }) {
+		if ($settings.hapticFeedback) haptic(20);
+		editingEventId = event.id;
+		editEventTime = toTimeInputValue(new Date(event.timestamp));
+		editEventNotes = event.notes || '';
+		confirmDeleteEvent = false;
+		editingId = null; // close any open contraction editor
+	}
+
+	function saveEditEvent() {
+		if (!editingEventId) return;
+		const id = editingEventId;
+		session.update(s => ({
+			...s,
+			events: s.events.map(e => {
+				if (e.id !== id) return e;
+				const newDate = applyTimeInput(new Date(e.timestamp), editEventTime);
+				return { ...e, timestamp: newDate ? newDate.toISOString() : e.timestamp, notes: editEventNotes || undefined };
+			}),
+		}));
+		editingEventId = null;
+	}
+
+	function cancelEditEvent() {
+		editingEventId = null;
+	}
+
+	function deleteEvent(id: string) {
+		if ($settings.hapticFeedback) haptic(30);
+		session.update(s => ({ ...s, events: s.events.filter(e => e.id !== id) }));
+		editingEventId = null;
+	}
 </script>
 
 <div class="page">
@@ -127,18 +168,45 @@
 					const nt = nextC ? new Date(nextC.start).getTime() : Infinity;
 					return et >= ct && et < nt;
 				}) as event}
-					<div class="event-card event-card--{event.type}">
-						<div class="event-card-icon">
-							{event.type === 'water-break' ? '💧' : event.type === 'mucus-plug' ? '🔴' : event.type === 'bloody-show' ? '🩸' : '📌'}
-						</div>
-						<div class="event-card-body">
-							<div class="event-card-title">
-								{event.type === 'water-break' ? $_('history.events.waterBroke') : event.type === 'mucus-plug' ? $_('history.events.mucusPlug') : event.type === 'bloody-show' ? $_('history.events.bloodyShow') : event.type}
+					{#if editingEventId === event.id}
+						<div class="editor-card">
+							<div class="editor-header">
+								<span>{event.type === 'water-break' ? $_('history.events.waterBroke') : event.type === 'mucus-plug' ? $_('history.events.mucusPlug') : event.type === 'bloody-show' ? $_('history.events.bloodyShow') : event.type}</span>
 							</div>
-							<div class="event-card-time">{formatTime(event.timestamp)}</div>
-							{#if event.notes}<div class="event-card-notes">{event.notes}</div>{/if}
+							<div class="editor-time-row">
+								<div class="editor-field">
+									<span class="editor-label">{$_('history.eventEditor.time')}</span>
+									<input type="time" class="editor-time-input" bind:value={editEventTime} />
+								</div>
+							</div>
+							<div class="editor-section">
+								<span class="editor-label">{$_('history.eventEditor.notes')}</span>
+								<input type="text" class="editor-duration-input" bind:value={editEventNotes} placeholder={$_('history.eventEditor.notesPlaceholder')} />
+							</div>
+							<div class="editor-actions">
+								<button class="editor-btn editor-btn--save" onclick={saveEditEvent}>{$_('common.save')}</button>
+								<button class="editor-btn" onclick={cancelEditEvent}>{$_('common.cancel')}</button>
+								{#if confirmDeleteEvent}
+									<button class="editor-btn editor-btn--delete-confirm" onclick={() => deleteEvent(event.id)}>{$_('history.editor.confirmDelete')}</button>
+								{:else}
+									<button class="editor-btn editor-btn--delete" onclick={() => confirmDeleteEvent = true}>{$_('common.delete')}</button>
+								{/if}
+							</div>
 						</div>
-					</div>
+					{:else}
+						<button class="event-card event-card--{event.type}" onclick={() => startEditEvent(event)}>
+							<div class="event-card-icon">
+								{event.type === 'water-break' ? '💧' : event.type === 'mucus-plug' ? '🔴' : event.type === 'bloody-show' ? '🩸' : '📌'}
+							</div>
+							<div class="event-card-body">
+								<div class="event-card-title">
+									{event.type === 'water-break' ? $_('history.events.waterBroke') : event.type === 'mucus-plug' ? $_('history.events.mucusPlug') : event.type === 'bloody-show' ? $_('history.events.bloodyShow') : event.type}
+								</div>
+								<div class="event-card-time">{formatTime(event.timestamp)}</div>
+								{#if event.notes}<div class="event-card-notes">{event.notes}</div>{/if}
+							</div>
+						</button>
+					{/if}
 				{/each}
 
 				{#if editingId === c.id}
@@ -273,7 +341,15 @@
 		background: var(--bg-card);
 		border-radius: var(--radius-md);
 		border-left: 3px solid var(--border);
+		border-top: none;
+		border-right: none;
+		border-bottom: none;
+		width: 100%;
+		text-align: left;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
 	}
+	button.event-card:active { filter: brightness(0.95); }
 	.event-card--water-break {
 		border-left-color: var(--danger);
 		background: var(--danger-muted);

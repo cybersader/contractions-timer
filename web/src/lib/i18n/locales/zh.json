@@ -264,20 +264,20 @@
       "keepTracking": "继续记录...",
       "stageActions": {
         "preLabor": "继续正常活动",
-        "early": "休息并补充水分 — 待在家中",
-        "active": "尽快前往医院",
-        "transition": "您应该已经在医院了"
+        "early": "休息并补充水分。待在家中",
+        "active": "打电话给医生和/或尽快去医院",
+        "transition": "打电话给医生和/或去医院"
       },
       "contractionMessages": {
         "preLabor": "保持放松...",
         "early": "慢慢来，放轻松...",
         "active": "深呼吸...",
-        "transition": "一次一个 — 您可以的"
+        "transition": "一次一个，您可以的"
       },
       "defaultContractionMessage": "深呼吸...",
-      "waterBrokeActive": "破水了 + 活跃产程 — 前往医院",
+      "waterBrokeActive": "破水了 + 活跃产程。前往医院",
       "waterBrokeTransition": "您应该已经在医院了",
-      "waterBrokeDefault": "破水了 — 联系您的医生",
+      "waterBrokeDefault": "破水了。联系您的医生",
       "detailTemplate": "约 {interval} 分钟间隔 · 约 {duration} 秒平均"
     },
     "heroCompactTimer": {
@@ -332,7 +332,7 @@
     "stageBar": {
       "beenHere": "已在此阶段 {elapsed}",
       "typical": "典型：{range}",
-      "location": "位置：{location}"
+      "location": "通常在：{location}"
     },
     "progression": {
       "needMore": "需要 4 次以上宫缩才能分析趋势",
@@ -388,6 +388,11 @@
       "waterBroke": "破水",
       "mucusPlug": "宫颈粘液栓",
       "bloodyShow": "见红"
+    },
+    "eventEditor": {
+      "time": "时间",
+      "notes": "备注",
+      "notesPlaceholder": "可选备注"
     }
   },
   "hospital": {
@@ -397,20 +402,20 @@
       "onTheWay": "在路上"
     },
     "locationHint": {
-      "enRoute": "已移除路程时间 — 估计从现在开始计算",
-      "uncertain": "路程时间未知 — 使用约 30 分钟的保守估计",
+      "enRoute": "已移除路程时间。估计从现在开始计算",
+      "uncertain": "路程时间未知。请计划在显示的时间范围内到达医院",
       "withTravel": "估计中包含 {minutes} 分钟路程"
     },
     "sections": {
-      "departureAdvice": "出发建议",
-      "ruleProgress": "5-1-1 规则进度",
+      "departureAdvice": "到院时机",
+      "ruleProgress": "时间规则进度",
       "waterBreak": "破水",
       "tips": "提示",
       "laborGuide": "产程指南"
     },
     "badges": {
-      "goNow": "立即出发",
-      "timeToGo": "该出发了"
+      "goNow": "打电话和/或立即出发",
+      "timeToGo": "是时候打电话或出发"
     },
     "range": {
       "confidence": "{level} 置信度",
@@ -513,13 +518,13 @@
     },
     "emptyState": {
       "title": "产程顾问",
-      "hint": "记录至少 3 次宫缩后，即可查看 5-1-1 进度、出发建议和时间估计。"
+      "hint": "记录至少 3 次宫缩后，即可查看时间进度、出发建议和时间估计。"
     },
     "advisor": {
       "headlines": {
         "keepTracking": "继续记录",
-        "goNow": "立即前往医院",
-        "timeToGo": "该出发了",
+        "goNow": "打电话给医生和/或立即出发",
+        "timeToGo": "是时候打电话或出发",
         "startPreparing": "开始准备",
         "notYet": "还不用",
         "callProvider": "联系您的医生",
@@ -527,14 +532,14 @@
       },
       "details": {
         "notEnoughData": "记录更多宫缩以获取出发建议。",
-        "transition": "检测到过渡期宫缩。您应该已在前往医院的路上。",
-        "waterAndActive": "已破水且宫缩处于活跃模式。请前往医院。",
+        "transition": "检测到过渡期宫缩。请打电话给医生。您应该前往医院。",
+        "waterAndActive": "羊水已破且宫缩处于活跃模式。请打电话给医生和/或前往医院。",
         "waterBroken": "已破水。请联系您的医生获取何时出发的指导。",
-        "rule511Met": "宫缩符合 5-1-1 模式。是时候前往医院了。",
-        "estimatedLeaveSoon": "按当前速度，预计约 {minutes} 分钟后达到 5-1-1 模式。考虑尽快出发。",
-        "progressing": "正在向 5-1-1 推进。按当前速度预计约 {minutes} 分钟。",
+        "rule511Met": "宫缩符合时间阈值。请打电话给医生和/或前往医院。",
+        "estimatedLeaveSoon": "按当前速度，预计约 {minutes} 分钟后达到活跃产程模式。请计划尽快到达医院。",
+        "progressing": "正在向活跃产程模式推进。按当前速度预计约 {minutes} 分钟。",
         "activeLabor": "检测到活跃产程模式。请与医生保持密切联系。",
-        "earlyLabor": "早期产程 — 宫缩已出现但间隔仍较长。休息并保存体力。",
+        "earlyLabor": "早期产程。宫缩已出现但间隔仍较长。休息并保存体力。",
         "irregular": "宫缩不规律。继续监测，等待形成稳定模式。"
       },
       "factors": {
@@ -544,25 +549,24 @@
         "avgDuration": "平均持续 {duration} 秒",
         "waterBrokeAgo": "破水已 {hours} 小时",
         "waterBroken": "已破水",
-        "travelUnknown": "路程时间未知",
+        "travelUnknownAddOwn": "路程时间未知。请将您的路程时间加到这些估计中",
         "travelTime": "{minutes} 分钟路程",
-        "travelUnknownConservative": "路程时间未知 — 使用 30 分钟估计",
         "travelAccounted": "已包含 {minutes} 分钟路程",
         "assumedProgression": "假设 {rate} 的进展速率",
-        "rule511Met": "已达到 5-1-1 模式",
-        "rule511Pattern": "检测到 5-1-1 模式",
-        "timeTo511": "约 {minutes} 分钟达到 5-1-1 模式"
+        "rule511Met": "已达到时间阈值",
+        "rule511Pattern": "检测到时间阈值",
+        "timeTo511": "约 {minutes} 分钟达到活跃产程模式"
       },
       "recommendations": {
         "keepTracking": "继续计时宫缩以形成模式。",
-        "goNow": "立即前往医院。",
-        "shouldBeAtHospital": "您应该已在前往医院的路上。",
-        "headToHospital": "尽快前往医院。",
+        "goNow": "请打电话给医生和/或前往医院。",
+        "shouldBeAtHospital": "请打电话给医生。您应该前往医院。",
+        "headToHospital": "请打电话给医生和/或尽快前往医院。",
         "planToArriveWithin": "计划在 {minutes} 分钟内到达。",
-        "planSoon": "计划尽快出发。",
-        "planWithinRange": "计划在 {range} 内出发。",
-        "estimatedRange": "预计 {range} 达到 5-1-1。",
-        "activeLeaveRange": "考虑在 {range} 内出发。",
+        "planSoon": "请计划尽快到达医院。",
+        "planWithinRange": "请计划在 {range} 内到达医院。",
+        "estimatedRange": "预计 {range} 达到活跃产程模式。",
+        "activeLeaveRange": "请计划在 {range} 内到达医院。",
         "activeBagReady": "准备好待产包。活跃产程正在推进。",
         "earlyStayHome": "留在家中休息。早期产程可能持续很多小时。",
         "irregularContinue": "继续监测。模式尚不稳定。"
@@ -940,7 +944,7 @@
     "hospitalDistanceLabel": "您的医院有多远？",
     "travelTimeMinutes": "{mins} 分钟",
     "travelTimeNotSure": "不确定",
-    "travelTimeUncertainHint": "没关系 — 我们会使用保守估计并给出一个范围。",
+    "travelTimeUncertainHint": "没关系。我们会显示何时计划到达医院。请加上您自己的路程时间。",
     "providerPhoneLabel": "医生或医院电话（可选）",
     "providerPhonePlaceholder": "(555) 123-4567",
     "providerPhoneHint": "需要时从应用中快速拨打。",
@@ -975,7 +979,7 @@
       "earlyRest": "初产妈妈的早期产程可能持续 6-12 小时以上。尽量休息，特别是在夜间。",
       "earlyHydrate": "保持水分充足，吃些清淡食物。您在活跃产程中需要体力。",
       "earlyActivity": "白天适量走动等轻度活动有助于产程推进。",
-      "earlyTiming": "早期产程中您可能仍在家中。当宫缩达到 5-1-1 模式时前往医院。",
+      "earlyTiming": "早期产程中您可能仍在家中。当宫缩达到时间阈值时前往医院。",
       "activeEntered": "活跃产程意味着稳定推进。如果还没到医院，现在该去了。",
       "activeBreathing": "每次宫缩时专注于缓慢深呼吸。鼻吸口呼。",
       "activeDuration": "初产妈妈的活跃产程通常持续 3-5 小时。您正在真正地推进。",

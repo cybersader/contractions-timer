@@ -264,20 +264,20 @@
       "keepTracking": "Continuez le suivi...",
       "stageActions": {
         "preLabor": "Poursuivez vos activit\u00e9s normales",
-        "early": "Reposez-vous et hydratez-vous \u2014 restez \u00e0 la maison",
-        "active": "Partez bient\u00f4t pour l\u2019h\u00f4pital",
-        "transition": "Vous devriez \u00eatre \u00e0 l\u2019h\u00f4pital"
+        "early": "Reposez-vous et hydratez-vous. Restez \u00e0 la maison",
+        "active": "Appelez le m\u00e9decin et/ou partez bient\u00f4t",
+        "transition": "Appelez le m\u00e9decin et/ou partez \u00e0 l\u2019h\u00f4pital"
       },
       "contractionMessages": {
         "preLabor": "Restez d\u00e9tendue...",
         "early": "Tout en douceur...",
         "active": "Respirez \u00e0 travers...",
-        "transition": "Une \u00e0 la fois \u2014 vous y \u00eates presque"
+        "transition": "Une \u00e0 la fois, vous y \u00eates presque"
       },
       "defaultContractionMessage": "Respirez \u00e0 travers...",
-      "waterBrokeActive": "Perte des eaux + travail actif \u2014 direction l\u2019h\u00f4pital",
+      "waterBrokeActive": "Perte des eaux + travail actif. Direction l\u2019h\u00f4pital",
       "waterBrokeTransition": "Vous devriez \u00eatre \u00e0 l\u2019h\u00f4pital",
-      "waterBrokeDefault": "Perte des eaux \u2014 appelez votre m\u00e9decin",
+      "waterBrokeDefault": "Perte des eaux. Appelez votre m\u00e9decin",
       "detailTemplate": "~{interval} min d\u2019intervalle \u00B7 ~{duration}s en moyenne"
     },
     "heroCompactTimer": {
@@ -332,7 +332,7 @@
     "stageBar": {
       "beenHere": "Vous \u00eates \u00e0 ce stade depuis {elapsed}",
       "typical": "Typique\u00a0: {range}",
-      "location": "Localisation\u00a0: {location}"
+      "location": "Habituellement \u00e0 : {location}"
     },
     "progression": {
       "needMore": "Il faut 4 contractions ou plus pour analyser les tendances",
@@ -388,6 +388,11 @@
       "waterBroke": "Perte des eaux",
       "mucusPlug": "Bouchon muqueux",
       "bloodyShow": "Marque sanglante"
+    },
+    "eventEditor": {
+      "time": "Heure",
+      "notes": "Notes",
+      "notesPlaceholder": "Notes facultatives"
     }
   },
   "hospital": {
@@ -397,20 +402,20 @@
       "onTheWay": "En route"
     },
     "locationHint": {
-      "enRoute": "Temps de trajet retir\u00e9 \u2014 les estimations indiquent le temps \u00e0 partir de maintenant",
-      "uncertain": "Temps de trajet inconnu \u2014 estimation prudente de ~30 min utilis\u00e9e",
+      "enRoute": "Temps de trajet retir\u00e9. Les estimations indiquent le temps \u00e0 partir de maintenant",
+      "uncertain": "Temps de trajet inconnu. Pr\u00e9voyez d\u2019arriver \u00e0 l\u2019h\u00f4pital dans la fourchette indiqu\u00e9e",
       "withTravel": "{minutes} min de trajet incluses dans les estimations"
     },
     "sections": {
-      "departureAdvice": "Conseil de d\u00e9part",
-      "ruleProgress": "Progression de la r\u00e8gle 5-1-1",
+      "departureAdvice": "Timing h\u00f4pital",
+      "ruleProgress": "Progression de la r\u00e8gle de temps",
       "waterBreak": "Perte des eaux",
       "tips": "Conseils",
       "laborGuide": "Guide du travail"
     },
     "badges": {
-      "goNow": "Partez maintenant",
-      "timeToGo": "Il est temps de partir"
+      "goNow": "Appelez et/ou partez",
+      "timeToGo": "Appelez ou partez"
     },
     "range": {
       "confidence": "Confiance {level}",
@@ -513,13 +518,13 @@
     },
     "emptyState": {
       "title": "Conseiller de travail",
-      "hint": "Enregistrez au moins 3 contractions pour voir la progression 5-1-1, les conseils de d\u00e9part et les estimations de temps."
+      "hint": "Enregistrez au moins 3 contractions pour voir la progression temporelle, les conseils de d\u00e9part et les estimations de temps."
     },
     "advisor": {
       "headlines": {
         "keepTracking": "Continuez le suivi",
-        "goNow": "Partez \u00e0 l\u2019h\u00f4pital maintenant",
-        "timeToGo": "Il est temps de partir",
+        "goNow": "Appelez votre m\u00e9decin et/ou partez maintenant",
+        "timeToGo": "Appelez ou partez",
         "startPreparing": "Commencez \u00e0 vous pr\u00e9parer",
         "notYet": "Pas encore",
         "callProvider": "Appelez votre m\u00e9decin",
@@ -527,14 +532,14 @@
       },
       "details": {
         "notEnoughData": "Enregistrez plus de contractions pour obtenir des conseils de d\u00e9part.",
-        "transition": "Contractions de phase de transition d\u00e9tect\u00e9es. Vous devriez \u00eatre \u00e0 l\u2019h\u00f4pital ou en route.",
-        "waterAndActive": "Perte des eaux et contractions en sch\u00e9ma actif. Partez \u00e0 l\u2019h\u00f4pital.",
+        "transition": "Contractions de phase de transition d\u00e9tect\u00e9es. Appelez votre m\u00e9decin. Vous devriez vous rendre \u00e0 l\u2019h\u00f4pital.",
+        "waterAndActive": "La poche des eaux s\u2019est rompue et les contractions sont actives. Appelez votre m\u00e9decin et/ou partez \u00e0 l\u2019h\u00f4pital.",
         "waterBroken": "Perte des eaux. Contactez votre m\u00e9decin pour savoir quand partir.",
-        "rule511Met": "Les contractions correspondent au sch\u00e9ma 5-1-1. Il est temps de partir \u00e0 l\u2019h\u00f4pital.",
-        "estimatedLeaveSoon": "Au rythme actuel, le sch\u00e9ma 5-1-1 est attendu dans ~{minutes} min. Envisagez de partir bient\u00f4t.",
-        "progressing": "Progression vers le 5-1-1. Estim\u00e9 ~{minutes} min au rythme actuel.",
+        "rule511Met": "Les contractions correspondent au seuil de temps. Appelez votre m\u00e9decin et/ou partez \u00e0 l\u2019h\u00f4pital.",
+        "estimatedLeaveSoon": "Au rythme actuel, le sch\u00e9ma de travail actif est attendu dans ~{minutes} min. Pr\u00e9voyez d'\u00eatre \u00e0 l'h\u00f4pital bient\u00f4t.",
+        "progressing": "Progression vers le sch\u00e9ma de travail actif. Estim\u00e9 ~{minutes} min au rythme actuel.",
         "activeLabor": "Sch\u00e9ma de travail actif d\u00e9tect\u00e9. Restez en contact \u00e9troit avec votre m\u00e9decin.",
-        "earlyLabor": "D\u00e9but de travail \u2014 les contractions sont pr\u00e9sentes mais encore espac\u00e9es. Reposez-vous et conservez votre \u00e9nergie.",
+        "earlyLabor": "D\u00e9but de travail. Les contractions sont pr\u00e9sentes mais encore espac\u00e9es. Reposez-vous et conservez votre \u00e9nergie.",
         "irregular": "Les contractions sont irr\u00e9guli\u00e8res. Continuez \u00e0 surveiller pour d\u00e9tecter un sch\u00e9ma r\u00e9gulier."
       },
       "factors": {
@@ -544,25 +549,24 @@
         "avgDuration": "Moy. {duration}s de dur\u00e9e",
         "waterBrokeAgo": "Perte des eaux il y a {hours}h",
         "waterBroken": "Perte des eaux",
-        "travelUnknown": "Temps de trajet inconnu",
+        "travelUnknownAddOwn": "Temps de trajet inconnu. Ajoutez votre temps de trajet \u00e0 ces estimations",
         "travelTime": "{minutes} min de trajet",
-        "travelUnknownConservative": "Temps de trajet inconnu \u2014 estimation de 30 min utilis\u00e9e",
         "travelAccounted": "{minutes} min de trajet incluses",
         "assumedProgression": "Taux de progression suppos\u00e9\u00a0: {rate}",
-        "rule511Met": "Sch\u00e9ma 5-1-1 atteint",
-        "rule511Pattern": "Sch\u00e9ma 5-1-1 d\u00e9tect\u00e9",
-        "timeTo511": "~{minutes} min avant le sch\u00e9ma 5-1-1"
+        "rule511Met": "Seuil de temps atteint",
+        "rule511Pattern": "Seuil de temps d\u00e9tect\u00e9",
+        "timeTo511": "~{minutes} min avant le sch\u00e9ma de travail actif"
       },
       "recommendations": {
         "keepTracking": "Continuez \u00e0 chronom\u00e9trer les contractions pour \u00e9tablir un sch\u00e9ma.",
-        "goNow": "Partez \u00e0 l\u2019h\u00f4pital imm\u00e9diatement.",
-        "shouldBeAtHospital": "Vous devriez \u00eatre \u00e0 l\u2019h\u00f4pital ou en route.",
-        "headToHospital": "Partez \u00e0 l\u2019h\u00f4pital bient\u00f4t.",
+        "goNow": "Appelez votre m\u00e9decin et/ou partez \u00e0 l\u2019h\u00f4pital.",
+        "shouldBeAtHospital": "Appelez votre m\u00e9decin. Vous devriez vous rendre \u00e0 l\u2019h\u00f4pital.",
+        "headToHospital": "Appelez votre m\u00e9decin et/ou partez bient\u00f4t \u00e0 l\u2019h\u00f4pital.",
         "planToArriveWithin": "Pr\u00e9voyez d\u2019arriver dans {minutes} min.",
-        "planSoon": "Pr\u00e9voyez de partir bient\u00f4t.",
-        "planWithinRange": "Pr\u00e9voyez de partir dans {range}.",
-        "estimatedRange": "Estim\u00e9 {range} avant le 5-1-1.",
-        "activeLeaveRange": "Envisagez de partir dans {range}.",
+        "planSoon": "Pr\u00e9voyez d'\u00eatre \u00e0 l'h\u00f4pital bient\u00f4t.",
+        "planWithinRange": "Pr\u00e9voyez d'\u00eatre \u00e0 l'h\u00f4pital dans {range}.",
+        "estimatedRange": "Estim\u00e9 {range} avant le sch\u00e9ma de travail actif.",
+        "activeLeaveRange": "Pr\u00e9voyez d'\u00eatre \u00e0 l'h\u00f4pital dans {range}.",
         "activeBagReady": "Pr\u00e9parez votre valise. Le travail actif progresse.",
         "earlyStayHome": "Restez \u00e0 la maison et reposez-vous. Le d\u00e9but du travail peut durer de nombreuses heures.",
         "irregularContinue": "Continuez \u00e0 surveiller. Le sch\u00e9ma n\u2019est pas encore r\u00e9gulier."
@@ -940,7 +944,7 @@
     "hospitalDistanceLabel": "\u00c0 quelle distance est votre h\u00f4pital\u00a0?",
     "travelTimeMinutes": "{mins} min",
     "travelTimeNotSure": "Pas s\u00fbr(e)",
-    "travelTimeUncertainHint": "Pas de souci \u2014 nous utiliserons une estimation prudente et vous donnerons une fourchette.",
+    "travelTimeUncertainHint": "Pas de souci. Nous vous indiquerons quand pr\u00e9voir d\u2019\u00eatre \u00e0 l\u2019h\u00f4pital. Ajoutez votre propre temps de trajet.",
     "providerPhoneLabel": "T\u00e9l\u00e9phone du m\u00e9decin ou de l\u2019h\u00f4pital (facultatif)",
     "providerPhonePlaceholder": "01 23 45 67 89",
     "providerPhoneHint": "Appel rapide depuis l\u2019application quand il est temps d\u2019appeler.",
@@ -975,7 +979,7 @@
       "earlyRest": "Le d\u00e9but du travail peut durer de 6 \u00e0 12 heures ou plus pour un premier accouchement. Essayez de vous reposer, surtout s\u2019il fait nuit.",
       "earlyHydrate": "Restez hydrat\u00e9e et prenez des collations l\u00e9g\u00e8res. Vous aurez besoin d\u2019\u00e9nergie pour le travail actif.",
       "earlyActivity": "Une activit\u00e9 l\u00e9g\u00e8re comme la marche peut aider le travail \u00e0 progresser pendant la journ\u00e9e.",
-      "earlyTiming": "Vous \u00eates probablement encore \u00e0 la maison pendant le d\u00e9but du travail. Partez \u00e0 l\u2019h\u00f4pital quand les contractions atteignent le sch\u00e9ma 5-1-1.",
+      "earlyTiming": "Vous \u00eates probablement encore \u00e0 la maison pendant le d\u00e9but du travail. Partez \u00e0 l\u2019h\u00f4pital quand les contractions atteignent le seuil de temps.",
       "activeEntered": "Le travail actif signifie une progression r\u00e9guli\u00e8re. Si vous n\u2019\u00eates pas encore \u00e0 l\u2019h\u00f4pital, il est temps d\u2019y aller.",
       "activeBreathing": "Concentrez-vous sur une respiration lente et profonde pendant chaque contraction. Inspirez par le nez, expirez par la bouche.",
       "activeDuration": "Le travail actif dure g\u00e9n\u00e9ralement 3 \u00e0 5 heures pour un premier accouchement. Vous progressez vraiment.",

@@ -264,20 +264,20 @@
       "keepTracking": "Continue acompanhando...",
       "stageActions": {
         "preLabor": "Continue suas atividades normais",
-        "early": "Descanse e hidrate-se — fique em casa",
-        "active": "Vá ao hospital em breve",
-        "transition": "Você deveria estar no hospital"
+        "early": "Descanse e hidrate-se. Fique em casa",
+        "active": "Ligue para o m\u00e9dico e/ou v\u00e1 ao hospital em breve",
+        "transition": "Ligue para o m\u00e9dico e/ou v\u00e1 ao hospital"
       },
       "contractionMessages": {
         "preLabor": "Fique relaxada...",
         "early": "Devagar e tranquila...",
         "active": "Respire fundo...",
-        "transition": "Uma de cada vez — você consegue"
+        "transition": "Uma de cada vez, você consegue"
       },
       "defaultContractionMessage": "Respire fundo...",
-      "waterBrokeActive": "Bolsa rompeu + trabalho de parto ativo — vá ao hospital",
+      "waterBrokeActive": "Bolsa rompeu + trabalho de parto ativo. Vá ao hospital",
       "waterBrokeTransition": "Você deveria estar no hospital",
-      "waterBrokeDefault": "Bolsa rompeu — ligue para seu médico",
+      "waterBrokeDefault": "Bolsa rompeu. Ligue para seu médico",
       "detailTemplate": "~{interval} min de intervalo · ~{duration}s de média"
     },
     "heroCompactTimer": {
@@ -332,7 +332,7 @@
     "stageBar": {
       "beenHere": "Você está aqui há {elapsed}",
       "typical": "Típico: {range}",
-      "location": "Localização: {location}"
+      "location": "Normalmente em: {location}"
     },
     "progression": {
       "needMore": "Necessário 4+ contrações para analisar tendências",
@@ -388,6 +388,11 @@
       "waterBroke": "Bolsa rompeu",
       "mucusPlug": "Tampão mucoso",
       "bloodyShow": "Sinal de sangue"
+    },
+    "eventEditor": {
+      "time": "Hora",
+      "notes": "Notas",
+      "notesPlaceholder": "Notas opcionais"
     }
   },
   "hospital": {
@@ -397,20 +402,20 @@
       "onTheWay": "A caminho"
     },
     "locationHint": {
-      "enRoute": "Tempo de viagem removido — estimativas mostram tempo a partir de agora",
-      "uncertain": "Tempo de viagem desconhecido — usando ~30 min como estimativa conservadora",
+      "enRoute": "Tempo de viagem removido. Estimativas mostram tempo a partir de agora",
+      "uncertain": "Tempo de viagem desconhecido. Planeje chegar ao hospital dentro do intervalo mostrado",
       "withTravel": "{minutes} min de viagem incluídos nas estimativas"
     },
     "sections": {
-      "departureAdvice": "Conselho de partida",
-      "ruleProgress": "Progresso da regra 5-1-1",
+      "departureAdvice": "Timing do hospital",
+      "ruleProgress": "Progresso da regra de tempo",
       "waterBreak": "Ruptura de bolsa",
       "tips": "Dicas",
       "laborGuide": "Guia de trabalho de parto"
     },
     "badges": {
-      "goNow": "Vá agora",
-      "timeToGo": "Hora de ir"
+      "goNow": "Ligue e/ou v\u00e1 agora",
+      "timeToGo": "Hora de ligar ou ir"
     },
     "range": {
       "confidence": "Confiança {level}",
@@ -513,13 +518,13 @@
     },
     "emptyState": {
       "title": "Consultor de trabalho de parto",
-      "hint": "Registre pelo menos 3 contrações para ver o progresso 5-1-1, conselho de partida e estimativas de tempo."
+      "hint": "Registre pelo menos 3 contrações para ver o progresso da regra de tempo, conselho de partida e estimativas de tempo."
     },
     "advisor": {
       "headlines": {
         "keepTracking": "Continue acompanhando",
-        "goNow": "Vá ao hospital agora",
-        "timeToGo": "Hora de ir",
+        "goNow": "Ligue para seu m\u00e9dico e/ou v\u00e1 agora",
+        "timeToGo": "Hora de ligar ou ir",
         "startPreparing": "Comece a se preparar",
         "notYet": "Ainda não",
         "callProvider": "Ligue para seu médico",
@@ -527,14 +532,14 @@
       },
       "details": {
         "notEnoughData": "Registre mais contrações para obter conselho de partida.",
-        "transition": "Contrações de fase de transição detectadas. Você deveria estar a caminho ou já no hospital.",
-        "waterAndActive": "A bolsa rompeu e as contrações estão no padrão ativo. Vá ao hospital.",
+        "transition": "Contra\u00e7\u00f5es de fase de transi\u00e7\u00e3o detectadas. Ligue para seu m\u00e9dico. Voc\u00ea deveria estar indo ao hospital.",
+        "waterAndActive": "A bolsa rompeu e as contra\u00e7\u00f5es est\u00e3o em padr\u00e3o ativo. Ligue para seu m\u00e9dico e/ou v\u00e1 ao hospital.",
         "waterBroken": "A bolsa rompeu. Entre em contato com seu médico para orientação sobre quando ir.",
-        "rule511Met": "As contrações correspondem ao padrão 5-1-1. Hora de ir ao hospital.",
-        "estimatedLeaveSoon": "No ritmo atual, padrão 5-1-1 esperado em ~{minutes} min. Considere sair em breve.",
-        "progressing": "Progredindo em direção ao 5-1-1. Estimativa de ~{minutes} min no ritmo atual.",
+        "rule511Met": "Limiar de tempo atingido. Ligue para seu m\u00e9dico e/ou v\u00e1 ao hospital.",
+        "estimatedLeaveSoon": "No ritmo atual, padrão de trabalho de parto ativo esperado em ~{minutes} min. Planeje estar no hospital em breve.",
+        "progressing": "Progredindo em direção ao padrão de trabalho de parto ativo. Estimativa de ~{minutes} min no ritmo atual.",
         "activeLabor": "Padrão de trabalho de parto ativo detectado. Mantenha contato próximo com seu médico.",
-        "earlyLabor": "Trabalho de parto inicial — contrações presentes mas ainda espaçadas. Descanse e conserve energia.",
+        "earlyLabor": "Trabalho de parto inicial. Contrações presentes mas ainda espaçadas. Descanse e conserve energia.",
         "irregular": "Contrações irregulares. Continue monitorando para um padrão consistente."
       },
       "factors": {
@@ -544,25 +549,24 @@
         "avgDuration": "Média de {duration}s de duração",
         "waterBrokeAgo": "Bolsa rompeu há {hours}h",
         "waterBroken": "A bolsa rompeu",
-        "travelUnknown": "Tempo de viagem desconhecido",
+        "travelUnknownAddOwn": "Tempo de viagem desconhecido. Adicione seu tempo de viagem a estas estimativas",
         "travelTime": "{minutes} min de viagem",
-        "travelUnknownConservative": "Tempo de viagem desconhecido — usando estimativa de 30 min",
         "travelAccounted": "{minutes} min de viagem incluídos",
         "assumedProgression": "Taxa de progressão assumida: {rate}",
-        "rule511Met": "Padrão 5-1-1 atingido",
-        "rule511Pattern": "Padrão 5-1-1 detectado",
-        "timeTo511": "~{minutes} min para o padrão 5-1-1"
+        "rule511Met": "Limiar de tempo atingido",
+        "rule511Pattern": "Limiar de tempo detectado",
+        "timeTo511": "~{minutes} min para o padrão de trabalho de parto ativo"
       },
       "recommendations": {
         "keepTracking": "Continue cronometrando as contrações para formar um padrão.",
-        "goNow": "Vá ao hospital imediatamente.",
-        "shouldBeAtHospital": "Você deveria estar a caminho ou já no hospital.",
-        "headToHospital": "Vá ao hospital em breve.",
+        "goNow": "Ligue para seu m\u00e9dico e/ou v\u00e1 ao hospital.",
+        "shouldBeAtHospital": "Ligue para seu m\u00e9dico. Voc\u00ea deveria estar indo ao hospital.",
+        "headToHospital": "Ligue para seu m\u00e9dico e/ou v\u00e1 ao hospital em breve.",
         "planToArriveWithin": "Planeje chegar em {minutes} min.",
-        "planSoon": "Planeje sair em breve.",
-        "planWithinRange": "Planeje sair em {range}.",
-        "estimatedRange": "Estimativa de {range} até o 5-1-1.",
-        "activeLeaveRange": "Considere sair em {range}.",
+        "planSoon": "Planeje estar no hospital em breve.",
+        "planWithinRange": "Planeje estar no hospital em {range}.",
+        "estimatedRange": "Estimativa de {range} até o padrão de trabalho de parto ativo.",
+        "activeLeaveRange": "Planeje estar no hospital em {range}.",
         "activeBagReady": "Tenha sua bolsa pronta. O trabalho de parto ativo está progredindo.",
         "earlyStayHome": "Fique em casa e descanse. O trabalho de parto inicial pode durar muitas horas.",
         "irregularContinue": "Continue monitorando. O padrão ainda não é consistente."
@@ -940,7 +944,7 @@
     "hospitalDistanceLabel": "Qual a distância do seu hospital?",
     "travelTimeMinutes": "{mins} min",
     "travelTimeNotSure": "Não tenho certeza",
-    "travelTimeUncertainHint": "Sem problema — usaremos uma estimativa conservadora e daremos uma faixa.",
+    "travelTimeUncertainHint": "Sem problema. Mostraremos quando planejar estar no hospital. Adicione seu pr\u00f3prio tempo de viagem.",
     "providerPhoneLabel": "Telefone do médico ou hospital (opcional)",
     "providerPhonePlaceholder": "(55) 123-4567",
     "providerPhoneHint": "Discagem rápida no app quando for hora de ligar.",
@@ -975,7 +979,7 @@
       "earlyRest": "O trabalho de parto inicial pode durar 6-12+ horas para mães de primeira viagem. Tente descansar, especialmente se for à noite.",
       "earlyHydrate": "Mantenha-se hidratada e coma lanches leves. Você vai precisar de energia para o trabalho de parto ativo.",
       "earlyActivity": "Atividade leve como caminhar pode ajudar o trabalho de parto a progredir durante o dia.",
-      "earlyTiming": "Você provavelmente ainda está em casa durante o trabalho de parto inicial. Vá ao hospital quando as contrações atingirem o padrão 5-1-1.",
+      "earlyTiming": "Você provavelmente ainda está em casa durante o trabalho de parto inicial. Vá ao hospital quando as contrações atingirem o limiar de tempo.",
       "activeEntered": "Trabalho de parto ativo significa progresso constante. Se você ainda não está no hospital, é hora de ir.",
       "activeBreathing": "Concentre-se em respirar devagar e profundamente durante cada contração. Inspire pelo nariz, expire pela boca.",
       "activeDuration": "O trabalho de parto ativo geralmente dura 3-5 horas para mães de primeira viagem. Você está progredindo de verdade.",

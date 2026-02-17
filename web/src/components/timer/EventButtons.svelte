@@ -251,7 +251,7 @@
 
 <style>
 	.event-buttons {
-		margin-top: var(--space-4);
+		margin-top: var(--space-3);
 	}
 
 	.water-btn {

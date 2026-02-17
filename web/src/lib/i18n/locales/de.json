@@ -264,20 +264,20 @@
       "keepTracking": "Weiter erfassen\u2026",
       "stageActions": {
         "preLabor": "Normale Aktivit\u00e4ten fortsetzen",
-        "early": "Ausruhen und trinken \u2014 zu Hause bleiben",
-        "active": "Bald ins Krankenhaus fahren",
-        "transition": "Sie sollten im Krankenhaus sein"
+        "early": "Ausruhen und trinken. Zu Hause bleiben",
+        "active": "Arzt anrufen und/oder bald ins Krankenhaus",
+        "transition": "Arzt anrufen und/oder ins Krankenhaus fahren"
       },
       "contractionMessages": {
         "preLabor": "Bleiben Sie entspannt\u2026",
         "early": "Sch\u00f6n ruhig\u2026",
         "active": "Durchatmen\u2026",
-        "transition": "Eins nach dem anderen \u2014 Sie schaffen das"
+        "transition": "Eins nach dem anderen, Sie schaffen das"
       },
       "defaultContractionMessage": "Durchatmen\u2026",
-      "waterBrokeActive": "Blasensprung + aktive Wehen \u2014 ins Krankenhaus fahren",
+      "waterBrokeActive": "Blasensprung + aktive Wehen. Ins Krankenhaus fahren",
       "waterBrokeTransition": "Sie sollten im Krankenhaus sein",
-      "waterBrokeDefault": "Blasensprung \u2014 Arzt/\u00c4rztin anrufen",
+      "waterBrokeDefault": "Blasensprung. Arzt/\u00c4rztin anrufen",
       "detailTemplate": "~{interval} Min. Abstand \u00B7 ~{duration}s Durchschnitt"
     },
     "heroCompactTimer": {
@@ -332,7 +332,7 @@
     "stageBar": {
       "beenHere": "Sie sind seit {elapsed} in dieser Phase",
       "typical": "Typisch: {range}",
-      "location": "Position: {location}"
+      "location": "Normalerweise im: {location}"
     },
     "progression": {
       "needMore": "Mindestens 4 Wehen f\u00fcr Trendanalyse n\u00f6tig",
@@ -388,6 +388,11 @@
       "waterBroke": "Blasensprung",
       "mucusPlug": "Schleimpfropf",
       "bloodyShow": "Zeichnungsblutung"
+    },
+    "eventEditor": {
+      "time": "Uhrzeit",
+      "notes": "Notizen",
+      "notesPlaceholder": "Optionale Notizen"
     }
   },
   "hospital": {
@@ -397,20 +402,20 @@
       "onTheWay": "Unterwegs"
     },
     "locationHint": {
-      "enRoute": "Fahrtzeit entfernt \u2014 Sch\u00e4tzungen ab jetzt",
-      "uncertain": "Fahrtzeit unbekannt \u2014 konservative Sch\u00e4tzung von ~30 Min.",
+      "enRoute": "Fahrtzeit entfernt. Sch\u00e4tzungen ab jetzt",
+      "uncertain": "Fahrtzeit unbekannt. Planen Sie, innerhalb des angezeigten Zeitraums im Krankenhaus anzukommen",
       "withTravel": "{minutes} Min. Fahrtzeit in Sch\u00e4tzungen enthalten"
     },
     "sections": {
-      "departureAdvice": "Abfahrtsempfehlung",
-      "ruleProgress": "5-1-1-Regel-Fortschritt",
+      "departureAdvice": "Krankenhaus-Timing",
+      "ruleProgress": "Zeitregel-Fortschritt",
       "waterBreak": "Blasensprung",
       "tips": "Tipps",
       "laborGuide": "Geburts-Leitfaden"
     },
     "badges": {
-      "goNow": "Jetzt los",
-      "timeToGo": "Zeit zu fahren"
+      "goNow": "Anrufen und/oder losfahren",
+      "timeToGo": "Anrufen oder losfahren"
     },
     "range": {
       "confidence": "{level} Konfidenz",
@@ -514,8 +519,8 @@
     "advisor": {
       "headlines": {
         "keepTracking": "Weiter erfassen",
-        "goNow": "Jetzt ins Krankenhaus",
-        "timeToGo": "Zeit zu fahren",
+        "goNow": "Rufen Sie Ihren Arzt an und/oder fahren Sie jetzt los",
+        "timeToGo": "Anrufen oder losfahren",
         "startPreparing": "Vorbereitung starten",
         "notYet": "Noch nicht",
         "callProvider": "Arzt anrufen",
@@ -523,14 +528,14 @@
       },
       "details": {
         "notEnoughData": "Erfassen Sie weitere Wehen, um Abfahrtsempfehlungen zu erhalten.",
-        "transition": "\u00dcbergangsphase-Wehen erkannt. Sie sollten im Krankenhaus sein oder sich auf den Weg machen.",
-        "waterAndActive": "Blasensprung und aktives Wehenmuster. Fahren Sie ins Krankenhaus.",
+        "transition": "\u00dcbergangsphase-Wehen erkannt. Rufen Sie Ihren Arzt an. Sie sollten ins Krankenhaus fahren.",
+        "waterAndActive": "Fruchtblase geplatzt und aktives Wehenmuster. Rufen Sie Ihren Arzt an und/oder fahren Sie ins Krankenhaus.",
         "waterBroken": "Blasensprung. Kontaktieren Sie Ihren Arzt f\u00fcr Anweisungen.",
-        "rule511Met": "Wehen entsprechen dem 5-1-1-Muster. Zeit, ins Krankenhaus zu fahren.",
-        "estimatedLeaveSoon": "Bei aktuellem Tempo wird das 5-1-1-Muster in ~{minutes} Min. erwartet. Erw\u00e4gen Sie, bald loszufahren.",
-        "progressing": "Fortschritt Richtung 5-1-1. Gesch\u00e4tzt ~{minutes} Min. bei aktuellem Tempo.",
+        "rule511Met": "Die Wehen entsprechen dem Zeitschwellenwert. Rufen Sie Ihren Arzt an und/oder fahren Sie ins Krankenhaus.",
+        "estimatedLeaveSoon": "Bei aktuellem Tempo wird das aktive Wehenmuster in ~{minutes} Min. erwartet. Planen Sie, bald im Krankenhaus zu sein.",
+        "progressing": "Fortschritt Richtung aktives Wehenmuster. Gesch\u00e4tzt ~{minutes} Min. bei aktuellem Tempo.",
         "activeLabor": "Aktives Wehenmuster erkannt. Bleiben Sie in engem Kontakt mit Ihrem Arzt.",
-        "earlyLabor": "Fr\u00fche Wehen \u2014 Wehen sind vorhanden, aber noch weit auseinander. Ruhen Sie sich aus und sparen Sie Energie.",
+        "earlyLabor": "Fr\u00fche Wehen. Wehen sind vorhanden, aber noch weit auseinander. Ruhen Sie sich aus und sparen Sie Energie.",
         "irregular": "Wehen sind unregelm\u00e4\u00dfig. Beobachten Sie weiter auf ein gleichm\u00e4\u00dfiges Muster."
       },
       "factors": {
@@ -540,25 +545,24 @@
         "avgDuration": "\u00d8 {duration}s Dauer",
         "waterBrokeAgo": "Blasensprung vor {hours}h",
         "waterBroken": "Blasensprung",
-        "travelUnknown": "Fahrtzeit unbekannt",
+        "travelUnknownAddOwn": "Fahrtzeit unbekannt. Addieren Sie Ihre Fahrtzeit zu diesen Sch\u00e4tzungen",
         "travelTime": "{minutes} Min. Fahrtzeit",
-        "travelUnknownConservative": "Fahrtzeit unbekannt \u2014 Sch\u00e4tzung von 30 Min.",
         "travelAccounted": "{minutes} Min. Fahrtzeit ber\u00fccksichtigt",
         "assumedProgression": "Angenommene {rate} Progressionsrate",
-        "rule511Met": "5-1-1-Muster erf\u00fcllt",
-        "rule511Pattern": "5-1-1-Muster erkannt",
-        "timeTo511": "~{minutes} Min. bis 5-1-1-Muster"
+        "rule511Met": "Zeitschwellenwert erf\u00fcllt",
+        "rule511Pattern": "Zeitschwellenwert erkannt",
+        "timeTo511": "~{minutes} Min. bis aktives Wehenmuster"
       },
       "recommendations": {
         "keepTracking": "Erfassen Sie weiter Wehen, um ein Muster zu erkennen.",
-        "goNow": "Fahren Sie sofort ins Krankenhaus.",
-        "shouldBeAtHospital": "Sie sollten im Krankenhaus sein oder sich auf den Weg machen.",
-        "headToHospital": "Fahren Sie bald ins Krankenhaus.",
+        "goNow": "Rufen Sie Ihren Arzt an und/oder fahren Sie ins Krankenhaus.",
+        "shouldBeAtHospital": "Rufen Sie Ihren Arzt an. Sie sollten ins Krankenhaus fahren.",
+        "headToHospital": "Rufen Sie Ihren Arzt an und/oder fahren Sie bald ins Krankenhaus.",
         "planToArriveWithin": "Planen Sie, innerhalb von {minutes} Min. anzukommen.",
-        "planSoon": "Planen Sie, bald loszufahren.",
-        "planWithinRange": "Planen Sie, innerhalb von {range} loszufahren.",
-        "estimatedRange": "Gesch\u00e4tzt {range} bis 5-1-1.",
-        "activeLeaveRange": "Erw\u00e4gen Sie, innerhalb von {range} loszufahren.",
+        "planSoon": "Planen Sie, bald im Krankenhaus zu sein.",
+        "planWithinRange": "Planen Sie, innerhalb von {range} im Krankenhaus zu sein.",
+        "estimatedRange": "Gesch\u00e4tzt {range} bis aktives Wehenmuster.",
+        "activeLeaveRange": "Planen Sie, innerhalb von {range} im Krankenhaus zu sein.",
         "activeBagReady": "Halten Sie Ihre Tasche bereit. Aktive Wehen schreiten voran.",
         "earlyStayHome": "Bleiben Sie zu Hause und ruhen Sie sich aus. Fr\u00fche Wehen k\u00f6nnen viele Stunden dauern.",
         "irregularContinue": "Beobachten Sie weiter. Das Muster ist noch nicht gleichm\u00e4\u00dfig."
@@ -575,7 +579,7 @@
     },
     "emptyState": {
       "title": "Geburtsberater",
-      "hint": "Erfassen Sie mindestens 3 Wehen, um den 5-1-1-Fortschritt, Abfahrtsempfehlungen und Zeitsch\u00e4tzungen zu sehen."
+      "hint": "Erfassen Sie mindestens 3 Wehen, um den Zeitfortschritt, Abfahrtsempfehlungen und Zeitsch\u00e4tzungen zu sehen."
     }
   },
   "settings": {
@@ -940,7 +944,7 @@
     "hospitalDistanceLabel": "Wie weit ist Ihr Krankenhaus?",
     "travelTimeMinutes": "{mins} Min.",
     "travelTimeNotSure": "Nicht sicher",
-    "travelTimeUncertainHint": "Kein Problem \u2014 wir verwenden eine konservative Sch\u00e4tzung und zeigen einen Bereich an.",
+    "travelTimeUncertainHint": "Kein Problem. Wir zeigen Ihnen, wann Sie planen sollten, im Krankenhaus zu sein. Addieren Sie Ihre eigene Fahrtzeit.",
     "providerPhoneLabel": "Arzt- oder Krankenhaus-Telefon (optional)",
     "providerPhonePlaceholder": "(0171) 123-4567",
     "providerPhoneHint": "Schnellwahl aus der App, wenn es Zeit ist anzurufen.",
@@ -975,7 +979,7 @@
       "earlyRest": "Fr\u00fche Wehen k\u00f6nnen bei Erstgeb\u00e4renden 6\u201312+ Stunden dauern. Versuchen Sie sich auszuruhen, besonders nachts.",
       "earlyHydrate": "Bleiben Sie hydratisiert und essen Sie leichte Snacks. Sie brauchen die Energie f\u00fcr die aktive Phase.",
       "earlyActivity": "Leichte Aktivit\u00e4t wie Spazierengehen kann tags\u00fcber den Geburtsfortschritt f\u00f6rdern.",
-      "earlyTiming": "In der fr\u00fchen Phase sind Sie wahrscheinlich noch zu Hause. Fahren Sie ins Krankenhaus, wenn die Wehen das 5-1-1-Muster erreichen.",
+      "earlyTiming": "In der fr\u00fchen Phase sind Sie wahrscheinlich noch zu Hause. Fahren Sie ins Krankenhaus, wenn die Wehen den Zeitschwellenwert erreichen.",
       "activeEntered": "Aktive Wehen bedeuten stetigen Fortschritt. Falls Sie noch nicht im Krankenhaus sind, wird es Zeit zu fahren.",
       "activeBreathing": "Konzentrieren Sie sich auf langsames, tiefes Atmen bei jeder Wehe. Durch die Nase ein, durch den Mund aus.",
       "activeDuration": "Aktive Wehen dauern bei Erstgeb\u00e4renden typischerweise 3\u20135 Stunden. Sie machen echte Fortschritte.",

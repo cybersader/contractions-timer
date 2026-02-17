@@ -3,7 +3,12 @@
 	import { session } from '../../lib/stores/session';
 	import { timerPhase, tick } from '../../lib/stores/timer';
 	import { getSessionStats, getElapsedSeconds, getRestSeconds } from '../../lib/labor-logic/calculations';
-	import { getLaborStageLabel } from '../../lib/labor-logic/formatters';
+	const STAGE_I18N: Record<string, string> = {
+		'pre-labor': 'timer.laborStages.preLabor',
+		'early': 'timer.laborStages.early',
+		'active': 'timer.laborStages.active',
+		'transition': 'timer.laborStages.transition',
+	};
 	import { getDepartureAdvice } from '../../lib/labor-logic/hospitalAdvisor';
 	import { getRelevantTipCount } from '../../lib/labor-logic/clinicalData';
 	import { settings } from '../../lib/stores/settings';
@@ -111,7 +116,7 @@
 
 	// Timer page section ordering
 	const STORAGE_KEY = 'ct-timer-sections';
-	const DEFAULT_ORDER = ['quick-stats', 'recent', 'guidance'];
+	const DEFAULT_ORDER = ['quick-stats', 'guidance', 'recent'];
 
 	let sectionOrder = $state<string[]>(
 		(() => {
@@ -143,7 +148,7 @@
 	let sections = $derived<SectionDef[]>([
 		{ id: 'quick-stats', title: $_('timer.timerPage.sections.quickStats'), defaultExpanded: true, visible: completed.length > 0, minTier: 2 },
 		{ id: 'recent', title: $_('timer.timerPage.sections.recent'), defaultExpanded: true, visible: completed.length > 0, minTier: 2 },
-		{ id: 'guidance', title: $_('timer.timerPage.sections.guidance'), defaultExpanded: false, visible: $settings.showContextualTips && tipCount > 0, minTier: 3 },
+		{ id: 'guidance', title: $_('timer.timerPage.sections.guidance'), defaultExpanded: true, visible: $settings.showContextualTips && tipCount > 0, minTier: 3 },
 	]);
 
 	let orderedSections = $derived(
@@ -204,7 +209,7 @@
 				class:active={stats.laborStage === 'active'}
 				class:transition={stats.laborStage === 'transition'}
 			>
-				{getLaborStageLabel(stats.laborStage)}
+				{$_(STAGE_I18N[stats.laborStage] ?? 'timer.laborStages.early')}
 			</div>
 		{/if}
 	{/if}
@@ -233,6 +238,11 @@
 		<EventButtons hideWaterBreak={true} />
 	{/if}
 
+	<!-- Log past contraction (tier 2+, hidden during contracting) -->
+	{#if tier >= 2 && phase !== 'contracting'}
+		<UntimedEntry />
+	{/if}
+
 	<!-- Collapsible sections (tier 2+) -->
 	{#if orderedSections.length > 0}
 		<div class="timer-sections" class:section-appear={tier >= 2}>
@@ -257,11 +267,6 @@
 				</CollapsibleSection>
 			{/each}
 		</div>
-	{/if}
-
-	<!-- Log past contraction (tier 2+, hidden during contracting) -->
-	{#if tier >= 2 && phase !== 'contracting'}
-		<UntimedEntry />
 	{/if}
 
 	<!-- Session controls (tier 1+) -->

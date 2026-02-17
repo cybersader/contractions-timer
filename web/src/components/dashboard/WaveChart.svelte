@@ -276,7 +276,7 @@
 			if (event.type !== 'water-break') continue;
 			const eventMs = new Date(event.timestamp).getTime();
 			const ex = getEventXPosition(eventMs, segments, totalDurationMs, contentWidth);
-			if (ex !== null) drawWaterBreakMarker(ctx, ex, baseline, wc);
+			if (ex !== null) drawWaterBreakMarker(ctx, ex, baseline, eventMs, wc);
 		}
 	}
 
@@ -302,15 +302,18 @@
 		ctx.fillStyle = wc.gridText;
 		ctx.textAlign = 'center';
 
+		let lastLabelX = -Infinity;
 		for (let t = firstGridTime; t <= endTime; t += gridMs) {
 			const x = chartLeft + ((t - firstStartMs) / timeRangeMs) * chartWidth;
 			if (x < chartLeft + 15 || x > chartLeft + chartWidth - 15) continue;
 			if (breakXPos.some(bx => Math.abs(x - bx) < BREAK_WIDTH)) continue;
+			if (x - lastLabelX < 50) continue;
 			ctx.beginPath();
 			ctx.moveTo(x, PADDING);
 			ctx.lineTo(x, baseline);
 			ctx.stroke();
 			ctx.fillText(formatTimeShort(new Date(t)), x, height - 4);
+			lastLabelX = x;
 		}
 	}
 
@@ -355,7 +358,7 @@
 		ctx.fillText(formatElapsedApprox(gapMs / 60000), midX, height - 3);
 	}
 
-	function drawWaterBreakMarker(ctx: CanvasRenderingContext2D, x: number, baseline: number, wc: ReturnType<typeof getWaveColors>) {
+	function drawWaterBreakMarker(ctx: CanvasRenderingContext2D, x: number, baseline: number, eventMs: number, wc: ReturnType<typeof getWaveColors>) {
 		ctx.save();
 		ctx.strokeStyle = wc.water;
 		ctx.globalAlpha = 0.7;
@@ -371,6 +374,10 @@
 		ctx.fillStyle = wc.water;
 		ctx.textAlign = 'center';
 		ctx.fillText('💧', x, PADDING + 10);
+		// Time label below the emoji
+		ctx.globalAlpha = 0.7;
+		ctx.font = '9px system-ui, sans-serif';
+		ctx.fillText(formatTimeShort(new Date(eventMs)), x, PADDING + 22);
 		ctx.restore();
 	}
 
