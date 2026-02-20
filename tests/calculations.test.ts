@@ -7,6 +7,7 @@ import {
 	getIntervalMinutes,
 	getSessionStats,
 	check511Rule,
+	computeSustainedSpan,
 	estimateStage,
 	getRestBetween,
 	getTrend,
@@ -241,6 +242,87 @@ describe('check511Rule', () => {
 		const result = check511Rule(contractions, defaultThreshold);
 		// 58 min span is just under 60 threshold, so NOT sustained via Path B
 		expect(result.progress.sustainedOk).toBe(false);
+	});
+
+	it('marks sustained NOT OK when contractions are hours apart (sparse pattern)', () => {
+		const now = Date.now();
+		// User scenario: contractions hours apart spanning 1200+ min total
+		const contractions = [
+			makeContraction(0, 65, 3, now - 1200 * 60000), // 1200 min ago
+			makeContraction(0, 65, 3, now - 950 * 60000),  // 950 min ago (250 min gap)
+			makeContraction(0, 65, 3, now - 700 * 60000),  // 700 min ago (250 min gap)
+			makeContraction(0, 65, 3, now - 450 * 60000),  // 450 min ago (250 min gap)
+			makeContraction(0, 65, 3, now - 200 * 60000),  // 200 min ago (250 min gap)
+		];
+		const result = check511Rule(contractions, defaultThreshold);
+		// All gaps (250 min) >> sustained threshold (60 min) → each contraction is its own segment
+		expect(result.progress.sustainedOk).toBe(false);
+		expect(result.progress.sustainedValue).toBe(0);
+	});
+
+	it('computes sustained span from most recent cluster when gaps break continuity', () => {
+		const now = Date.now();
+		// Cluster 1: 3 contractions 10 min apart (span = 20 min), then 90 min gap, then
+		// Cluster 2: 3 contractions 10 min apart (span = 20 min)
+		const contractions = [
+			makeContraction(0, 65, 3, now - 120 * 60000), // 120 min ago
+			makeContraction(0, 65, 3, now - 110 * 60000), // 110 min ago
+			makeContraction(0, 65, 3, now - 100 * 60000), // 100 min ago
+			// 90 min gap — breaks the chain (> 60 min threshold)
+			makeContraction(0, 65, 3, now - 10 * 60000),  // 10 min ago
+			makeContraction(0, 65, 3, now - 5 * 60000),   // 5 min ago (only 2 in window → Path A)
+		];
+		const result = check511Rule(contractions, defaultThreshold);
+		// Most recent segment spans 10→5 = 5 min, NOT 120 min total
+		expect(result.progress.sustainedOk).toBe(false);
+		expect(result.progress.sustainedValue).toBeLessThan(60);
+	});
+});
+
+describe('computeSustainedSpan', () => {
+	it('returns 0 for fewer than 2 contractions', () => {
+		expect(computeSustainedSpan([], 60)).toBe(0);
+		expect(computeSustainedSpan([makeContraction(0, 60)], 60)).toBe(0);
+	});
+
+	it('returns full span when all gaps are within threshold', () => {
+		const now = Date.now();
+		const contractions = [
+			makeContraction(0, 65, 3, now - 90 * 60000),
+			makeContraction(0, 65, 3, now - 80 * 60000),
+			makeContraction(0, 65, 3, now - 70 * 60000),
+			makeContraction(0, 65, 3, now - 10 * 60000),
+		];
+		const span = computeSustainedSpan(contractions, 60);
+		// All gaps (10, 10, 60) <= 60 → one segment spanning 80 min
+		expect(span).toBeCloseTo(80, 0);
+	});
+
+	it('returns most recent segment span when a gap exceeds threshold', () => {
+		const now = Date.now();
+		const contractions = [
+			makeContraction(0, 65, 3, now - 300 * 60000), // 300 min ago
+			makeContraction(0, 65, 3, now - 290 * 60000), // 290 min ago
+			// 220 min gap — breaks chain
+			makeContraction(0, 65, 3, now - 70 * 60000),  // 70 min ago
+			makeContraction(0, 65, 3, now - 60 * 60000),  // 60 min ago
+			makeContraction(0, 65, 3, now - 50 * 60000),  // 50 min ago
+		];
+		const span = computeSustainedSpan(contractions, 60);
+		// Most recent segment: 70→50 = 20 min
+		expect(span).toBeCloseTo(20, 0);
+	});
+
+	it('returns 0 when every gap exceeds threshold', () => {
+		const now = Date.now();
+		const contractions = [
+			makeContraction(0, 65, 3, now - 500 * 60000),
+			makeContraction(0, 65, 3, now - 300 * 60000), // 200 min gap
+			makeContraction(0, 65, 3, now - 100 * 60000), // 200 min gap
+		];
+		const span = computeSustainedSpan(contractions, 60);
+		// Every gap breaks → last segment is a single contraction → span = 0
+		expect(span).toBe(0);
 	});
 });
 

@@ -88,6 +88,31 @@ export function getSessionStats(
 	};
 }
 
+/**
+ * Compute the span (in minutes) of the most recent contiguous segment of contractions.
+ * A segment breaks when the gap between consecutive contractions exceeds `breakGapMinutes`.
+ * Returns 0 if fewer than 2 contractions.
+ */
+export function computeSustainedSpan(completed: Contraction[], breakGapMinutes: number): number {
+	if (completed.length < 2) return 0;
+	let segmentStartTime = new Date(completed[0].start).getTime();
+	let prevTime = segmentStartTime;
+
+	for (let i = 1; i < completed.length; i++) {
+		const curTime = new Date(completed[i].start).getTime();
+		const gapMin = (curTime - prevTime) / 60000;
+
+		if (gapMin > breakGapMinutes) {
+			// Gap too large — start a new segment
+			segmentStartTime = curTime;
+		}
+		prevTime = curTime;
+	}
+
+	// Return the span of the most recent (last) segment
+	return (prevTime - segmentStartTime) / 60000;
+}
+
 export function check511Rule(
 	contractions: Contraction[],
 	threshold: ThresholdConfig
@@ -112,10 +137,6 @@ export function check511Rule(
 		return (now - start) <= windowMs;
 	});
 
-	const firstStart = new Date(completed[0].start).getTime();
-	const lastStart = new Date(completed[completed.length - 1].start).getTime();
-	const totalSpan = (lastStart - firstStart) / 60000;
-
 	if (recent.length < 3) {
 		const timedCompleted = completed.filter(c => !c.untimed);
 		const allDurations = timedCompleted.map(getDurationSeconds);
@@ -131,6 +152,9 @@ export function check511Rule(
 			? recentIntervals.reduce((a, b) => a + b, 0) / recentIntervals.length
 			: Infinity;
 
+		// Use contiguous sustained span — breaks chain when gaps exceed the sustained threshold
+		const sustainedSpan = computeSustainedSpan(completed, threshold.sustainedMinutes);
+
 		return {
 			met: false, metAt: null,
 			progress: {
@@ -138,8 +162,8 @@ export function check511Rule(
 				intervalValue: avgInt === Infinity ? 0 : avgInt,
 				durationOk: avgDur >= threshold.durationSeconds,
 				durationValue: avgDur,
-				sustainedOk: totalSpan >= threshold.sustainedMinutes,
-				sustainedValue: totalSpan,
+				sustainedOk: sustainedSpan >= threshold.sustainedMinutes,
+				sustainedValue: sustainedSpan,
 			},
 		};
 	}
@@ -208,10 +232,8 @@ export function estimateStage(
 	// Prevents a short burst of close contractions from showing "Transition" prematurely.
 	const MIN_SUSTAINED: Record<string, number> = { transition: 20, active: 30 };
 
-	// Compute sustained span from all completed contractions
-	const firstStart = completed.length > 0 ? new Date(completed[0].start).getTime() : 0;
-	const lastStart = new Date(completed[completed.length - 1].start).getTime();
-	const sustainedMin = (lastStart - firstStart) / 60000;
+	// Compute sustained span using contiguous segments (breaks on gaps > 60 min)
+	const sustainedMin = computeSustainedSpan(completed, 60);
 
 	const stageOrder: LaborStage[] = ['transition', 'active', 'early', 'pre-labor'];
 	for (const stage of stageOrder) {
@@ -356,9 +378,7 @@ export function estimateTimeTo511(
 	const avgRecentInt = recentIntervals.reduce((a, b) => a + b, 0) / recentIntervals.length;
 
 	if (avgRecentDur >= threshold.durationSeconds && avgRecentInt <= threshold.intervalMinutes) {
-		const firstStart = new Date(completed[0].start).getTime();
-		const lastStart = new Date(completed[completed.length - 1].start).getTime();
-		const spanMinutes = (lastStart - firstStart) / 60000;
+		const spanMinutes = computeSustainedSpan(completed, threshold.sustainedMinutes);
 		if (spanMinutes >= threshold.sustainedMinutes) return 0;
 		const remainingSustained = threshold.sustainedMinutes - spanMinutes;
 		return Math.round(remainingSustained);
@@ -387,9 +407,7 @@ export function estimateTimeTo511(
 	const trendMinutes = maxSteps * avgInt;
 
 	// Also account for sustained time: the pattern must persist for sustainedMinutes
-	const firstStart = new Date(completed[0].start).getTime();
-	const lastStart = new Date(completed[completed.length - 1].start).getTime();
-	const currentSpan = (lastStart - firstStart) / 60000;
+	const currentSpan = computeSustainedSpan(completed, threshold.sustainedMinutes);
 	const remainingSustained = Math.max(0, threshold.sustainedMinutes - currentSpan);
 
 	const estimatedMinutes = Math.max(trendMinutes, remainingSustained);
