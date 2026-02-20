@@ -32,6 +32,18 @@ jobs:
         working-directory: web
         run: bun install
 
+      - name: Verify version sync
+        run: |
+          PKG_VER=$(node -p "require('./web/package.json').version")
+          TS_VER=$(grep 'APP_VERSION' web/src/lib/version.ts | sed "s/.*APP_VERSION = ['\"]\\([^'\"]*\\)['\"].*/\\1/")
+          echo "package.json: $PKG_VER"
+          echo "version.ts:   $TS_VER"
+          if [ "$PKG_VER" != "$TS_VER" ]; then
+            echo "::error::PWA version mismatch! package.json=$PKG_VER but version.ts=$TS_VER"
+            exit 1
+          fi
+          echo "Versions match."
+
       - name: Generate PWA icons
         working-directory: web
         run: |

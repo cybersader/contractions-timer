@@ -70,5 +70,19 @@ if [ $FOUND_ISSUES -eq 1 ]; then
     exit 1
 fi
 
+# --- PWA version sync check ---
+# Ensure web/package.json and web/src/lib/version.ts have matching versions
+if [ -f "web/package.json" ] && [ -f "web/src/lib/version.ts" ]; then
+    PKG_VER=$(grep '"version"' web/package.json | head -1 | sed 's/.*"version": *"\([^"]*\)".*/\1/')
+    TS_VER=$(grep 'APP_VERSION' web/src/lib/version.ts | sed "s/.*APP_VERSION = ['\"]\\([^'\"]*\\)['\"].*/\\1/")
+    if [ -n "$PKG_VER" ] && [ -n "$TS_VER" ] && [ "$PKG_VER" != "$TS_VER" ]; then
+        echo -e "${RED}BLOCKED:${NC} PWA version mismatch!"
+        echo "  web/package.json:        ${PKG_VER}"
+        echo "  web/src/lib/version.ts:  ${TS_VER}"
+        echo "Update both files to the same version before committing."
+        exit 1
+    fi
+fi
+
 echo -e "${GREEN}Pre-commit check passed: no personal data found.${NC}"
 exit 0
