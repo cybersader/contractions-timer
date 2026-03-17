@@ -1,4 +1,4 @@
-# Contractions Timer for Obsidian
+# Contractions Timer for Obsidian and the Web
 
 [![GitHub release](https://img.shields.io/github/v/release/cybersader/obsidian-contractions-timer?style=flat-square)](https://github.com/cybersader/obsidian-contractions-timer/releases)
 [![Obsidian Downloads](https://img.shields.io/badge/dynamic/json?color=7c3aed&label=downloads&query=%24%5B%22obsidian-contractions-timer%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json&style=flat-square)](https://obsidian.md/plugins?id=obsidian-contractions-timer)
